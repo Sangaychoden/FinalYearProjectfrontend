@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { setAlert } from "../utils/sweetAlert";
 import { Plus } from "lucide-react";
 
-const API_URL =import.meta.env.VITE_API_URL;
+const API_URL =import.meta.env.VITE_API_URL ;
 const THEME_GREEN = "#006600";
 
 const Receptionists = () => {
