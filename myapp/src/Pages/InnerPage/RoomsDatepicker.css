@@ -1,0 +1,302 @@
+:root {
+  --pill-accent: #006600;
+  --pill-accent-hover: #006600;
+  --pill-muted: #f8fafc;
+  --pill-muted-text: #64748b;
+  --pill-text: #1e293b;
+  --pill-bg: #ffffff;
+  --pill-border: #e2e8f0;
+  --pill-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+/* Backdrop */
+.rdp-backdrop {
+  animation: rdp-backdrop-fade 200ms ease-out forwards;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.rdp-backdrop.is-closing {
+  animation: rdp-backdrop-fade-out 200ms ease-out forwards;
+}
+
+/* Calendar card - WIDER */
+.rdp-card {
+  animation: rdp-pop 250ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  border-radius: 12px;
+  background: var(--pill-bg);
+  box-shadow: var(--pill-shadow);
+  max-width: 360px; /* Increased from 320px */
+  width: 360px; /* Fixed width to prevent empty space */
+  overflow: hidden;
+}
+
+.rdp-card.is-closing {
+  animation: rdp-pop-out 200ms ease-out forwards;
+}
+
+/* Animations */
+@keyframes rdp-backdrop-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes rdp-backdrop-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes rdp-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes rdp-pop-out {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9) translateY(-10px);
+  }
+}
+
+/* Calendar root - WIDER AND FILLS SPACE */
+.rdp-pill.react-datepicker {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 16px; /* More horizontal padding */
+  background: var(--pill-bg);
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 13px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Header - CENTERED AND WIDER */
+.rdp-pill__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0 8px 10px;
+  border-bottom: 1px solid var(--pill-border);
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.rdp-pill__title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--pill-text);
+}
+
+.rdp-pill__controls {
+  display: flex;
+  gap: 2px;
+  padding: 0 10px 0 0;
+
+}
+
+.rdp-pill__btn {
+  width: 28px;
+  height: 28px;
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-border);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 10px;
+  color: var(--pill-text);
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rdp-pill__btn:hover {
+  background: #f1f9f1;
+  border-color: #cbe1da;
+  transform: translateY(-1px);
+}
+
+/* Day names - FILL WIDTH */
+.rdp-pill .react-datepicker__day-names {
+  margin: 0 0 8px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+}
+
+.rdp-pill .react-datepicker__day-name {
+  width: 36px; /* Increased to fill space */
+  height: 24px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--pill-muted-text);
+  line-height: 24px;
+  flex: 1; /* Make days fill available space */
+}
+
+/* Day cells - FILL WIDTH */
+.rdp-pill .react-datepicker__day,
+.rdp-pill .react-datepicker__day--selected,
+.rdp-pill .react-datepicker__day--keyboard-selected {
+  width: 36px; /* Increased to fill space */
+  height: 36px;
+  line-height: 34px;
+  margin: 2px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--pill-text);
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+  flex: 1; /* Make days fill available space */
+}
+
+.rdp-pill .react-datepicker__day:hover {
+  background: var(--pill-accent);
+  color: #fff;
+  border-color: var(--pill-accent);
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+
+.rdp-pill .react-datepicker__day--outside-month {
+  background: transparent;
+  color: #cbd5e1;
+  border-color: transparent;
+}
+
+.rdp-pill .react-datepicker__day:not(.react-datepicker__day--outside-month) {
+  background: #fff;
+  color: var(--pill-text);
+}
+
+.rdp-pill .react-datepicker__day--selected,
+.rdp-pill .react-datepicker__day--keyboard-selected {
+  background: var(--pill-accent);
+  color: #fff;
+  border-color: var(--pill-accent);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+  transform: scale(1.05);
+}
+
+.rdp-pill .react-datepicker__day--today {
+  border: 1.5px solid var(--pill-accent);
+  background: #fff;
+  color: var(--pill-text);
+  font-weight: 600;
+}
+
+.rdp-pill .react-datepicker__day--today:hover {
+  background: var(--pill-accent);
+  color: #fff;
+}
+
+.rdp-pill .react-datepicker__day--disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  background: #f8fafc;
+  color: #cbd5e1;
+}
+
+.rdp-pill .react-datepicker__day--disabled:hover {
+  background: #f8fafc;
+  color: #cbd5e1;
+  transform: none;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+/* Month container - FILL WIDTH */
+.rdp-pill .react-datepicker__month-container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* Week row - FILL WIDTH */
+.rdp-pill .react-datepicker__week {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  width: 100%;
+}
+
+/* Hide default navigation */
+.rdp-pill .react-datepicker__navigation {
+  display: none;
+}
+
+/* Close button in overlay */
+.rdp-card .border-gray-300 {
+  border: 1px solid var(--pill-border);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  background: var(--pill-bg);
+  color: var(--pill-text);
+  transition: all 0.15s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.rdp-card .border-gray-300:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+/* Header styling in overlay */
+.rdp-card .px-5.py-4 {
+  padding: 16px 20px; /* More padding for wider layout */
+}
+
+.rdp-card .px-5.py-4 h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--pill-text);
+  font-family: 'Inter', sans-serif;
+}
+
+/* Calendar wrapper */
+.rdp-pill .react-datepicker__month {
+  margin: 0;
+  width: 100%;
+}
+
+/* Make sure the calendar takes full width */
+.rdp-pill .react-datepicker {
+  width: 100%;
+}
+
+/* Ensure all calendar elements fill the container */
+.rdp-pill .react-datepicker__header {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.rdp-pill .react-datepicker__current-month {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* Focus states for accessibility */
+.rdp-pill .react-datepicker__day:focus {
+  outline: 2px solid var(--pill-accent);
+  outline-offset: 1px;
+}
+
+.rdp-pill__btn:focus {
+  outline: 2px solid var(--pill-accent);
+  outline-offset: 1px;
+}
