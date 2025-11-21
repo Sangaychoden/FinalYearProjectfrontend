@@ -23,7 +23,7 @@
     "react-image-lightbox": "^5.1.4",
     "react-router-dom": "^7.9.3",
     "styled-components": "^6.1.19",
-    "sweetalert2": "^11.23.0",
+    "sweetalert2": "^11.26.3",
     "swiper": "^12.0.2"
   },
   "devDependencies": {
