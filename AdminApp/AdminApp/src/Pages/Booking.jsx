@@ -115,7 +115,7 @@ const filteredData = enrichedData.filter((b) => {
 
 
           {/* Table */}
-          <div className="overflow-x-auto bg-white border border-[#9CA3AF]  shadow relative z-0">
+          <div className="overflow-x-auto bg-white border border-[#9CA3AF]  text-left shadow relative z-0">
             <table className="min-w-full divide-y divide-[#9CA3AF]">
 <thead className="bg-green-700 text-black">
   <tr>
@@ -130,16 +130,16 @@ const filteredData = enrichedData.filter((b) => {
     )}
   </tr>
 </thead>
-<tbody className="bg-white divide-y divide-[#9CA3AF]">
+<tbody className="bg-white text-left divide-y divide-[#9CA3AF]">
   {filteredData.map((booking) => (
     <tr key={booking.id} className="hover:bg-green-50 transition-colors">
       {activeTab !== "AVAILABLE" && (
-        <td className="px-4 py-3 text-gray-600">{booking.bookingNo}</td>
+        <td className="px-4 py-3 text-center text-gray-600">{booking.bookingNo}</td>
       )}
-      <td className="px-4 py-3 text-gray-600">{booking.type}</td>
-      <td className="px-4 py-3 text-gray-600">{booking.floor}</td>
+      <td className="px-4 py-3 text-center text-gray-600">{booking.type}</td>
+      <td className="px-4 py-3 text-left text-gray-600">{booking.floor}</td>
       <td
-        className={`px-4 py-3 ${
+        className={`text-left ${
           booking.status === "AVAILABLE"
             ? "text-[#009519]"
             : booking.status === "PENDING"
@@ -152,9 +152,9 @@ const filteredData = enrichedData.filter((b) => {
         {booking.status}
       </td>
       {activeTab !== "AVAILABLE" && (
-        <td className="px-4 py-3">
+        <td className="text-left">
           <button
-            className="text-green-700 font-small hover:underline"
+            className="text-green-700 text-left font-small hover:underline"
             onClick={() =>
               navigate("/booking-details", { state: { booking, activeTab } })
             }

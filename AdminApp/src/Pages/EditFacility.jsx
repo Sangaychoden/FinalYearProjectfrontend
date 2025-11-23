@@ -54,9 +54,9 @@ const EditFacility = () => {
             err.message === "Unauthorized"
               ? "Your session has expired. Please log in again."
               : "Please try again later.",
-          confirmButtonColor: CONFIRM_GREEN,
-          color: "#fff",
-          background: THEME_GREEN,
+      confirmButtonColor: "#008000",
+      color: "#fff",
+      background: "#006600",            }).then(() => {
         }).then(() => {
           if (err.message === "Unauthorized") navigate("/admin-login");
         });
@@ -101,16 +101,16 @@ const EditFacility = () => {
   // ✅ Remove image with confirmation
   const removeImage = (idx) => {
     Swal.fire({
-      title: "Remove Image?",
+      title: "Confirm Remove",
       text: "Are you sure you want to remove this image?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Yes, remove it",
+      confirmButtonText: "Yes",
       cancelButtonText: "Cancel",
-      confirmButtonColor: CONFIRM_GREEN,
       cancelButtonColor: "#d33",
+      confirmButtonColor: "#008000",
       color: "#fff",
-      background: THEME_GREEN,
+      background: "#006600",            }).then(() => {
     }).then((result) => {
       if (result.isConfirmed) {
         setImages((prev) => {
@@ -144,12 +144,13 @@ const EditFacility = () => {
       text: "Do you want to update this facility?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Yes, update it!",
+      confirmButtonText: "Yes",
       cancelButtonText: "Cancel",
-      confirmButtonColor: CONFIRM_GREEN,
       cancelButtonColor: "#d33",
+      confirmButtonColor: "#008000",
       color: "#fff",
-      background: THEME_GREEN,
+      background: "#006600",            }).then(() => {
+
     }).then(async (result) => {
       if (!result.isConfirmed) return;
 
@@ -183,9 +184,9 @@ const EditFacility = () => {
         Swal.fire({
           icon: "success",
           title: "Facility updated successfully!",
-          confirmButtonColor: CONFIRM_GREEN,
-          color: "#fff",
-          background: THEME_GREEN,
+      confirmButtonColor: "#008000",
+      color: "#fff",
+      background: "#006600",            }).then(() => {
         }).then(() => navigate("/admin-facilities"));
       } catch (err) {
         console.error("❌ Update error:", err);
@@ -196,9 +197,9 @@ const EditFacility = () => {
             err.message === "Unauthorized"
               ? "Your session expired. Please log in again."
               : "Failed to update facility. Try again.",
-          confirmButtonColor: CONFIRM_GREEN,
-          color: "#fff",
-          background: THEME_GREEN,
+      confirmButtonColor: "#008000",
+      color: "#fff",
+      background: "#006600",            }).then(() => {
         });
       }
     });
@@ -324,14 +325,14 @@ const EditFacility = () => {
             <button
               type="submit"
               disabled={loading}
-              className="bg-[#006600] text-white py-2 px-8 -md hover:bg-[#004d00] transition"
+              className="bg-[#006600] text-white py-2 px-8 -md hover:bg-[#000000] transition"
             >
               {loading ? "Updating..." : "Update"}
             </button>
             <button
               type="button"
               onClick={() => navigate(-1)}
-              className="border border-[#006600] text-[#006600] py-2 px-8 -md hover:bg-[#f0fdf4] transition"
+              className="border border-[#006600] text-[#006600] py-2 px-8 -md transition"
             >
               Cancel
             </button>

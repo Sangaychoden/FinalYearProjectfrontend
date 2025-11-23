@@ -73,7 +73,7 @@ const AddTestimonial = () => {
       text: "Do you want to publish this testimonial?",
       icon: "question",
       showCancelButton: true,
-      confirmButtonText: "Yes, Publish it!",
+      confirmButtonText: "Yes",
       cancelButtonText: "Cancel",
       confirmButtonColor: CONFIRM_GREEN,
       cancelButtonColor: "#d33",
@@ -246,14 +246,14 @@ const AddTestimonial = () => {
           <div className="flex justify-center space-x-5 mt-4">
             <button
               type="submit"
-              className="bg-[#006600] text-white py-3 px-8 hover:bg-[#004d00] transition-colors"
+              className="bg-[#006600] text-white py-3 px-8 hover:bg-[#000000] transition-colors"
             >
               Publish
             </button>
             <button
               type="button"
               onClick={() => navigate(-1)}
-              className="border border-[#006600] text-[#006600] py-3 px-8 hover:bg-[#f0fdf4] transition-colors"
+              className="border border-[#006600] text-[#006600] py-3 px-8 transition-colors"
             >
               Cancel
             </button>

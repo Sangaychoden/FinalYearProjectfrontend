@@ -304,7 +304,6 @@
 //   );
 // };
 
-// export default Room;
 import { useEffect, useState } from "react";
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb";
 import { Link } from "react-router-dom";
@@ -353,52 +352,41 @@ const Room = () => {
             </h1>
           </div>
 
-          <div className="mt-7 2xl:mt-[60px] grid items-center grid-cols-1 md:grid-cols-2 gap-8 md:gap-[40px]">
-            {rooms.map((room, index) => (
+          {/* Grid for rooms */}
+          <div className="mt-7 2xl:mt-[60px] grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-[40px] auto-rows-fr">
+            {rooms.map((room) => (
               <div
                 key={room._id}
-                className="overflow-hidden group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:shadow-2xl bg-white border border-gray-200"
+                className="flex flex-col overflow-hidden group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:shadow-2xl bg-white border border-gray-200 h-full"
                 data-aos="fade-up"
                 data-aos-duration="1000"
               >
-                <div className="relative overflow-hidden">
-                  <div className="overflow-hidden">
-                    <img
-                      src={room.images?.[0] || "/images/home/room1.jpeg"}
-                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:opacity-80"
-                      alt={room.roomType}
-                    />
-                  </div>
-
+                {/* Image & Price */}
+                <div className="relative overflow-hidden flex-shrink-0">
+                  <img
+                    src={room.images?.[0] || "/images/home/room1.jpeg"}
+                    alt={room.roomType}
+                    className="w-full h-[250px] object-cover transition-all duration-700 group-hover:scale-110 group-hover:opacity-80"
+                  />
                   <div className="px-5 3xl:px-6 py-2 inline-flex bg-khaki text-sm items-center justify-center text-white absolute top-[10px] right-[10px] z-10">
                     <span className="font-semibold">Nu {room.price}</span>
                   </div>
-
-                  {/* ✅ Updated link to include room ID in URL */}
-                  {/* <Link to={`/room_details2/${room._id}`}>
+                  <Link to={`/room_details2/${room._id}`} state={room}>
                     <button className="flex items-center justify-center text-[15px] leading-[38px] bg-black bg-opacity-90 hover:bg-opacity-100 absolute bottom-0 -left-40 px-6 py-1 text-white group-hover:left-0 transition-all duration-500 z-10">
-                      View Details{" "}
+                      View Details
                       <BsArrowRight className="w-4 h-4 ml-2 text-white transition-transform duration-300 group-hover:translate-x-1" />
                     </button>
-                  </Link> */}
-                  <Link to={`/room_details2/${room._id}`} state={room}>
-  <button className="flex items-center justify-center text-[15px] leading-[38px] bg-black bg-opacity-90 hover:bg-opacity-100 absolute bottom-0 -left-40 px-6 py-1 text-white group-hover:left-0 transition-all duration-500 z-10">
-    View Details{" "}
-    <BsArrowRight className="w-4 h-4 ml-2 text-white transition-transform duration-300 group-hover:translate-x-1" />
-  </button>
-</Link>
-
-
+                  </Link>
                   <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-all duration-500" />
                 </div>
 
-                <div className="font-inter">
-                  <div className="border-t border-gray-200">
-                    <div className="py-6 px-[30px]">
+                {/* Content */}
+                <div className="flex-1 flex flex-col justify-between">
+                  <div className="border-t border-gray-200 flex-1 flex flex-col">
+                    <div className="py-6 px-[30px] flex-1">
                       <h4 className="text-sm leading-[26px] text-khaki uppercase font-semibold">
                         LUXURY ROOM
                       </h4>
-
                       <Link
                         to="/room_details"
                         state={{ price: room.price, title: room.roomType }}
@@ -407,12 +395,10 @@ const Room = () => {
                           {room.roomType}
                         </h2>
                       </Link>
-
                       <p className="text-sm font-normal text-gray-800 font-inter">
                         {room.size} SQ.FT / Rooms
                       </p>
                     </div>
-
                     <div className="border-t border-gray-200 py-5">
                       <div className="px-[30px] flex items-center justify-between">
                         <span className="font-inter text-base flex items-center text-gray-800">

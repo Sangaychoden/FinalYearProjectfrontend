@@ -85,7 +85,7 @@ const AdminRooms = () => {
 
             <button
               onClick={() => handleViewClick(room._id)}
-              className="w-full bg-[#004d00] text-white py-2 px-4 font-small hover:bg-[#003300] transition-colors duration-300"
+              className="w-full bg-[#006600] text-white py-2 px-4 font-small hover:bg-[#000000] transition-colors duration-300"
             >
               View
             </button>
@@ -103,14 +103,19 @@ const AdminRooms = () => {
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-2xl font-bold text-gray-800">Room Management</h1>
 
-          <button
-            className="inline-flex items-center gap-2 px-4 h-10 text-md text-white shadow-md hover:shadow-lg transition"
-            style={{ backgroundColor: "#006600" }}
-            onClick={() => navigate("/add-room")}
-          >
-            <Plus size={18} />
-            Add Room
-          </button>
+<button
+  className="
+    inline-flex items-center gap-2 px-4 h-10 text-md text-white 
+    shadow-md hover:shadow-lg transition 
+    bg-[#006600] hover:bg-[#000000] 
+    rounded-none
+  "
+  onClick={() => navigate("/add-room")}
+>
+  <Plus size={18} />
+  Add Room
+</button>
+
         </div>
 
         {/* Room Cards */}

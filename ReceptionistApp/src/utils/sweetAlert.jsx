@@ -14,12 +14,11 @@ export const setAlert = async ({
     html: `<p style="color:#d3ffd3; font-size:16px;">${text}</p>`,
     icon,
     showCancelButton,
-    confirmButtonColor: "#008000",
-    cancelButtonColor: "#d33",
     confirmButtonText,
     cancelButtonText,
     color: "#fff",
-    iconColor: "#fff",
+    confirmButtonColor: "#008000",
+    cancelButtonColor: "#d33",
     background: "#006600",
   });
 

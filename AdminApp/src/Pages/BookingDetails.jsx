@@ -321,7 +321,7 @@
 //         </button>
 //       </div>
 
-//       <div className="bg-white shadow p-6 grid grid-cols-1 md:grid-cols-2 gap-4 rounded">
+//       <div className="bg-white shadow p-6 grid grid-cols-1 md:grid-cols-2 gap-4 ">
 
 //         <p><strong>Name:</strong> {booking.firstName} {booking.lastName}</p>
 //         <p><strong>Email:</strong> {booking.email}</p>
@@ -355,12 +355,12 @@
 //                   setRoomInput(e.target.value);
 //                   setShowUpdate(true);
 //                 }}
-//                 className="border px-2 py-1 rounded w-44 text-sm"
+//                 className="border px-2 py-1  w-44 text-sm"
 //               />
 //               {showUpdate && (
 //                 <button
 //                   onClick={handleUpdateRoom}
-//                   className="px-3 py-1 bg-[#006600] text-white text-xs rounded"
+//                   className="px-3 py-1 bg-[#006600] text-white text-xs "
 //                 >
 //                   Update
 //                 </button>
@@ -393,7 +393,7 @@
 //           {booking.status === "pending" && (
 //             <button
 //               onClick={handleConfirmBooking}
-//               className="bg-[#006600] text-white px-6 py-2 rounded"
+//               className="bg-[#006600] text-white px-6 py-2 "
 //             >
 //               Confirm Booking
 //             </button>
@@ -403,7 +403,7 @@
 //           {(booking.status === "pending" || booking.status === "confirmed") && (
 //             <button
 //               onClick={handleGuaranteeBooking}
-//               className="bg-blue-700 text-white px-6 py-2 rounded"
+//               className="bg-blue-700 text-white px-6 py-2 "
 //             >
 //               Guarantee Booking
 //             </button>
@@ -413,7 +413,7 @@
 //           {(booking.status === "pending" || booking.status === "confirmed") && (
 //             <button
 //               onClick={handleCancelBooking}
-//               className="bg-red-600 text-white px-6 py-2 rounded"
+//               className="bg-red-600 text-white px-6 py-2 "
 //             >
 //               {booking.status === "pending" ? "Reject Booking" : "Cancel Booking"}
 //             </button>
@@ -559,7 +559,7 @@ const BookingDetailsPage = () => {
         </button>
       </div>
 
-      <div className="bg-white shadow p-6 grid grid-cols-1 md:grid-cols-2 gap-4 rounded">
+      <div className="bg-white shadow p-6 grid grid-cols-1 md:grid-cols-2 gap-4 ">
 
         <p><strong>Name:</strong> {booking.firstName} {booking.lastName}</p>
         <p><strong>Email:</strong> {booking.email}</p>
@@ -578,17 +578,17 @@ const BookingDetailsPage = () => {
           </>
         )}
 
-        {/* ASSIGNED ROOM VIEW ONLY */}
-        <div className="col-span-2 mt-2">
-          <p className="font-semibold">Assigned Room(s):</p>
-          <p className="mt-1 text-gray-700">{booking.assignedRoom?.join(", ")}</p>
-        </div>
-
         <p><strong>Check-In:</strong> {formatNiceDate(booking.checkIn)}</p>
         <p><strong>Check-Out:</strong> {formatNiceDate(booking.checkOut)}</p>
 
         <p><strong>Total Price:</strong> Nu. {booking.totalPrice}</p>
         <p><strong>Status:</strong> {booking.status.toUpperCase()}</p>
+
+        {/* ASSIGNED ROOM VIEW ONLY */}
+        <div className="col-span-2 mt-2">
+          <p className="font-bold">Assigned Room(s):</p>
+          <p className="mt-1 text-gray-700">{booking.assignedRoom?.join(", ")}</p>
+        </div>
 
         {booking.status === "cancelled" && (
           <p className="text-red-600 col-span-2">

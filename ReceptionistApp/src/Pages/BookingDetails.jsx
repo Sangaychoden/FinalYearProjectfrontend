@@ -520,14 +520,14 @@
 // //     <div className="min-h-screen bg-gray-50 px-2 py-4">
 // //       <div className="flex items-center justify-between mb-2">
 // //         <h1 className="text-2xl font-bold text-[#006600]">AVAILABLE Booking Details</h1>
-// //         <button onClick={() => navigate(-1)} className="px-4 py-2 border border-gray-300 rounded hover:bg-gray-100">Back</button>
+// //         <button onClick={() => navigate(-1)} className="px-4 py-2 border border-gray-300  hover:bg-gray-100">Back</button>
 // //       </div>
 
 // //       {bookingStatus === 'AVAILABLE' && (
 // //         <div className="flex justify-center mb-6">
 // //           <div role="switch" aria-checked={isAgencyBooking} onClick={handleToggleAgency} className="relative select-none cursor-pointer">
-// //             <div className="w-56 h-12 rounded-full bg-gray-200 p-1 shadow-inner relative">
-// //               <div ref={toggleKnobRef} className={`absolute top-1 left-1 h-10 w-1/2 rounded-full transition-transform duration-200 ${isAgencyBooking ? 'translate-x-full' : ''} bg-white shadow`} />
+// //             <div className="w-56 h-12 -full bg-gray-200 p-1 shadow-inner relative">
+// //               <div ref={toggleKnobRef} className={`absolute top-1 left-1 h-10 w-1/2 -full transition-transform duration-200 ${isAgencyBooking ? 'translate-x-full' : ''} bg-white shadow`} />
 // //               <div className="absolute inset-0 flex items-center justify-between px-4 pointer-events-none">
 // //                 <span className={`text-sm font-medium ${!isAgencyBooking ? 'text-[#006600]' : 'text-gray-500'}`}>NORMAL</span>
 // //                 <span className={`text-sm font-medium ${isAgencyBooking ? 'text-[#006600]' : 'text-gray-500'}`}>AGENCY</span>
@@ -554,7 +554,7 @@
 // //             <div>
 // //   <label className="font-semibold">Room Type:</label>
 
-// //   <div className="mt-1 border px-3 py-2 w-full bg-gray-100 text-gray-800 rounded">
+// //   <div className="mt-1 border px-3 py-2 w-full bg-gray-100 text-gray-800 ">
 // //     {selectedRoomType}
 // //   </div>
 
@@ -732,7 +732,7 @@
 // //       )}
 
 // //       {bookingStatus === 'CHECKED_IN' && (
-// //         <div className="bg-white shadow p-6 rounded-md grid grid-cols-1 md:grid-cols-2 gap-4"> 
+// //         <div className="bg-white shadow p-6 -md grid grid-cols-1 md:grid-cols-2 gap-4"> 
 // //           <p><strong>Booking No:</strong> {booking.bookingNumber}</p>
 // //           <p><strong>Transaction Number:</strong> {booking.transactionNumber}</p>
 // //           <p><strong>Name:</strong> {isAgencyBooking ? agencyName || agentName : `${firstName} ${lastName}`}</p>
@@ -750,7 +750,7 @@
 // //       )}
 
 // //       {bookingStatus !== 'AVAILABLE' && bookingStatus !== 'CHECKED_IN' && (
-// //         <div className="bg-white shadow p-6 rounded-md grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+// //         <div className="bg-white shadow p-6 -md grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
 // //           <p><strong>Booking No:</strong> {booking.bookingNumber}</p>
 // //           <p><strong>Transaction Number:</strong> {booking.transactionNumber}</p>
 // //           <p><strong>Name:</strong> {isAgencyBooking ? agencyName || agentName : `${firstName} ${lastName}`}</p>
@@ -762,8 +762,8 @@
 // //           <div className="col-span-2">
 // //             <label className="font-semibold">Assigned Room(s):</label>
 // //             <div className="flex items-center gap-3 mt-1">
-// //               <input type="text" value={selectedRoomNo} onChange={(e) => { setSelectedRoomNo(e.target.value); setShowUpdateRoomBtn(true); }} className="border border-gray-300 px-3 py-2 rounded-lg w-60 shadow-sm" />
-// //               {showUpdateRoomBtn && <button onClick={handleUpdateAssignedRooms} className="px-4 py-2 bg-[#009900] text-white rounded-lg shadow">UPDATE ROOMS</button>}
+// //               <input type="text" value={selectedRoomNo} onChange={(e) => { setSelectedRoomNo(e.target.value); setShowUpdateRoomBtn(true); }} className="border border-gray-300 px-3 py-2 -lg w-60 shadow-sm" />
+// //               {showUpdateRoomBtn && <button onClick={handleUpdateAssignedRooms} className="px-4 py-2 bg-[#009900] text-white -lg shadow">UPDATE ROOMS</button>}
 // //             </div>
 // //           </div>
 
@@ -775,7 +775,7 @@
 // //           {(bookingStatus === 'CONFIRMED' || bookingStatus === 'GUARANTEED') && (
 // //             <div className="col-span-2 flex justify-center mt-4">
 // //               <button
-// //                 className="bg-[#006600] text-white px-8 py-2 rounded-lg font-semibold hover:bg-green-800"
+// //                 className="bg-[#006600] text-white px-8 py-2 -lg font-semibold hover:bg-green-800"
 // //                 onClick={handleCheckIn}
 // //               >
 // //                 Check-In
@@ -1111,7 +1111,7 @@
 //         </button>
 //       </div>
 
-//       <div className="bg-white shadow p-6 grid grid-cols-1 md:grid-cols-2 gap-4 rounded">
+//       <div className="bg-white shadow p-6 grid grid-cols-1 md:grid-cols-2 gap-4 ">
 
 //         <p><strong>Name:</strong> {booking.firstName} {booking.lastName}</p>
 //         <p><strong>Email:</strong> {booking.email}</p>
@@ -1145,12 +1145,12 @@
 //                   setRoomInput(e.target.value);
 //                   setShowUpdate(true);
 //                 }}
-//                 className="border px-2 py-1 rounded w-44 text-sm"
+//                 className="border px-2 py-1  w-44 text-sm"
 //               />
 //               {showUpdate && (
 //                 <button
 //                   onClick={handleUpdateRoom}
-//                   className="px-3 py-1 bg-[#006600] text-white text-xs rounded"
+//                   className="px-3 py-1 bg-[#006600] text-white text-xs "
 //                 >
 //                   Update
 //                 </button>
@@ -1183,7 +1183,7 @@
 //           {booking.status === "pending" && (
 //             <button
 //               onClick={handleConfirmBooking}
-//               className="bg-[#006600] text-white px-6 py-2 rounded"
+//               className="bg-[#006600] text-white px-6 py-2 "
 //             >
 //               Confirm Booking
 //             </button>
@@ -1193,7 +1193,7 @@
 //           {(booking.status === "pending" || booking.status === "confirmed") && (
 //             <button
 //               onClick={handleGuaranteeBooking}
-//               className="bg-blue-700 text-white px-6 py-2 rounded"
+//               className="bg-blue-700 text-white px-6 py-2 "
 //             >
 //               Guarantee Booking
 //             </button>
@@ -1203,7 +1203,7 @@
 //           {(booking.status === "pending" || booking.status === "confirmed") && (
 //             <button
 //               onClick={handleCancelBooking}
-//               className="bg-red-600 text-white px-6 py-2 rounded"
+//               className="bg-red-600 text-white px-6 py-2 "
 //             >
 //               {booking.status === "pending" ? "Reject Booking" : "Cancel Booking"}
 //             </button>
@@ -1341,8 +1341,9 @@ const BookingDetailsPage = () => {
 
       await Swal.fire({
         icon: "success",
-        iconColor: "#008000",
-        confirmButtonColor: "#008000",
+    color: "#fff",
+    confirmButtonColor: "#008000",
+    background: "#006600",
         title: "Updated!",
         text: "Room updated.",
       });
@@ -1360,15 +1361,22 @@ const BookingDetailsPage = () => {
 
   // CONFIRM BOOKING (DEPOSIT)
   const handleConfirmBooking = async () => {
-    const popup = await Swal.fire({
-      title: "Confirm Booking?",
-      text: "Enter deposit transaction number:",
-      input: "text",
-      showCancelButton: true,
-      confirmButtonText: "OK",
-      confirmButtonColor: "#008000",
-      iconColor: "#008000",
-    });
+const popup = await Swal.fire({
+  title: "Confirm Booking",
+  text: "Enter deposit transaction number:",
+  input: "text",
+  showCancelButton: true,
+  confirmButtonText: "OK",
+  color: "#fff",                // text color of title & content
+  confirmButtonColor: "#008000",
+  cancelButtonColor: "#d33",
+  background: "#006600",
+  iconColor: "#008000",
+  inputAttributes: {
+    style: "color: #000000; background-color: #ffffff;" // input text black, bg white
+  }
+});
+
 
     if (!popup.isConfirmed) return;
 
@@ -1385,29 +1393,44 @@ const BookingDetailsPage = () => {
 
       await Swal.fire({
         icon: "success",
-        iconColor: "#008000",
-        confirmButtonColor: "#008000",
+  color: "#fff",                // text color of title & content
+  confirmButtonColor: "#008000",
+  background: "#006600",
         title: "Confirmed!",
         text: "Deposit received.",
       });
 
       navigate("/booking", { state: { activeTab: "BOOKED" } });
     } catch (err) {
-      Swal.fire({ icon: "error", title: "Error", text: err.message });
+      Swal.fire({ 
+        icon: "error", 
+        title: "Error", 
+        text: err.message,
+          color: "#fff",                // text color of title & content
+  confirmButtonColor: "#008000",
+  background: "#006600",
+
+      });
     }
   };
 
   // GUARANTEE (FULL PAYMENT)
   const handleGuaranteeBooking = async () => {
-    const popup = await Swal.fire({
-      title: "Guarantee Booking?",
-      text: "Enter FULL payment transaction number:",
-      input: "text",
-      showCancelButton: true,
-      confirmButtonText: "OK",
-      confirmButtonColor: "#008000",
-      iconColor: "#008000",
-    });
+const popup = await Swal.fire({
+  title: "Guarantee Booking",
+  text: "Enter FULL payment transaction number:",
+  input: "text",
+  showCancelButton: true,
+  confirmButtonText: "OK",
+  color: "#fff",                // title & text color
+  confirmButtonColor: "#008000",
+  cancelButtonColor: "#d33",
+  background: "#006600",
+  inputAttributes: {
+    style: "color: #000000; background-color: #ffffff;" // input text black, bg white
+  }
+});
+
 
     if (!popup.isConfirmed) return;
 
@@ -1427,16 +1450,24 @@ const BookingDetailsPage = () => {
 
       await Swal.fire({
         icon: "success",
-        iconColor: "#008000",
-        confirmButtonColor: "#008000",
+  color: "#fff",                // text color of title & content
+  confirmButtonColor: "#008000",
+  background: "#006600",
         title: "Guaranteed!",
         text: "Full payment received.",
       });
 
       navigate("/booking", { state: { activeTab: "BOOKED" } });
     } catch (err) {
-      Swal.fire({ icon: "error", title: "Failed", text: err.message });
-    }
+      Swal.fire({ 
+        icon: "error", 
+        title: "Failed", 
+        text: err.message,
+          color: "#fff",                // text color of title & content
+  confirmButtonColor: "#008000",
+  background: "#006600",
+
+      });    }
   };
 
   // CHECK IN (NEW BUTTON)
@@ -1449,7 +1480,10 @@ const BookingDetailsPage = () => {
         input: "text",
         showCancelButton: true,
         confirmButtonText: "OK",
-        confirmButtonColor: "#008000",
+  color: "#fff",                // text color of title & content
+  confirmButtonColor: "#008000",
+  cancelButtonColor: "#d33",
+  background: "#006600",
       });
 
       if (!popup.isConfirmed) return;
@@ -1468,14 +1502,23 @@ const BookingDetailsPage = () => {
         await Swal.fire({
           icon: "success",
           title: "Checked In!",
-          confirmButtonColor: "#008000",
+  color: "#fff",                // text color of title & content
+  confirmButtonColor: "#008000",
+  background: "#006600",
         });
 
         // navigate("/booking", { state: { activeTab: "CHECKED IN" } });
         navigate("/booking", { state: { activeTab: "CHECKED IN" } });
       } catch (err) {
-        Swal.fire({ icon: "error", title: "Failed", text: err.message });
-      }
+      Swal.fire({ 
+        icon: "error", 
+        title: "Failed", 
+        text: err.message,
+        color: "#fff",                // text color of title & content
+        confirmButtonColor: "#008000",
+        background: "#006600",
+      });      
+    }
     }
 
     // IF GUARANTEED → direct check in
@@ -1494,27 +1537,42 @@ const BookingDetailsPage = () => {
         await Swal.fire({
           icon: "success",
           title: "Checked In!",
-          confirmButtonColor: "#008000",
+  color: "#fff",                // text color of title & content
+  confirmButtonColor: "#008000",
+  background: "#006600",
         });
 
         navigate("/booking", { state: { activeTab: "CHECKED IN" } });
       } catch (err) {
-        Swal.fire({ icon: "error", title: "Failed", text: err.message });
-      }
+      Swal.fire({ 
+        icon: "error", 
+        title: "Failed", 
+        text: err.message,
+        color: "#fff",                // text color of title & content
+        confirmButtonColor: "#008000",
+        background: "#006600",
+      });      }
     }
   };
 
   // CANCEL / REJECT
   const handleCancelBooking = async () => {
-    const popup = await Swal.fire({
-      title: booking.status === "pending" ? "Reject Booking?" : "Cancel Booking?",
-      text: "Enter the reason:",
-      input: "text",
-      showCancelButton: true,
-      confirmButtonText: "OK",
-      cancelButtonText: "Cancel",
-      confirmButtonColor: "#008000",
-    });
+const popup = await Swal.fire({
+  title: booking.status === "pending" ? "Reject Booking" : "Cancel Booking",
+  text: "Enter the reason:",
+  input: "text",
+  showCancelButton: true,
+  confirmButtonText: "OK",
+  cancelButtonText: "Cancel",
+  color: "#fff",                // title & content text color
+  confirmButtonColor: "#008000",
+  cancelButtonColor: "#d33",
+  background: "#006600",
+  inputAttributes: {
+    style: "color: #000000; background-color: #ffffff;" // input text black, bg white
+  }
+});
+
 
     if (!popup.value) return;
 
@@ -1540,7 +1598,10 @@ const BookingDetailsPage = () => {
           booking.status === "pending"
             ? "Booking Rejected"
             : "Booking Cancelled",
-        confirmButtonColor: "#008000",
+  color: "#fff",                // text color of title & content
+  confirmButtonColor: "#008000",
+  cancelButtonColor: "#d33",
+  background: "#006600",
       });
 
       navigate("/booking", {
@@ -1549,8 +1610,14 @@ const BookingDetailsPage = () => {
         },
       });
     } catch (err) {
-      Swal.fire({ icon: "error", title: "Failed", text: err.message });
-    }
+      Swal.fire({ 
+        icon: "error", 
+        title: "Failed", 
+        text: err.message,
+        color: "#fff",                // text color of title & content
+        confirmButtonColor: "#008000",
+        background: "#006600",
+      });    }
   };
 
   const formatNiceDate = (date) => {
@@ -1596,7 +1663,7 @@ const BookingDetailsPage = () => {
         </button>
       </div>
 
-      <div className="bg-white shadow p-6 grid grid-cols-1 md:grid-cols-2 gap-4 rounded">
+      <div className="bg-white shadow p-6 grid grid-cols-1 md:grid-cols-2 gap-4 ">
 
         <p><strong>Name:</strong> {booking.firstName} {booking.lastName}</p>
         <p><strong>Email:</strong> {booking.email}</p>
@@ -1615,9 +1682,16 @@ const BookingDetailsPage = () => {
           </>
         )}
 
+
+        <p><strong>Check-In:</strong> {formatNiceDate(booking.checkIn)}</p>
+        <p><strong>Check-Out:</strong> {formatNiceDate(booking.checkOut)}</p>
+
+        <p><strong>Total Price:</strong> Nu. {booking.totalPrice}</p>
+        <p><strong>Status:</strong> {booking.status.toUpperCase()}</p>
+
         {/* ASSIGNED ROOM */}
         <div className="col-span-2 mt-2">
-          <p className="font-semibold">Assigned Room(s):</p>
+          <p className="font-bold">Assigned Room(s):</p>
 
           {booking.status === "checked_in" || booking.status === "cancelled" ? (
             <p className="mt-1 text-gray-700">{booking.assignedRoom?.join(", ")}</p>
@@ -1629,12 +1703,12 @@ const BookingDetailsPage = () => {
                   setRoomInput(e.target.value);
                   setShowUpdate(true);
                 }}
-                className="border px-2 py-1 rounded w-44 text-sm"
+                className="border px-2 py-1  w-44 text-sm"
               />
               {showUpdate && (
                 <button
                   onClick={handleUpdateRoom}
-                  className="px-3 py-1 bg-[#006600] text-white text-xs rounded"
+                  className="px-3 py-1 bg-[#006600] text-white text-xs "
                 >
                   Update
                 </button>
@@ -1642,12 +1716,6 @@ const BookingDetailsPage = () => {
             </div>
           )}
         </div>
-
-        <p><strong>Check-In:</strong> {formatNiceDate(booking.checkIn)}</p>
-        <p><strong>Check-Out:</strong> {formatNiceDate(booking.checkOut)}</p>
-
-        <p><strong>Total Price:</strong> Nu. {booking.totalPrice}</p>
-        <p><strong>Status:</strong> {booking.status.toUpperCase()}</p>
 
         {booking.status === "cancelled" && (
           <p className="text-red-600 col-span-2">
@@ -1666,7 +1734,7 @@ const BookingDetailsPage = () => {
           {booking.status === "pending" && (
             <button
               onClick={handleConfirmBooking}
-              className="bg-[#006600] text-white px-6 py-2 rounded"
+              className="bg-[#006600] text-white px-6 py-2 "
             >
               Confirm Booking
             </button>
@@ -1676,7 +1744,7 @@ const BookingDetailsPage = () => {
           {(booking.status === "pending" || booking.status === "confirmed") && (
             <button
               onClick={handleGuaranteeBooking}
-              className="bg-blue-700 text-white px-6 py-2 rounded"
+              className="bg-blue-700 text-white px-6 py-2 "
             >
               Guarantee Booking
             </button>
@@ -1686,7 +1754,7 @@ const BookingDetailsPage = () => {
           {(booking.status === "pending" || booking.status === "confirmed") && (
             <button
               onClick={handleCancelBooking}
-              className="bg-red-600 text-white px-6 py-2 rounded"
+              className="bg-red-600 text-white px-6 py-2 "
             >
               {booking.status === "pending" ? "Reject Booking" : "Cancel Booking"}
             </button>
@@ -1696,7 +1764,7 @@ const BookingDetailsPage = () => {
           {(booking.status === "confirmed" || booking.status === "guaranteed") && (
             <button
               onClick={handleCheckIn}
-              className="bg-purple-700 text-white px-6 py-2 rounded"
+              className="bg-purple-700 text-white px-6 py-2 "
             >
               Check In
             </button>

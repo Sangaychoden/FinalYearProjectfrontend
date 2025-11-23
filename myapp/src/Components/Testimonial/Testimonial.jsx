@@ -160,7 +160,7 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 
 const API_URL = `${import.meta.env.VITE_API_URL}/testimonials/testimonials`;
-const DEFAULT_PHOTO = "https://cdn-icons-png.flaticon.com/512/3135/3135715.png";
+const DEFAULT_PHOTO = "/images/home/default_profile.png";
 
 const Testimonial = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -247,7 +247,7 @@ const Testimonial = () => {
         </div>
 
         {/* Small Screen Static Testimonial */}
-        <div className="mt-14 sm:hidden px-2">
+        <div className="mt-14 px-2">
           {testimonials.length > 0 && (
             <div className="py-[10px]">
               <div className="w-[85%] h-[10px] bg-[#006600] mx-auto"></div>

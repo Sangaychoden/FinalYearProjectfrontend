@@ -65,7 +65,9 @@ const RoomDisplay = () => {
         icon: "error",
         title: "Room ID missing",
         text: "Unable to navigate to the edit page. Please try again.",
-        confirmButtonColor: "#006600",
+      confirmButtonColor: "#008000",
+      color: "#fff",
+      background: "#006600",            }).then(() => {
       });
     }
   };
@@ -73,15 +75,14 @@ const RoomDisplay = () => {
   // ✅ Handle Delete Room
   const handleDelete = async () => {
     Swal.fire({
-      title: "Are you sure?",
-      html: `<p style="color:#d3ffd3; font-size:16px;">You won’t be able to revert this action!</p>`,
+      title: "Confirm Delete",
+      html: `<p style="color:#d3ffd3; font-size:16px;">Do you want to delete this room?</p>`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
-      cancelButtonColor: "#006600",
-      confirmButtonText: "Yes, delete it!",
+      cancelButtonColor: "#008000",
+      confirmButtonText: "Yes",
       color: "#fff",
-      iconColor: "#fff",
       background: "#006600",
     }).then(async (result) => {
       if (result.isConfirmed) {
@@ -96,9 +97,10 @@ const RoomDisplay = () => {
               icon: "success",
               title: "Deleted!",
               text: "Room has been deleted successfully.",
-              confirmButtonColor: "#006600",
-              background: "#f0fff0",
-            }).then(() => {
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#008000",
+      color: "#fff",
+      background: "#006600",            }).then(() => {
               navigate("/admin-rooms"); // Redirect to room list or any page
             });
           } else {
@@ -107,7 +109,9 @@ const RoomDisplay = () => {
               icon: "error",
               title: "Error",
               text: errorData.message || "Failed to delete the room.",
-              confirmButtonColor: "#006600",
+      confirmButtonColor: "#008000",
+      color: "#fff",
+      background: "#006600",            }).then(() => {
             });
           }
         } catch (error) {
@@ -115,7 +119,9 @@ const RoomDisplay = () => {
             icon: "error",
             title: "Error",
             text: "Something went wrong while deleting the room.",
-            confirmButtonColor: "#006600",
+      confirmButtonColor: "#008000",
+      color: "#fff",
+      background: "#006600",            }).then(() => {
           });
           console.error("Delete error:", error);
         }
@@ -156,7 +162,7 @@ const RoomDisplay = () => {
         <p className="text-lg">Room not found.</p>
         <button
           onClick={() => navigate(-1)}
-          className="mt-4 px-4 py-2 bg-[#006600] text-white rounded hover:bg-green-700 transition"
+          className="mt-4 px-4 py-2 bg-[#006600] text-white  hover:bg-green-700 transition"
         >
           Go Back
         </button>
@@ -211,13 +217,13 @@ const RoomDisplay = () => {
               {room.images?.length > 1 && (
                 <>
                   <span
-                    className="w-[40px] h-[40px] bg-white hover:bg-[#006600] grid items-center justify-center absolute bottom-[45%] left-[-50px] group-hover:left-4 transition-all duration-300 cursor-pointer"
+                    className="w-[40px] h-[40px] bg-white hover:bg-[#000000] hover:text-white grid items-center justify-center absolute bottom-[45%] left-[-50px] group-hover:left-4 transition-all duration-300 cursor-pointer"
                     onClick={prevBtn}
                   >
-                    <BsArrowLeft size={20} className="text-gray-700 hover:text-white" />
+                    <BsArrowLeft size={20} className="text-gray-700" />
                   </span>
                   <span
-                    className="w-[40px] h-[40px] bg-white hover:bg-[#006600] grid items-center justify-center absolute bottom-[45%] right-[-50px] group-hover:right-4 transition-all duration-300 cursor-pointer"
+                    className="w-[40px] h-[40px] bg-white hover:bg-[#000000] hover:text-white grid items-center justify-center absolute bottom-[45%] right-[-50px] group-hover:right-4 transition-all duration-300 cursor-pointer"
                     onClick={nextBtn}
                   >
                     <BsArrowRight size={20} className="text-gray-700 hover:text-white" />

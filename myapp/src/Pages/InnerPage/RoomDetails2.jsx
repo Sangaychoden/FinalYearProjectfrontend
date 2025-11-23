@@ -356,7 +356,6 @@
 //             {showAvailability && (
 //               <div>
 //                 <div
-//                   className="fixed inset-0 bg-black/30 z-40 transition-opacity"
 //                   onClick={() => setShowAvailability(false)}
 //                 ></div>
 
@@ -645,6 +644,8 @@ import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
 import "./RoomsDatepicker.css";
+import FloatingSocials from "../../Shared/FloatingSocials";
+import GoToTop from "../../Shared/GoToTop";
 
 const RoomDetails2 = () => {
   const { id } = useParams();
@@ -962,7 +963,6 @@ const RoomDetails2 = () => {
       {showAvailability && (
         <div>
           <div
-            className="fixed inset-0 bg-black/30 z-40"
             onClick={() => setShowAvailability(false)}
           ></div>
 
@@ -1111,6 +1111,10 @@ const RoomDetails2 = () => {
           </div>
         </div>
       )}
+      {/* Floating buttons */}
+{!showAvailability && <FloatingSocials />}
+{!showAvailability && <GoToTop />}
+
     </section>
   );
 };

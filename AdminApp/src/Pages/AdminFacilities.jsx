@@ -101,11 +101,11 @@ const AdminFacilities = () => {
 const confirmDelete = (id) => {
   const item = facilities.find((f) => f._id === id);
   Swal.fire({
-    title: "Delete Facility?",
-    html: `<p>You are about to delete <b>${item?.title}</b>.</p>`,
+    title: "Confirm Delete",
+    html: `<p>Do you want to delete <b>${item?.title}</b>?</p>`,
     icon: "warning",
     showCancelButton: true,
-    confirmButtonText: "Yes, delete it!",
+    confirmButtonText: "Yes",
     cancelButtonText: "Cancel",
     confirmButtonColor: CONFIRM_GREEN, // 💚 Bright green
     cancelButtonColor: "#d33",
@@ -173,8 +173,12 @@ const confirmDelete = (id) => {
 
         <Link
           to="/add-facility"
-          className="inline-flex items-center gap-2 px-4 h-10 text-md text-white shadow-md hover:shadow-lg transition"
-          style={{ backgroundColor: THEME_GREEN }}
+  className="
+    inline-flex items-center gap-2 px-4 h-10 text-md text-white 
+    shadow-md hover:shadow-lg transition 
+    bg-[#006600] hover:bg-[#000000] 
+    rounded-none
+  "
         >
           <Plus size={18} />
           Add Service

@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb";
 import { BiChevronDown } from "react-icons/bi";
@@ -33,6 +33,10 @@ const AvailableRooms = () => {
   const [isClosing, setIsClosing] = useState(false);
 
   const [availableRooms, setAvailableRooms] = useState([]);
+
+  const roomRef = useRef(null);
+const guestRef = useRef(null);
+
 
   // ✅ Detect desktop screen
   useEffect(() => {
@@ -93,26 +97,42 @@ const AvailableRooms = () => {
     fetchAvailableRooms();
   }, [checkIn, checkOut, adult, children, roomCount]);
 
+  useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (roomRef.current && !roomRef.current.contains(event.target)) {
+      setOpen(false);
+    }
+    if (guestRef.current && !guestRef.current.contains(event.target)) {
+      setGuestOpen(false);
+    }
+  };
+
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => document.removeEventListener("mousedown", handleClickOutside);
+}, []);
+
   return (
     <div className="bg-whiteSmoke dark:bg-white font-Inter">
       <BreadCrumb title="AVAILABLE ROOMS" home="/" />
 
       {/* ===== BOOKING FILTER BAR ===== */}
       <div
-        className="Container-Hero bg-lightBlack dark:bg-normalBlack grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 items-center justify-center font-Arial py-3 lg:py-4 xl:py-5 border-t-[3px] border-t-khaki 
-        mx-auto shadow-xl relative z-20 -mt-20 px-4 sm:px-6 lg:px-10"
+          className="Container-Hero bg-lightBlack dark:bg-normalBlack grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 items-center justify-center font-Arial py-3 lg:py-4 xl:py-5 2xl:py-6 border-t-[3px] border-t-khaki 
+                     mx-auto  shadow-xl relative z-20 -mt-20 px-4 sm:px-6 lg:px-10 z-[1]"
       >
         {/* Check In */}
         <div className="p-3">
           <p className="text-sm text-[#A9A9A9] ml-3">Check In</p>
           {!useDesktopPicker ? (
-            <input
-              type="date"
-              className="border-none bg-transparent text-white outline-none text-sm lg:text-base focus:ring-transparent"
-              required
-              value={formatDate(checkIn)}
-              onChange={(e) => setCheckIn(e.target.value ? new Date(e.target.value) : null)}
-            />
+<input
+  type="date"
+  className="border-none bg-transparent text-white outline-none text-sm lg:text-base focus:ring-transparent"
+  required
+  min={new Date().toISOString().split("T")[0]} // restrict past dates
+  onChange={(e) =>
+    setCheckIn(e.target.value ? new Date(e.target.value) : null)
+  }
+/>
           ) : (
             <button
               type="button"
@@ -128,13 +148,15 @@ const AvailableRooms = () => {
         <div className="p-3">
           <p className="text-sm text-[#A9A9A9] ml-3">Check Out</p>
           {!useDesktopPicker ? (
-            <input
-              type="date"
-              className="border-none bg-transparent text-white outline-none text-sm lg:text-base focus:ring-transparent"
-              required
-              value={formatDate(checkOut)}
-              onChange={(e) => setCheckOut(e.target.value ? new Date(e.target.value) : null)}
-            />
+<input
+  type="date"
+  className="border-none bg-transparent text-white outline-none text-sm lg:text-base focus:ring-transparent"
+  required
+  min={checkIn ? checkIn.toISOString().split("T")[0] : new Date().toISOString().split("T")[0]} // restrict before check-in
+  onChange={(e) =>
+    setCheckOut(e.target.value ? new Date(e.target.value) : null)
+  }
+/>
           ) : (
             <button
               type="button"
@@ -147,7 +169,7 @@ const AvailableRooms = () => {
         </div>
 
         {/* Rooms Dropdown */}
-        <div className="p-3 relative">
+        <div className="p-3 relative" ref={roomRef}>
           <div className="text-white px-3 py-2 cursor-pointer" onClick={() => setOpen(!open)}>
             <span className="flex items-center justify-between text-sm text-[#A9A9A9]">
               Rooms <BiChevronDown />
@@ -178,7 +200,7 @@ const AvailableRooms = () => {
         </div>
 
         {/* Guests Dropdown */}
-        <div className="p-3 relative">
+        <div className="p-3 relative" ref={guestRef}>
           <div className="text-white px-3 py-2 cursor-pointer" onClick={() => setGuestOpen(!guestOpen)}>
             <span className="flex items-center justify-between text-sm text-[#A9A9A9]">
               Guests <BiChevronDown />
@@ -255,24 +277,23 @@ const AvailableRooms = () => {
               </button>
             </div>
             <div className="p-3 md:p-5">
-              <ReactDatePicker
-                inline
-                monthsShown={1}
-                calendarClassName="rdp-pill"
-                selected={showInOverlay ? checkIn : checkOut}
-                minDate={showInOverlay ? new Date() : checkIn || new Date()}
-                onChange={(date) => {
-                  if (showInOverlay) {
-                    setCheckIn(date);
-                    if (checkOut && date && checkOut < date) setCheckOut(null);
-                    closeOverlay();
-                  } else {
-                    setCheckOut(date);
-                    closeOverlay();
-                  }
-                }}
-                showDisabledMonthNavigation
-              />
+<ReactDatePicker
+  inline
+  monthsShown={1}
+  calendarClassName="rdp-pill"
+  selected={showInOverlay ? checkIn : checkOut}
+  minDate={showInOverlay ? new Date() : checkIn || new Date()} // same logic
+  onChange={(date) => {
+    if (showInOverlay) {
+      setCheckIn(date);
+      if (checkOut && date && checkOut < date) setCheckOut(null);
+      closeOverlay();
+    } else {
+      setCheckOut(date);
+      closeOverlay();
+    }
+  }}
+  showDisabledMonthNavigation              />
             </div>
           </div>
         </div>

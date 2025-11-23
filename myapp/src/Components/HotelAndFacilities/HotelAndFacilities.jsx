@@ -22,11 +22,12 @@ const HotelAndFacilities = () => {
             </p>
           </div>
           {/* HOTEL'S FACILITIES content */}
-          <div
-            className="grid items-center justify-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 3xl:grid-cols-6 gap-4 xl:gap-[26px] pt-[60px] pb-[110px] px-8 lg:px-10 xl:px-28 2xl:px-0"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-          >
+<div
+  className="grid justify-items-center items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 3xl:grid-cols-6 gap-4 xl:gap-[26px] pt-[60px] pb-[110px] px-8 lg:px-10 xl:px-28 2xl:px-0"
+  data-aos="fade-up"
+  data-aos-duration="1000"
+>
+
             {/* Facility 1 */}
             <div className="h-[200px] w-[191px] pt-[37px] pb-[27px] border border-[#343434] text-center transition-all duration-500 relative z-[1] overflow-hidden group ">
               <div className="absolute inset-0 bg-[url('/images/home/serve.png')] bg-cover bg-center opacity-0 group-hover:opacity-100 transition-all duration-500 z-0 transform -translate-x-full group-hover:translate-x-0"></div>

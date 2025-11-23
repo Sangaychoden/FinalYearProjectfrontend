@@ -615,7 +615,7 @@
 // //                             onClick={() =>
 // //                               navigate(`/booking-details/${booking._id}`)
 // //                             }
-// //                             className="flex items-center justify-center gap-1 px-3 py-1 text-sm bg-[#006600] text-white rounded hover:bg-green-700"
+// //                             className="flex items-center justify-center gap-1 px-3 py-1 text-sm bg-[#006600] text-white  hover:bg-green-700"
 // //                           >
 // //                             <Eye size={16} /> View
 // //                           </button>
@@ -864,14 +864,14 @@
 //                               },
 //                             })
 //                           }
-//                           className="px-3 py-1 text-sm bg-[#006600] text-white rounded hover:bg-green-700"
+//                           className="px-3 py-1 text-sm bg-[#006600] text-white  hover:bg-green-700"
 //                         >
 //                           BOOK
 //                         </button>
 //                       </td> */}
 //                       {/* <td className="px-4 py-3 text-center">
 //                         <button
-//                           className="bg-[#006600] text-white px-4 py-1 rounded hover:bg-green-800 transition"
+//                           className="bg-[#006600] text-white px-4 py-1  hover:bg-green-800 transition"
 //                           onClick={() =>
 //                             navigate("/booking-details/AVAILABLE", {
 //                               state: {
@@ -887,7 +887,7 @@
 //                       </td> */}
 //                       <td className="px-4 py-3 text-center">
 //                       <button
-//                         className="bg-[#006600] text-white px-4 py-1 rounded hover:bg-green-800 transition"
+//                         className="bg-[#006600] text-white px-4 py-1  hover:bg-green-800 transition"
 //                         onClick={() =>
 //                           navigate("/booking-form/AVAILABLE", {
 //                             state: {
@@ -944,7 +944,7 @@
 //                             onClick={() =>
 //                               navigate(`/booking-details/${booking._id}`)
 //                             }
-//                             className="flex items-center justify-center gap-1 px-3 py-1 text-sm bg-[#006600] text-white rounded hover:bg-green-700"
+//                             className="flex items-center justify-center gap-1 px-3 py-1 text-sm bg-[#006600] text-white  hover:bg-green-700"
 //                           >
 //                             <Eye size={16} /> View
 //                           </button>
@@ -1135,23 +1135,23 @@ const Booking = () => {
 
                   {activeTab === "AVAILABLE" ? (
                     <>
-                      <th className="px-4 py-3 text-center">Total</th>
-                      <th className="px-4 py-3 text-center">Booked</th>
-                      <th className="px-4 py-3 text-center">Available</th>
-                      <th className="px-4 py-3 text-center">Status</th>
-                      <th className="px-4 py-3 text-center">Action</th>
+                      <th className="px-4 py-3 text-left">Total</th>
+                      <th className="px-4 py-3 text-left">Booked</th>
+                      <th className="px-4 py-3 text-left">Available</th>
+                      <th className="px-4 py-3 text-left">Status</th>
+                      <th className="px-4 py-3 text-left">Action</th>
                     </>
                   ) : (
                     <>
-                      <th className="px-4 py-3 text-center">Check-In</th>
-                      <th className="px-4 py-3 text-center">Check-Out</th>
-                      <th className="px-4 py-3 text-center">Status</th>
+                      <th className="px-4 py-3 text-left">Check-In</th>
+                      <th className="px-4 py-3 text-left">Check-Out</th>
+                      <th className="px-4 py-3 text-left">Status</th>
 
                       {(activeTab === "PENDING" ||
                         activeTab === "BOOKED" ||
                         activeTab === "CANCELLED" ||
                         activeTab === "CHECKED IN") && (
-                        <th className="px-4 py-3 text-center">Action</th>
+                        <th className="px-4 py-3 text-left">Action</th>
                       )}
                     </>
                   )}
@@ -1175,16 +1175,16 @@ const Booking = () => {
                   filteredData.map((room, index) => (
                     <tr key={index} className="hover:bg-green-50">
                       <td className="px-4 py-3">{room.roomType}</td>
-                      <td className="px-4 py-3 text-center">{room.totalRooms}</td>
-                      <td className="px-4 py-3 text-center">{room.bookedRooms}</td>
-                      <td className="px-4 py-3 text-center">{room.availableRooms}</td>
-                      <td className="px-4 py-3 text-center text-[#009519]">
+                      <td className="px-4 py-3 text-left">{room.totalRooms}</td>
+                      <td className="px-4 py-3 text-left">{room.bookedRooms}</td>
+                      <td className="px-4 py-3 text-left">{room.availableRooms}</td>
+                      <td className="px-4 py-3 text-left text-[#009519]">
                         AVAILABLE
                       </td>
 
-                      <td className="px-4 py-3 text-center">
+                      <td className="px-4 py-3 text-left">
                         <button
-                          className="bg-[#006600] text-white px-4 py-1 rounded hover:bg-green-800 transition"
+                          className="flex font-small hover:underline"
                           onClick={() =>
                             navigate("/booking-form/AVAILABLE", {
                               state: {
@@ -1207,15 +1207,15 @@ const Booking = () => {
                       <td className="px-4 py-3">
                         {booking.rooms?.[0]?.roomType}
                       </td>
-                      <td className="px-4 py-3 text-center">
+                      <td className="px-4 py-3 text-left">
                         {formatDate(booking.checkIn)}
                       </td>
-                      <td className="px-4 py-3 text-center">
+                      <td className="px-4 py-3 text-left">
                         {formatDate(booking.checkOut)}
                       </td>
 
                       <td
-                        className={`px-4 py-3 text-center font-semibold ${
+                        className={`px-4 py-3 text-left font-semibold ${
                           booking.status === "pending"
                             ? "text-yellow-600"
                             : booking.status === "confirmed"
@@ -1236,14 +1236,14 @@ const Booking = () => {
                         activeTab === "BOOKED" ||
                         activeTab === "CANCELLED" ||
                         activeTab === "CHECKED IN") && (
-                        <td className="px-4 py-3 text-center">
+                        <td className="px-4 py-3 text-left">
                           <button
                             onClick={() =>
                               navigate(`/booking-details/${booking._id}`)
                             }
-                            className="flex items-center justify-center gap-1 px-3 py-1 text-sm bg-[#006600] text-white rounded hover:bg-green-700"
+                            className="font-small hover:underline"
                           >
-                            <Eye size={16} /> View
+                             VIEW
                           </button>
                         </td>
                       )}

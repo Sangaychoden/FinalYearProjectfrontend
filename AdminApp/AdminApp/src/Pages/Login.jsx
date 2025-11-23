@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -124,14 +125,35 @@ const Login = () => {
     setErrors(newErrors);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validateForm()) {
-      setEmail("");
-      setPassword("");
-      navigate("/dashboard");
-    }
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (validateForm()) {
+  //     setEmail("");
+  //     setPassword("");
+  //     navigate("/dashboard");
+  //   }
+  // };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (validateForm()) {
+    setEmail("");
+    setPassword("");
+
+    await Swal.fire({
+      icon: "success",
+      title: "Login Successful!",
+      text: "Welcome back!",
+      timer: 3000,
+      timerProgressBar: true,
+      showConfirmButton: false,
+      color: "#fff",
+      background: "#006600",
+    });
+
+    navigate("/dashboard");
+  }
+};
+
 
   return (
     <div style={pageStyle}>

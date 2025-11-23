@@ -86,7 +86,7 @@ const ForgotPassword = () => {
   };
 
   const buttonHover = (e, hover) => {
-    e.target.style.backgroundColor = hover ? "#004d00" : "#006600";
+    e.target.style.backgroundColor = hover ? "#000000" : "#006600";
   };
 
   // 🔹 Email validation

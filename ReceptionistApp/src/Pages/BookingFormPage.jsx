@@ -270,7 +270,7 @@
 //         <h1 className="text-2xl font-bold text-[#006600]">Booking Form</h1>
 //         <button
 //           onClick={() => navigate(-1)}
-//           className="px-4 py-2 border rounded bg-white hover:bg-gray-100"
+//           className="px-4 py-2 border  bg-white hover:bg-gray-100"
 //         >
 //           Back
 //         </button>
@@ -284,9 +284,9 @@
 //           onClick={() => setIsAgencyBooking((prev) => !prev)}
 //           className="relative cursor-pointer"
 //         >
-//           <div className="w-56 h-12 rounded-full bg-gray-200 p-1 shadow-inner relative">
+//           <div className="w-56 h-12 -full bg-gray-200 p-1 shadow-inner relative">
 //             <div
-//               className={`absolute top-1 left-1 h-10 w-1/2 rounded-full bg-white shadow transition-transform ${
+//               className={`absolute top-1 left-1 h-10 w-1/2 -full bg-white shadow transition-transform ${
 //                 isAgencyBooking ? "translate-x-full" : ""
 //               }`}
 //             />
@@ -311,7 +311,7 @@
 //           {/* Room type (readonly) */}
 //           <div>
 //             <label className="font-semibold">Room Type:</label>
-//             <div className="mt-1 border px-3 py-2 bg-gray-100 rounded">
+//             <div className="mt-1 border px-3 py-2 bg-gray-100 ">
 //               {selectedRoomType}
 //             </div>
 //           </div>
@@ -845,7 +845,7 @@ export default function BookingForm() {
         </h1>
         <button
           onClick={() => navigate(-1)}
-          className="px-4 py-2 border border-gray-300 rounded hover:bg-gray-100"
+          className="px-4 py-2 border border-gray-300  hover:bg-gray-100"
         >
           Back
         </button>
@@ -878,9 +878,9 @@ export default function BookingForm() {
           }}
           className="relative select-none cursor-pointer"
         >
-          <div className="w-56 h-12 rounded-full bg-gray-200 p-1 shadow-inner relative">
+          <div className="w-56 h-12 -full bg-gray-200 p-1 shadow-inner relative">
             <div
-              className={`absolute top-1 left-1 h-10 w-1/2 rounded-full bg-white shadow transition-transform duration-200 ${
+              className={`absolute top-1 left-1 h-10 w-1/2 -full bg-white shadow transition-transform duration-200 ${
                 isAgencyBooking ? "translate-x-full" : ""
               }`}
             />
@@ -905,7 +905,7 @@ export default function BookingForm() {
           {/* Room Type */}
           <div>
             <label className="font-semibold">Room Type:</label>
-            <div className="mt-1 border px-3 py-2 bg-gray-100 text-gray-800 rounded">
+            <div className="mt-1 border px-3 py-2 bg-gray-100 text-gray-800 ">
               {selectedRoomType}
             </div>
           </div>
