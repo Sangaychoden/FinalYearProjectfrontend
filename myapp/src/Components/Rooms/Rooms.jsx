@@ -554,7 +554,7 @@ const Rooms = () => {
               className="w-full text-left text-white text-sm lg:text-base border border-white/20 px-3 py-2 mt-[2px]"
             >
               <span className="flex items-center justify-between w-full">
-              <span>{checkIn ? formatDate(checkIn) : "dd-mm-yyyy"}</span>
+              <span>{checkOut ? formatDate(checkOut) : "dd-mm-yyyy"}</span>
               <FiCalendar className="text-white opacity-80 ml-2" size={18} />
             </span>
 
