@@ -78,7 +78,7 @@ const Contact = () => {
 
   return (
     <div>
-      <BreadCrumb title="Contact Us" />
+      <BreadCrumb title="Contact" />
 
       <div className="py-20 2xl:py-[120px] dark:bg-lightBlack">
         <div className="Container bg-[#F5F5F5] dark:bg-normalBlack px-7 md:px-10 lg:px-14 2xl:px-20 py-10 md:py-14 lg:py-18 xl:py-20 2xl:py-[100px] ">
@@ -99,7 +99,7 @@ const Contact = () => {
               <div className="flex items-center my-4 md:my-5 lg:my-[26px] group">
                 <div className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] lg:w-[50px] lg:h-[50px] 2xl:w-[60px] 2xl:h-[60px]
                 bg-white dark:bg-lightBlack group-hover:bg-[#006600] dark:group-hover:bg-[#006600]
-                grid items-center justify-center rounded-full transition-all duration-300">
+                grid items-center justify-center -full transition-all duration-300">
                   <IoIosCall size={22} className="text-[#006600] group-hover:text-whiteSmoke" />
                 </div>
                 <div className="ml-3 md:ml-4">
@@ -116,7 +116,7 @@ const Contact = () => {
               <div className="flex items-center my-4 md:my-5 lg:my-[26px] group">
                 <div className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] lg:w-[50px] lg:h-[50px] 2xl:w-[60px] 2xl:h-[60px]
                 bg-white dark:bg-lightBlack group-hover:bg-[#006600] dark:group-hover:bg-[#006600]
-                grid items-center justify-center rounded-full transition-all duration-300">
+                grid items-center justify-center -full transition-all duration-300">
                   <MdEmail size={22} className="text-[#006600] group-hover:text-whiteSmoke" />
                 </div>
                 <div className="ml-3 md:ml-4">
@@ -133,7 +133,7 @@ const Contact = () => {
               <div className="flex items-center my-4 md:my-5 lg:my-[26px] group">
                 <div className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] lg:w-[50px] lg:h-[50px] 2xl:w-[60px] 2xl:h-[60px]
                 bg-white dark:bg-lightBlack group-hover:bg-[#006600] dark:group-hover:bg-[#006600]
-                grid items-center justify-center rounded-full transition-all duration-300">
+                grid items-center justify-center -full transition-all duration-300">
                   <MdOutlineShareLocation size={22} className="text-[#006600] group-hover:text-whiteSmoke" />
                 </div>
                 <div className="ml-3 md:ml-4">

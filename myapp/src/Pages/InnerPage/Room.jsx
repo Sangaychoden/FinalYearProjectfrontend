@@ -308,7 +308,7 @@ import { useEffect, useState } from "react";
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb";
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
-import { HiHomeModern } from "react-icons/hi2";
+import { MdOutlineDoorFront } from "react-icons/md";
 
 const Room = () => {
   const [rooms, setRooms] = useState([]);
@@ -331,7 +331,7 @@ const Room = () => {
 
   return (
     <section className="font-inter">
-      <BreadCrumb title="ROOMS & SUITES" home={"/"} />
+      <BreadCrumb title="ROOMS" home={"/"} />
 
       <div
         className="bg-cover bg-center bg-no-repeat py-20 2xl:py-[120px]"
@@ -344,9 +344,7 @@ const Room = () => {
             data-aos-duration="1000"
           >
             <div className="flex items-center justify-center space-x-2">
-              <hr className="w-[100px] h-[1px] bg-gray-800 text-gray-800" />
-              <hr className="w-[100px] h-[1px] bg-gray-800 text-gray-800" />
-            </div>
+<hr className="w-[150px] h-[1px] text-[#8C8C8C]" />            </div>
             <h1 className="text-[22px] sm:text-2xl md:text-3xl 2xl:text-[38px] leading-7 sm:leading-8 md:leading-9 lg:leading-[42px] 2xl:leading-[52px] text-black mt-[30px] mb-[24px] font-inter font-semibold uppercase">
               Rooms & Suites
             </h1>
@@ -401,12 +399,10 @@ const Room = () => {
                     </div>
                     <div className="border-t border-gray-200 py-5">
                       <div className="px-[30px] flex items-center justify-between">
-                        <span className="font-inter text-base flex items-center text-gray-800">
-                          <HiHomeModern className="text-gray-800 text-xl" />
-                          <span className="ml-[10px] font-medium">
-                            {room.numberOfRooms} Rooms
-                          </span>
-                        </span>
+<span className="font-inter text-base flex items-center text-gray-800">
+<MdOutlineDoorFront className="text-gray-800 text-xl" />
+<span className="ml-[10px] font-medium">{room.numberOfRooms} Rooms</span>
+</span>
                         <span className="w-[1px] h-[25px] bg-gray-300"></span>
                       </div>
                     </div>

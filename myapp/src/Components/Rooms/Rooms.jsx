@@ -382,7 +382,7 @@
 //                     <div className="text-center translate-y-[200px] group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
 //                       <Link
 //                         to={`/room_details2/${r._id}`}
-//                         className="w-[50px] h-[50px] rounded-full bg-white dark:bg-lightBlack mb-6 grid place-items-center mx-auto hover:scale-105 transition-transform duration-200"
+//                         className="w-[50px] h-[50px] -full bg-white dark:bg-lightBlack mb-6 grid place-items-center mx-auto hover:scale-105 transition-transform duration-200"
 //                       >
 //                         <AiOutlineEye size={20} className="text-[#006600]" />
 //                       </Link>
@@ -514,7 +514,7 @@ const guestRef = useRef(null);
   };
 
   return (
-    <div className="bg-whiteSmoke dark:bg-white font-Inter">
+    <div className="">
       <div className="relative">
         {/* ===== BOOKING SECTION ===== */}
         <div
@@ -809,7 +809,7 @@ const guestRef = useRef(null);
                     <div className="text-center translate-y-[200px] group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
                       <Link
                         to={`/room_details2/${r._id}`}
-                        className="w-[50px] h-[50px] rounded-full bg-white dark:bg-lightBlack mb-6 grid place-items-center mx-auto hover:scale-105 transition-transform duration-200"
+                        className="w-[50px] h-[50px] -full bg-white dark:bg-lightBlack mb-6 grid place-items-center mx-auto hover:scale-105 transition-transform duration-200"
                       >
                         <AiOutlineEye size={20} className="text-[#006600]" />
                       </Link>

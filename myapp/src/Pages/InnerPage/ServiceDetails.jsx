@@ -60,10 +60,10 @@ const ServiceDetails = () => {
                   <img
                     src={facility.images[imageIndex]}
                     alt={facility.title}
-                    className="transition-all duration-500 delay-300 w-full h-[250px] md:h-[500px] object-cover rounded-lg"
+                    className="transition-all duration-500 delay-300 w-full h-[250px] md:h-[500px] object-cover -lg"
                   />
                 ) : (
-                  <div className="w-full h-[250px] md:h-[500px] bg-gray-200 flex items-center justify-center rounded-lg">
+                  <div className="w-full h-[250px] md:h-[500px] bg-gray-200 flex items-center justify-center -lg">
                     <p className="text-gray-500">No image available</p>
                   </div>
                 )}
@@ -71,7 +71,7 @@ const ServiceDetails = () => {
                 {/* Left Arrow */}
                 {facility.images?.length > 1 && (
                   <span
-                    className="w-[40px] h-[40px] bg-white hover:bg-[#006600] grid items-center justify-center absolute bottom-[45%] left-[-50px] group-hover:left-4 transition-all duration-300 cursor-pointer shadow-md rounded-full"
+                    className="w-[40px] h-[40px] bg-white hover:bg-[#006600] grid items-center justify-center absolute bottom-[45%] left-[-50px] group-hover:left-4 transition-all duration-300 cursor-pointer shadow-md -full"
                     onClick={prevBtn}
                   >
                     <BsArrowLeft size={20} className="text-gray-800 hover:text-white" />
@@ -81,7 +81,7 @@ const ServiceDetails = () => {
                 {/* Right Arrow */}
                 {facility.images?.length > 1 && (
                   <span
-                    className="w-[40px] h-[40px] bg-white hover:bg-[#006600] grid items-center justify-center absolute bottom-[45%] right-[-50px] group-hover:right-4 transition-all duration-300 cursor-pointer shadow-md rounded-full"
+                    className="w-[40px] h-[40px] bg-white hover:bg-[#006600] grid items-center justify-center absolute bottom-[45%] right-[-50px] group-hover:right-4 transition-all duration-300 cursor-pointer shadow-md -full"
                     onClick={nextBtn}
                   >
                     <BsArrowRight size={20} className="text-gray-800 hover:text-white" />

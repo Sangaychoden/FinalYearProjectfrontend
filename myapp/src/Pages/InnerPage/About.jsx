@@ -10,7 +10,7 @@ const About = () => {
 
   return (
     <section className="">
-      <BreadCrumb title="About Us" home={""} />
+      <BreadCrumb title="About" home={""} />
 
       {/* about content */}
       <section className="bg-white dark:bg-white">
@@ -84,12 +84,12 @@ const About = () => {
                 />
 
                 <div
-                  className="w-[70px] h-[70px] text-white absolute top-1/2 md:top-[35%] lg:top-1/2 left-[45%] bg-khaki rounded-full flex items-center justify-center cursor-pointer z-[1] "
+                  className="w-[70px] h-[70px] text-white absolute top-1/2 md:top-[35%] lg:top-1/2 left-[45%] bg-khaki -full flex items-center justify-center cursor-pointer z-[1] "
                   onClick={() => setToggler(!toggler)}
                 >
                   <BsPlay className="w-8 h-8 ml-1" />
                 </div>
-                <span className="top-[47%] md:top-[33%] lg:top-[48%] left-[43%] lg:left-[43.5%] border w-[90px] h-[90px] rounded-full absolute border-white video-animation"></span>
+                <span className="top-[47%] md:top-[33%] lg:top-[48%] left-[43%] lg:left-[43.5%] border w-[90px] h-[90px] -full absolute border-white video-animation"></span>
               </div>
               <FsLightbox
                 toggler={toggler}
