@@ -574,7 +574,7 @@ const Rooms = () => {
     <div className="pt-[10px] text-sm sm:text-base">{room} Room</div>
   </div>
   {open && (
-    <div className="absolute bg-white text-black mt-2 shadow-lg py-2 z-20 w-40 sm:w-20">
+<div className="absolute bg-white/90 text-black mt-2 shadow-lg py-2 z-20 w-40 lg:w-60 md:w-60 sm:w-20 backdrop-blur-sm">
       {/* ...buttons inside remain same */}
       <div className="px-5 py-2 flex justify-between items-center">
         <div>{room} Room</div>
@@ -611,7 +611,7 @@ const Rooms = () => {
     </div>
   </div>
   {guestOpen && (
-    <div className="absolute bg-white text-black mt-2 shadow-lg py-2 z-20 w-40 sm:w-60">
+<div className="absolute bg-white/90 text-black mt-2 shadow-lg py-2 z-20 w-40 lg:w-60 md:w-60 sm:w-20 backdrop-blur-sm">
       {/* Adults */}
       <div className="px-5 py-2 flex justify-between items-center">
         <div>{adult} Adult</div>

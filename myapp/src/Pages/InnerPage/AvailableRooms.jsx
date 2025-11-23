@@ -537,7 +537,7 @@ const AvailableRooms = () => {
           </div>
 
           {open && (
-            <div className="absolute bg-white text-black w-60 mt-2 shadow-lg z-20 py-2">
+<div className="absolute bg-white/90 text-black mt-2 shadow-lg py-2 z-20 w-40 lg:w-60 md:w-60 sm:w-20 backdrop-blur-sm">
               <div className="px-5 py-2 flex justify-between items-center">
                 <div>{roomCount} Room</div>
                 <div className="flex gap-2">
@@ -574,7 +574,7 @@ const AvailableRooms = () => {
           </div>
 
           {guestOpen && (
-            <div className="absolute bg-white text-black w-60 mt-2 shadow-lg z-20 py-2">
+<div className="absolute bg-white/90 text-black mt-2 shadow-lg py-2 z-20 w-40 lg:w-60 md:w-60 sm:w-20 backdrop-blur-sm">
               <div className="px-5 py-2 flex justify-between items-center">
                 <div>{adult} Adult</div>
                 <div className="flex gap-2">
