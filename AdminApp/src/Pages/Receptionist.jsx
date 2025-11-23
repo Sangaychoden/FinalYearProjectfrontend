@@ -122,9 +122,12 @@ const Receptionists = () => {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Receptionists</h1>
         <button
-          className="inline-flex items-center gap-2 px-4 h-10 text-md text-white shadow-md hover:shadow-lg transition"
-          style={{ backgroundColor: THEME_GREEN }}
-          onClick={() => setShowAddPopup(true)}
+  className="
+    inline-flex items-center gap-2 px-4 h-10 text-md text-white 
+    shadow-md hover:shadow-lg transition 
+    bg-[#006600] hover:bg-[#000000] 
+    rounded-none
+  "          onClick={() => setShowAddPopup(true)}
         >
           <Plus size={18} />
           Add New
@@ -137,14 +140,14 @@ const Receptionists = () => {
           receptionists.map((rec) => (
             <div
               key={rec._id}
-              className="bg-white shadow p-8 flex flex-col items-center gap-4 border rounded-lg"
+              className="bg-white shadow p-8 flex flex-col items-center gap-4 border -lg"
             >
               <p className="font-semibold text-lg text-black">
                 {rec.username}
               </p>
               <p className="text-sm text-gray-500">{rec.email}</p>
               <button
-                className="bg-[#006600] text-white px-6 py-2 hover:bg-green-800 rounded-md"
+                className="bg-[#006600] text-white px-6 py-2 hover:bg-[#000000] -md"
                 onClick={() =>
                   navigate("/receptionist-details", {
                     state: { receptionist: rec },
@@ -165,7 +168,7 @@ const Receptionists = () => {
       {/* Add New Popup */}
       {showAddPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-          <div className="bg-white p-6 w-96 shadow-lg rounded-lg">
+          <div className="bg-white p-6 w-96 shadow-lg -lg">
             <h2 className="text-xl font-bold mb-4 text-center">
               Add Receptionist
             </h2>
@@ -179,7 +182,7 @@ const Receptionists = () => {
                   setNewUsername(e.target.value);
                   setTouchedUsername(true);
                 }}
-                className="w-full border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-300 rounded"
+                className="w-full border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-300 "
               />
               {touchedUsername && !newUsername && (
                 <p className="text-red-500 text-sm mt-1">
@@ -197,7 +200,7 @@ const Receptionists = () => {
                   setNewEmail(e.target.value);
                   setTouchedEmail(true);
                 }}
-                className="w-full border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-300 rounded"
+                className="w-full border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-300 "
               />
               {touchedEmail && !newEmail && (
                 <p className="text-red-500 text-sm mt-1">Email is required</p>
@@ -211,13 +214,13 @@ const Receptionists = () => {
 
             <div className="flex justify-center gap-4 mt-4">
               <button
-                className="bg-[#006600] text-white px-6 py-2 hover:bg-green-800 rounded"
+                className="bg-[#006600] text-white px-6 py-2 hover:bg-green-800 "
                 onClick={handleAddReceptionist}
               >
-                Create
+                Add
               </button>
               <button
-                className="bg-red-600 text-white px-6 py-2 hover:bg-red-700 rounded"
+                className="bg-red-600 text-white px-6 py-2 hover:bg-red-700 "
                 onClick={() => {
                   setShowAddPopup(false);
                   setNewUsername("");

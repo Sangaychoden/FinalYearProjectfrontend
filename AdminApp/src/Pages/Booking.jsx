@@ -819,9 +819,9 @@ const Booking = () => {
                             onClick={() =>
                               navigate(`/booking-details/${booking._id}`)
                             }
-                            className="flex items-center justify-center gap-1 px-3 py-1 text-sm bg-[#006600] text-white rounded hover:bg-green-700"
+                            className="flex items-center justify-center px-4 py-3 text-left text-m font-small hover:underline"
                           >
-                            <Eye size={16} /> View
+                            VIEW
                           </button>
                         </td>
                       )}

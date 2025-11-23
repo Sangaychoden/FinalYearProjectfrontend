@@ -48,9 +48,9 @@ const EditTestimonial = () => {
           icon: "error",
           title: "Error",
           text: "Failed to fetch testimonial details.",
-          confirmButtonColor: CONFIRM_GREEN,
-          background: THEME_GREEN,
-          color: "#fff",
+      confirmButtonColor: "#008000",
+      color: "#fff",
+      background: "#006600",            }).then(() => {
         });
       } finally {
         setLoading(false);
@@ -99,16 +99,16 @@ const EditTestimonial = () => {
     if (!validate()) return;
 
     const confirm = await Swal.fire({
-      title: "Are you sure?",
+      title: "Confirm Update",
       text: "Do you want to update this testimonial?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Yes, update it!",
+      confirmButtonText: "Yes",
       cancelButtonText: "Cancel",
-      confirmButtonColor: CONFIRM_GREEN,
       cancelButtonColor: "#d33",
-      background: THEME_GREEN,
+      confirmButtonColor: "#008000",
       color: "#fff",
+      background: "#006600",            }).then(() => {
     });
 
     if (!confirm.isConfirmed) return;
@@ -139,9 +139,9 @@ const EditTestimonial = () => {
         title: "Updated!",
         text: result.message || "Testimonial successfully updated.",
         icon: "success",
-        confirmButtonColor: CONFIRM_GREEN,
-        background: THEME_GREEN,
-        color: "#fff",
+      confirmButtonColor: "#008000",
+      color: "#fff",
+      background: "#006600",            }).then(() => {
       });
 
       navigate("/admin-testimonials");
@@ -151,9 +151,9 @@ const EditTestimonial = () => {
         icon: "error",
         title: "Update Failed",
         text: err.message,
-        confirmButtonColor: CONFIRM_GREEN,
-        background: THEME_GREEN,
-        color: "#fff",
+      confirmButtonColor: "#008000",
+      color: "#fff",
+      background: "#006600",            }).then(() => {
       });
     }
   };
@@ -276,14 +276,14 @@ const EditTestimonial = () => {
           <div className="flex justify-center gap-5 mt-4">
             <button
               type="submit"
-              className="bg-[#006600] text-white py-3 px-8 hover:bg-[#004d00] transition"
+              className="bg-[#006600] text-white py-3 px-8 hover:bg-[#000000] transition"
             >
               Update
             </button>
             <button
               type="button"
               onClick={() => navigate(-1)}
-              className="border border-[#006600] text-[#006600] py-3 px-8 hover:bg-[#f0fdf4] transition"
+              className="border border-[#006600] text-[#006600] py-3 px-8 transition"
             >
               Cancel
             </button>

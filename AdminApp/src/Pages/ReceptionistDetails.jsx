@@ -25,8 +25,8 @@ const ReceptionistDetails = () => {
   const handleDelete = async () => {
     const confirmed = await setAlert({
       icon: "warning",
-      title: "Delete User?",
-      text: `Are you sure you want to delete ${username}?`,
+      title: "Confirm Delete",
+      text: `Do you want to delete ${username}?`,
       showCancelButton: true,
       confirmButtonText: "Yes",
       cancelButtonText: "No",
@@ -202,7 +202,7 @@ const ReceptionistDetails = () => {
             Change Password
           </button>
           <button
-            className="bg-red-600 text-white px-4 py-2 hover:bg-red-700 w-1/2"
+            className="bg-red-600 text-white px-4 py-2  w-1/2"
             onClick={handleDelete}
           >
             Delete

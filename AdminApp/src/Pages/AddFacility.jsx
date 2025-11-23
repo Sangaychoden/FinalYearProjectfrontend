@@ -83,7 +83,7 @@ const AddFacility = () => {
         title: "Saved",
         text: "Facility has been created successfully!",
         icon: "success",
-        confirmButtonColor: THEME_GREEN,
+      confirmButtonColor: "#008000",
         color: "#fff",
         background: THEME_GREEN,
       }).then(() => navigate("/admin-facilities"));
@@ -99,7 +99,7 @@ const AddFacility = () => {
           err.message === "Unauthorized"
             ? "Your session has expired. Please log in again."
             : "Something went wrong. Please try again later.",
-        confirmButtonColor: THEME_GREEN,
+      confirmButtonColor: "#008000",
         color: "#fff",
         background: THEME_GREEN,
       });
@@ -168,7 +168,7 @@ const AddFacility = () => {
               <button
                 type="button"
                 onClick={openPicker}
-                className="flex items-center border border-black text-black px-4 py-2 hover:bg-[#f0fdf4] transition"
+                className="flex items-center border border-black text-black px-4 py-2 transition"
               >
                 <FaCloudUploadAlt className="mr-2 text-xl" />
                 Upload Image
@@ -219,14 +219,14 @@ const AddFacility = () => {
           <div className="flex justify-center space-x-5 mt-4">
             <button
               type="submit"
-              className="bg-[#006600] text-white py-3 px-10 hover:bg-[#004d00] transition-colors"
+              className="bg-[#006600] text-white py-3 px-10 hover:bg-[#000000] transition-colors"
             >
-              Save
+              Add
             </button>
             <button
               type="button"
               onClick={() => navigate(-1)}
-              className="border border-[#006600] text-[#006600] py-3 px-8 hover:bg-[#f0fdf4] transition-colors"
+              className="border border-[#006600] text-[#006600] py-3 px-8 transition-colors"
             >
               Cancel
             </button>

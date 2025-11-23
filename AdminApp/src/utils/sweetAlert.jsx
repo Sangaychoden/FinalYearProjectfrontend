@@ -5,7 +5,7 @@ export const setAlert = async ({
   title,
   text,
   icon = "info",
-  showCancelButton = false, // default false for single OK
+  showCancelButton = false,
   confirmButtonText = "OK",
   cancelButtonText = "No",
 }) => {
@@ -20,6 +20,12 @@ export const setAlert = async ({
     cancelButtonText,
     color: "#fff",
     background: "#006600",
+
+    customClass: {
+      popup: "no-radius-popup",
+      confirmButton: "no-radius-btn",
+      cancelButton: "no-radius-btn",
+    },
   });
 
   return result.isConfirmed;

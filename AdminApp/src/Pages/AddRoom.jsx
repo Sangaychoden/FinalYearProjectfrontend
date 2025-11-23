@@ -436,14 +436,14 @@ const AddRoom = () => {
           <div className="flex justify-center space-x-5">
             <button
               type="submit"
-              className="bg-[#006600] text-white py-3 px-8 hover:bg-[#004d00] transition-colors"
+              className="bg-[#006600] text-white py-3 px-8 hover:bg-[#003300] transition-colors"
             >
               Confirm
             </button>
             <button
               type="button"
               onClick={() => navigate(-1)}
-              className="border border-[#006600] text-[#006600] py-3 px-8 hover:bg-[#f0fdf4] transition-colors"
+              className="border border-[#006600] text-[#006600] py-3 px-8  transition-colors"
             >
               Cancel
             </button>

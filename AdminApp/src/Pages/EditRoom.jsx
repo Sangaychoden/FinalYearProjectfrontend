@@ -109,7 +109,8 @@ const EditRoom = () => {
     if (total > 5) {
       Swal.fire({
         icon: "warning",
-        title: "Max 5 images allowed",
+              title: "Image Limit Reached",
+              text: `You can upload a maximum of 5 images.`,
         confirmButtonColor: "#008000",
         color: "#fff",
         background: "#006600",
@@ -146,7 +147,7 @@ const EditRoom = () => {
       text: "Do you want to update this room?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Yes, update it!",
+      confirmButtonText: "Yes",
       cancelButtonText: "Cancel",
       confirmButtonColor: "#008000",
       cancelButtonColor: "#d33",
@@ -216,7 +217,7 @@ const EditRoom = () => {
 
   return (
     <section className="min-h-screen bg-gray-50 font-inter py-6">
-      <div className="max-w-4xl mx-auto bg-white p-8 shadow-lg rounded-lg">
+      <div className="max-w-4xl mx-auto bg-white p-8 shadow-lg -lg">
         <h1 className="text-2xl font-semibold text-black mb-6">Edit Room</h1>
 
         {loading ? (
@@ -234,7 +235,7 @@ const EditRoom = () => {
                   name="roomType"
                   value={formData.roomType}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 p-3 rounded-md"
+                  className="w-full border border-gray-300 p-3 -md"
                   required
                 />
               </div>
@@ -248,7 +249,7 @@ const EditRoom = () => {
                   name="price"
                   value={formData.price}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 p-3 rounded-md"
+                  className="w-full border border-gray-300 p-3 -md"
                   required
                 />
               </div>
@@ -265,7 +266,7 @@ const EditRoom = () => {
                   name="numberOfRooms"
                   value={formData.numberOfRooms}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 p-3 rounded-md"
+                  className="w-full border border-gray-300 p-3 -md"
                 />
               </div>
               <div>
@@ -277,7 +278,7 @@ const EditRoom = () => {
                   name="size"
                   value={formData.size}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 p-3 rounded-md"
+                  className="w-full border border-gray-300 p-3 -md"
                 />
               </div>
             </div>
@@ -293,7 +294,7 @@ const EditRoom = () => {
                   name="beds"
                   value={formData.beds}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 p-3 rounded-md"
+                  className="w-full border border-gray-300 p-3 -md"
                 />
               </div>
               <div>
@@ -305,7 +306,7 @@ const EditRoom = () => {
                   name="occupancy"
                   value={formData.occupancy}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 p-3 rounded-md"
+                  className="w-full border border-gray-300 p-3 -md"
                 />
               </div>
             </div>
@@ -320,7 +321,7 @@ const EditRoom = () => {
                 name="location"
                 value={formData.location}
                 onChange={handleChange}
-                className="w-full border border-gray-300 p-3 rounded-md"
+                className="w-full border border-gray-300 p-3 -md"
               />
             </div>
 
@@ -334,7 +335,7 @@ const EditRoom = () => {
                 value={formData.roomDetails}
                 onChange={handleChange}
                 rows="4"
-                className="w-full border border-gray-300 p-3 rounded-md"
+                className="w-full border border-gray-300 p-3 -md"
               />
             </div>
 
@@ -348,7 +349,7 @@ const EditRoom = () => {
                 name="roomFeatures"
                 value={formData.roomFeatures}
                 onChange={handleChange}
-                className="w-full border border-gray-300 p-3 rounded-md"
+                className="w-full border border-gray-300 p-3 -md"
               />
             </div>
 
@@ -362,7 +363,7 @@ const EditRoom = () => {
                 name="bathroomAmenities"
                 value={formData.bathroomAmenities}
                 onChange={handleChange}
-                className="w-full border border-gray-300 p-3 rounded-md"
+                className="w-full border border-gray-300 p-3 -md"
               />
             </div>
 
@@ -376,7 +377,7 @@ const EditRoom = () => {
                 name="optional"
                 value={formData.optional}
                 onChange={handleChange}
-                className="w-full border border-gray-300 p-3 rounded-md"
+                className="w-full border border-gray-300 p-3 -md"
               />
             </div>
 
@@ -398,7 +399,7 @@ const EditRoom = () => {
                 <button
                   type="button"
                   onClick={openPicker}
-                  className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition"
+                  className="flex items-center gap-2 px-4 py-2 border border-gray-300 -md hover:bg-gray-100 transition"
                 >
                   <FaCloudUploadAlt className="text-gray-600 w-5 h-5" />
                   <span className="text-gray-700 font-medium">
@@ -418,7 +419,7 @@ const EditRoom = () => {
                   {existingImages.map((url, i) => (
                     <div
                       key={i}
-                      className="relative w-24 h-24 border rounded-md overflow-hidden group"
+                      className="relative w-24 h-24 border -md overflow-hidden group"
                     >
                       <img
                         src={url}
@@ -443,7 +444,7 @@ const EditRoom = () => {
                   {newImages.map((img, i) => (
                     <div
                       key={i}
-                      className="relative w-24 h-24 border rounded-md overflow-hidden group"
+                      className="relative w-24 h-24 border -md overflow-hidden group"
                     >
                       <img
                         src={img.url}
@@ -468,14 +469,14 @@ const EditRoom = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="bg-[#006600] text-white py-2 px-8 rounded-md hover:bg-[#004d00] transition"
+                className="bg-[#006600] text-white py-2 px-8 -md hover:bg-[#000000] transition"
               >
                 {loading ? "Updating..." : "Update"}
               </button>
               <button
                 type="button"
                 onClick={() => navigate(-1)}
-                className="border border-[#006600] text-[#006600] py-2 px-8 rounded-md hover:bg-[#f0fdf4] transition"
+                className="border border-[#006600] text-[#006600] py-2 px-8 -md transition"
               >
                 Cancel
               </button>

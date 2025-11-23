@@ -53,8 +53,8 @@ const AdminTestimonials = () => {
   const toggleArchive = async (id, isArchived) => {
     const action = isArchived ? "restore" : "archive";
     const confirmTitle = isArchived
-      ? "Restore Testimonial?"
-      : "Archive Testimonial?";
+      ? "Confirm Restore"
+      : "Confirm Archive";
     const confirmText = isArchived
       ? "Do you want to restore this testimonial?"
       : "Do you want to archive this testimonial?";
@@ -64,12 +64,12 @@ const AdminTestimonials = () => {
       text: confirmText,
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: isArchived ? "Restore" : "Archive",
+      confirmButtonText: "Yes",
       cancelButtonText: "Cancel",
-      confirmButtonColor: isArchived ? RESTORE_ORANGE : CONFIRM_GREEN,
       cancelButtonColor: "#d33",
+      confirmButtonColor: "#008000",
       color: "#fff",
-      background: GREEN,
+      background: "#006600",            }).then(() => {
     });
 
     if (!result.isConfirmed) return;
@@ -114,16 +114,16 @@ const AdminTestimonials = () => {
   // ✅ Delete handler
   const deleteTestimonial = async (id) => {
     const result = await Swal.fire({
-      title: "Delete Testimonial?",
-      text: "This action cannot be undone. Do you want to permanently delete this testimonial?",
+      title: "Confirm Delete",
+      text: "Do you want to permanently delete this testimonial?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes",
       cancelButtonText: "Cancel",
       confirmButtonColor: DELETE_RED,
-      cancelButtonColor: "#d33",
-      background: GREEN,
+      cancelButtonColor: "#008000",
       color: "#fff",
+      background: "#006600",            }).then(() => {
     });
 
     if (!result.isConfirmed) return;
@@ -199,8 +199,12 @@ const AdminTestimonials = () => {
 
         <Link
           to="/add-testimonial"
-          className="inline-flex items-center gap-2 px-4 h-10 text-md text-white shadow-md hover:shadow-lg transition"
-          style={{ backgroundColor: GREEN }}
+  className="
+    inline-flex items-center gap-2 px-4 h-10 text-md text-white 
+    shadow-md hover:shadow-lg transition 
+    bg-[#006600] hover:bg-[#000000] 
+    rounded-none
+  "
         >
           <Plus size={18} />
           Add Testimonials
@@ -248,32 +252,31 @@ const AdminTestimonials = () => {
                   <Link
                     to={`/edit-testimonial/${t._id}`}
                     state={{ testimonial: t }}
-                    className="w-24 h-10 inline-flex items-center justify-center text-sm font-semibold text-white rounded-none"
+                    className="w-24 h-10 inline-flex items-center justify-center text-sm font-small text-white rounded-none"
                     style={{ backgroundColor: GREEN }}
                   >
-                    Edit
+                    EDIT
                   </Link>
 
                   <button
                     onClick={() => toggleArchive(t._id, t.isArchived)}
-                    className="w-24 h-10 inline-flex items-center justify-center text-sm font-semibold text-white rounded-none"
+                    className="w-24 h-10 inline-flex items-center justify-center text-sm font-small text-white rounded-none"
                     style={{
                       backgroundColor: t.isArchived
                         ? RESTORE_ORANGE
                         : CONFIRM_GREEN,
                     }}
                   >
-                    {t.isArchived ? "Restore" : "Archive"}
+                    {t.isArchived ? "RESTORE" : "ARCHIVE"}
                   </button>
 
                   {/* ✅ Delete Button */}
                   <button
                     onClick={() => deleteTestimonial(t._id)}
-                    className="w-24 h-10 inline-flex items-center justify-center gap-1 text-sm font-semibold text-white rounded-none"
+                    className="w-24 h-10 inline-flex items-center justify-center gap-1 text-sm font-small text-white rounded-none"
                     style={{ backgroundColor: DELETE_RED }}
                   >
-                    <Trash2 size={14} />
-                    Delete
+                    DELETE
                   </button>
                 </div>
               </div>
