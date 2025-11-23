@@ -445,7 +445,6 @@ const Rooms = () => {
   const [room, setRoom] = useState(1);
   const [adult, setAdult] = useState(1);
   const [children, setChildren] = useState(0);
-  const [useDesktopPicker, setUseDesktopPicker] = useState(false);
   const [showInOverlay, setShowInOverlay] = useState(false);
   const [showOutOverlay, setShowOutOverlay] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -453,23 +452,12 @@ const Rooms = () => {
   const [checkOut, setCheckOut] = useState(null);
   const [rooms, setRooms] = useState([]);
 
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [photoIndex, setPhotoIndex] = useState(0);
-  const [activeImages, setActiveImages] = useState([]);
-
   const BTN_PER_USD = 85.49;
 
   const roomRef = useRef(null);
   const guestRef = useRef(null);
 
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
-    const update = () => setUseDesktopPicker(mq.matches);
-    update();
-    mq.addEventListener?.("change", update);
-    return () => mq.removeEventListener?.("change", update);
-  }, []);
-
+  // Fetch rooms
   useEffect(() => {
     const fetchRooms = async () => {
       try {
@@ -504,9 +492,11 @@ const Rooms = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Format date without timezone issues
   const formatDate = (date) =>
     date ? date.toLocaleDateString("en-CA") : "";
 
+  // Overlay control
   const openInOverlay = () => {
     setShowOutOverlay(false);
     setIsClosing(false);
@@ -535,85 +525,34 @@ const Rooms = () => {
           className="Container-Hero bg-lightBlack dark:bg-normalBlack grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 items-center justify-center font-Arial py-3 lg:py-4 xl:py-5 2xl:py-6 border-t-[3px] border-t-khaki 
                      mx-auto shadow-xl relative z-20 -mt-20 px-4 sm:px-6 lg:px-10 z-[1]"
         >
-          {/* ==================== CHECK IN ====================== */}
+          {/* Check In */}
           <div className="p-3">
             <p className="text-sm text-[#A9A9A9] ml-3">Check In</p>
 
-            {/* ⭐ UPDATED MOBILE PICKER ⭐ */}
-            {!useDesktopPicker ? (
-              <div className="relative w-full">
-                {!checkIn && (
-                  <span className="absolute left-1 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none">
-                    dd-mm-yyyy
-                  </span>
-                )}
-
-                <input
-                  type="date"
-                  value={checkIn ? formatDate(checkIn) : ""}
-                  onChange={(e) =>
-                    setCheckIn(e.target.value ? new Date(e.target.value) : null)
-                  }
-                  className="border-none bg-transparent text-white outline-none text-sm lg:text-base w-full relative z-10"
-                  style={{ colorScheme: "dark" }}
-                />
-
-                <span className="absolute right-1 top-1/2 -translate-y-1/2 text-gray-300 pointer-events-none text-lg">
-                  📅
-                </span>
-              </div>
-            ) : (
-              <button
-                type="button"
-                onClick={openInOverlay}
-                className="w-full text-left text-white text-sm lg:text-base border border-white/20 px-3 py-2 mt-[2px]"
-              >
-                {checkIn ? formatDate(checkIn) : "Select date"}
-              </button>
-            )}
+            {/* Custom button for BOTH mobile & desktop */}
+            <button
+              type="button"
+              onClick={openInOverlay}
+              className="w-full text-left text-white text-sm lg:text-base border border-white/20 px-3 py-2 mt-[2px]"
+            >
+              {checkIn ? formatDate(checkIn) : "dd-mm-yyyy"}
+            </button>
           </div>
 
-          {/* ==================== CHECK OUT ====================== */}
+          {/* Check Out */}
           <div className="p-3">
             <p className="text-sm text-[#A9A9A9] ml-3">Check Out</p>
 
-            {/* ⭐ UPDATED MOBILE PICKER ⭐ */}
-            {!useDesktopPicker ? (
-              <div className="relative w-full">
-                {!checkOut && (
-                  <span className="absolute left-1 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none">
-                    dd-mm-yyyy
-                  </span>
-                )}
-
-                <input
-                  type="date"
-                  value={checkOut ? formatDate(checkOut) : ""}
-                  onChange={(e) =>
-                    setCheckOut(
-                      e.target.value ? new Date(e.target.value) : null
-                    )
-                  }
-                  className="border-none bg-transparent text-white outline-none text-sm lg:text-base w-full relative z-10"
-                  style={{ colorScheme: "dark" }}
-                />
-
-                <span className="absolute right-1 top-1/2 -translate-y-1/2 text-gray-300 pointer-events-none text-lg">
-                  📅
-                </span>
-              </div>
-            ) : (
-              <button
-                type="button"
-                onClick={openOutOverlay}
-                className="w-full text-left text-white text-sm lg:text-base border border-white/20 px-3 py-2 mt-[2px]"
-              >
-                {checkOut ? formatDate(checkOut) : "Select date"}
-              </button>
-            )}
+            <button
+              type="button"
+              onClick={openOutOverlay}
+              className="w-full text-left text-white text-sm lg:text-base border border-white/20 px-3 py-2 mt-[2px]"
+            >
+              {checkOut ? formatDate(checkOut) : "dd-mm-yyyy"}
+            </button>
           </div>
 
-          {/* ========== ROOMS DROPDOWN ========== */}
+          {/* Rooms Dropdown */}
           <div className="p-3 relative " ref={roomRef}>
             <div
               className="text-white px-3 py-2 cursor-pointer"
@@ -624,7 +563,6 @@ const Rooms = () => {
               </span>
               <div className="pt-[10px] text-sm sm:text-base">{room} Room</div>
             </div>
-
             {open && (
               <div className="absolute bg-white text-black w-60 mt-2 shadow-lg z-20 py-2">
                 <div className="px-5 py-2 flex justify-between items-center">
@@ -648,7 +586,7 @@ const Rooms = () => {
             )}
           </div>
 
-          {/* ========== GUEST DROPDOWN ========== */}
+          {/* Guests Dropdown */}
           <div className="p-3 relative " ref={guestRef}>
             <div
               className="text-white px-3 py-2 cursor-pointer"
@@ -661,7 +599,6 @@ const Rooms = () => {
                 {adult} Adult, {children} Child
               </div>
             </div>
-
             {guestOpen && (
               <div className="absolute bg-white text-black w-60 mt-2 shadow-lg z-20 py-2">
                 <div className="px-5 py-2 flex justify-between items-center">
@@ -681,7 +618,6 @@ const Rooms = () => {
                     </button>
                   </div>
                 </div>
-
                 <div className="px-5 py-2 flex justify-between items-center">
                   <div>{children} Child</div>
                   <div className="flex gap-2">
@@ -703,7 +639,7 @@ const Rooms = () => {
             )}
           </div>
 
-          {/* ========== CHECK AVAILABILITY BUTTON ========== */}
+          {/* Check Availability */}
           <Link
             to="/available_rooms"
             state={{
@@ -721,8 +657,8 @@ const Rooms = () => {
           </Link>
         </div>
 
-        {/* DESKTOP DATE PICKER OVERLAY (unchanged) */}
-        {useDesktopPicker && (showInOverlay || showOutOverlay) && (
+        {/* ===== CUSTOM DATE OVERLAY (BOTH MOBILE & DESKTOP) ===== */}
+        {(showInOverlay || showOutOverlay) && (
           <div
             className="fixed inset-0 z-[9999] bg-black/20 flex items-center justify-center px-4"
             onClick={closeOverlay}
@@ -755,8 +691,7 @@ const Rooms = () => {
                   onChange={(date) => {
                     if (showInOverlay) {
                       setCheckIn(date);
-                      if (checkOut && date && checkOut < date)
-                        setCheckOut(null);
+                      if (checkOut && date && checkOut < date) setCheckOut(null);
                       closeOverlay();
                     } else {
                       setCheckOut(date);
@@ -770,10 +705,9 @@ const Rooms = () => {
           </div>
         )}
 
-        {/* ROOMS SECTION (unchanged) */}
+        {/* ===== ROOMS SECTION ===== */}
         <section
           className="relative w-full overflow-hidden mt-[-163px] md:mt-[-135px] lg:mt-[-143px] xl:mt-[-57px] h-[880px] lg:h-[700px]"
-          aria-label="Rooms & Suites"
         >
           <div className="absolute inset-0 grid grid-cols-1 lg:grid-cols-2 h-full">
             {rooms.map((r) => {
@@ -789,22 +723,16 @@ const Rooms = () => {
                   <div
                     className="absolute inset-0 bg-center bg-cover transition-all duration-300 group-hover:grayscale"
                     style={{
-                      backgroundImage: `url(${
-                        r.images?.[0] || "/images/home/room1.jpeg"
-                      })`,
+                      backgroundImage: `url(${r.images?.[0] || "/images/home/room1.jpeg"})`,
                     }}
                   />
-
                   <div className="absolute left-0 right-0 bottom-0 m-6">
                     <div className="text-center translate-y-[200px] group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
                       <Link
                         to={`/room_details2/${r._id}`}
                         className="w-[50px] h-[50px] rounded-full bg-white dark:bg-lightBlack mb-6 grid place-items-center mx-auto hover:scale-105 transition-transform duration-200"
                       >
-                        <AiOutlineEye
-                          size={20}
-                          className="text-[#006600]"
-                        />
+                        <AiOutlineEye size={20} className="text-[#006600]" />
                       </Link>
 
                       <div className="bg-white dark:bg-lightBlack text-center py-10">
@@ -822,7 +750,6 @@ const Rooms = () => {
             })}
           </div>
         </section>
-
       </div>
     </div>
   );
