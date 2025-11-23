@@ -389,11 +389,11 @@
 //         onChange={(e) =>
 //           setCheckIn(e.target.value ? new Date(e.target.value) : null)
 //         }
-//         className="w-full border border-white px-3 py-2 rounded text-white bg-black hover:bg-green-700 appearance-none placeholder-green-200 "
+//         className="w-full border border-white px-3 py-2  text-white bg-black hover:bg-green-700 appearance-none placeholder-green-200 "
 //       />
 //     ) : (
 //       <button
-//         className="w-full text-left border border-gray-200 px-3 py-2 rounded text-white bg-black hover:bg-green-700"
+//         className="w-full text-left border border-gray-200 px-3 py-2  text-white bg-black hover:bg-green-700"
 //         onClick={openInOverlay}
 //       >
 //         {checkIn ? fmt(checkIn) : "Select date"}
@@ -411,11 +411,11 @@
 //                             onChange={(e) =>
 //                               setCheckOut(e.target.value ? new Date(e.target.value) : null)
 //                             }
-//                             className="w-full border border-white px-3 py-2 rounded text-white bg-black hover:bg-green-700 appearance-none placeholder-green-200 "
+//                             className="w-full border border-white px-3 py-2  text-white bg-black hover:bg-green-700 appearance-none placeholder-green-200 "
 //                           />
 //                         ) : (
 //                           <button
-//                             className="w-full text-left border border-white px-3 py-2 rounded text-white bg-black hover:bg-green-700"
+//                             className="w-full text-left border border-white px-3 py-2  text-white bg-black hover:bg-green-700"
 //                             onClick={openOutOverlay}
 //                           >
 //                             {checkOut ? fmt(checkOut) : "Select date"}
@@ -430,7 +430,7 @@
 //                         Guests
 //                       </label>
 //                       <div
-//                         className="w-full border border-white px-3 py-2 rounded cursor-pointer text-white dark:text-white dark:bg-normalBlack flex justify-between items-center"
+//                         className="w-full border border-white px-3 py-2  cursor-pointer text-white dark:text-white dark:bg-normalBlack flex justify-between items-center"
 //                         onClick={() => setGuestOpen(!guestOpen)}
 //                       >
 //                         <span>
@@ -441,20 +441,20 @@
 //                         />
 //                       </div>
 //                       {guestOpen && (
-//                         <div className="absolute top-15 left-0 bg-white dark:bg-lightBlack border rounded w-full p-3 space-y-2 shadow-lg z-50 animate-slide-down">
+//                         <div className="absolute top-15 left-0 bg-white dark:bg-lightBlack border  w-full p-3 space-y-2 shadow-lg z-50 animate-slide-down">
 //                           <div className="flex justify-between items-center">
 //                             <span>Adults</span>
 //                             <div className="flex gap-2">
 //                               <button
 //                                 onClick={() => setAdult((v) => Math.max(1, v - 1))}
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded -mt-1"
+//                                 className="px-2 py-1 bg-gray-200 dark:bg-gray-700  -mt-1"
 //                               >
 //                                 -
 //                               </button>
 //                               <span>{adult}</span>
 //                               <button
 //                                 onClick={() => setAdult(adult + 1)}
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded -mt-1"
+//                                 className="px-2 py-1 bg-gray-200 dark:bg-gray-700  -mt-1"
 //                               >
 //                                 +
 //                               </button>
@@ -465,14 +465,14 @@
 //                             <div className="flex gap-2">
 //                               <button
 //                                 onClick={() => setChildren((v) => Math.max(0, v - 1))}
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded -mt-1"
+//                                 className="px-2 py-1 bg-gray-200 dark:bg-gray-700  -mt-1"
 //                               >
 //                                 -
 //                               </button>
 //                               <span>{children}</span>
 //                               <button
 //                                 onClick={() => setChildren(children + 1)}
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded -mt-1"
+//                                 className="px-2 py-1 bg-gray-200 dark:bg-gray-700  -mt-1"
 //                               >
 //                                 +
 //                               </button>
@@ -488,7 +488,7 @@
 //                         Rooms
 //                       </label>
 //                       <div
-//                         className="w-full border border-white px-3 py-2 rounded cursor-pointer text-white dark:text-white dark:bg-normalBlack flex justify-between items-center"
+//                         className="w-full border border-white px-3 py-2  cursor-pointer text-white dark:text-white dark:bg-normalBlack flex justify-between items-center"
 //                         onClick={() => setRoomOpen(!roomOpen)}
 //                       >
 //                         <span>{room} Room{room > 1 ? "s" : ""}</span>
@@ -497,20 +497,20 @@
 //                         />
 //                       </div>
 //                       {roomOpen && (
-//                         <div className="absolute top-15 left-0 bg-white dark:bg-lightBlack border rounded w-full p-3 space-y-2 shadow-lg z-50 animate-slide-down">
+//                         <div className="absolute top-15 left-0 bg-white dark:bg-lightBlack border  w-full p-3 space-y-2 shadow-lg z-50 animate-slide-down">
 //                           <div className="flex justify-between items-center">
 //                             <span>Rooms</span>
 //                             <div className="flex gap-2">
 //                               <button
 //                                 onClick={() => setRoom((v) => Math.max(1, v - 1))}
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded -mt-1"
+//                                 className="px-2 py-1 bg-gray-200 dark:bg-gray-700  -mt-1"
 //                               >
 //                                 -
 //                               </button>
 //                               <span>{room}</span>
 //                               <button
 //                                 onClick={() => setRoom(room + 1)}
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded -mt-1"
+//                                 className="px-2 py-1 bg-gray-200 dark:bg-gray-700  -mt-1"
 //                               >
 //                                 +
 //                               </button>
@@ -523,7 +523,7 @@
 //                     {/* Confirm Button */}
 //                     <button
 //                       onClick={checkRoomAvailability}
-//                       className="mt-auto bg-[#006600] text-white font-semibold py-3 rounded hover:bg-[#004d00] transition"
+//                       className="mt-auto bg-[#006600] text-white font-semibold py-3  hover:bg-[#004d00] transition"
 //                     >
 //                       Check Availability
 //                     </button>
@@ -541,7 +541,7 @@
 //                 onClick={closeOverlay}
 //               >
 //                 <div
-//                   className={`bg-white text-black rounded-2xl shadow-2xl max-w-[560px] w-full overflow-hidden rdp-card ${
+//                   className={`bg-white text-black -2xl shadow-2xl max-w-[560px] w-full overflow-hidden rdp-card ${
 //                     isClosing ? "is-closing" : ""
 //                   }`}
 //                   onClick={(e) => e.stopPropagation()}
@@ -553,7 +553,7 @@
 //                     </h3>
 //                     <button
 //                       onClick={closeOverlay}
-//                       className="px-3 py-1.5 border border-gray-300 hover:bg-gray-50 rounded-md text-sm"
+//                       className="px-3 py-1.5 border border-gray-300 hover:bg-gray-50 -md text-sm"
 //                     >
 //                       Close
 //                     </button>
@@ -646,6 +646,7 @@ import Swal from "sweetalert2";
 import "./RoomsDatepicker.css";
 import FloatingSocials from "../../Shared/FloatingSocials";
 import GoToTop from "../../Shared/GoToTop";
+import { useRef } from "react";
 
 const RoomDetails2 = () => {
   const { id } = useParams();
@@ -668,6 +669,11 @@ const RoomDetails2 = () => {
   const [showInOverlay, setShowInOverlay] = useState(false);
   const [showOutOverlay, setShowOutOverlay] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+
+  // inside component
+const guestRef = useRef(null);
+const roomRef = useRef(null);
+
 
   const BTN_PER_USD = 85.49;
   const priceUSD = roomData?.price
@@ -772,7 +778,6 @@ const RoomDetails2 = () => {
           confirmButtonText: "Ok",
           background: "#006600",
           color: "#fff",
-          iconColor: "rgba(221, 193, 51, 1)",
           confirmButtonColor: "#008000",
         });
         return;
@@ -785,16 +790,15 @@ const RoomDetails2 = () => {
             Do you want to proceed to booking?
           </p>
         `,
-        title: "Room Available!",
+        title: "Room Available",
         icon: "success",
         showCancelButton: true,
-        confirmButtonText: "Yes, Continue",
+        confirmButtonText: "Yes",
         cancelButtonText: "Cancel",
         confirmButtonColor: "#008000",
         cancelButtonColor: "#d33",
         background: "#006600",
         color: "#fff",
-        iconColor: "#fff",
       }).then((result) => {
         if (result.isConfirmed) {
           navigate("/booking_details", {
@@ -824,6 +828,28 @@ const RoomDetails2 = () => {
       </div>
     );
   }
+
+  useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (
+      guestRef.current && !guestRef.current.contains(event.target)
+    ) {
+      setGuestOpen(false);
+    }
+    if (
+      roomRef.current && !roomRef.current.contains(event.target)
+    ) {
+      setRoomOpen(false);
+    }
+  };
+
+  document.addEventListener("mousedown", handleClickOutside);
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, []);
+
 
   // ✅ UI rendering
   return (
@@ -966,50 +992,59 @@ const RoomDetails2 = () => {
             onClick={() => setShowAvailability(false)}
           ></div>
 
-          <div
-            className={`fixed top-0 right-0 h-full w-full md:w-[400px] bg-black dark:bg-lightBlack shadow-2xl z-50 transform transition-transform duration-500 ${
-              showAvailability ? "translate-x-0" : "translate-x-full"
-            }`}
-          >
+<div
+  className={`fixed top-0 right-0 h-full w-full md:w-[400px] bg-black dark:bg-lightBlack shadow-2xl z-[1000] transform transition-transform duration-500 ${
+    showAvailability ? "translate-x-0" : "translate-x-full"
+  }`}
+>
+
             <div className="p-6 flex flex-col h-full relative">
               <button
                 onClick={() => setShowAvailability(false)}
-                className="absolute top-4 right-4 text-white text-4xl font-light"
+                className="absolute top-2 right-4 text-white text-4xl font-light"
               >
                 ×
               </button>
 
               {/* Check-in/out */}
-              <div className="mb-4 grid gap-4">
+              <div className="mb-4 mt-6 grid gap-4">
                 <div>
                   <label className="block mb-1 text-white">Check-in</label>
-                  <input
-                    type="date"
-                    value={checkIn ? checkIn.toISOString().split("T")[0] : ""}
-                    onChange={(e) =>
-                      setCheckIn(e.target.value ? new Date(e.target.value) : null)
-                    }
-                    className="w-full border border-white px-3 py-2 rounded text-white bg-black hover:bg-green-700"
-                  />
+<input
+  type="date"
+  value={checkIn ? checkIn.toISOString().split("T")[0] : ""}
+  onChange={(e) => setCheckIn(e.target.value ? new Date(e.target.value) : null)}
+  min={new Date().toISOString().split("T")[0]} // <-- today or later
+  className="w-full border border-white px-3 py-2 text-white bg-black hover:bg-green-700"
+/>
+
                 </div>
                 <div>
                   <label className="block mb-1 text-white">Check-out</label>
-                  <input
-                    type="date"
-                    value={checkOut ? checkOut.toISOString().split("T")[0] : ""}
-                    onChange={(e) =>
-                      setCheckOut(e.target.value ? new Date(e.target.value) : null)
-                    }
-                    className="w-full border border-white px-3 py-2 rounded text-white bg-black hover:bg-green-700"
-                  />
+<input
+  type="date"
+  value={checkOut ? checkOut.toISOString().split("T")[0] : ""}
+  onChange={(e) =>
+    setCheckOut(e.target.value ? new Date(e.target.value) : null)
+  }
+  min={
+    checkIn
+      ? new Date(checkIn.getTime() + 24 * 60 * 60 * 1000)
+          .toISOString()
+          .split("T")[0] // convert to "YYYY-MM-DD"
+      : new Date().toISOString().split("T")[0]
+  }
+  className="w-full border border-white px-3 py-2 text-white bg-black hover:bg-green-700"
+/>
+
                 </div>
               </div>
 
               {/* Guests */}
-              <div className="mb-4 relative">
+              <div ref={guestRef} className="mb-4 relative">
                 <label className="block mb-1 text-white">Guests</label>
                 <div
-                  className="w-full border border-white px-3 py-2 rounded cursor-pointer text-white flex justify-between items-center"
+                  className="w-full border border-white px-3 py-2  cursor-pointer text-white flex justify-between items-center"
                   onClick={() => setGuestOpen(!guestOpen)}
                 >
                   <span>
@@ -1022,20 +1057,20 @@ const RoomDetails2 = () => {
                   />
                 </div>
                 {guestOpen && (
-                  <div className="absolute bg-white dark:bg-lightBlack border rounded w-full p-3 space-y-2 shadow-lg z-50">
+                  <div className="absolute bg-white dark:bg-lightBlack w-full p-3 space-y-3 shadow-lg z-50">
                     <div className="flex justify-between items-center">
                       <span>Adults</span>
                       <div className="flex gap-2">
                         <button
                           onClick={() => setAdult((v) => Math.max(1, v - 1))}
-                          className="px-2 py-1 bg-gray-200 rounded"
+                          className="w-6 h-6 bg-[#006600] text-white"
                         >
                           -
                         </button>
                         <span>{adult}</span>
                         <button
                           onClick={() => setAdult(adult + 1)}
-                          className="px-2 py-1 bg-gray-200 rounded"
+                          className="w-6 h-6 bg-[#006600] text-white"
                         >
                           +
                         </button>
@@ -1046,14 +1081,14 @@ const RoomDetails2 = () => {
                       <div className="flex gap-2">
                         <button
                           onClick={() => setChildren((v) => Math.max(0, v - 1))}
-                          className="px-2 py-1 bg-gray-200 rounded"
+                          className="w-6 h-6 bg-[#006600] text-white"
                         >
                           -
                         </button>
                         <span>{children}</span>
                         <button
                           onClick={() => setChildren(children + 1)}
-                          className="px-2 py-1 bg-gray-200 rounded"
+                          className="w-6 h-6 bg-[#006600] text-white"
                         >
                           +
                         </button>
@@ -1064,10 +1099,10 @@ const RoomDetails2 = () => {
               </div>
 
               {/* Rooms */}
-              <div className="mb-4 relative">
+              <div ref={roomRef} className="mb-4 relative">
                 <label className="block mb-1 text-white">Rooms</label>
                 <div
-                  className="w-full border border-white px-3 py-2 rounded cursor-pointer text-white flex justify-between items-center"
+                  className="w-full border border-white px-3 py-2  cursor-pointer text-white flex justify-between items-center"
                   onClick={() => setRoomOpen(!roomOpen)}
                 >
                   <span>{room} Room{room > 1 ? "s" : ""}</span>
@@ -1078,20 +1113,20 @@ const RoomDetails2 = () => {
                   />
                 </div>
                 {roomOpen && (
-                  <div className="absolute bg-white dark:bg-lightBlack border rounded w-full p-3 space-y-2 shadow-lg z-50">
+                  <div className="absolute bg-white dark:bg-lightBlack w-full p-3 space-y-2 shadow-lg z-50">
                     <div className="flex justify-between items-center">
                       <span>Rooms</span>
                       <div className="flex gap-2">
                         <button
                           onClick={() => setRoom((v) => Math.max(1, v - 1))}
-                          className="px-2 py-1 bg-gray-200 rounded"
+                          className="w-6 h-6 bg-[#006600] text-white"
                         >
                           -
                         </button>
                         <span>{room}</span>
                         <button
                           onClick={() => setRoom(room + 1)}
-                          className="px-2 py-1 bg-gray-200 rounded"
+                          className="w-6 h-6 bg-[#006600] text-white"
                         >
                           +
                         </button>
@@ -1103,7 +1138,7 @@ const RoomDetails2 = () => {
 
               <button
                 onClick={checkRoomAvailability}
-                className="mt-auto bg-[#006600] text-white font-semibold py-3 rounded hover:bg-[#004d00] transition"
+                className="mt-auto bg-[#006600] text-white font-semibold py-3  hover:bg-[#004d00] transition"
               >
                 Check Availability
               </button>

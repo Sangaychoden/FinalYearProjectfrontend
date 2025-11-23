@@ -16,11 +16,11 @@ const Navbar = () => {
 
   const links = [
     { to: "/", label: "Home" },
-    { to: "/room", label: "Room" },
-    { to: "/services", label: "Service" },
+    { to: "/room", label: "Rooms" },
+    { to: "/services", label: "Services" },
     { to: "/gallery", label: "Gallery" },
     { to: "/about", label: "About" },
-    { to: "/contact", label: "Contact Us" },
+    { to: "/contact", label: "Contact" },
   ];
 
   return (
