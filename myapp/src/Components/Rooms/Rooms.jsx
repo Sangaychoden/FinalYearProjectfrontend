@@ -517,13 +517,22 @@ const Rooms = () => {
                 }
               />
             ) : (
+              // <button
+              //   type="button"
+              //   onClick={openInOverlay}
+              //   className="w-full text-left text-white text-sm lg:text-base border border-white/20 px-3 py-2 mt-[2px]"
+              // >
+              //   {checkIn ? formatDate(checkIn) : "Select date"}
+              // </button>
               <button
-                type="button"
-                onClick={openInOverlay}
-                className="w-full text-left text-white text-sm lg:text-base border border-white/20 px-3 py-2 mt-[2px]"
-              >
-                {checkIn ? formatDate(checkIn) : "Select date"}
-              </button>
+              type="button"
+              onClick={openInOverlay}
+              className="flex items-center justify-between w-full text-left text-white text-sm lg:text-base border border-white/20 px-3 py-2 mt-[2px]"
+            >
+              <span>{checkIn ? formatDate(checkIn) : "dd-mm-yyyy"}</span>
+              <span className="text-xl">📅</span>
+            </button>
+
             )}
           </div>
 
@@ -540,13 +549,22 @@ const Rooms = () => {
                 }
               />
             ) : (
+              // <button
+              //   type="button"
+              //   onClick={openOutOverlay}
+              //   className="w-full text-left text-white text-sm lg:text-base border border-white/20 px-3 py-2 mt-[2px]"
+              // >
+              //   {checkOut ? formatDate(checkOut) : "Select date"}
+              // </button>
               <button
                 type="button"
                 onClick={openOutOverlay}
-                className="w-full text-left text-white text-sm lg:text-base border border-white/20 px-3 py-2 mt-[2px]"
+                className="flex items-center justify-between w-full text-left text-white text-sm lg:text-base border border-white/20 px-3 py-2 mt-[2px]"
               >
-                {checkOut ? formatDate(checkOut) : "Select date"}
+                <span>{checkOut ? formatDate(checkOut) : "dd-mm-yyyy"}</span>
+                <span className="text-xl">📅</span>
               </button>
+
             )}
           </div>
 
