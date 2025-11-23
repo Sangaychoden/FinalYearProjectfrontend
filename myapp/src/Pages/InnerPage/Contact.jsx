@@ -98,7 +98,7 @@ const Contact = () => {
 
             {/* LEFT SIDE */}
             <div className="py-5 sm:p-5 flex-1" data-aos="zoom-in-up" data-aos-duration="1000">
-              <h2 className="text-Garamond text-[22px] sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-[38px] 
+              <h2 className="text-Arial text-[22px] sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-[38px] 
               leading-7 md:leading-8 lg:leading-9 xl:leading-10 2xl:leading-[44px] text-uppercase text-lightBlack dark:text-white font-semibold my-3 md:my-5">
                 CONTACT US
               </h2>
@@ -110,7 +110,7 @@ const Contact = () => {
               {/* PHONE */}
               <div className="flex items-center my-4 md:my-5 lg:my-[26px] group">
                 <div className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] lg:w-[50px] lg:h-[50px] 2xl:w-[60px] 2xl:h-[60px]
-                bg-white dark:bg-lightBlack group-hover:bg-[#006600] dark:group-hover:bg-[#006600]
+                dark:bg-lightBlack bg-[#F5F5F5] dark:group-hover:bg-[#006600]
                 grid items-center justify-center -full transition-all duration-300">
                   <IoIosCall size={22} className="text-[#006600] group-hover:text-whiteSmoke" />
                 </div>
@@ -127,7 +127,7 @@ const Contact = () => {
               {/* EMAIL */}
               <div className="flex items-center my-4 md:my-5 lg:my-[26px] group">
                 <div className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] lg:w-[50px] lg:h-[50px] 2xl:w-[60px] 2xl:h-[60px]
-                bg-white dark:bg-lightBlack group-hover:bg-[#006600] dark:group-hover:bg-[#006600]
+                bg-[#F5F5F5] dark:bg-lightBlack dark:group-hover:bg-[#006600]
                 grid items-center justify-center -full transition-all duration-300">
                   <MdEmail size={22} className="text-[#006600] group-hover:text-whiteSmoke" />
                 </div>
@@ -144,7 +144,7 @@ const Contact = () => {
               {/* LOCATION */}
               <div className="flex items-center my-4 md:my-5 lg:my-[26px] group">
                 <div className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] lg:w-[50px] lg:h-[50px] 2xl:w-[60px] 2xl:h-[60px]
-                bg-white dark:bg-lightBlack group-hover:bg-[#006600] dark:group-hover:bg-[#006600]
+                bg-[#F5F5F5] dark:bg-lightBlack dark:group-hover:bg-[#006600]
                 grid items-center justify-center -full transition-all duration-300">
                   <MdOutlineShareLocation size={22} className="text-[#006600] group-hover:text-whiteSmoke" />
                 </div>
