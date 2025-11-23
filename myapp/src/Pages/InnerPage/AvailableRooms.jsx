@@ -1196,14 +1196,13 @@ const AvailableRooms = () => {
   }, []);
 
   return (
-    <div className="bg-whiteSmoke dark:bg-white font-Inter">
+    <div className="bg-white font-Inter">
       <BreadCrumb title="AVAILABLE ROOMS" home="/" />
 
       {/* FILTER BAR */}
       <div
-        className="Container-Hero bg-lightBlack dark:bg-normalBlack grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 
-                   items-center font-Arial py-3 lg:py-4 xl:py-5 border-t-[3px] border-t-khaki mx-auto shadow-xl 
-                   relative z-20 -mt-20 px-4 sm:px-6 lg:px-10"
+          className="Container-Hero bg-lightBlack dark:bg-normalBlack grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 items-center justify-center font-Arial py-3 lg:py-4 xl:py-5 2xl:py-6 border-t-[3px] border-t-khaki 
+                     mx-auto shadow-xl relative z-20 -mt-20 px-4 sm:px-6 lg:px-10 z-[1]"
       >
         {/* Check In */}
         <div className="p-3">
@@ -1243,14 +1242,14 @@ const AvailableRooms = () => {
           </div>
 
           {open && (
-<div className="absolute bg-white/90 text-black mt-2 shadow-lg py-2 z-20 w-40 lg:w-60 md:w-60 sm:w-20 backdrop-blur-sm">
+    <div className="absolute bg-white text-black mt-2 shadow-lg py-2 z-20 w-40 sm:w-60">
               <div className="px-5 py-2 flex justify-between items-center">
                 <div>{roomCount} Room</div>
                 <div className="flex gap-2">
-                  <button className="w-5 h-5 bg-khaki text-white" onClick={() => setRoomCount(roomCount + 1)}>
+                  <button className="w-6 h-6 bg-khaki text-white" onClick={() => setRoomCount(roomCount + 1)}>
                     +
                   </button>
-                  <button className="w-5 h-5 bg-khaki text-white" onClick={() => setRoomCount((v) => Math.max(1, v - 1))}>
+                  <button className="w-6 h-6 bg-khaki text-white" onClick={() => setRoomCount((v) => Math.max(1, v - 1))}>
                     -
                   </button>
                 </div>
@@ -1271,14 +1270,14 @@ const AvailableRooms = () => {
           </div>
 
           {guestOpen && (
-<div className="absolute bg-white/90 text-black mt-2 shadow-lg py-2 z-20 w-40 lg:w-60 md:w-60 sm:w-20 backdrop-blur-sm">
+    <div className="absolute bg-white text-black mt-2 shadow-lg py-2 z-20 w-40 sm:w-60">
               <div className="px-5 py-2 flex justify-between items-center">
                 <div>{adult} Adult</div>
                 <div className="flex gap-2">
-                  <button className="w-5 h-5 bg-khaki text-white" onClick={() => setAdult(adult + 1)}>
+                  <button className="w-6 h-6 bg-khaki text-white" onClick={() => setAdult(adult + 1)}>
                     +
                   </button>
-                  <button className="w-5 h-5 bg-khaki text-white" onClick={() => setAdult((v) => Math.max(1, v - 1))}>
+                  <button className="w-6 h-6 bg-khaki text-white" onClick={() => setAdult((v) => Math.max(1, v - 1))}>
                     -
                   </button>
                 </div>
@@ -1287,10 +1286,10 @@ const AvailableRooms = () => {
               <div className="px-5 py-2 flex justify-between items-center">
                 <div>{children} Child</div>
                 <div className="flex gap-2">
-                  <button className="w-5 h-5 bg-khaki text-white" onClick={() => setChildren(children + 1)}>
+                  <button className="w-6 h-6 bg-khaki text-white" onClick={() => setChildren(children + 1)}>
                     +
                   </button>
-                  <button className="w-5 h-5 bg-khaki text-white" onClick={() => setChildren((v) => Math.max(0, v - 1))}>
+                  <button className="w-6 h-6 bg-khaki text-white" onClick={() => setChildren((v) => Math.max(0, v - 1))}>
                     -
                   </button>
                 </div>
@@ -1418,11 +1417,11 @@ const AvailableRooms = () => {
 
       {/* AVAILABLE ROOMS */}
       <div
-        className="bg-cover bg-center bg-no-repeat py-20 2xl:py-[120px]"
+        className="bg-cover bg-center bg-no-repeat -mt-20 py-20 2xl:py-[120px]"
         style={{ backgroundImage: "url('/images/home/background.png')" }}
       >
         <div className="Container">
-          <div className="mt-7 grid items-center grid-cols-1 md:grid-cols-2 gap-8 md:gap-[40px]">
+          <div className="mt-20 grid items-center grid-cols-1 md:grid-cols-2 gap-8 md:gap-[40px]">
 
             {availableRooms.length === 0 ? (
               <div className="col-span-full text-center pt-10 pb-20 uppercase text-[#6B7280] text-lg sm:text-xl md:text-2xl lg:text-3xl">

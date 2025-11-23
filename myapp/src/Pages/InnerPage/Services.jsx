@@ -249,12 +249,20 @@ const Services = () => {
   // Only show first 3 unless "show all" is toggled
   const visibleFacilities = showAll ? facilities : facilities.slice(0, 3);
 
+  // Utility to truncate text to ~50 words
+const truncateText = (text, wordLimit = 50) => {
+  if (!text) return "";
+  const words = text.split(" ");
+  if (words.length <= wordLimit) return text;
+  return words.slice(0, wordLimit).join(" ") + "...";
+};
+
   return (
     <section className="bg-white text-black font-inter">
       <BreadCrumb title="services" />
 
       <div className="bg-white">
-        <section className="Container py-[120px] md:py-0 md:pb-[120px] lg:py-[120px]">
+        <section className="Container py-[80px] md:py-0 md:pb-[120px] lg:py-[120px]">
           {/* section title */}
           <div
             className="flex flex-col md:flex-row md:items-center justify-between mb-12 px-3 sm:px-5"
@@ -311,10 +319,10 @@ const Services = () => {
                           </Link>
                         </h1>
 
-                        <p className="text-sm sm:text-base leading-[26px] font-normal my-10 lg:mt-[46px] lg:mb-[40px] before:absolute before:h-[30px] before:left-0 before:top-[-35px] before:bg-[#ddd] before:w-[1px] relative">
-                          {facility.description ||
-                            "No description available for this facility."}
-                        </p>
+<p className="text-sm sm:text-base leading-[26px] font-normal my-10 lg:mt-[46px] lg:mb-[40px] before:absolute before:h-[30px] before:left-0 before:top-[-35px] before:bg-[#ddd] before:w-[1px] relative">
+  {truncateText(facility.description) || "No description available for this facility."}
+</p>
+
                         {/* <Link
                           to="/service_details"
                           aria-label={`Read more about ${facility.title || "Facility"}`}

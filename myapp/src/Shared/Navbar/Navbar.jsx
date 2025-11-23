@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import useScrollPosition from "./useScrollPosition";
 import { FaBars } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +10,6 @@ const Navbar = () => {
   const scrolled = scrollPosition > 10;
   const toggleNavbar = () => setIsOpen((p) => !p);
 
-  // Background on scroll; text stays black always
   const wrapperBg = scrolled ? "bg-white shadow-md" : "bg-white shadow-md";
   const linkColor = "text-black";
 
@@ -23,9 +22,23 @@ const Navbar = () => {
     { to: "/contact", label: "Contact" },
   ];
 
+  const navRef = useRef(null);
+
+  // Click outside to close mobile menu
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <nav
       className={`w-full fixed z-10 transition-all duration-300 font-inter lg:px-5 lg:py-2 ${wrapperBg}`}
+      ref={navRef} // attach ref here
     >
       <div className="lg:px-10">
         <div className="flex flex-col lg:flex-row items-center justify-between">
@@ -67,7 +80,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Links (no dropdowns) */}
+          {/* Links */}
           <ul
             className={`${
               isOpen ? "block" : "hidden"
@@ -83,7 +96,7 @@ const Navbar = () => {
                       isActive ? "font-semibold" : "hover:opacity-80"
                     }`
                   }
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => setIsOpen(false)} // close menu on link click
                 >
                   {label}
                 </NavLink>

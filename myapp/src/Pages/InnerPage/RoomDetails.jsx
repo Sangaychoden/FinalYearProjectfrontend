@@ -249,29 +249,39 @@ const RoomDetails = () => {
                 Booking
               </h4>
 
-              {/* Dates */}
-              <div className="flex flex-col gap-4">
-                <div>
-                  <label className="text-gray-700 dark:text-lightGray mb-1 block">
-                    Check-in
-                  </label>
-                  <ReactDatePicker
-                    selected={checkIn}
-                    onChange={(date) => setCheckIn(date)}
-                    className="border border-gray-300 text-gray-800 bg-white -sm px-3 py-3 focus:ring-2 focus:ring-green-600 w-full"
-                  />
-                </div>
-                <div>
-                  <label className="text-gray-700 dark:text-lightGray mb-1 block">
-                    Check-out
-                  </label>
-                  <ReactDatePicker
-                    selected={checkOut}
-                    onChange={(date) => setCheckOut(date)}
-                    className="border border-gray-300 text-gray-800 bg-white -sm px-3 py-3 focus:ring-2 focus:ring-green-600 w-full"
-                  />
-                </div>
-              </div>
+<div className="flex flex-col gap-4">
+  <div>
+    <label className="text-gray-700 dark:text-lightGray mb-1 block">
+      Check-in
+    </label>
+    <ReactDatePicker
+      selected={checkIn}
+      onChange={(date) => {
+        setCheckIn(date);
+        // Reset checkout if it's before the new check-in
+        if (checkOut && date && checkOut < date) setCheckOut(null);
+      }}
+      className="w-full border border-gray-300 text-gray-800 bg-white px-3 py-3 focus:ring-2 focus:ring-green-600"
+      wrapperClassName="w-full"
+      minDate={new Date()} // prevent selecting past dates
+      placeholderText="Select check-in date"
+    />
+  </div>
+  <div>
+    <label className="text-gray-700 dark:text-lightGray mb-1 block">
+      Check-out
+    </label>
+    <ReactDatePicker
+      selected={checkOut}
+      onChange={(date) => setCheckOut(date)}
+      className="w-full border border-gray-300 text-gray-800 bg-white px-3 py-3 focus:ring-2 focus:ring-green-600"
+      wrapperClassName="w-full"
+      minDate={checkIn || new Date()} // checkout must be after check-in
+      placeholderText="Select check-out date"
+    />
+  </div>
+</div>
+
 
               {/* Guests & Rooms */}
               <div className="mt-6 space-y-3">

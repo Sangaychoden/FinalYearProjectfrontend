@@ -27,6 +27,9 @@ const Contact = () => {
         icon: "warning",
         title: "Missing fields",
         text: "Please fill all fields!",
+                  confirmButtonColor: "#008000",
+          background: "#006600",
+          color: "#fff",
       });
       return;
     }
@@ -48,6 +51,9 @@ const Contact = () => {
           icon: "error",
           title: "Error",
           text: data.message || "Failed to send message.",
+                    confirmButtonColor: "#008000",
+          background: "#006600",
+          color: "#fff",
         });
         return;
       }
@@ -56,6 +62,9 @@ const Contact = () => {
         icon: "success",
         title: "Message Sent!",
         text: "We have received your message. Thank you!",
+                  confirmButtonColor: "#008000",
+          background: "#006600",
+          color: "#fff",
       });
 
       setForm({
@@ -71,6 +80,9 @@ const Contact = () => {
         icon: "error",
         title: "Something went wrong",
         text: "Please try again later.",
+                  confirmButtonColor: "#008000",
+          background: "#006600",
+          color: "#fff",
       });
       console.error(error);
     }

@@ -711,7 +711,17 @@ const RoomDetails2 = () => {
   --------------------------*/
   const checkRoomAvailability = async () => {
     if (!checkIn || !checkOut) {
+<<<<<<< HEAD
       Swal.fire("Please select check-in & check-out dates", "", "warning");
+=======
+Swal.fire({
+  title: "Please select check-in and check-out dates!",
+  icon: "warning",
+  confirmButtonColor: "#008000",
+  background: "#006600",
+  color: "#fff"
+});
+>>>>>>> 450b8e7e33a0cb9dba1f508f7389ade7076f1b17
       return;
     }
 
@@ -758,8 +768,20 @@ const RoomDetails2 = () => {
         }
       });
     } catch (err) {
+<<<<<<< HEAD
       console.error(err);
       Swal.fire("Server error", "", "error");
+=======
+      console.error("Availability check failed:", err);
+Swal.fire({
+  title: "Server Error",
+  text: "Unable to check room availability.",
+  icon: "error",
+  confirmButtonColor: "#008000",
+  background: "#006600",
+  color: "#fff"
+});
+>>>>>>> 450b8e7e33a0cb9dba1f508f7389ade7076f1b17
     }
   };
 

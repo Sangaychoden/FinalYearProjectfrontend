@@ -896,6 +896,7 @@ const Rooms = () => {
             </button>
           </div>
 
+<<<<<<< HEAD
           {/* Rooms Dropdown */}
           <div className="p-3 relative " ref={roomRef}>
             <div
@@ -907,6 +908,42 @@ const Rooms = () => {
               </span>
               <div className="pt-[10px] text-sm sm:text-base">{room} Room</div>
             </div>
+=======
+{/* Rooms Dropdown */}
+<div className="p-3 relative" ref={roomRef}>
+  <div
+    className="text-white px-3 py-2 cursor-pointer"
+    onClick={() => setOpen(!open)}
+  >
+    <span className="flex items-center justify-between text-sm text-[#A9A9A9]">
+      Rooms <BiChevronDown />
+    </span>
+    <div className="pt-[10px] text-sm sm:text-base">{room} Room</div>
+  </div>
+  {open && (
+    <div className="absolute bg-white text-black mt-2 shadow-lg py-2 z-20 w-40 sm:w-60">
+      {/* ...buttons inside remain same */}
+      <div className="px-5 py-2 flex justify-between items-center">
+        <div>{room} Room</div>
+        <div className="flex gap-2">
+          <button
+            className="w-6 h-6 bg-khaki text-white"
+            onClick={() => setRoom(room + 1)}
+          >
+            +
+          </button>
+          <button
+            className="w-6 h-6 bg-khaki text-white"
+            onClick={() => setRoom((v) => Math.max(1, v - 1))}
+          >
+            -
+          </button>
+        </div>
+      </div>
+    </div>
+  )}
+</div>
+>>>>>>> 450b8e7e33a0cb9dba1f508f7389ade7076f1b17
 
             {open && (
               <div className="absolute bg-white text-black w-60 mt-2 shadow-lg z-20 py-2">

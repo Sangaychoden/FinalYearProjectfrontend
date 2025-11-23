@@ -64,7 +64,7 @@ const HeroSection = () => {
           items-center justify-center absolute left-0 top-1/2 -rotate-90
         "
       >
-        <BiPhoneCall className="w-5 h-5 mr-2 text-khaki" /> ++975 17755898
+        <BiPhoneCall className="w-5 h-5 mr-2 text-khaki" /> +975 17755898
       </div>
     </div>
   );

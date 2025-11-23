@@ -590,7 +590,7 @@ const Testimonial = () => {
   <div className="mt-14 px-4 sm:hidden w-full flex justify-center">
     <div
       ref={sliderRefSmall}
-      className="keen-slider w-full max-w-[300px]" // limit width for smallest screens
+      className="keen-slider w-full max-w-[310px]" // limit width for smallest screens
     >
       {testimonials.map((t, i) => (
         <div key={i} className="keen-slider__slide flex justify-center">
@@ -599,7 +599,7 @@ const Testimonial = () => {
             <div className="w-full max-w-[280px] h-[10px] bg-[#006600]"></div>
 
             {/* Card */}
-            <div className="bg-white dark:bg-normalBlack p-6 shadow-md w-full max-w-[300px] h-[250px] flex flex-col justify-between">
+            <div className="bg-white dark:bg-normalBlack p-6 shadow-md w-full max-w-[310px] h-[320px] flex flex-col justify-between">
               {/* Message */}
               <p className="font-Arial text-sm leading-[26px] text-black dark:text-lightGray font-normal mb-[10px] overflow-y-auto">
                 {t.message}
@@ -638,7 +638,7 @@ const Testimonial = () => {
             <div ref={sliderRefLarge} className="keen-slider">
               {testimonials.map((t, i) => (
                 <div key={i} className="keen-slider__slide flex justify-center">
-                  <div className="w-full w-[500px] h-[350px] flex flex-col items-center">
+<div className="w-full w-[500px] h-[380px] md:h-[380px] sm:h-[450px] flex flex-col items-center">
                     <div className="w-[90%] h-[10px] bg-[#006600] mx-auto"></div>
                     <div className="bg-white dark:bg-normalBlack p-6 md:p-10 relative shadow-md flex flex-col justify-between h-[100%] w-[100%]">
                       <p className="font-Arial text-sm sm:text-base lg:text-[20px] leading-[26px] text-black dark:text-lightGray italic font-normal xl:text-lg mb-[10px] flex-grow">
