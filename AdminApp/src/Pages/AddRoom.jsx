@@ -19,7 +19,6 @@ const AddRoom = () => {
     size: "",
     beds: "",
     occupancy: "",
-    location: "",
     roomNumber: "",
     roomDetails: "",
     roomFeatures: "",
@@ -71,7 +70,6 @@ const AddRoom = () => {
     if (!formData.size) next.size = "Room Size is required.";
     if (!formData.beds) next.beds = "Number of Beds is required.";
     if (!formData.occupancy) next.occupancy = "Occupancy is required.";
-    if (!formData.location.trim()) next.location = "Location is required.";
     if (!formData.roomNumber.trim()) next.roomNumber = "Room Number is required.";
     if (!formData.roomDetails.trim()) next.roomDetails = "Room Details are required.";
     if (!formData.roomFeatures.trim()) next.roomFeatures = "Room Features are required.";
@@ -98,7 +96,6 @@ const AddRoom = () => {
     formDataToSend.append("size", formData.size);
     formDataToSend.append("beds", formData.beds);
     formDataToSend.append("occupancy", formData.occupancy);
-    formDataToSend.append("location", formData.location);
     formDataToSend.append(
       "roomNumbers",
       JSON.stringify(formData.roomNumber.split(",").map((r) => r.trim()))
@@ -285,21 +282,7 @@ const AddRoom = () => {
               )}
             </div>
 
-            <div>
-              <label className="block text-gray-700 mb-2 font-medium">Location</label>
-              <input
-                data-error={!!errors.location}
-                type="text"
-                name="location"
-                value={formData.location}
-                onChange={handleChange}
-                placeholder="e.g. Riverview, East Wing"
-                className={`w-full border p-3 -md ${
-                  errors.location ? "border-red-600" : "border-gray-300"
-                }`}
-              />
-              {errors.location && <p className="mt-2 text-red-500 text-sm">{errors.location}</p>}
-            </div>
+
           </div>
 
           {/* Room Details */}

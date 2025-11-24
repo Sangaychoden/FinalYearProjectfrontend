@@ -975,7 +975,6 @@ const EditRoom = () => {
     size: "",
     beds: "",
     occupancy: "",
-    location: "",
     roomNumbers: "",
     roomDetails: "",
     roomFeatures: "",
@@ -1036,7 +1035,6 @@ const EditRoom = () => {
           size: room.size || "",
           beds: room.beds || "",
           occupancy: room.occupancy || "",
-          location: room.location || "",
           roomNumbers: formattedRoomNumbers,
           roomDetails: room.roomDetails || "",
           roomFeatures:
@@ -1147,7 +1145,6 @@ const EditRoom = () => {
         "size",
         "beds",
         "occupancy",
-        "location",
         "roomDetails",
         "roomFeatures",
         "bathroomAmenities",
@@ -1284,16 +1281,7 @@ const EditRoom = () => {
               </div>
             </div>
 
-            {/* Location */}
-            <div>
-              <label>Location</label>
-              <input
-                name="location"
-                value={formData.location}
-                onChange={handleChange}
-                className="w-full border p-3"
-              />
-            </div>
+
 
             {/* Room Details */}
             <div>

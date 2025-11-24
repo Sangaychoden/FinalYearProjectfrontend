@@ -126,9 +126,7 @@ const AdminProfile = () => {
       <div className="bg-white shadow-xl  p-8 w-full max-w-lg border border-gray-200">
         {/* Profile Header */}
         <div className="flex flex-col items-center mb-6">
-          <FaUserCircle className="text-7xl text-green-700 mb-3" />
-          <h2 className="text-2xl font-semibold text-gray-800">RINZIN DORJI</h2>
-          <p className="text-green-700 text-sm mt-1 font-semibold">ADMIN</p>
+          <h2 className="text-2xl font-semibold text-gray-800">ADMIN</h2>
         </div>
 
         <hr className="border-gray-300 my-5" />

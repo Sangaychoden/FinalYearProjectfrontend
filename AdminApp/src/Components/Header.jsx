@@ -8,8 +8,7 @@ const Header = () => {
         to="/admin-profile"
         className="border border-gray-400 px-6 py-1 text-center rounded-sm hover:bg-gray-100 transition cursor-pointer"
       >
-        <div className="text-sm font-semibold text-gray-800">RINZIN DORJI</div>
-        <div className="text-xs text-gray-600">ADMIN</div>
+        <div className="text-sm font-semibold text-gray-800 py-1">ADMIN</div>
       </Link>
     </header>
   );
