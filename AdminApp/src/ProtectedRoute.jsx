@@ -1,116 +1,5 @@
-// // // // // src/Components/ProtectedRoute.jsx
-// // // // import { Navigate } from "react-router-dom";
-// // // // import { useEffect, useState } from "react";
 
-// // // // const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
-
-// // // // export default function ProtectedRoute({ children }) {
-// // // //   const [loading, setLoading] = useState(true);
-// // // //   const [authenticated, setAuthenticated] = useState(false);
-
-// // // //   useEffect(() => {
-// // // //     const checkAuth = async () => {
-// // // //       try {
-// // // //         const res = await fetch(`${API_URL}/check-auth`, {
-// // // //           method: "GET",
-// // // //           credentials: "include",
-// // // //         });
-
-// // // //         if (res.ok) {
-// // // //           setAuthenticated(true);
-// // // //         } else {
-// // // //           setAuthenticated(false);
-// // // //         }
-// // // //       } catch (err) {
-// // // //         setAuthenticated(false);
-// // // //       } finally {
-// // // //         setLoading(false);
-// // // //       }
-// // // //     };
-
-// // // //     checkAuth();
-// // // //   }, []);
-
-// // // //   if (loading) return <p>Loading...</p>;
-
-// // // //   return authenticated ? children : <Navigate to="/login" replace />;
-// // // // }
-// // // // src/Components/ProtectedRoute.jsx
-// // // import { Navigate } from "react-router-dom";
-// // // import { useEffect, useState } from "react";
-
-// // // const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
-
-// // // export default function ProtectedRoute({ children }) {
-// // //   const [loading, setLoading] = useState(true);
-// // //   const [authenticated, setAuthenticated] = useState(false);
-
-// // //   useEffect(() => {
-// // //     const checkAuth = async () => {
-// // //       try {
-// // //         const res = await fetch(`${API_URL}/check-auth`, {
-// // //           method: "GET",
-// // //           credentials: "include",
-// // //         });
-
-// // //         setAuthenticated(res.ok); // true if OK, false otherwise
-// // //       } catch (err) {
-// // //         setAuthenticated(false);
-// // //       } finally {
-// // //         setLoading(false);
-// // //       }
-// // //     };
-
-// // //     checkAuth();
-// // //   }, []);
-
-// // //   if (loading) return <p>Loading...</p>;
-
-// // //   // ❗ If NOT authenticated → always redirect to /login
-// // //   if (!authenticated) {
-// // //     return <Navigate to="/login" replace />;
-// // //   }
-
-// // //   // If authenticated → show protected page
-// // //   return children;
-// // // }
-// // import { Navigate } from "react-router-dom";
-// // import { useEffect, useState } from "react";
-
-// // const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
-
-// // export default function ProtectedRoute({ children }) {
-// //   const [loading, setLoading] = useState(true);
-// //   const [authenticated, setAuthenticated] = useState(false);
-
-// //   useEffect(() => {
-// //     const checkAuth = async () => {
-// //       try {
-// //         const res = await fetch(`${API_URL}/check-auth`, {
-// //           method: "GET",
-// //           credentials: "include",
-// //         });
-
-// //         setAuthenticated(res.ok);
-// //       } catch (err) {
-// //         setAuthenticated(false);
-// //       } finally {
-// //         setLoading(false);
-// //       }
-// //     };
-
-// //     checkAuth();
-// //   }, []);
-
-// //   if (loading) return null;
-
-// //   if (!authenticated) {
-// //     return <Navigate to="/login" replace />;
-// //   }
-
-// //   return children;
-// // }
-// import { Navigate } from "react-router-dom";
+// import { Navigate, useNavigate } from "react-router-dom";
 // import { useEffect, useState } from "react";
 // import Swal from "sweetalert2";
 
@@ -119,7 +8,7 @@
 // export default function ProtectedRoute({ children }) {
 //   const [loading, setLoading] = useState(true);
 //   const [authenticated, setAuthenticated] = useState(false);
-//   const [showLoginAlert, setShowLoginAlert] = useState(false);
+//   const navigate = useNavigate();
 
 //   useEffect(() => {
 //     let timeout = setTimeout(() => {
@@ -129,20 +18,23 @@
 
 //     const checkAuth = async () => {
 //       try {
-//         // 🔥 Check ONLY receptionist authentication
 //         const res = await fetch(`${API_URL}/check-auth`, {
 //           method: "GET",
 //           credentials: "include",
 //         });
 
 //         clearTimeout(timeout);
-//         setAuthenticated(res.ok);
 
-//         if (!res.ok) setShowLoginAlert(true);
+//         if (!res.ok) {
+//           setAuthenticated(false);
+//           showPopupAndRedirect();
+//         } else {
+//           setAuthenticated(true);
+//         }
 //       } catch (err) {
 //         clearTimeout(timeout);
 //         setAuthenticated(false);
-//         setShowLoginAlert(true);
+//         showPopupAndRedirect();
 //       } finally {
 //         setLoading(false);
 //       }
@@ -151,22 +43,21 @@
 //     checkAuth();
 //   }, []);
 
+//   // 🔥 Popup function (waits before redirect)
+//   const showPopupAndRedirect = async () => {
+//     await Swal.fire({
+//       icon: "warning",
+//       title: "Please Login",
+//       text: "Admin access only.",
+//       confirmButtonColor: "#006600",
+//       background: "#ffffff",
+//     });
+//     navigate("/login", { replace: true });
+//   };
+
 //   if (loading) return null;
 
-//   if (!authenticated) {
-//     if (showLoginAlert) {
-//       Swal.fire({
-//         icon: "warning",
-//         title: "Please Login",
-//         text: "Admin access only.",
-//         confirmButtonColor: "#006600",
-//         background: "#ffffff",
-//       });
-//       setShowLoginAlert(false);
-//     }
-
-//     return <Navigate to="/login" replace />;
-//   }
+//   if (!authenticated) return null; // Because redirect handled manually
 
 //   return children;
 // }
@@ -185,6 +76,7 @@ export default function ProtectedRoute({ children }) {
     let timeout = setTimeout(() => {
       setAuthenticated(false);
       setLoading(false);
+      showPopupAndRedirect();
     }, 2000);
 
     const checkAuth = async () => {
@@ -198,23 +90,23 @@ export default function ProtectedRoute({ children }) {
 
         if (!res.ok) {
           setAuthenticated(false);
+          setLoading(false);
           showPopupAndRedirect();
         } else {
           setAuthenticated(true);
+          setLoading(false);
         }
       } catch (err) {
         clearTimeout(timeout);
         setAuthenticated(false);
-        showPopupAndRedirect();
-      } finally {
         setLoading(false);
+        showPopupAndRedirect();
       }
     };
 
     checkAuth();
   }, []);
 
-  // 🔥 Popup function (waits before redirect)
   const showPopupAndRedirect = async () => {
     await Swal.fire({
       icon: "warning",
@@ -226,9 +118,13 @@ export default function ProtectedRoute({ children }) {
     navigate("/login", { replace: true });
   };
 
-  if (loading) return null;
+  if (loading) {
+    return <div></div>; // ⬅ keeps component mounted
+  }
 
-  if (!authenticated) return null; // Because redirect handled manually
+  if (!authenticated) {
+    return <div></div>; // ⬅ allows popup to appear
+  }
 
   return children;
 }
