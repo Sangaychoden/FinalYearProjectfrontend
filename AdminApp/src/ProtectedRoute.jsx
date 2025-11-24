@@ -181,3 +181,4 @@ export default function ProtectedRoute({ children }) {
   // Authenticated → allow access
   return children;
 }
+yetsgsgs
