@@ -366,12 +366,7 @@ const RoomDetails = () => {
                     {room.beds} {room.beds > 1 ? "Beds" : "Bed"}
                   </span>
                 </div>
-                <div className="flex items-center py-4 border-b border-[#808080]">
-                  <FaWater className="text-[#006600] w-5 h-5 mr-3 dark:text-[#B3B3B3]" />
-                  <span className="text-sm text-[#808080] dark:text-white">
-                    {room.location}
-                  </span>
-                </div>
+
                 {/* <div className="flex items-center py-4 border-b border-gray-300">
                   <BsCheck2 className="text-[#006600] w-5 h-5 mr-3" />
                   <span className="text-sm text-[#808080] dark:text-lightGray">

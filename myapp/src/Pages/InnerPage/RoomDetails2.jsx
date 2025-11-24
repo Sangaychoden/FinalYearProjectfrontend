@@ -920,10 +920,6 @@ const RoomDetails2 = () => {
                   {roomData.beds} Beds
                 </div>
 
-                <div className="flex items-center border-b pb-4">
-                  <FaWater className="text-[#006600] dark:text-[#B3B3B3] mr-3" />
-                  {roomData.location}
-                </div>
               </div>
 
               <div className="py-5">
