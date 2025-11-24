@@ -134,7 +134,7 @@ and a Paro River view from the guestrooms”
                   </h4>
                   <p className="text-base sm:text-[15px] leading-[26px] font-normal text-[#333] dark:text-[#D3D3D3] flex items-center font-Arial">
                     <span className="w-5 h-[1px] inline-block text-[#333] bg-khaki dark:bg-[#B3B3B3] mr-2"></span>
-                    G.Manger
+                    General Manger
                   </p>
                 </div>
               </div>
