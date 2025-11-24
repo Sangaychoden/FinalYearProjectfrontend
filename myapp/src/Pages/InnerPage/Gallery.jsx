@@ -55,10 +55,10 @@ const Team = () => {
     <div>
       <BreadCrumb title="Gallery" />
 
-      <div className="dark:bg-normalBlack py-6 mb-14 2xl:py-[120px]">
+      <div className="dark:bg-black py-6  2xl:py-[120px]">
         <div className="Container">
           {/* Desktop Layout */}
-          <div className="hidden lg:grid lg:grid-rows-2 lg:gap-[30px] mt-[60px]">
+          <div className="hidden lg:grid dark:bg-black lg:grid-rows-2 lg:gap-[30px] mt-[60px]">
             {rows.map((row, rowIndex) => (
               <div key={rowIndex} className="grid grid-cols-3 gap-[30px]">
                 <div className="flex flex-col space-y-5 h-full">
