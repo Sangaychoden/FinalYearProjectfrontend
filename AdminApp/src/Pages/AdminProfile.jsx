@@ -67,7 +67,7 @@ const AdminProfile = () => {
     const email = localStorage.getItem("email"); // ✅ get email from localStorage
 
     try {
-      const response = await fetch(`${API_URL}/admin/change-password`, {
+      const response = await fetch(`${API_URL}/change-password`, {
       // const response = await fetch("http://localhost:3000/admin/change-password", {
         method: "PUT",
         credentials: "include",

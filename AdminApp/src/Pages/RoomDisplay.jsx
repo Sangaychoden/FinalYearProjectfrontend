@@ -305,13 +305,6 @@ const RoomDisplay = () => {
                     {room.beds} Beds
                   </span>
                 </div>
-
-                <div className="flex items-center py-4">
-                  <FaWater className="text-[#006600] w-5 h-5 mr-3" />
-                  <span className="text-sm text-gray-700">
-                    {room.location}
-                  </span>
-                </div>
               </div>
             </div>
 
