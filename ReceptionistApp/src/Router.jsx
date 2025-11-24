@@ -1,61 +1,9 @@
 
-// // // import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// // // import Login from "./Pages/Login";
-// // // import Dashboard from "./Pages/Dashboard";
-// // // import Booking from "./Pages/Booking";
-// // // import BookingDetails from "./Pages/BookingDetails"; // Booking details page
-// // // import AdminLayout from "./Components/AdminLayout";
-
-// // // const AppRouter = () => {
-// // //   return (
-// // //     <Router>
-// // //       <Routes>
-// // //         {/* Public Pages */}
-// // //         <Route path="/" element={<Login />} />
-// // //         <Route path="/login" element={<Login />} />
-
-// // //         {/* Admin Pages with layout */}
-// // //         <Route
-// // //           path="/dashboard"
-// // //           element={
-// // //             <AdminLayout>
-// // //               <Dashboard />
-// // //             </AdminLayout>
-// // //           }
-// // //         />
-
-// // //         <Route
-// // //           path="/booking"
-// // //           element={
-// // //             <AdminLayout>
-// // //               <Booking />
-// // //             </AdminLayout>
-// // //           }
-// // //         />
-
-// // //         {/* ✅ Supports both /booking-details and /booking-details/:id */}
-// // //         <Route
-// // //           path="/booking-details/:id?"
-// // //           element={
-// // //             <AdminLayout>
-// // //               <BookingDetails />
-// // //             </AdminLayout>
-// // //           }
-// // //         />
-
-// // //         {/* Add more admin routes here */}
-// // //       </Routes>
-// // //     </Router>
-// // //   );
-// // // };
-
-// // // export default AppRouter;
 // // import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // // import Login from "./Pages/Login";
 // // import Dashboard from "./Pages/Dashboard";
 // // import Booking from "./Pages/Booking";
-// // import BookingDetails from "./Pages/BookingDetails"; 
-// // import BookingFormPage from "./Pages/BookingFormPage";  // ✅ NEW PAGE ADDED
+// // import BookingDetails from "./Pages/BookingDetails"; // Booking details page
 // // import AdminLayout from "./Components/AdminLayout";
 
 // // const AppRouter = () => {
@@ -85,22 +33,12 @@
 // //           }
 // //         />
 
-// //         {/* Booking Details */}
+// //         {/* ✅ Supports both /booking-details and /booking-details/:id */}
 // //         <Route
 // //           path="/booking-details/:id?"
 // //           element={
 // //             <AdminLayout>
 // //               <BookingDetails />
-// //             </AdminLayout>
-// //           }
-// //         />
-
-// //         {/* ✅ NEW → Booking Form Page (same form, new page) */}
-// //         <Route
-// //           path="/booking-form/:id?"
-// //           element={
-// //             <AdminLayout>
-// //               <BookingFormPage />
 // //             </AdminLayout>
 // //           }
 // //         />
@@ -117,9 +55,8 @@
 // import Dashboard from "./Pages/Dashboard";
 // import Booking from "./Pages/Booking";
 // import BookingDetails from "./Pages/BookingDetails"; 
-// import BookingFormPage from "./Pages/BookingFormPage";
+// import BookingFormPage from "./Pages/BookingFormPage";  // ✅ NEW PAGE ADDED
 // import AdminLayout from "./Components/AdminLayout";
-// import ProtectedRoute from "./ProtectedRoute";
 
 // const AppRouter = () => {
 //   return (
@@ -129,52 +66,46 @@
 //         <Route path="/" element={<Login />} />
 //         <Route path="/login" element={<Login />} />
 
-//         {/* ⭐ Protected Admin Pages */}
+//         {/* Admin Pages with layout */}
 //         <Route
 //           path="/dashboard"
 //           element={
-//             <ProtectedRoute>
-//               <AdminLayout>
-//                 <Dashboard />
-//               </AdminLayout>
-//             </ProtectedRoute>
+//             <AdminLayout>
+//               <Dashboard />
+//             </AdminLayout>
 //           }
 //         />
 
 //         <Route
 //           path="/booking"
 //           element={
-//             <ProtectedRoute>
-//               <AdminLayout>
-//                 <Booking />
-//               </AdminLayout>
-//             </ProtectedRoute>
+//             <AdminLayout>
+//               <Booking />
+//             </AdminLayout>
 //           }
 //         />
 
+//         {/* Booking Details */}
 //         <Route
 //           path="/booking-details/:id?"
 //           element={
-//             <ProtectedRoute>
-//               <AdminLayout>
-//                 <BookingDetails />
-//               </AdminLayout>
-//             </ProtectedRoute>
+//             <AdminLayout>
+//               <BookingDetails />
+//             </AdminLayout>
 //           }
 //         />
 
+//         {/* ✅ NEW → Booking Form Page (same form, new page) */}
 //         <Route
 //           path="/booking-form/:id?"
 //           element={
-//             <ProtectedRoute>
-//               <AdminLayout>
-//                 <BookingFormPage />
-//               </AdminLayout>
-//             </ProtectedRoute>
+//             <AdminLayout>
+//               <BookingFormPage />
+//             </AdminLayout>
 //           }
 //         />
 
-//         {/* Add more protected admin routes here in the same way */}
+//         {/* Add more admin routes here */}
 //       </Routes>
 //     </Router>
 //   );
@@ -185,7 +116,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./Pages/Login";
 import Dashboard from "./Pages/Dashboard";
 import Booking from "./Pages/Booking";
-import BookingDetails from "./Pages/BookingDetails";
+import BookingDetails from "./Pages/BookingDetails"; 
 import BookingFormPage from "./Pages/BookingFormPage";
 import AdminLayout from "./Components/AdminLayout";
 import ProtectedRoute from "./ProtectedRoute";
@@ -194,27 +125,11 @@ const AppRouter = () => {
   return (
     <Router>
       <Routes>
-
-        {/* =========================
-           PUBLIC ROUTES (NO LOGIN)
-        ========================== */}
+        {/* Public Pages */}
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
 
-        {/* 
-          ⛔ IMPORTANT: 
-          Do NOT wrap public booking routes  
-          Otherwise /book-rooms will show unauthorized
-        */}
-
-        {/* Example Public Booking Page */}
-        <Route path="/booking-form-public" element={<BookingFormPage />} />  
-        {/* or your frontend public booking component */}
-
-        {/* ===================================================
-           PROTECTED ADMIN & RECEPTIONIST ROUTES ONLY
-        ==================================================== */}
-
+        {/* ⭐ Protected Admin Pages */}
         <Route
           path="/dashboard"
           element={
@@ -259,8 +174,7 @@ const AppRouter = () => {
           }
         />
 
-        {/* You can add more protected routes here the same way */}
-        
+        {/* Add more protected admin routes here in the same way */}
       </Routes>
     </Router>
   );
