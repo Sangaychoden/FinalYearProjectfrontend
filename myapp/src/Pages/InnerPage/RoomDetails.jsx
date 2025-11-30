@@ -1,18 +1,432 @@
 
+// import { useState, useEffect } from "react";
+// import { useLocation, useNavigate, useParams } from "react-router-dom";
+// import { BsArrowLeft, BsArrowRight, BsCheck2 } from "react-icons/bs";
+// import {
+//   FaDollarSign,
+//   FaVectorSquare,
+//   FaUserFriends,
+//   FaBed,
+// } from "react-icons/fa";
+
+// import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb";
+// import ReactDatePicker from "react-datepicker";
+// import Swal from "sweetalert2";
+// import "react-datepicker/dist/react-datepicker.css";
+
+// const RoomDetails = () => {
+//   const { id } = useParams();
+//   const location = useLocation();
+//   const navigate = useNavigate();
+
+//   const {
+//     room: passedRoom,
+//     selectedInDate,
+//     selectedOutDate,
+//     adult: initialAdult,
+//     children: initialChildren,
+//     roomCount: initialRoomCount,
+//   } = location.state || {};
+
+//   const [room, setRoom] = useState(passedRoom || null);
+//   const [imageIndex, setImageIndex] = useState(0);
+
+//   const [checkIn, setCheckIn] = useState(
+//     selectedInDate ? new Date(selectedInDate) : new Date()
+//   );
+
+//   const [checkOut, setCheckOut] = useState(
+//     selectedOutDate
+//       ? new Date(selectedOutDate)
+//       : new Date(new Date().setDate(new Date().getDate() + 2))
+//   );
+
+//   const [adult, setAdult] = useState(initialAdult || 1);
+//   const [children, setChildren] = useState(initialChildren || 0);
+//   const [roomCount, setRoomCount] = useState(initialRoomCount || 1);
+
+//   const [mealPlan, setMealPlan] = useState("ep");
+//   const [childrenAges, setChildrenAges] = useState([]);
+//   const [occupancyType, setOccupancyType] = useState("double");
+
+//   useEffect(() => {
+//     const fetchRoomDetails = async () => {
+//       if (room) return;
+//       if (!id) return;
+
+//       try {
+//         const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+//         const response = await fetch(`${API_URL}/rooms/${id}`);
+//         const data = await response.json();
+
+//         if (data.room) setRoom(data.room);
+//         else if (data.rooms?.length > 0) setRoom(data.rooms[0]);
+//       } catch (error) {
+//         console.error("Error fetching room:", error);
+//       }
+//     };
+
+//     fetchRoomDetails();
+//   }, [id, room]);
+
+//   /** ⭐ When children count changes → regenerate dropdowns */
+//   useEffect(() => {
+//     const arr = [];
+//     for (let i = 0; i < children; i++) {
+//       arr.push("6-11");
+//     }
+//     setChildrenAges(arr);
+//   }, [children]);
+
+//   const changeChildAge = (index, value) => {
+//     const updated = [...childrenAges];
+//     updated[index] = value;
+//     setChildrenAges(updated);
+//   };
+
+//   const images = room?.images?.length
+//     ? room.images
+//     : ["/images/inner/room1.jpeg", "/images/inner/room2.jpeg"];
+
+//   const prevBtn = () =>
+//     setImageIndex((p) => (p - 1 + images.length) % images.length);
+
+//   const nextBtn = () =>
+//     setImageIndex((p) => (p + 1) % images.length);
+
+//   const calcNights = () => {
+//     if (!checkIn || !checkOut) return 0;
+//     const diff = checkOut - checkIn;
+//     return Math.max(1, Math.ceil(diff / (1000 * 60 * 60 * 24)));
+//   };
+
+//   /** ⭐ Meal plan price per night */
+//   const getMealPlanPrice = () => {
+//     if (!room?.pricing) return 0;
+//     return room.pricing[mealPlan]?.[occupancyType] ?? 0;
+//   };
+
+//   const calcTotal = () => {
+//     const nights = calcNights();
+//     const price = getMealPlanPrice();
+//     return (nights * roomCount * price).toFixed(2);
+//   };
+
+//   const confirmBooking = () => {
+//     Swal.fire({
+//       title: "Room is available!",
+//       html: `<p style="color:#d3ffd3; font-size:16px;">Proceed to booking?</p>`,
+//       icon: "question",
+//       showCancelButton: true,
+//       confirmButtonColor: "#008000",
+//       cancelButtonColor: "#d33",
+//       confirmButtonText: "Yes",
+//       color: "#fff",
+//       iconColor: "#fff",
+//       background: "#006600",
+//     }).then((result) => {
+//       if (result.isConfirmed) {
+//         navigate("/booking_details", {
+//           state: {
+//             roomData: room,
+//             checkIn,
+//             checkOut,
+//             adult,
+//             children,
+//             room: roomCount,
+//             nights: calcNights(),
+//             totalAmount: calcTotal(),
+//             mealPlan,
+//             occupancyType,
+//             childrenAges,
+//           },
+//         });
+//       }
+//     });
+//   };
+
+//   if (!room) {
+//     return (
+//       <div className="py-40 text-center text-xl text-gray-600 dark:text-lightGray">
+//         Loading...
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <section>
+//       <BreadCrumb title="ROOM DETAILS" home="/" />
+
+//       <div className="py-20 2xl:py-[120px] dark:bg-lightBlack">
+//         <div className="Container grid grid-cols-6 md:grid-cols-7 lg:grid-cols-6 gap-5">
+
+//           {/* LEFT SIDE */}
+//           <div className="col-span-6 md:col-span-4">
+//             <div className="overflow-hidden relative group">
+//               <img
+//                 src={images[imageIndex]}
+//                 className="w-full h-[400px] object-cover"
+//               />
+
+//               <span
+//                 onClick={prevBtn}
+//                 className="absolute left-[-50px] bottom-[45%] group-hover:left-4 bg-white w-[40px] h-[40px] grid place-items-center cursor-pointer"
+//               >
+//                 <BsArrowLeft size={20} />
+//               </span>
+
+//               <span
+//                 onClick={nextBtn}
+//                 className="absolute right-[-50px] bottom-[45%] group-hover:right-4 bg-white w-[40px] h-[40px] grid place-items-center cursor-pointer"
+//               >
+//                 <BsArrowRight size={20} />
+//               </span>
+//             </div>
+
+//             <div className="pt-5 lg:pt-[35px] pr-3">
+//               <h2 className="font-semibold text-4xl pb-2">{room.roomType}</h2>
+//               <p className="text-[#808080]">{room.roomDetails}</p>
+
+//               {/* MEAL PLAN DESCRIPTION */}
+//               <div className="pt-10">
+//                 <h2 className="text-3xl font-semibold pb-2">
+//                   Meal Plan Details
+//                 </h2>
+//                 <ul className="text-[#808080] text-sm space-y-2">
+//                   <li>
+//                     <strong>EP</strong> – Room Only
+//                   </li>
+//                   <li>
+//                     <strong>CP</strong> – Room + Breakfast
+//                   </li>
+//                   <li>
+//                     <strong>MAP</strong> – Room + Breakfast + Dinner
+//                   </li>
+//                   <li>
+//                     <strong>AP</strong> – Room + All Meals
+//                   </li>
+//                 </ul>
+//               </div>
+
+//               {/* MEAL PLAN TABLE */}
+//               <div className="mt-6">
+//                 <h3 className="text-2xl font-semibold mb-3">
+//                   Meal Plan Pricing
+//                 </h3>
+
+//                 <table className="w-full border">
+//                   <thead className="bg-[#006600] text-white">
+//                     <tr>
+//                       <th className="px-4 py-3">Plan</th>
+//                       <th className="px-4 py-3">Single</th>
+//                       <th className="px-4 py-3">Double</th>
+//                     </tr>
+//                   </thead>
+
+//                   <tbody className="text-gray-800">
+//                     {["ep", "cp", "map", "ap"].map((p) => (
+//                       <tr key={p} className="border-b">
+//                         <td className="px-4 py-3 uppercase font-bold">{p}</td>
+//                         <td className="px-4 py-3">
+//                           {room.pricing?.[p]?.single ?? "-"}
+//                         </td>
+//                         <td className="px-4 py-3">
+//                           {room.pricing?.[p]?.double ?? "-"}
+//                         </td>
+//                       </tr>
+//                     ))}
+//                   </tbody>
+//                 </table>
+//               </div>
+
+//               {/* FEATURES */}
+//               <div className="pt-10">
+//                 <h2 className="text-3xl font-semibold pb-2">Room Features</h2>
+//                 <ul className="space-y-2">
+//                   {room.roomFeatures?.split(",").map((f, i) => (
+//                     <li key={i} className="flex items-center">
+//                       <BsCheck2 className="text-green-700 mr-2" />
+//                       {f}
+//                     </li>
+//                   ))}
+//                 </ul>
+//               </div>
+//             </div>
+//           </div>
+
+//           {/* RIGHT SIDE */}
+//           <div className="col-span-6 md:col-span-3 lg:col-span-2">
+//             <div className="bg-[#F5F5F5] px-7 py-8">
+//               <h4 className="text-2xl font-semibold mb-4">Booking</h4>
+
+//               {/* Dates */}
+//               <div className="flex flex-col gap-4">
+//                 <div>
+//                   <label>Check-in</label>
+//                   <ReactDatePicker
+//                     selected={checkIn}
+//                     onChange={(d) => {
+//                       setCheckIn(d);
+//                       if (checkOut < d) setCheckOut(null);
+//                     }}
+//                     className="border px-3 py-2 w-full"
+//                     minDate={new Date()}
+//                   />
+//                 </div>
+
+//                 <div>
+//                   <label>Check-out</label>
+//                   <ReactDatePicker
+//                     selected={checkOut}
+//                     onChange={(d) => setCheckOut(d)}
+//                     className="border px-3 py-2 w-full"
+//                     minDate={checkIn}
+//                   />
+//                 </div>
+//               </div>
+
+//               {/* Adult / Children / Rooms */}
+//               <div className="mt-6 space-y-3">
+//                 {[
+//                   { lbl: "Adults", val: adult, set: setAdult, min: 1 },
+//                   { lbl: "Children", val: children, set: setChildren, min: 0 },
+//                   { lbl: "Rooms", val: roomCount, set: setRoomCount, min: 1 },
+//                 ].map((r, i) => (
+//                   <div key={i} className="flex justify-between">
+//                     <span>{r.lbl}</span>
+//                     <div className="flex gap-2">
+//                       <button
+//                         onClick={() => r.set(Math.max(r.min, r.val - 1))}
+//                         className="px-3 py-1 bg-gray-300"
+//                       >
+//                         -
+//                       </button>
+//                       <span className="px-4 py-2 bg-white border">
+//                         {r.val}
+//                       </span>
+//                       <button
+//                         onClick={() => r.set(r.val + 1)}
+//                         className="px-3 py-1 bg-gray-300"
+//                       >
+//                         +
+//                       </button>
+//                     </div>
+//                   </div>
+//                 ))}
+//               </div>
+
+//               {/* ⭐ CHILD AGE DROPDOWNS */}
+//               {children > 0 && (
+//                 <div className="mt-5">
+//                   <h4 className="font-semibold mb-2">Children Ages</h4>
+
+//                   {childrenAges.map((age, index) => (
+//                     <div
+//                       key={index}
+//                       className="flex justify-between items-center mb-2"
+//                     >
+//                       <span>Child {index + 1}</span>
+//                       <select
+//                         value={age}
+//                         onChange={(e) => changeChildAge(index, e.target.value)}
+//                         className="border px-3 py-2"
+//                       >
+//                         <option value="1-5">1–5 (Free)</option>
+//                         <option value="6-11">6–11</option>
+//                         <option value="12+">12+ (Adult)</option>
+//                       </select>
+//                     </div>
+//                   ))}
+//                 </div>
+//               )}
+
+//               {/* Meal Plan Dropdown */}
+//               <div className="mt-5">
+//                 <label>Meal Plan</label>
+//                 <select
+//                   value={mealPlan}
+//                   onChange={(e) => setMealPlan(e.target.value)}
+//                   className="border w-full px-3 py-2 mt-1"
+//                 >
+//                   <option value="ep">EP</option>
+//                   <option value="cp">CP</option>
+//                   <option value="map">MAP</option>
+//                   <option value="ap">AP</option>
+//                 </select>
+//               </div>
+
+//               {/* Occupancy */}
+//               <div className="mt-5">
+//                 <label>Occupancy Type</label>
+//                 <select
+//                   value={occupancyType}
+//                   onChange={(e) => setOccupancyType(e.target.value)}
+//                   className="border w-full px-3 py-2 mt-1"
+//                 >
+//                   <option value="single">Single</option>
+//                   <option value="double">Double</option>
+//                 </select>
+//               </div>
+
+//               {/* Total */}
+//               <div className="mt-8 border-t pt-4 flex justify-between">
+//                 <span className="font-semibold">Total Amount</span>
+//                 <span className="text-xl font-bold">Nu. {calcTotal()}</span>
+//               </div>
+
+//               <button
+//                 onClick={confirmBooking}
+//                 className="bg-[#006600] text-white w-full h-11 mt-6 font-semibold"
+//               >
+//                 Proceed to Booking
+//               </button>
+//             </div>
+
+//             {/* QUICK INFO */}
+//             <div className="mt-10">
+//               <h4 className="text-xl font-semibold mb-2">Room Details</h4>
+
+//               <div>
+//                 <div className="flex items-center py-3 border-b">
+//                   <FaDollarSign className="text-green-700 mr-3" />
+//                   Nu {room.price?.toLocaleString()}
+//                 </div>
+
+//                 <div className="flex items-center py-3 border-b">
+//                   <FaVectorSquare className="text-green-700 mr-3" />
+//                   {room.size} SQ.FT
+//                 </div>
+
+//                 <div className="flex items-center py-3 border-b">
+//                   <FaUserFriends className="text-green-700 mr-3" />
+//                   {room.occupancy} Guests
+//                 </div>
+
+//                 <div className="flex items-center py-3 border-b">
+//                   <FaBed className="text-green-700 mr-3" />
+//                   {room.beds} Bed(s)
+//                 </div>
+//               </div>
+//             </div>
+
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default RoomDetails;
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import {
-  BsArrowLeft,
-  BsArrowRight,
-  BsCheck2
-} from "react-icons/bs";
+import { BsArrowLeft, BsArrowRight, BsCheck2 } from "react-icons/bs";
 import {
   FaDollarSign,
   FaVectorSquare,
   FaUserFriends,
   FaBed,
-  FaWater,
 } from "react-icons/fa";
+
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb";
 import ReactDatePicker from "react-datepicker";
 import Swal from "sweetalert2";
@@ -22,8 +436,13 @@ const RoomDetails = () => {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
+const PLANS = [
+  { label: "European Plan (EP)", key: "ep" },
+  { label: "Continental Plan (CP)", key: "cp" },
+  { label: "Modified American Plan (MAP)", key: "map" },
+  { label: "American Plan (AP)", key: "ap" },
+];
 
-  // ✅ State from previous page
   const {
     room: passedRoom,
     selectedInDate,
@@ -35,22 +454,30 @@ const RoomDetails = () => {
 
   const [room, setRoom] = useState(passedRoom || null);
   const [imageIndex, setImageIndex] = useState(0);
+
   const [checkIn, setCheckIn] = useState(
     selectedInDate ? new Date(selectedInDate) : new Date()
   );
+
   const [checkOut, setCheckOut] = useState(
     selectedOutDate
       ? new Date(selectedOutDate)
       : new Date(new Date().setDate(new Date().getDate() + 2))
   );
+
   const [adult, setAdult] = useState(initialAdult || 1);
   const [children, setChildren] = useState(initialChildren || 0);
   const [roomCount, setRoomCount] = useState(initialRoomCount || 1);
 
-  // ✅ Fetch room details if ID present or state missing
+  const [mealPlan, setMealPlan] = useState("ep");
+  const [childrenAges, setChildrenAges] = useState([]);
+
+  // ⭐ UPDATED: allow multi-occupancy
+  const [occupancyType, setOccupancyType] = useState(["double"]);
+
   useEffect(() => {
     const fetchRoomDetails = async () => {
-      if (room) return; // already have data via state
+      if (room) return;
       if (!id) return;
 
       try {
@@ -59,45 +486,82 @@ const RoomDetails = () => {
         const data = await response.json();
 
         if (data.room) setRoom(data.room);
-        else if (data.rooms && data.rooms.length > 0) setRoom(data.rooms[0]);
+        else if (data.rooms?.length > 0) setRoom(data.rooms[0]);
       } catch (error) {
-        console.error("Error fetching room details:", error);
+        console.error("Error fetching room:", error);
       }
     };
 
     fetchRoomDetails();
   }, [id, room]);
+/** ⭐ Keep occupancy array in sync with roomCount */
+useEffect(() => {
+  setOccupancyType((prev) => {
+    const updated = [...prev];
 
-  // ✅ Image slider
+    // Expand array if needed
+    while (updated.length < roomCount) {
+      updated.push(updated[0] || "double");
+    }
+
+    // Trim extra
+    return updated.slice(0, roomCount);
+  });
+}, [roomCount]);
+
+  /** ⭐ When children count changes → regenerate dropdowns */
+  useEffect(() => {
+    const arr = [];
+    for (let i = 0; i < children; i++) {
+      arr.push("6-11");
+    }
+    setChildrenAges(arr);
+  }, [children]);
+
+  const changeChildAge = (index, value) => {
+    const updated = [...childrenAges];
+    updated[index] = value;
+    setChildrenAges(updated);
+  };
+
   const images = room?.images?.length
     ? room.images
     : ["/images/inner/room1.jpeg", "/images/inner/room2.jpeg"];
 
   const prevBtn = () =>
-    setImageIndex((prev) => (prev - 1 + images.length) % images.length);
-  const nextBtn = () => setImageIndex((prev) => (prev + 1) % images.length);
+    setImageIndex((p) => (p - 1 + images.length) % images.length);
 
-  // ✅ Calculations
+  const nextBtn = () =>
+    setImageIndex((p) => (p + 1) % images.length);
+
   const calcNights = () => {
     if (!checkIn || !checkOut) return 0;
     const diff = checkOut - checkIn;
     return Math.max(1, Math.ceil(diff / (1000 * 60 * 60 * 24)));
   };
 
-  const calcTotal = () => {
-    const nights = calcNights();
-    const pricePerNight = room?.price || 0;
-    return (nights * roomCount * pricePerNight).toFixed(2);
+  /** ⭐ Meal plan price per night (single value only, not per room occupancy) */
+  const getMealPlanPrice = () => {
+    if (!room?.pricing) return 0;
+
+    // If multiple rooms → use occupancy of first room for now
+    const occ = Array.isArray(occupancyType)
+      ? occupancyType[0] || "double"
+      : occupancyType;
+
+    return room.pricing[mealPlan]?.[occ] ?? 0;
   };
 
-  // ✅ Booking confirmation
-  const confirmBooking = () => {
+  const calcTotal = () => {
     const nights = calcNights();
-    const total = calcTotal();
+    const price = getMealPlanPrice();
+    return (nights * roomCount * price).toFixed(2);
+  };
 
+  const confirmBooking = () => {
     Swal.fire({
       title: "Room is available!",
-      html: `<p style="color:#d3ffd3; font-size:16px;">Proceed to booking details?</p>`,
+      html: `<p style="color:#d3ffd3; font-size:16px;">Proceed to booking?</p>`,
       icon: "question",
       showCancelButton: true,
       confirmButtonColor: "#008000",
@@ -113,11 +577,14 @@ const RoomDetails = () => {
             roomData: room,
             checkIn,
             checkOut,
-            room: roomCount,
             adult,
             children,
-            nights,
-            totalAmount: total,
+            room: roomCount,
+            nights: calcNights(),
+            totalAmount: calcTotal(),
+            mealPlan,
+            occupancyType: occupancyType,
+            childrenAges,
           },
         });
       }
@@ -127,7 +594,7 @@ const RoomDetails = () => {
   if (!room) {
     return (
       <div className="py-40 text-center text-xl text-gray-600 dark:text-lightGray">
-        Loading room details...
+        Loading...
       </div>
     );
   }
@@ -135,178 +602,176 @@ const RoomDetails = () => {
   return (
     <section>
       <BreadCrumb title="ROOM DETAILS" home="/" />
+
       <div className="py-20 2xl:py-[120px] dark:bg-lightBlack">
         <div className="Container grid grid-cols-6 md:grid-cols-7 lg:grid-cols-6 gap-5">
-          {/* ===== LEFT COLUMN ===== */}
+
+          {/* LEFT SIDE */}
           <div className="col-span-6 md:col-span-4">
-            {/* Image Slider */}
-            <div className="overflow-hidden relative group ">
+            <div className="overflow-hidden relative group">
               <img
                 src={images[imageIndex]}
-                alt={room.roomType}
-                className="transition-all duration-500 w-full h-[400px] object-cover "
+                className="w-full h-[400px] object-cover"
               />
+
               <span
                 onClick={prevBtn}
-                className="w-[40px] h-[40px] bg-white dark:bg-lightBlack hover:bg-[#006600] grid place-items-center absolute bottom-[45%] left-[-50px] group-hover:left-4 transition-all duration-300 cursor-pointer"
+                className="absolute left-[-50px] bottom-[45%] group-hover:left-4 bg-white w-[40px] h-[40px] grid place-items-center cursor-pointer"
               >
-                <BsArrowLeft
-                  size={20}
-                  className="text-lightBlack dark:text-white hover:text-white"
-                />
+                <BsArrowLeft size={20} />
               </span>
+
               <span
                 onClick={nextBtn}
-                className="w-[40px] h-[40px] bg-white dark:bg-lightBlack hover:bg-[#006600] grid place-items-center absolute bottom-[45%] right-[-50px] group-hover:right-4 transition-all duration-300 cursor-pointer"
+                className="absolute right-[-50px] bottom-[45%] group-hover:right-4 bg-white w-[40px] h-[40px] grid place-items-center cursor-pointer"
               >
-                <BsArrowRight
-                  size={20}
-                  className="text-lightBlack dark:text-white hover:text-white"
-                />
+                <BsArrowRight size={20} />
               </span>
             </div>
 
-            {/* Room Info */}
             <div className="pt-5 lg:pt-[35px] pr-3">
-              <h2 className="py-2 font-Arial text-4xl font-semibold text-lightBlack dark:text-white">
-                {room.roomType}
+              <h2 className="font-semibold text-4xl pb-2">{room.roomType}</h2>
+              <p className="text-[#808080]">{room.roomDetails}</p>
+                          <div className="pt-10">
+              <h2 className="text-3xl font-semibold pb-2">
+                Meal Plan Details
               </h2>
-              <p className="text-sm lg:text-base leading-6 text-[#808080] dark:text-[#D9D9D9]">
-                {room.roomDetails}
-              </p>
+              <ul className="text-[#808080] text-sm space-y-3 leading-relaxed">
+                <li>
+                  <strong>European Plan (EP)</strong> – Room Only. No meals included. Guests may order meals separately as per restaurant menu.
+                </li>
 
-              {/* Room Numbers */}
-              {/* {room.roomNumbers && (
-                <div className="pt-6">
-                  <h3 className="text-lg font-semibold text-lightBlack dark:text-white mb-2">
-                    Room Numbers:
-                  </h3>
-                  <p className="text-sm text-gray-700 dark:text-lightGray">
-                    {room.roomNumbers.join(", ")}
-                  </p>
-                </div>
-              )} */}
+                <li>
+                  <strong>Continental Plan (CP)</strong> – Room + Breakfast. Includes morning breakfast only. Lunch and dinner can be purchased separately.
+                </li>
 
-              {/* Room Features */}
-              <div className="pt-10">
-                <h2 className="pb-2 text-3xl font-semibold text-lightBlack dark:text-white">
-                  Room Features
-                </h2>
-                <ul className="space-y-2">
-                  {room.roomFeatures?.split(",").map((feature, i) => (
-                    <li key={i} className="flex items-center">
-                      <BsCheck2 size={16} className="text-[#006600] dark:text-[#B3B3B3] mr-2" />
-                      <span className="text-sm text-[#808080] dark:text-[#D9D9D9]">
-                        {feature.trim()}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                <li>
+                  <strong>Modified American Plan (MAP)</strong> – Room + Breakfast + Dinner/Lunch. Includes two meals daily: breakfast and either lunch or dinner.
+                </li>
 
-              {/* Bathroom Amenities */}
-              <div className="pt-10">
-                <h2 className="pb-2 text-3xl font-semibold text-lightBlack dark:text-white">
-                  Bathroom Amenities
-                </h2>
-                <ul className="space-y-2">
-                  {room.bathroomAmenities?.split(",").map((item, i) => (
-                    <li key={i} className="flex items-center">
-                      <BsCheck2 size={16} className="text-[#006600] dark:text-[#B3B3B3] mr-2" />
-                      <span className="text-sm text-[#808080] dark:text-[#D9D9D9]">
-                        {item.trim()}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                <li>
+                  <strong>American Plan (AP)</strong> – Room + All Meals. Includes breakfast, lunch, and dinner throughout the stay.
+                </li>
+              </ul>
+            </div>
 
-              {/* Optional Features */}
-              {/* {room.optional && (
-                <div className="pt-10">
-                  <h2 className="pb-2 text-3xl font-semibold text-lightBlack dark:text-white">
-                    Optional
-                  </h2>
-                  <ul className="space-y-2">
-                    {room.optional?.split(",").map((item, i) => (
-                      <li key={i} className="flex items-center">
-                        <BsCheck2 size={16} className="text-[#006600] mr-2" />
-                        <span className="text-sm text-[#808080] dark:text-lightGray">
-                          {item.trim()}
-                        </span>
-                      </li>
+
+              {/* MEAL PLAN TABLE */}
+              <div className="mt-6">
+                <h3 className="text-2xl font-semibold mb-3">
+                  Meal Plan Pricing
+                </h3>
+
+                <table className="w-full border">
+                  <thead className="bg-[#006600] text-white">
+                    <tr>
+                      <th className="px-4 py-3">Plan</th>
+                      <th className="px-4 py-3">Single</th>
+                      <th className="px-4 py-3">Double</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-gray-800">
+                    {PLANS.map((plan) => (
+                      <tr key={plan.key} className="border-b">
+                        <td className="px-4 py-3 uppercase font-bold">{plan.label}</td>
+
+                        <td className="px-4 py-3">
+                          {room.pricing?.[plan.key]?.single ?? "-"}
+                        </td>
+
+                        <td className="px-4 py-3">
+                          {room.pricing?.[plan.key]?.double ?? "-"}
+                        </td>
+                      </tr>
                     ))}
-                  </ul>
-                </div>
-              )} */}
+                  </tbody>
+
+                </table>
+              </div>
+
+              {/* FEATURES */}
+              <div className="pt-10">
+                <h2 className="text-3xl font-semibold pb-2">Room Features</h2>
+                <ul className="space-y-2">
+                  {room.roomFeatures?.split(",").map((f, i) => (
+                    <li key={i} className="flex items-center">
+                      <BsCheck2 className="text-green-700 mr-2" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              {/* BATHROOM AMENITIES */}
+<div className="pt-10">
+  <h2 className="pb-3 text-2xl font-semibold dark:text-white">
+    Bathroom Amenities
+  </h2>
+  <ul className="space-y-2 dark:text-[#D9D9D9]">
+    {room.bathroomAmenities?.split(",").map((b, i) => (
+      <li key={i} className="flex items-center">
+        <BsCheck2 className="text-[#006600] mr-2" />
+        {b.trim()}
+      </li>
+    ))}
+  </ul>
+</div>
+
             </div>
           </div>
 
-          {/* ===== RIGHT COLUMN ===== */}
+          {/* RIGHT SIDE */}
           <div className="col-span-6 md:col-span-3 lg:col-span-2">
-            <div className="bg-[#F5F5F5] dark:bg-[#F5F5F5] px-7 py-8 ">
-              <h4 className="text-2xl font-semibold text-lightBlack dark:text-black mb-4">
-                Booking
-              </h4>
+            <div className="bg-[#F5F5F5] px-7 py-8">
+              <h4 className="text-2xl font-semibold mb-4">Booking</h4>
 
-<div className="flex flex-col gap-4">
-  <div>
-    <label className="text-gray-700 dark:text-black mb-1 block">
-      Check-in
-    </label>
-    <ReactDatePicker
-      selected={checkIn}
-      onChange={(date) => {
-        setCheckIn(date);
-        // Reset checkout if it's before the new check-in
-        if (checkOut && date && checkOut < date) setCheckOut(null);
-      }}
-      className="w-full border border-gray-300 text-gray-800 bg-white  px-3 py-3 focus:ring-2 focus:ring-green-600"
-      wrapperClassName="w-full"
-      minDate={new Date()} // prevent selecting past dates
-      placeholderText="Select check-in date"
-    />
-  </div>
-  <div>
-    <label className="text-gray-700 dark:text-black mb-1 block">
-      Check-out
-    </label>
-    <ReactDatePicker
-      selected={checkOut}
-      onChange={(date) => setCheckOut(date)}
-      className="w-full border border-gray-300 text-gray-800 bg-white px-3 py-3 focus:ring-2 focus:ring-green-600"
-      wrapperClassName="w-full"
-      minDate={checkIn || new Date()} // checkout must be after check-in
-      placeholderText="Select check-out date"
-    />
-  </div>
-</div>
+              {/* Dates */}
+              <div className="flex flex-col gap-4">
+                <div>
+                  <label>Check-in</label>
+                  <ReactDatePicker
+                    selected={checkIn}
+                    onChange={(d) => {
+                      setCheckIn(d);
+                      if (checkOut < d) setCheckOut(null);
+                    }}
+                    className="border px-3 py-2 w-full"
+                    minDate={new Date()}
+                  />
+                </div>
 
+                <div>
+                  <label>Check-out</label>
+                  <ReactDatePicker
+                    selected={checkOut}
+                    onChange={(d) => setCheckOut(d)}
+                    className="border px-3 py-2 w-full"
+                    minDate={checkIn}
+                  />
+                </div>
+              </div>
 
-              {/* Guests & Rooms */}
+              {/* Adult / Children / Rooms */}
               <div className="mt-6 space-y-3">
                 {[
-                  { label: "Adults", value: adult, set: setAdult, min: 1 },
-                  { label: "Children", value: children, set: setChildren, min: 0 },
-                  { label: "Rooms", value: roomCount, set: setRoomCount, min: 1 },
-                ].map(({ label, value, set, min }, i) => (
-                  <div className="flex justify-between items-center" key={i}>
-                    <span className="text-gray-700 dark:text-black w-24">
-                      {label}
-                    </span>
-                    <div className="flex items-center gap-2">
+                  { lbl: "Adults", val: adult, set: setAdult, min: 1 },
+                  { lbl: "Children", val: children, set: setChildren, min: 0 },
+                  { lbl: "Rooms", val: roomCount, set: setRoomCount, min: 1 },
+                ].map((r, i) => (
+                  <div key={i} className="flex justify-between">
+                    <span>{r.lbl}</span>
+                    <div className="flex gap-2">
                       <button
-                        onClick={() => set((v) => Math.max(min, v - 1))}
-                        className="px-3 py-1 bg-gray-200 dark:bg-gray-700  hover:bg-gray-300"
+                        onClick={() => r.set(Math.max(r.min, r.val - 1))}
+                        className="px-3 py-1 bg-gray-300"
                       >
                         -
                       </button>
-                      <span className="px-4 py-2 bg-white dark:bg-white dark:text-black border border-gray-500  text-gray-800 min-w-[40px] text-center">
-                        {value}
+                      <span className="px-4 py-2 bg-white border">
+                        {r.val}
                       </span>
                       <button
-                        onClick={() => set(value + 1)}
-                        className="px-3 py-1 bg-gray-200 dark:bg-gray-700  hover:bg-gray-300"
+                        onClick={() => r.set(r.val + 1)}
+                        className="px-3 py-1 bg-gray-300"
                       >
                         +
                       </button>
@@ -315,74 +780,126 @@ const RoomDetails = () => {
                 ))}
               </div>
 
-              {/* Total */}
-              <div className="mt-8 flex justify-between items-center border-t border-gray-300 pt-4">
-                <label className="text-base font-semibold text-gray-700 dark:text-black">
-                  Total Amount
-                </label>
-                <span className="text-xl font-bold text-[#444]">
-                  Nu. {calcTotal()}
-                </span>
-              </div>
+              {/* ⭐ CHILD AGE DROPDOWNS */}
+              {children > 0 && (
+                <div className="mt-5">
+                  <h4 className="font-semibold mb-2">Children Ages</h4>
 
-              {/* Proceed Button */}
-              <div className="mt-6">
-                <button
-                  onClick={confirmBooking}
-                  className="bg-[#006600] w-full h-11 text-white font-semibold -sm hover:bg-green-700 transition"
+                  {childrenAges.map((age, index) => (
+                    <div
+                      key={index}
+                      className="flex justify-between items-center mb-2"
+                    >
+                      <span>Child {index + 1}</span>
+                      <select
+                        value={age}
+                        onChange={(e) => changeChildAge(index, e.target.value)}
+                        className="border px-3 py-2"
+                      >
+                        <option value="1-5">1–5 (Free)</option>
+                        <option value="6-11">6–11</option>
+                        <option value="12+">12+ (Adult)</option>
+                      </select>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Meal Plan Dropdown */}
+              <div className="mt-5">
+                <label>Meal Plan</label>
+                <select
+                  value={mealPlan}
+                  onChange={(e) => setMealPlan(e.target.value)}
+                  className="border w-full px-3 py-2 mt-1"
                 >
-                  Proceed to Booking
-                </button>
+                  <option value="ep">EP</option>
+                  <option value="cp">CP</option>
+                  <option value="map">MAP</option>
+                  <option value="ap">AP</option>
+                </select>
               </div>
-            </div>
 
-            {/* Quick Info */}
-            <div className="mt-10">
-              <h4 className="text-xl sm:text-2xl font-semibold text-lightBlack dark:text-white mb-2">
-                Room Details
-              </h4>
-              <div className="grid items-center">
-                <div className="flex items-center py-4 border-b border-[#808080]">
-                  <FaDollarSign className="text-[#006600] w-5 h-5 mr-3 dark:text-[#B3B3B3]" />
-                  <span className="text-sm text-[#808080] dark:text-white">
-                    Nu {room.price?.toLocaleString()}
-                  </span>
-                </div>
-                <div className="flex items-center py-4 border-b border-[#808080]">
-                  <FaVectorSquare className="text-[#006600] w-5 h-5 mr-3 dark:text-[#B3B3B3]" />
-                  <span className="text-sm text-[#808080] dark:text-white">
-                    {room.size} SQ.FT
-                  </span>
-                </div>
-                <div className="flex items-center py-4 border-b border-[#808080]">
-                  <FaUserFriends className="text-[#006600] w-5 h-5 mr-3 dark:text-[#B3B3B3]" />
-                  <span className="text-sm text-[#808080] dark:text-white">
-                    {room.occupancy} Guests
-                  </span>
-                </div>
-                <div className="flex items-center py-4 border-b border-[#808080]">
-                  <FaBed className="text-[#006600] w-5 h-5 mr-3 dark:text-[#B3B3B3]" />
-                  <span className="text-sm text-[#808080] dark:text-white">
-                    {room.beds} {room.beds > 1 ? "Beds" : "Bed"}
-                  </span>
-                </div>
+              {/* ⭐ UPDATED OCCUPANCY DROPDOWNS */}
+              <div className="mt-5">
+                <label>Occupancy Type</label>
 
-                {/* <div className="flex items-center py-4 border-b border-gray-300">
-                  <BsCheck2 className="text-[#006600] w-5 h-5 mr-3" />
-                  <span className="text-sm text-[#808080] dark:text-lightGray">
-                    Total Rooms: {room.numberOfRooms}
-                  </span>
-                </div>
-                {room.roomsAvailable !== undefined && (
-                  <div className="flex items-center py-4 border-b border-gray-300">
-                    <BsCheck2 className="text-[#006600] w-5 h-5 mr-3" />
-                    <span className="text-sm text-[#808080] dark:text-lightGray">
-                      Rooms Available: {room.roomsAvailable}
-                    </span>
+                {roomCount === 1 ? (
+                  <select
+                    value={occupancyType[0] || "double"}
+                    onChange={(e) => setOccupancyType([e.target.value])}
+                    className="border w-full px-3 py-2 mt-1"
+                  >
+                    <option value="single">Single</option>
+                    <option value="double">Double</option>
+                  </select>
+                ) : (
+                  <div className="space-y-2 mt-2">
+                    {Array.from({ length: roomCount }).map((_, index) => (
+                      <div
+                        key={index}
+                        className="flex justify-between items-center"
+                      >
+                        <span>Room {index + 1}</span>
+                        <select
+                          value={occupancyType[index] || "double"}
+                          onChange={(e) => {
+                            const updated = [...occupancyType];
+                            updated[index] = e.target.value;
+                            setOccupancyType(updated);
+                          }}
+                          className="border px-3 py-2"
+                        >
+                          <option value="single">Single</option>
+                          <option value="double">Double</option>
+                        </select>
+                      </div>
+                    ))}
                   </div>
-                )} */}
+                )}
+              </div>
+
+              {/* Total */}
+              <div className="mt-8 border-t pt-4 flex justify-between">
+                <span className="font-semibold">Total Amount</span>
+                <span className="text-xl font-bold">Nu. {calcTotal()}</span>
+              </div>
+
+              <button
+                onClick={confirmBooking}
+                className="bg-[#006600] text-white w-full h-11 mt-6 font-semibold"
+              >
+                Proceed to Booking
+              </button>
+            </div>
+
+            {/* QUICK INFO */}
+            <div className="mt-10">
+              <h4 className="text-xl font-semibold mb-2">Room Details</h4>
+
+              <div>
+                <div className="flex items-center py-3 border-b">
+                  <FaDollarSign className="text-green-700 mr-3" />
+                  Nu {room.price?.toLocaleString()}
+                </div>
+
+                <div className="flex items-center py-3 border-b">
+                  <FaVectorSquare className="text-green-700 mr-3" />
+                  {room.size} SQ.FT
+                </div>
+
+                <div className="flex items-center py-3 border-b">
+                  <FaUserFriends className="text-green-700 mr-3" />
+                  {room.occupancy} Guests
+                </div>
+
+                <div className="flex items-center py-3 border-b">
+                  <FaBed className="text-green-700 mr-3" />
+                  {room.beds} Bed(s)
+                </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>

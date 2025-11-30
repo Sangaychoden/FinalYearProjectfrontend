@@ -1,3 +1,4 @@
+
 // import {
 //   BsArrowLeft,
 //   BsArrowRight,
@@ -15,19 +16,17 @@
 //   FaVectorSquare,
 //   FaUserFriends,
 //   FaBed,
-//   FaWater,
 // } from "react-icons/fa";
 // import { BiChevronDown } from "react-icons/bi";
 // import Swal from "sweetalert2";
 // import FloatingSocials from "../../Shared/FloatingSocials";
 // import GoToTop from "../../Shared/GoToTop";
 // import "./RoomsDatepicker.css";
+// import ReactDatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
+// import { FiCalendar } from "react-icons/fi";
 
 // const RoomDetails2 = () => {
-//   /* -------------------------
-//       ALL HOOKS AT THE TOP
-//   --------------------------*/
-
 //   const { id } = useParams();
 //   const location = useLocation();
 //   const navigate = useNavigate();
@@ -39,7 +38,6 @@
 //   const [loading, setLoading] = useState(!location.state);
 
 //   const [imageIndex, setImageIndex] = useState(0);
-
 //   const [showAvailability, setShowAvailability] = useState(false);
 
 //   const [checkIn, setCheckIn] = useState(null);
@@ -54,19 +52,18 @@
 
 //   const [showInOverlay, setShowInOverlay] = useState(false);
 //   const [showOutOverlay, setShowOutOverlay] = useState(false);
-//   const [isClosing, setIsClosing] = useState(false);
 
-//   const [useDesktopPicker, setUseDesktopPicker] = useState(false);
+//   const [mealPlan, setMealPlan] = useState("ep");
+//   const [occupancyType, setOccupancyType] = useState("double");
+//   const [childrenAges, setChildrenAges] = useState([]);
+
+//   const [extraOptionsVisible, setExtraOptionsVisible] = useState(false);
 
 //   const BTN_PER_USD = 85.49;
-
 //   const priceUSD = roomData?.price
 //     ? (roomData.price / BTN_PER_USD).toFixed(2)
 //     : null;
 
-//   /* -------------------------
-//       FETCH ROOM DATA
-//   --------------------------*/
 //   useEffect(() => {
 //     if (!id || roomData) return;
 
@@ -76,7 +73,6 @@
 //         const res = await fetch(
 //           `${import.meta.env.VITE_API_URL}/rooms/rooms/${id}`
 //         );
-
 //         const data = await res.json();
 //         setRoomData(data.room || data);
 //       } catch (error) {
@@ -89,22 +85,6 @@
 //     fetchRoom();
 //   }, [id, roomData]);
 
-//   /* -------------------------
-//       RESPONSIVE CALENDAR
-//   --------------------------*/
-//   useEffect(() => {
-//     const mq = window.matchMedia("(min-width: 768px)");
-//     const update = () => setUseDesktopPicker(mq.matches);
-
-//     update();
-//     mq.addEventListener("change", update);
-
-//     return () => mq.removeEventListener("change", update);
-//   }, []);
-
-//   /* -------------------------
-//       CLOSE DROPDOWNS ON OUTSIDE CLICK
-//   --------------------------*/
 //   useEffect(() => {
 //     const handleClickOutside = (event) => {
 //       if (guestRef.current && !guestRef.current.contains(event.target)) {
@@ -116,12 +96,25 @@
 //     };
 
 //     document.addEventListener("mousedown", handleClickOutside);
-//     return () => document.removeEventListener("mousedown", handleClickOutside);
+//     return () =>
+//       document.removeEventListener("mousedown", handleClickOutside);
 //   }, []);
 
-//   /* -------------------------
-//       IMAGE HANDLERS
-//   --------------------------*/
+//   // Children age array
+//   useEffect(() => {
+//     const arr = [];
+//     for (let i = 0; i < children; i++) {
+//       arr.push(childrenAges[i] || "6-11");
+//     }
+//     setChildrenAges(arr);
+//   }, [children]);
+
+//   const changeChildAge = (index, value) => {
+//     const updated = [...childrenAges];
+//     updated[index] = value;
+//     setChildrenAges(updated);
+//   };
+
 //   const images = roomData?.images || [];
 
 //   const prevBtn = () =>
@@ -134,76 +127,114 @@
 //       images.length ? (prev + 1) % images.length : 0
 //     );
 
-//   /* -------------------------
-//       DATE FORMATTER
-//   --------------------------*/
 //   const fmt = (d) =>
-//     d
-//       ? d.toLocaleDateString(undefined, {
-//           year: "numeric",
-//           month: "short",
-//           day: "2-digit",
-//         })
-//       : "";
+//     d ? d.toLocaleDateString("en-CA") : "";
 
-//   /* -------------------------
-//       OVERLAY OPEN/CLOSE
-//   --------------------------*/
-//   const openInOverlay = () => {
-//     setShowOutOverlay(false);
-//     setIsClosing(false);
-//     setShowInOverlay(true);
+//   const calcNights = () => {
+//     if (!checkIn || !checkOut) return 0;
+//     const diff = checkOut - checkIn;
+//     return Math.max(1, Math.ceil(diff / (1000 * 60 * 60 * 24)));
 //   };
 
-//   const openOutOverlay = () => {
-//     setShowInOverlay(false);
-//     setIsClosing(false);
-//     setShowOutOverlay(true);
+//   // Child policy
+//   const getChildCost = () => {
+//     if (!roomData?.childPolicy) return 0;
+//     const cp = roomData.childPolicy;
+//     let total = 0;
+
+//     childrenAges.forEach((age) => {
+//       if (age === "1-5") {
+//         total += cp.age1to5?.price || 0;
+//       } else if (age === "6-11") {
+//         total += cp.age6to11?.[mealPlan] || 0;
+//       } else if (age === "12+") {
+//         const adultPrice =
+//           roomData.pricing?.[mealPlan]?.[occupancyType] || 0;
+//         total += adultPrice;
+//       }
+//     });
+
+//     return total;
 //   };
 
-//   const closeOverlay = () => {
-//     setIsClosing(true);
-//     setTimeout(() => {
-//       setShowInOverlay(false);
-//       setShowOutOverlay(false);
-//       setIsClosing(false);
-//     }, 200);
+//   const getMealPlanBasePrice = () => {
+//     if (!roomData?.pricing) return 0;
+//     const planObj = roomData.pricing[mealPlan];
+//     return planObj?.[occupancyType] || 0;
 //   };
 
-//   /* -------------------------
-//       AVAILABILITY CHECK
-//   --------------------------*/
+//   const calcTotal = () => {
+//     const nights = calcNights();
+//     if (!nights) return "0.00";
+
+//     const basePrice = getMealPlanBasePrice();
+//     const childCost = getChildCost();
+//     const total =
+//       nights * room * (basePrice * adult + childCost);
+
+//     return total.toFixed(2);
+//   };
+
 //   const checkRoomAvailability = async () => {
 //     if (!checkIn || !checkOut) {
-// Swal.fire({
-//   icon: "warning",
-//   title: "Please select check-in & check-out dates",
-//   text: "",
-//   background: "#006600",
-//   color: "#fff",
-//   confirmButtonColor: "#008000",
-// });
+//       Swal.fire({
+//         icon: "warning",
+//         title: "Please select dates",
+//         background: "#006600",
+//         color: "#fff",
+//         confirmButtonColor: "#008000",
+//       });
+//       return;
+//     }
+
+//     const nights = calcNights();
+//     if (nights <= 0) {
+//       Swal.fire({
+//         icon: "warning",
+//         title: "Invalid dates",
+//         text: "Check-out must be after check-in.",
+//         background: "#006600",
+//         color: "#fff",
+//         confirmButtonColor: "#008000",
+//       });
 //       return;
 //     }
 
 //     const roomType = roomData?.roomType;
 //     const API_URL = import.meta.env.VITE_API_URL;
 
-//     const url = `${API_URL}/rooms/${encodeURIComponent(
-//       roomType
-//     )}/availability?checkIn=${
-//       checkIn.toISOString().split("T")[0]
-//     }&checkOut=${checkOut.toISOString().split("T")[0]}&adults=${adult}&children=${children}&roomsRequested=${room}`;
+//         const url =
+//         `${API_URL}/rooms/${roomType}/availability` +
+//         `?checkIn=${fmt(checkIn)}` +
+//         `&checkOut=${fmt(checkOut)}` +
+//         `&adults=${adult}` +
+//         `&children=${children}` +
+//         `&roomsRequested=${room}`;
 
 //     try {
 //       const res = await fetch(url);
 //       const data = await res.json();
 
-//       if (!data.roomsAvailable || data.roomsAvailable <= 0) {
+//       const roomsAvailable = data.room?.availableRooms ?? 0;
+
+//       if (!roomsAvailable || roomsAvailable <= 0) {
 //         Swal.fire({
 //           title: "Room Not Available",
 //           icon: "warning",
-//           html: `<p style="font-size:16px;">No rooms available.</p>`,
+//           html: `<p style="font-size:16px;">${data.message || "No rooms available"}</p>`,
+//           background: "#006600",
+//           color: "#fff",
+//           confirmButtonColor: "#008000",
+//         });
+//         return;
+//       }
+
+//       if (!extraOptionsVisible) {
+//         setExtraOptionsVisible(true);
+//         Swal.fire({
+//           title: "Room Available",
+//           icon: "success",
+//           html: `<p>${roomsAvailable} room(s) available.<br/>Add meal plan & occupancy.</p>`,
 //           background: "#006600",
 //           color: "#fff",
 //           confirmButtonColor: "#008000",
@@ -214,9 +245,8 @@
 //       Swal.fire({
 //         title: "Room Available",
 //         icon: "success",
-//         html: `<p>${data.roomsAvailable} rooms available. Proceed?</p>`,
+//         html: `<p>${roomsAvailable} room(s) available.<br/>Total: Nu. ${calcTotal()}<br/>Proceed?</p>`,
 //         showCancelButton: true,
-//         confirmButtonText: "Yes",
 //         confirmButtonColor: "#008000",
 //         cancelButtonColor: "#d33",
 //         background: "#006600",
@@ -224,26 +254,34 @@
 //       }).then((result) => {
 //         if (result.isConfirmed) {
 //           navigate("/booking_details", {
-//             state: { checkIn, checkOut, room, adult, children, roomData },
+//             state: {
+//               checkIn,
+//               checkOut,
+//               room,
+//               adult,
+//               children,
+//               childrenAges,
+//               mealPlan,
+//               occupancyType,
+//               roomData,
+//               nights,
+//               totalAmount: calcTotal(),
+//             },
 //           });
 //         }
 //       });
 //     } catch (err) {
 //       console.error(err);
-// Swal.fire({
-//   icon: "error",
-//   title: "Server error",
-//   text: "",
-//   background: "#006600",
-//   color: "#fff",
-//   confirmButtonColor: "#008000",
-// });
+//       Swal.fire({
+//         icon: "error",
+//         title: "Server error",
+//         background: "#006600",
+//         color: "#fff",
+//         confirmButtonColor: "#008000",
+//       });
 //     }
 //   };
 
-//   /* -------------------------
-//       CONDITIONAL LOADING UI
-//   --------------------------*/
 //   if (loading) {
 //     return (
 //       <div className="text-center py-20 text-gray-600 text-lg">
@@ -260,95 +298,133 @@
 //     );
 //   }
 
-//   /* -------------------------
-//       MAIN UI
-//   --------------------------*/
 //   return (
 //     <section>
 //       <BreadCrumb title="room details" />
 
-//       {/* IMAGE + DETAILS SECTION */}
+//       {/* MAIN CONTENT */}
 //       <div className="py-10 md:py-0 pb-0 md:pb-[120px] lg:py-[80px] dark:bg-lightBlack">
 //         <div className="Container grid grid-cols-6 md:grid-cols-7 lg:grid-cols-6 gap-5">
-          
-//           {/* LEFT SECTION */}
+//           {/* LEFT */}
 //           <div className="col-span-6 md:col-span-4">
+//             {/* IMAGES */}
 //             <div className="overflow-hidden relative group">
 //               <img
 //                 src={images[imageIndex] || "/images/home/room1.jpeg"}
 //                 alt={roomData.roomType}
-//                 className="transition-all duration-500"
+//                 className="transition-all duration-500 w-full h-[400px] object-cover"
 //               />
 
-//               {/* Prev Btn */}
 //               <span
 //                 className="w-[40px] h-[40px] bg-white dark:bg-lightBlack hover:bg-[#006600] absolute left-[-50px] bottom-[45%] group-hover:left-4 transition-all duration-300 grid place-items-center cursor-pointer"
 //                 onClick={prevBtn}
 //               >
-//                 <BsArrowLeft className="text-lightBlack dark:text-white" size={20} />
+//                 <BsArrowLeft size={20} className="text-lightBlack dark:text-white" />
 //               </span>
 
-//               {/* Next Btn */}
 //               <span
 //                 className="w-[40px] h-[40px] bg-white dark:bg-lightBlack hover:bg-[#006600] absolute right-[-50px] bottom-[45%] group-hover:right-4 transition-all duration-300 grid place-items-center cursor-pointer"
 //                 onClick={nextBtn}
 //               >
-//                 <BsArrowRight className="text-lightBlack dark:text-white" size={20} />
+//                 <BsArrowRight size={20} className="text-lightBlack dark:text-white" />
 //               </span>
 //             </div>
 
-//             {/* Room Details */}
+//             {/* DETAILS */}
 //             <div className="pt-5 lg:pt-[35px] pr-3">
+
 //               <h2 className="text-2xl lg:text-4xl mb-4 font-semibold text-lightBlack dark:text-white">
 //                 {roomData.roomType}
 //               </h2>
 
-//               <p className="text-sm text-[#808080] dark:text-lightGray">
+//               <p className="text-sm text-[#808080] dark:text-[#D9D9D9]">
 //                 {roomData.roomDetails}
 //               </p>
 
-//               {/* Features */}
+//               {/* MEAL PLAN SECTION */}
+//               <div className="pt-10">
+//                 <h2 className="text-2xl lg:text-3xl font-semibold pb-2 dark:text-white">
+//                   Meal Plan Details
+//                 </h2>
+//                 <ul className="text-[#808080] dark:text-[#D9D9D9] text-sm space-y-2">
+//                   <li><strong>EP</strong> – Room Only</li>
+//                   <li><strong>CP</strong> – Room + Breakfast</li>
+//                   <li><strong>MAP</strong> – Room + Breakfast + Dinner</li>
+//                   <li><strong>AP</strong> – Room + All Meals</li>
+//                 </ul>
+//               </div>
+
+//               {/* PRICE TABLE */}
+//               <div className="mt-6">
+//                 <h3 className="text-2xl font-semibold mb-3 dark:text-white">
+//                   Meal Plan Pricing
+//                 </h3>
+
+//                 <table className="w-full border border-gray-200 dark:border-gray-700 text-sm">
+//                   <thead className="bg-[#006600] text-white">
+//                     <tr>
+//                       <th className="px-4 py-3 text-left">Plan</th>
+//                       <th className="px-4 py-3 text-left">Single</th>
+//                       <th className="px-4 py-3 text-left">Double</th>
+//                     </tr>
+//                   </thead>
+
+//                   <tbody className="text-gray-800 dark:text-[#D9D9D9] bg-white dark:bg-[#111827]">
+//                     {["ep", "cp", "map", "ap"].map((p) => (
+//                       <tr key={p} className="border-b border-gray-200 dark:border-gray-700">
+//                         <td className="px-4 py-3 uppercase font-bold">{p}</td>
+//                         <td className="px-4 py-3">{roomData.pricing?.[p]?.single ?? "-"}</td>
+//                         <td className="px-4 py-3">{roomData.pricing?.[p]?.double ?? "-"}</td>
+//                       </tr>
+//                     ))}
+//                   </tbody>
+//                 </table>
+//               </div>
+
+//               {/* FEATURES */}
 //               <div className="pt-10">
 //                 <h2 className="pb-3 text-2xl font-semibold dark:text-white">
 //                   Room Features
 //                 </h2>
-//                 <ul className="space-y-2">
+//                 <ul className="space-y-2 dark:text-[#D9D9D9]">
 //                   {roomData.roomFeatures?.split(",").map((f, i) => (
 //                     <li key={i} className="flex items-center">
-//                       <BsCheck2 className="text-[#006600] mr-2" /> {f.trim()}
+//                       <BsCheck2 className="text-[#006600] mr-2" />
+//                       {f.trim()}
 //                     </li>
 //                   ))}
 //                 </ul>
 //               </div>
 
-//               {/* Bathroom Amenities */}
+//               {/* BATHROOM AMENITIES */}
 //               <div className="pt-10">
 //                 <h2 className="pb-3 text-2xl font-semibold dark:text-white">
 //                   Bathroom Amenities
 //                 </h2>
-//                 <ul className="space-y-2">
+//                 <ul className="space-y-2 dark:text-[#D9D9D9]">
 //                   {roomData.bathroomAmenities?.split(",").map((b, i) => (
 //                     <li key={i} className="flex items-center">
-//                       <BsCheck2 className="text-[#006600] mr-2" /> {b.trim()}
+//                       <BsCheck2 className="text-[#006600] mr-2" />
+//                       {b.trim()}
 //                     </li>
 //                   ))}
 //                 </ul>
 //               </div>
+
 //             </div>
 //           </div>
 
 //           {/* RIGHT SIDEBAR */}
 //           <div className="col-span-6 md:col-span-3 lg:col-span-2">
 //             <div className="px-7 py-8">
-              
 //               <h4 className="text-2xl font-semibold dark:text-white mb-3">
 //                 Room Details
 //               </h4>
 
-//               <div className="space-y-5">
+//               <div className="space-y-5 dark:text-[#D9D9D9]">
 //                 <div className="flex items-center border-b pb-4">
 //                   <FaDollarSign className="text-[#006600] mr-3" />
-//                   Nu {roomData.price} (USD {priceUSD}++)
+//                   Nu {roomData.price} {priceUSD && `(USD ${priceUSD}++)`}
 //                 </div>
 
 //                 <div className="flex items-center border-b pb-4">
@@ -365,11 +441,6 @@
 //                   <FaBed className="text-[#006600] mr-3" />
 //                   {roomData.beds} Beds
 //                 </div>
-
-//                 <div className="flex items-center border-b pb-4">
-//                   <FaWater className="text-[#006600] mr-3" />
-//                   {roomData.location}
-//                 </div>
 //               </div>
 
 //               <div className="py-5">
@@ -380,174 +451,359 @@
 //                   Book This Room
 //                 </button>
 //               </div>
-
 //             </div>
 //           </div>
-
 //         </div>
 //       </div>
 
-//       {/* -------------------------
-//           BOOKING SLIDE PANEL
-//       --------------------------*/}
+//       {/* SLIDEOUT BOOKING */}
 //       {showAvailability && (
 //         <div className="fixed top-0 right-0 w-full md:w-[400px] h-full bg-black dark:bg-lightBlack shadow-xl z-[1000] transition duration-500">
-          
 //           <div className="p-6 h-full flex flex-col relative">
 //             <button
 //               className="absolute top-2 right-4 text-white text-4xl"
-//               onClick={() => setShowAvailability(false)}
+//               onClick={() => {
+//                 setShowAvailability(false);
+//                 setExtraOptionsVisible(false);
+//               }}
 //             >
 //               ×
 //             </button>
 
-//             {/* CheckIn / CheckOut */}
-//             <div className="grid gap-4 mt-10 mb-6">
-              
-//               <div>
-//                 <label className="text-white block mb-1">Check-in</label>
-//                 <input
-//                   type="date"
-//                   value={checkIn ? checkIn.toISOString().split("T")[0] : ""}
-//                   onChange={(e) =>
-//                     setCheckIn(e.target.value ? new Date(e.target.value) : null)
-//                   }
-//                   min={new Date().toISOString().split("T")[0]}
-//                   className="w-full border border-white bg-black text-white px-3 py-2"
-//                 />
-//               </div>
+//             {/* IF EXTRA OPTIONS NOT VISIBLE */}
+//             {!extraOptionsVisible && (
+//               <>
+//                 <div className="grid gap-4 mt-10 mb-6">
 
-//               <div>
-//                 <label className="text-white block mb-1">Check-out</label>
-//                 <input
-//                   type="date"
-//                   value={checkOut ? checkOut.toISOString().split("T")[0] : ""}
-//                   onChange={(e) =>
-//                     setCheckOut(e.target.value ? new Date(e.target.value) : null)
-//                   }
-//                   min={
-//                     checkIn
-//                       ? new Date(checkIn.getTime() + 86400000)
-//                           .toISOString()
-//                           .split("T")[0]
-//                       : new Date().toISOString().split("T")[0]
-//                   }
-//                   className="w-full border border-white bg-black text-white px-3 py-2"
-//                 />
-//               </div>
-
-//             </div>
-
-//             {/* Guests */}
-//             <div ref={guestRef} className="mb-4 relative">
-//               <label className="text-white block mb-1">Guests</label>
-
-//               <div
-//                 className="border border-white px-3 py-2 text-white flex justify-between cursor-pointer"
-//                 onClick={() => setGuestOpen(!guestOpen)}
-//               >
-//                 {adult} Adult, {children} Child
-//                 <BiChevronDown />
-//               </div>
-
-//               {guestOpen && (
-//                 <div className="absolute z-50 w-full bg-white dark:bg-lightBlack p-3 space-y-3 shadow-lg">
-
-//                   <div className="flex justify-between">
-//                     <span>Adults</span>
-//                     <div className="flex gap-2">
-//                       <button
-//                         className="bg-[#006600] text-white w-6 h-6"
-//                         onClick={() => setAdult((v) => Math.max(1, v - 1))}
-//                       >
-//                         -
-//                       </button>
-//                       <span>{adult}</span>
-//                       <button
-//                         className="bg-[#006600] text-white w-6 h-6"
-//                         onClick={() => setAdult(adult + 1)}
-//                       >
-//                         +
-//                       </button>
-//                     </div>
+//                   {/* CHECK-IN */}
+//                   <div>
+//                     <label className="text-white block mb-1">Check-in</label>
+//                     <button
+//                       type="button"
+//                       onClick={() => {
+//                         setShowInOverlay(true);
+//                         setShowOutOverlay(false);
+//                       }}
+//                       className="w-full border border-white bg-black text-white px-3 py-2 flex items-center justify-between"
+//                     >
+//                       <span>{checkIn ? fmt(checkIn) : "dd-mm-yyyy"}</span>
+//                       <FiCalendar className="text-white opacity-80" size={18} />
+//                     </button>
 //                   </div>
 
-//                   <div className="flex justify-between">
-//                     <span>Children</span>
-//                     <div className="flex gap-2">
-//                       <button
-//                         className="bg-[#006600] text-white w-6 h-6"
-//                         onClick={() => setChildren((v) => Math.max(0, v - 1))}
-//                       >
-//                         -
-//                       </button>
-//                       <span>{children}</span>
-//                       <button
-//                         className="bg-[#006600] text-white w-6 h-6"
-//                         onClick={() => setChildren(children + 1)}
-//                       >
-//                         +
-//                       </button>
-//                     </div>
-//                   </div>
-
-//                 </div>
-//               )}
-//             </div>
-
-//             {/* Rooms */}
-//             <div ref={roomRef} className="mb-4 relative">
-//               <label className="text-white block mb-1">Rooms</label>
-
-//               <div
-//                 className="border border-white px-3 py-2 text-white flex justify-between cursor-pointer"
-//                 onClick={() => setRoomOpen(!roomOpen)}
-//               >
-//                 {room} Room{room > 1 ? "s" : ""}
-//                 <BiChevronDown />
-//               </div>
-
-//               {roomOpen && (
-//                 <div className="absolute z-50 w-full bg-white dark:bg-lightBlack p-3 space-y-3 shadow-lg">
-//                   <div className="flex justify-between">
-//                     <span>Rooms</span>
-//                     <div className="flex gap-2">
-//                       <button
-//                         className="bg-[#006600] text-white w-6 h-6"
-//                         onClick={() => setRoom((v) => Math.max(1, v - 1))}
-//                       >
-//                         -
-//                       </button>
-//                       <span>{room}</span>
-//                       <button
-//                         className="bg-[#006600] text-white w-6 h-6"
-//                         onClick={() => setRoom(room + 1)}
-//                       >
-//                         +
-//                       </button>
-//                     </div>
+//                   {/* CHECK-OUT */}
+//                   <div>
+//                     <label className="text-white block mb-1">Check-out</label>
+//                     <button
+//                       type="button"
+//                       onClick={() => {
+//                         setShowOutOverlay(true);
+//                         setShowInOverlay(false);
+//                       }}
+//                       className="w-full border border-white bg-black text-white px-3 py-2 flex items-center justify-between"
+//                     >
+//                       <span>{checkOut ? fmt(checkOut) : "dd-mm-yyyy"}</span>
+//                       <FiCalendar className="text-white opacity-80" size={18} />
+//                     </button>
 //                   </div>
 //                 </div>
-//               )}
 
-//             </div>
+//                 {/* GUESTS */}
+//                 <div ref={guestRef} className="mb-4 relative">
+//                   <label className="text-white block mb-1">Guests</label>
 
-//             {/* Submit Button */}
+//                   <div
+//                     className="border border-white px-3 py-2 text-white flex justify-between cursor-pointer"
+//                     onClick={() => setGuestOpen(!guestOpen)}
+//                   >
+//                     {adult} Adult, {children} Child
+//                     <BiChevronDown />
+//                   </div>
+
+//                   {guestOpen && (
+//                     <div className="absolute z-50 w-full bg-white p-3 space-y-3 shadow-lg">
+//                       <div className="flex justify-between">
+//                         <span>Adults</span>
+//                         <div className="flex gap-2">
+//                           <button
+//                             className="bg-[#006600] text-white w-6 h-6"
+//                             onClick={() => setAdult((v) => Math.max(1, v - 1))}
+//                           >
+//                             -
+//                           </button>
+//                           <span>{adult}</span>
+//                           <button
+//                             className="bg-[#006600] text-white w-6 h-6"
+//                             onClick={() => setAdult(adult + 1)}
+//                           >
+//                             +
+//                           </button>
+//                         </div>
+//                       </div>
+
+//                       <div className="flex justify-between">
+//                         <span>Children</span>
+//                         <div className="flex gap-2">
+//                           <button
+//                             className="bg-[#006600] text-white w-6 h-6"
+//                             onClick={() => setChildren((v) => Math.max(0, v - 1))}
+//                           >
+//                             -
+//                           </button>
+//                           <span>{children}</span>
+//                           <button
+//                             className="bg-[#006600] text-white w-6 h-6"
+//                             onClick={() => setChildren(children + 1)}
+//                           >
+//                             +
+//                           </button>
+//                         </div>
+//                       </div>
+//                     </div>
+//                   )}
+//                 </div>
+
+//                 {/* ROOMS */}
+//                 <div ref={roomRef} className="mb-4 relative">
+//                   <label className="text-white block mb-1">Rooms</label>
+
+//                   <div
+//                     className="border border-white px-3 py-2 text-white flex justify-between cursor-pointer"
+//                     onClick={() => setRoomOpen(!roomOpen)}
+//                   >
+//                     {room} Room{room > 1 ? "s" : ""} <BiChevronDown />
+//                   </div>
+
+//                   {roomOpen && (
+//                     <div className="absolute z-50 w-full bg-white p-3 space-y-3 shadow-lg">
+//                       <div className="flex justify-between">
+//                         <span>Rooms</span>
+//                         <div className="flex gap-2">
+//                           <button
+//                             className="bg-[#006600] text-white w-6 h-6"
+//                             onClick={() => setRoom((v) => Math.max(1, v - 1))}
+//                           >
+//                             -
+//                           </button>
+//                           <span>{room}</span>
+//                           <button
+//                             className="bg-[#006600] text-white w-6 h-6"
+//                             onClick={() => setRoom(room + 1)}
+//                           >
+//                             +
+//                           </button>
+//                         </div>
+//                       </div>
+//                     </div>
+//                   )}
+//                 </div>
+//               </>
+//             )}
+
+//             {/* CHILD AGE */}
+//             {extraOptionsVisible && children > 0 && (
+//               <div className="mb-4">
+//                 <h4 className="text-white font-semibold mb-2">Children Ages</h4>
+//                 {childrenAges.map((age, index) => (
+//                   <div key={index} className="flex justify-between items-center mb-2 text-white">
+//                     <span>Child {index + 1}</span>
+//                     <select
+//                       value={age}
+//                       onChange={(e) => changeChildAge(index, e.target.value)}
+//                       className="border border-white bg-black text-white px-3 py-2 text-sm"
+//                     >
+//                       <option value="1-5">1–5 (Free)</option>
+//                       <option value="6-11">6–11 (Child Rate)</option>
+//                       <option value="12+">12+ (Adult)</option>
+//                     </select>
+//                   </div>
+//                 ))}
+//               </div>
+//             )}
+
+//             {/* MEAL PLAN */}
+//             {extraOptionsVisible && (
+//               <div className="mb-4">
+//                 <label className="text-white block mb-1">Meal Plan</label>
+//                 <select
+//                   value={mealPlan}
+//                   onChange={(e) => setMealPlan(e.target.value)}
+//                   className="w-full border border-white bg-black text-white px-3 py-2"
+//                 >
+//                   <option value="ep">EP</option>
+//                   <option value="cp">CP</option>
+//                   <option value="map">MAP</option>
+//                   <option value="ap">AP</option>
+//                 </select>
+//               </div>
+//             )}
+
+//             {/* OCCUPANCY */}
+//             {extraOptionsVisible && (
+//               <div className="mb-4">
+//                 <label className="text-white block mb-1">Occupancy Type</label>
+//                 <select
+//                   value={occupancyType}
+//                   onChange={(e) => setOccupancyType(e.target.value)}
+//                   className="w-full border border-white bg-black text-white px-3 py-2"
+//                 >
+//                   <option value="single">Single</option>
+//                   <option value="double">Double</option>
+//                 </select>
+//               </div>
+//             )}
+
+//             {/* TOTAL */}
+//             {extraOptionsVisible && (
+//               <div className="mt-2 mb-4 border-t border-gray-700 pt-4 flex justify-between text-white">
+//                 <span className="font-semibold">Total Amount</span>
+//                 <span className="text-lg font-bold">
+//                   Nu. {calcTotal()}
+//                 </span>
+//               </div>
+//             )}
+
 //             <button
 //               onClick={checkRoomAvailability}
 //               className="mt-auto bg-[#006600] text-white py-3 font-semibold hover:bg-[#004d00]"
 //             >
-//               Check Availability
+//               {extraOptionsVisible ? "Proceed to Booking" : "Check Availability"}
 //             </button>
-
 //           </div>
+//         </div>
+//       )}
 
+//       {/* DATE PICKER OVERLAY — SAME AS AvailableRooms */}
+//       {(showInOverlay || showOutOverlay) && (
+//         <div
+//           className="fixed inset-0 z-[9999] bg-black/20 flex items-center justify-center px-4"
+//           onClick={() => {
+//             setShowInOverlay(false);
+//             setShowOutOverlay(false);
+//           }}
+//         >
+//           <div
+//             className="bg-white text-black shadow-2xl max-w-[560px] w-full overflow-visible"
+//             onClick={(e) => e.stopPropagation()}
+//           >
+//             {/* HEADER */}
+//             <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+//               <h3 className="text-lg font-semibold">
+//                 {showInOverlay ? "Select Check-in" : "Select Check-out"}
+//               </h3>
+
+//               <button
+//                 onClick={() => {
+//                   setShowInOverlay(false);
+//                   setShowOutOverlay(false);
+//                 }}
+//                 className="px-3 py-1.5 border border-[#D1D5DB] hover:bg-gray-50 text-sm"
+//               >
+//                 Close
+//               </button>
+//             </div>
+
+//             {/* CALENDAR */}
+//             <div className="p-3 md:p-5">
+
+//               <ReactDatePicker
+//                 inline
+//                 monthsShown={1}
+//                 calendarClassName="rdp-pill"
+
+//                 selected={showInOverlay ? checkIn : checkOut}
+//                 minDate={showInOverlay ? new Date() : checkIn || new Date()}
+
+//                 onChange={(date) => {
+//                   if (showInOverlay) {
+//                     setCheckIn(date);
+//                     if (checkOut && date && checkOut < date) setCheckOut(null);
+//                     setShowInOverlay(false);
+//                   } else {
+//                     setCheckOut(date);
+//                     setShowOutOverlay(false);
+//                   }
+//                 }}
+
+//                 /* 🔥 CUSTOM CALENDAR HEADER EXACTLY LIKE AvailableRooms */
+//                 renderCustomHeader={({
+//                   date,
+//                   changeYear,
+//                   changeMonth,
+//                   decreaseMonth,
+//                   increaseMonth,
+//                   prevMonthButtonDisabled,
+//                   nextMonthButtonDisabled,
+//                 }) => (
+//                   <div className="flex items-center justify-between px-3 py-2">
+
+//                     {/* Month + Year Dropdown */}
+//                     <div className="flex items-center space-x-2">
+//                       {/* MONTH SELECT */}
+//                       <select
+//                         value={date.getMonth()}
+//                         onChange={({ target: { value } }) =>
+//                           changeMonth(Number(value))
+//                         }
+//                         className="border px-2 py-1 text-sm border-[#9CA3AF]"
+//                       >
+//                         {Array.from({ length: 12 }).map((_, i) => (
+//                           <option key={i} value={i}>
+//                             {new Date(0, i).toLocaleString("default", {
+//                               month: "long",
+//                             })}
+//                           </option>
+//                         ))}
+//                       </select>
+
+//                       {/* YEAR SELECT */}
+//                       <select
+//                         value={date.getFullYear()}
+//                         onChange={({ target: { value } }) =>
+//                           changeYear(Number(value))
+//                         }
+//                         className="border px-2 py-1 text-sm border-[#9CA3AF]"
+//                       >
+//                         {Array.from({ length: 11 }, (_, i) => {
+//                           const year =
+//                             new Date().getFullYear() + i;
+//                           return (
+//                             <option key={year} value={year}>
+//                               {year}
+//                             </option>
+//                           );
+//                         })}
+//                       </select>
+//                     </div>
+
+//                     {/* NAVIGATION */}
+//                     <div className="flex items-center space-x-2">
+//                       <button
+//                         onClick={decreaseMonth}
+//                         disabled={prevMonthButtonDisabled}
+//                         className="px-2 py-1 border border-[#9CA3AF] text-[#1F1F1F]"
+//                       >
+//                         ▲
+//                       </button>
+//                       <button
+//                         onClick={increaseMonth}
+//                         disabled={nextMonthButtonDisabled}
+//                         className="px-2 py-1 border border-[#9CA3AF] text-[#1F1F1F]"
+//                       >
+//                         ▼
+//                       </button>
+//                     </div>
+
+//                   </div>
+//                 )}
+//               />
+//             </div>
+//           </div>
 //         </div>
 //       )}
 
 //       {!showAvailability && <FloatingSocials />}
 //       {!showAvailability && <GoToTop />}
-
 //     </section>
 //   );
 // };
@@ -570,24 +826,17 @@ import {
   FaVectorSquare,
   FaUserFriends,
   FaBed,
-  FaWater,
 } from "react-icons/fa";
 import { BiChevronDown } from "react-icons/bi";
 import Swal from "sweetalert2";
 import FloatingSocials from "../../Shared/FloatingSocials";
 import GoToTop from "../../Shared/GoToTop";
 import "./RoomsDatepicker.css";
-
-// 🔹 Added for calendar like Rooms.jsx
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FiCalendar } from "react-icons/fi";
 
 const RoomDetails2 = () => {
-  /* -------------------------
-      ALL HOOKS AT THE TOP
-  --------------------------*/
-
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -599,13 +848,15 @@ const RoomDetails2 = () => {
   const [loading, setLoading] = useState(!location.state);
 
   const [imageIndex, setImageIndex] = useState(0);
-
   const [showAvailability, setShowAvailability] = useState(false);
 
   const [checkIn, setCheckIn] = useState(null);
   const [checkOut, setCheckOut] = useState(null);
 
+  // number of physical rooms user wants
   const [room, setRoom] = useState(1);
+
+  // total adults + children (booking-level)
   const [adult, setAdult] = useState(1);
   const [children, setChildren] = useState(0);
 
@@ -614,19 +865,33 @@ const RoomDetails2 = () => {
 
   const [showInOverlay, setShowInOverlay] = useState(false);
   const [showOutOverlay, setShowOutOverlay] = useState(false);
-  const [isClosing, setIsClosing] = useState(false);
 
-  const [useDesktopPicker, setUseDesktopPicker] = useState(false);
+  const [mealPlan, setMealPlan] = useState("ep");
+  // default occupancyType used as initial selection when only 1 room
+  const [occupancyType, setOccupancyType] = useState("double");
+const PLANS = [
+  { label: "European Plan (EP)", key: "ep" },
+  { label: "Continental Plan (CP)", key: "cp" },
+  { label: "Modified American Plan (MAP)", key: "map" },
+  { label: "American Plan (AP)", key: "ap" },
+];
+
+  // per-room occupancy array (length == room), values "single" | "double"
+  const [occupancyPerRoom, setOccupancyPerRoom] = useState(
+    Array.from({ length: 1 }, () => "double")
+  );
+
+  // per-booking children ages array (global)
+  const [childrenAges, setChildrenAges] = useState([]);
+
+  const [extraOptionsVisible, setExtraOptionsVisible] = useState(false);
+  const [extraBed, setExtraBed] = useState(false);
 
   const BTN_PER_USD = 85.49;
-
   const priceUSD = roomData?.price
     ? (roomData.price / BTN_PER_USD).toFixed(2)
     : null;
 
-  /* -------------------------
-      FETCH ROOM DATA
-  --------------------------*/
   useEffect(() => {
     if (!id || roomData) return;
 
@@ -636,7 +901,6 @@ const RoomDetails2 = () => {
         const res = await fetch(
           `${import.meta.env.VITE_API_URL}/rooms/rooms/${id}`
         );
-
         const data = await res.json();
         setRoomData(data.room || data);
       } catch (error) {
@@ -649,22 +913,6 @@ const RoomDetails2 = () => {
     fetchRoom();
   }, [id, roomData]);
 
-  /* -------------------------
-      RESPONSIVE CALENDAR
-  --------------------------*/
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
-    const update = () => setUseDesktopPicker(mq.matches);
-
-    update();
-    mq.addEventListener("change", update);
-
-    return () => mq.removeEventListener("change", update);
-  }, []);
-
-  /* -------------------------
-      CLOSE DROPDOWNS ON OUTSIDE CLICK
-  --------------------------*/
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (guestRef.current && !guestRef.current.contains(event.target)) {
@@ -676,12 +924,40 @@ const RoomDetails2 = () => {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () =>
+      document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  /* -------------------------
-      IMAGE HANDLERS
-  --------------------------*/
+  // initialize/update occupancyPerRoom when 'room' count changes
+  useEffect(() => {
+    setOccupancyPerRoom((prev) => {
+      const next = [...prev];
+      if (room > prev.length) {
+        // add new rooms default to current occupancyType
+        for (let i = prev.length; i < room; i++) next.push(occupancyType || "double");
+      } else if (room < prev.length) {
+        // trim
+        next.length = room;
+      }
+      return next;
+    });
+  }, [room, occupancyType]);
+
+  // regenerate childrenAges array when children count changes
+  useEffect(() => {
+    const arr = [];
+    for (let i = 0; i < children; i++) {
+      arr.push(childrenAges[i] || "6-11");
+    }
+    setChildrenAges(arr);
+  }, [children]);
+
+  const changeChildAge = (index, value) => {
+    const updated = [...childrenAges];
+    updated[index] = value;
+    setChildrenAges(updated);
+  };
+
   const images = roomData?.images || [];
 
   const prevBtn = () =>
@@ -694,45 +970,134 @@ const RoomDetails2 = () => {
       images.length ? (prev + 1) % images.length : 0
     );
 
-  /* -------------------------
-      DATE FORMATTER (match Rooms.jsx style)
-  --------------------------*/
   const fmt = (d) =>
-    d ? d.toLocaleDateString("en-CA") : ""; // YYYY-MM-DD like in Rooms.jsx
+    d ? d.toLocaleDateString("en-CA") : "";
 
-  /* -------------------------
-      OVERLAY OPEN/CLOSE
-  --------------------------*/
-  const openInOverlay = () => {
-    setShowOutOverlay(false);
-    setIsClosing(false);
-    setShowInOverlay(true);
+  const calcNights = () => {
+    if (!checkIn || !checkOut) return 0;
+    const diff = checkOut - checkIn;
+    return Math.max(1, Math.ceil(diff / (1000 * 60 * 60 * 24)));
   };
 
-  const openOutOverlay = () => {
-    setShowInOverlay(false);
-    setIsClosing(false);
-    setShowOutOverlay(true);
+  // Get base price for a given occupancy ("single"/"double")
+  const getBasePriceForOccupancy = (occ) => {
+    if (!roomData?.pricing) return 0;
+    return roomData.pricing?.[mealPlan]?.[occ] || 0;
   };
 
-  const closeOverlay = () => {
-    setIsClosing(true);
-    setTimeout(() => {
-      setShowInOverlay(false);
-      setShowOutOverlay(false);
-      setIsClosing(false);
-    }, 200);
+  // extra bed price for a specific occupancy (handles MAP special keys)
+  const getExtraBedPriceForOccupancy = (occ) => {
+    const pricing = roomData?.pricing;
+    if (!pricing?.extraBed) return 0;
+    if (mealPlan === "map") {
+      return occ === "single"
+        ? pricing.extraBed?.mapSingle ?? 0
+        : pricing.extraBed?.mapDouble ?? 0;
+    }
+    return pricing.extraBed?.[mealPlan] ?? 0;
   };
 
-  /* -------------------------
-      AVAILABILITY CHECK
-  --------------------------*/
+  // child unit price for an age using a specific occupancy (needed for 12+)
+  const getChildUnitPriceForAge = (ageGroup, occ) => {
+    const childPolicy = roomData?.childPolicy || {};
+    if (ageGroup === "1-5") return 0;
+    if (ageGroup === "6-11") return childPolicy?.age6to11?.[mealPlan] ?? 0;
+    if (ageGroup === "12+") {
+      return getBasePriceForOccupancy(occ);
+    }
+    return 0;
+  };
+
+  // compute child cost total per night across all children (we don't assign per-room children,
+  // we compute per-child cost using 'double' by default when per-room occupancy not relevant.
+  // But better: compute child price per child using the most-common occupancy among rooms.
+  const getChildCostPerNight = () => {
+    if (!roomData?.childPolicy) return 0;
+    if (childrenAges.length === 0) return 0;
+
+    // find most common occupancy to use as default for child pricing for "12+"
+    const occCounts = occupancyPerRoom.reduce((acc, o) => {
+      acc[o] = (acc[o] || 0) + 1;
+      return acc;
+    }, {});
+    const defaultOcc =
+      Object.keys(occCounts).reduce((a, b) => (occCounts[a] >= occCounts[b] ? a : b), "double") ||
+      occupancyPerRoom[0] ||
+      "double";
+
+    let sum = 0;
+    childrenAges.forEach((age) => {
+      sum += getChildUnitPriceForAge(age, defaultOcc);
+    });
+    return sum;
+  };
+
+  // meal extras per person per night
+  const perPersonMealExtraPerNight = () => {
+    if (!roomData?.pricing?.meals) return 0;
+    const meals = roomData.pricing.meals;
+    let perPerson = 0;
+    if (mealPlan === "ep") {
+      perPerson =
+        (meals.breakfast || 0) * (0) + // breakfast optional — if selected we add later per selection; but in this component we just show base total for default selections OFF
+        0;
+      // We'll compute meals added when proceeding (BookingDetails handles selection). Here show basic meal cost = 0.
+      perPerson = 0;
+    } else if (mealPlan === "cp") {
+      perPerson = 0; // BF included
+    } else if (mealPlan === "map") {
+      perPerson = 0; // BF included; optional meals charged in booking details
+    } else if (mealPlan === "ap") {
+      perPerson = 0; // all included
+    }
+    return perPerson;
+  };
+
+  // total calculation (per-night base rooms + child costs + meal add-ons + extra bed)
+  const calcTotal = () => {
+    const nights = calcNights();
+    if (!nights) return "0.00";
+
+    // Sum base price across rooms (each room counts as 1 physical room)
+    const baseSumPerNight = occupancyPerRoom.reduce((sum, occ) => {
+      return sum + Number(getBasePriceForOccupancy(occ) || 0);
+    }, 0);
+
+    // children cost per night (total)
+    const childCostPerNight = getChildCostPerNight();
+
+    // meals cost: we'll approximate that meals selected later; here we show 0 for included plans.
+    // the detailed meal add-ons are handled on booking details page (allows toggling).
+    const mealsPerNightTotal = 0;
+
+    // extra bed cost per night across rooms (if extraBed checked)
+    const extraBedPerNight = extraBed
+      ? occupancyPerRoom.reduce((sum, occ) => sum + getExtraBedPriceForOccupancy(occ), 0)
+      : 0;
+
+    const total = nights * (baseSumPerNight + childCostPerNight + mealsPerNightTotal + extraBedPerNight);
+
+    return Number(total).toFixed(2);
+  };
+
   const checkRoomAvailability = async () => {
     if (!checkIn || !checkOut) {
       Swal.fire({
         icon: "warning",
-        title: "Please select check-in & check-out dates",
-        text: "",
+        title: "Please select dates",
+        background: "#006600",
+        color: "#fff",
+        confirmButtonColor: "#008000",
+      });
+      return;
+    }
+
+    const nights = calcNights();
+    if (nights <= 0) {
+      Swal.fire({
+        icon: "warning",
+        title: "Invalid dates",
+        text: "Check-out must be after check-in.",
         background: "#006600",
         color: "#fff",
         confirmButtonColor: "#008000",
@@ -743,21 +1108,25 @@ const RoomDetails2 = () => {
     const roomType = roomData?.roomType;
     const API_URL = import.meta.env.VITE_API_URL;
 
-    const url = `${API_URL}/rooms/${encodeURIComponent(
-      roomType
-    )}/availability?checkIn=${
-      checkIn.toISOString().split("T")[0]
-    }&checkOut=${checkOut.toISOString().split("T")[0]}&adults=${adult}&children=${children}&roomsRequested=${room}`;
+    const url =
+      `${API_URL}/rooms/${roomType}/availability` +
+      `?checkIn=${fmt(checkIn)}` +
+      `&checkOut=${fmt(checkOut)}` +
+      `&adults=${adult}` +
+      `&children=${children}` +
+      `&roomsRequested=${room}`;
 
     try {
       const res = await fetch(url);
       const data = await res.json();
 
-      if (!data.roomsAvailable || data.roomsAvailable <= 0) {
+      const roomsAvailable = data.room?.availableRooms ?? 0;
+
+      if (!roomsAvailable || roomsAvailable <= 0) {
         Swal.fire({
           title: "Room Not Available",
           icon: "warning",
-          html: `<p style="font-size:16px;">No rooms available.</p>`,
+          html: `<p style="font-size:16px;">${data.message || "No rooms available"}</p>`,
           background: "#006600",
           color: "#fff",
           confirmButtonColor: "#008000",
@@ -765,20 +1134,77 @@ const RoomDetails2 = () => {
         return;
       }
 
+      if (!extraOptionsVisible) {
+        setExtraOptionsVisible(true);
+        Swal.fire({
+          title: "Room Available",
+          icon: "success",
+          html: `<p>${roomsAvailable} room(s) available.<br/>Add meal plan & occupancy.</p>`,
+          background: "#006600",
+          color: "#fff",
+          confirmButtonColor: "#008000",
+        });
+        return;
+      }
+
+      // If extra options visible, confirm and proceed
       Swal.fire({
         title: "Room Available",
         icon: "success",
-        html: `<p>${data.roomsAvailable} rooms available. Proceed?</p>`,
+        html: `<p>${roomsAvailable} room(s) available.<br/>Total: Nu. ${calcTotal()}<br/>Proceed?</p>`,
         showCancelButton: true,
-        confirmButtonText: "Yes",
         confirmButtonColor: "#008000",
         cancelButtonColor: "#d33",
         background: "#006600",
         color: "#fff",
       }).then((result) => {
         if (result.isConfirmed) {
+          // Build roomSelection array grouped by occupancy type
+          const occCounts = occupancyPerRoom.reduce((acc, occ) => {
+            acc[occ] = (acc[occ] || 0) + 1;
+            return acc;
+          }, {});
+
+          // Distribute adults roughly evenly across rooms for payload
+          // This is a naive distribution: ceil(adults / room) for first rooms until remainder satisfied
+          const adultsPerRoomBase = Math.floor(adult / room);
+          let extraAdultsRemainder = adult % room;
+
+          const roomSelection = Object.keys(occCounts).map((occ) => {
+            const count = occCounts[occ];
+            // For adults we sum up adults for these rooms by distributing sequentially.
+            // Simpler: approximate adults per room type = Math.ceil(adult * (count/room))
+            const approxAdults = Math.max(1, Math.round((adult * (count / room)) || 1));
+            return {
+              roomType,
+              roomsRequested: count,
+              occupancyType: occ,
+              mealPlan,
+              adults: approxAdults,
+              childrenAges, // send booking-level childrenAges; backend can handle
+              extraBed: extraBed && (
+                // Per earlier rule: MAP shows for both single and double; others only if occ === 'double'
+                (mealPlan === "map" ? true : occ === "double")
+              ),
+            };
+          });
+
           navigate("/booking_details", {
-            state: { checkIn, checkOut, room, adult, children, roomData },
+            state: {
+              checkIn,
+              checkOut,
+              room, // number of rooms
+              adult,
+              children,
+              childrenAges,
+              mealPlan,
+              occupancyPerRoom,
+              roomData,
+              nights,
+              totalAmount: calcTotal(),
+              roomSelection,
+              extraBed,
+            },
           });
         }
       });
@@ -787,7 +1213,6 @@ const RoomDetails2 = () => {
       Swal.fire({
         icon: "error",
         title: "Server error",
-        text: "",
         background: "#006600",
         color: "#fff",
         confirmButtonColor: "#008000",
@@ -795,9 +1220,6 @@ const RoomDetails2 = () => {
     }
   };
 
-  /* -------------------------
-      CONDITIONAL LOADING UI
-  --------------------------*/
   if (loading) {
     return (
       <div className="text-center py-20 text-gray-600 text-lg">
@@ -814,45 +1236,48 @@ const RoomDetails2 = () => {
     );
   }
 
-  /* -------------------------
-      MAIN UI
-  --------------------------*/
+  // Helper: whether extra-bed should be shown/enabled in UI
+  const shouldShowExtraBedOption = () => {
+    if (mealPlan === "map") return true;
+    // show if any selected occupancy is double
+    return occupancyPerRoom.some((o) => o === "double");
+  };
+
   return (
     <section>
       <BreadCrumb title="room details" />
 
-      {/* IMAGE + DETAILS SECTION */}
+      {/* MAIN CONTENT */}
       <div className="py-10 md:py-0 pb-0 md:pb-[120px] lg:py-[80px] dark:bg-lightBlack">
         <div className="Container grid grid-cols-6 md:grid-cols-7 lg:grid-cols-6 gap-5">
-          
-          {/* LEFT SECTION */}
+          {/* LEFT */}
           <div className="col-span-6 md:col-span-4">
+            {/* IMAGES */}
             <div className="overflow-hidden relative group">
               <img
                 src={images[imageIndex] || "/images/home/room1.jpeg"}
                 alt={roomData.roomType}
-                className="transition-all duration-500"
+                className="transition-all duration-500 w-full h-[400px] object-cover"
               />
 
-              {/* Prev Btn */}
               <span
                 className="w-[40px] h-[40px] bg-white dark:bg-lightBlack hover:bg-[#006600] absolute left-[-50px] bottom-[45%] group-hover:left-4 transition-all duration-300 grid place-items-center cursor-pointer"
                 onClick={prevBtn}
               >
-                <BsArrowLeft className="text-lightBlack dark:text-white" size={20} />
+                <BsArrowLeft size={20} className="text-lightBlack dark:text-white" />
               </span>
 
-              {/* Next Btn */}
               <span
                 className="w-[40px] h-[40px] bg-white dark:bg-lightBlack hover:bg-[#006600] absolute right-[-50px] bottom-[45%] group-hover:right-4 transition-all duration-300 grid place-items-center cursor-pointer"
                 onClick={nextBtn}
               >
-                <BsArrowRight className="text-lightBlack dark:text-white" size={20} />
+                <BsArrowRight size={20} className="text-lightBlack dark:text-white" />
               </span>
             </div>
 
-            {/* Room Details */}
+            {/* DETAILS */}
             <div className="pt-5 lg:pt-[35px] pr-3">
+
               <h2 className="text-2xl lg:text-4xl mb-4 font-semibold text-lightBlack dark:text-white">
                 {roomData.roomType}
               </h2>
@@ -861,7 +1286,65 @@ const RoomDetails2 = () => {
                 {roomData.roomDetails}
               </p>
 
-              {/* Features */}
+              {/* MEAL PLAN SECTION */}
+              <div className="pt-10">
+                <h2 className="text-2xl lg:text-3xl font-semibold pb-2 dark:text-white">
+                  Meal Plan Details
+                </h2>
+               <ul className="text-[#808080] text-sm space-y-3 leading-relaxed">
+                <li>
+                  <strong>European Plan (EP)</strong> – Room Only. No meals included. Guests may order meals separately as per restaurant menu.
+                </li>
+
+                <li>
+                  <strong>Continental Plan (CP)</strong> – Room + Breakfast. Includes morning breakfast only. Lunch and dinner can be purchased separately.
+                </li>
+
+                <li>
+                  <strong>Modified American Plan (MAP)</strong> – Room + Breakfast + Dinner/Lunch. Includes two meals daily: breakfast and either lunch or dinner.
+                </li>
+
+                <li>
+                  <strong>American Plan (AP)</strong> – Room + All Meals. Includes breakfast, lunch, and dinner throughout the stay.
+                </li>
+              </ul>
+              </div>
+
+              {/* PRICE TABLE */}
+              <div className="mt-6">
+                <h3 className="text-2xl font-semibold mb-3 dark:text-white">
+                  Meal Plan Pricing
+                </h3>
+                  <table className="w-full border">
+                  <thead className="bg-[#006600] text-white">
+                    <tr>
+                      <th className="px-4 py-3">Plan</th>
+                      <th className="px-4 py-3">Single</th>
+                      <th className="px-4 py-3">Double</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-gray-800">
+                    {PLANS.map((plan) => (
+                      <tr key={plan.key} className="border-b">
+                        <td className="px-4 py-3 uppercase font-bold">{plan.label}</td>
+
+                        <td className="px-4 py-3">
+                          {roomData.pricing?.[plan.key]?.single ?? "-"}
+
+                          {/* {room.pricing?.[plan.key]?.single ?? "-"} */}
+                        </td>
+
+                        <td className="px-4 py-3">
+                          {roomData.pricing?.[plan.key]?.double ?? "-"}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+
+                </table>
+              </div>
+
+              {/* FEATURES */}
               <div className="pt-10">
                 <h2 className="pb-3 text-2xl font-semibold dark:text-white">
                   Room Features
@@ -869,13 +1352,14 @@ const RoomDetails2 = () => {
                 <ul className="space-y-2 dark:text-[#D9D9D9]">
                   {roomData.roomFeatures?.split(",").map((f, i) => (
                     <li key={i} className="flex items-center">
-                      <BsCheck2 className="text-[#006600] dark:text-[#B3B3B3] mr-2" /> {f.trim()}
+                      <BsCheck2 className="text-[#006600] mr-2" />
+                      {f.trim()}
                     </li>
                   ))}
                 </ul>
               </div>
 
-              {/* Bathroom Amenities */}
+              {/* BATHROOM AMENITIES */}
               <div className="pt-10">
                 <h2 className="pb-3 text-2xl font-semibold dark:text-white">
                   Bathroom Amenities
@@ -883,43 +1367,43 @@ const RoomDetails2 = () => {
                 <ul className="space-y-2 dark:text-[#D9D9D9]">
                   {roomData.bathroomAmenities?.split(",").map((b, i) => (
                     <li key={i} className="flex items-center">
-                      <BsCheck2 className="text-[#006600] dark:text-[#B3B3B3] mr-2" /> {b.trim()}
+                      <BsCheck2 className="text-[#006600] mr-2" />
+                      {b.trim()}
                     </li>
                   ))}
                 </ul>
               </div>
+
             </div>
           </div>
 
           {/* RIGHT SIDEBAR */}
           <div className="col-span-6 md:col-span-3 lg:col-span-2">
             <div className="px-7 py-8">
-              
               <h4 className="text-2xl font-semibold dark:text-white mb-3">
                 Room Details
               </h4>
 
               <div className="space-y-5 dark:text-[#D9D9D9]">
                 <div className="flex items-center border-b pb-4">
-                  <FaDollarSign className="text-[#006600] dark:text-[#B3B3B3] mr-3" />
-                  Nu {roomData.price} (USD {priceUSD}++)
+                  <FaDollarSign className="text-[#006600] mr-3" />
+                  Nu {roomData.price} {priceUSD && `(USD ${priceUSD}++)`}
                 </div>
 
                 <div className="flex items-center border-b pb-4">
-                  <FaVectorSquare className="text-[#006600] dark:text-[#B3B3B3] mr-3" />
+                  <FaVectorSquare className="text-[#006600] mr-3" />
                   {roomData.size} m²
                 </div>
 
                 <div className="flex items-center border-b pb-4">
-                  <FaUserFriends className="text-[#006600] dark:text-[#B3B3B3] mr-3" />
+                  <FaUserFriends className="text-[#006600] mr-3" />
                   {roomData.occupancy} max
                 </div>
 
                 <div className="flex items-center border-b pb-4">
-                  <FaBed className="text-[#006600] dark:text-[#B3B3B3] mr-3" />
+                  <FaBed className="text-[#006600] mr-3" />
                   {roomData.beds} Beds
                 </div>
-
               </div>
 
               <div className="py-5">
@@ -930,207 +1414,290 @@ const RoomDetails2 = () => {
                   Book This Room
                 </button>
               </div>
-
             </div>
           </div>
-
         </div>
       </div>
 
-      {/* -------------------------
-          BOOKING SLIDE PANEL
-      --------------------------*/}
+      {/* SLIDEOUT BOOKING */}
       {showAvailability && (
-        <div className="fixed top-0 right-0 w-full md:w-[400px] h-full bg-black dark:bg-lightBlack shadow-xl z-[1000] transition duration-500">
-          
+        <div className="fixed top-0 right-0 w-full md:w-[420px] h-full bg-black dark:bg-lightBlack shadow-xl z-[1000] transition duration-500">
           <div className="p-6 h-full flex flex-col relative">
             <button
               className="absolute top-2 right-4 text-white text-4xl"
-              onClick={() => setShowAvailability(false)}
+              onClick={() => {
+                setShowAvailability(false);
+                setExtraOptionsVisible(false);
+              }}
             >
               ×
             </button>
 
-            {/* CheckIn / CheckOut */}
-            <div className="grid gap-4 mt-10 mb-6">
-              
-              {/* 🔹 Check-in button with calendar icon */}
-              <div>
-                <label className="text-white block mb-1">Check-in</label>
-                <button
-                  type="button"
-                  onClick={openInOverlay}
-                  className="w-full border border-white bg-black text-white px-3 py-2 flex items-center justify-between"
-                >
-                  <span>{checkIn ? fmt(checkIn) : "dd-mm-yyyy"}</span>
-                  <FiCalendar className="text-white opacity-80" size={18} />
-                </button>
-              </div>
+            {/* IF EXTRA OPTIONS NOT VISIBLE */}
+            {!extraOptionsVisible && (
+              <>
+                <div className="grid gap-4 mt-10 mb-6">
 
-              {/* 🔹 Check-out button with calendar icon */}
-              <div>
-                <label className="text-white block mb-1">Check-out</label>
-                <button
-                  type="button"
-                  onClick={openOutOverlay}
-                  className="w-full border border-white bg-black text-white px-3 py-2 flex items-center justify-between"
-                >
-                  <span>{checkOut ? fmt(checkOut) : "dd-mm-yyyy"}</span>
-                  <FiCalendar className="text-white opacity-80" size={18} />
-                </button>
-              </div>
-
-            </div>
-
-            {/* Guests */}
-            <div ref={guestRef} className="mb-4 relative">
-              <label className="text-white block mb-1">Guests</label>
-
-              <div
-                className="border border-white px-3 py-2 text-white flex justify-between cursor-pointer"
-                onClick={() => setGuestOpen(!guestOpen)}
-              >
-                {adult} Adult, {children} Child
-                <BiChevronDown />
-              </div>
-
-              {guestOpen && (
-                <div className="absolute z-50 w-full bg-white dark:bg-lightBlack p-3 space-y-3 shadow-lg">
-
-                  <div className="flex justify-between">
-                    <span>Adults</span>
-                    <div className="flex gap-2">
-                      <button
-                        className="bg-[#006600] text-white w-6 h-6"
-                        onClick={() => setAdult((v) => Math.max(1, v - 1))}
-                      >
-                        -
-                      </button>
-                      <span>{adult}</span>
-                      <button
-                        className="bg-[#006600] text-white w-6 h-6"
-                        onClick={() => setAdult(adult + 1)}
-                      >
-                        +
-                      </button>
-                    </div>
+                  {/* CHECK-IN */}
+                  <div>
+                    <label className="text-white block mb-1">Check-in</label>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setShowInOverlay(true);
+                        setShowOutOverlay(false);
+                      }}
+                      className="w-full border border-white bg-black text-white px-3 py-2 flex items-center justify-between"
+                    >
+                      <span>{checkIn ? fmt(checkIn) : "dd-mm-yyyy"}</span>
+                      <FiCalendar className="text-white opacity-80" size={18} />
+                    </button>
                   </div>
 
-                  <div className="flex justify-between">
-                    <span>Children</span>
-                    <div className="flex gap-2">
-                      <button
-                        className="bg-[#006600] text-white w-6 h-6"
-                        onClick={() => setChildren((v) => Math.max(0, v - 1))}
-                      >
-                        -
-                      </button>
-                      <span>{children}</span>
-                      <button
-                        className="bg-[#006600] text-white w-6 h-6"
-                        onClick={() => setChildren(children + 1)}
-                      >
-                        +
-                      </button>
-                    </div>
-                  </div>
-
-                </div>
-              )}
-            </div>
-
-            {/* Rooms */}
-            <div ref={roomRef} className="mb-4 relative">
-              <label className="text-white block mb-1">Rooms</label>
-
-              <div
-                className="border border-white px-3 py-2 text-white flex justify-between cursor-pointer"
-                onClick={() => setRoomOpen(!roomOpen)}
-              >
-                {room} Room{room > 1 ? "s" : ""}
-                <BiChevronDown />
-              </div>
-
-              {roomOpen && (
-                <div className="absolute z-50 w-full bg-white dark:bg-lightBlack p-3 space-y-3 shadow-lg">
-                  <div className="flex justify-between">
-                    <span>Rooms</span>
-                    <div className="flex gap-2">
-                      <button
-                        className="bg-[#006600] text-white w-6 h-6"
-                        onClick={() => setRoom((v) => Math.max(1, v - 1))}
-                      >
-                        -
-                      </button>
-                      <span>{room}</span>
-                      <button
-                        className="bg-[#006600] text-white w-6 h-6"
-                        onClick={() => setRoom(room + 1)}
-                      >
-                        +
-                      </button>
-                    </div>
+                  {/* CHECK-OUT */}
+                  <div>
+                    <label className="text-white block mb-1">Check-out</label>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setShowOutOverlay(true);
+                        setShowInOverlay(false);
+                      }}
+                      className="w-full border border-white bg-black text-white px-3 py-2 flex items-center justify-between"
+                    >
+                      <span>{checkOut ? fmt(checkOut) : "dd-mm-yyyy"}</span>
+                      <FiCalendar className="text-white opacity-80" size={18} />
+                    </button>
                   </div>
                 </div>
-              )}
 
-            </div>
+                {/* GUESTS */}
+                <div ref={guestRef} className="mb-4 relative">
+                  <label className="text-white block mb-1">Guests</label>
 
-            {/* Submit Button */}
+                  <div
+                    className="border border-white px-3 py-2 text-white flex justify-between cursor-pointer"
+                    onClick={() => setGuestOpen(!guestOpen)}
+                  >
+                    {adult} Adult, {children} Child
+                    <BiChevronDown />
+                  </div>
+
+                  {guestOpen && (
+                    <div className="absolute z-50 w-full bg-white p-3 space-y-3 shadow-lg">
+                      <div className="flex justify-between">
+                        <span>Adults</span>
+                        <div className="flex gap-2">
+                          <button
+                            className="bg-[#006600] text-white w-6 h-6"
+                            onClick={() => setAdult((v) => Math.max(1, v - 1))}
+                          >
+                            -
+                          </button>
+                          <span>{adult}</span>
+                          <button
+                            className="bg-[#006600] text-white w-6 h-6"
+                            onClick={() => setAdult(adult + 1)}
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="flex justify-between">
+                        <span>Children</span>
+                        <div className="flex gap-2">
+                          <button
+                            className="bg-[#006600] text-white w-6 h-6"
+                            onClick={() => setChildren((v) => Math.max(0, v - 1))}
+                          >
+                            -
+                          </button>
+                          <span>{children}</span>
+                          <button
+                            className="bg-[#006600] text-white w-6 h-6"
+                            onClick={() => setChildren(children + 1)}
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* ROOMS */}
+                <div ref={roomRef} className="mb-4 relative">
+                  <label className="text-white block mb-1">Rooms</label>
+
+                  <div
+                    className="border border-white px-3 py-2 text-white flex justify-between cursor-pointer"
+                    onClick={() => setRoomOpen(!roomOpen)}
+                  >
+                    {room} Room{room > 1 ? "s" : ""} <BiChevronDown />
+                  </div>
+
+                  {roomOpen && (
+                    <div className="absolute z-50 w-full bg-white p-3 space-y-3 shadow-lg">
+                      <div className="flex justify-between">
+                        <span>Rooms</span>
+                        <div className="flex gap-2">
+                          <button
+                            className="bg-[#006600] text-white w-6 h-6"
+                            onClick={() => setRoom((v) => Math.max(1, v - 1))}
+                          >
+                            -
+                          </button>
+                          <span>{room}</span>
+                          <button
+                            className="bg-[#006600] text-white w-6 h-6"
+                            onClick={() => setRoom(room + 1)}
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
+
+            {/* CHILD AGE (when extra options visible) */}
+            {extraOptionsVisible && children > 0 && (
+              <div className="mb-4">
+                <h4 className="text-white font-semibold mb-2">Children Ages</h4>
+                {childrenAges.map((age, index) => (
+                  <div key={index} className="flex justify-between items-center mb-2 text-white">
+                    <span>Child {index + 1}</span>
+                    <select
+                      value={age}
+                      onChange={(e) => changeChildAge(index, e.target.value)}
+                      className="border border-white bg-black text-white px-3 py-2 text-sm"
+                    >
+                      <option value="1-5">1–5 (Free)</option>
+                      <option value="6-11">6–11 (Child Rate)</option>
+                      <option value="12+">12+ (Adult)</option>
+                    </select>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* MEAL PLAN */}
+            {extraOptionsVisible && (
+              <div className="mb-4">
+                <label className="text-white block mb-1">Meal Plan</label>
+                <select
+                  value={mealPlan}
+                  onChange={(e) => setMealPlan(e.target.value)}
+                  className="w-full border border-white bg-black text-white px-3 py-2"
+                >
+                  <option value="ep">EP</option>
+                  <option value="cp">CP</option>
+                  <option value="map">MAP</option>
+                  <option value="ap">AP</option>
+                </select>
+              </div>
+            )}
+
+            {/* OCCUPANCY */}
+            {extraOptionsVisible && (
+              <div className="mb-4">
+                <label className="text-white block mb-1">Occupancy per Room</label>
+
+                <div className="space-y-2">
+                  {occupancyPerRoom.map((occ, idx) => (
+                    <div key={idx} className="flex items-center justify-between">
+                      <div className="text-white">Room {idx + 1}</div>
+                      <select
+                        value={occ}
+                        onChange={(e) => {
+                          const updated = [...occupancyPerRoom];
+                          updated[idx] = e.target.value;
+                          setOccupancyPerRoom(updated);
+                        }}
+                        className="border border-white bg-black text-white px-3 py-2"
+                      >
+                        <option value="single">Single</option>
+                        <option value="double">Double</option>
+                      </select>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {/* TOTAL */}
+            {extraOptionsVisible && (
+              <div className="mt-2 mb-4 border-t border-gray-700 pt-4 flex justify-between text-white">
+                <span className="font-semibold">Total Amount</span>
+                <span className="text-lg font-bold">
+                  Nu. {calcTotal()}
+                </span>
+              </div>
+            )}
+
             <button
               onClick={checkRoomAvailability}
               className="mt-auto bg-[#006600] text-white py-3 font-semibold hover:bg-[#004d00]"
             >
-              Check Availability
+              {extraOptionsVisible ? "Proceed to Booking" : "Check Availability"}
             </button>
-
           </div>
-
         </div>
       )}
 
-      {/* 🔹 DATE OVERLAY (EXACT STYLE FROM Rooms.jsx) */}
+      {/* DATE PICKER OVERLAY */}
       {(showInOverlay || showOutOverlay) && (
         <div
           className="fixed inset-0 z-[9999] bg-black/20 flex items-center justify-center px-4"
-          onClick={closeOverlay}
+          onClick={() => {
+            setShowInOverlay(false);
+            setShowOutOverlay(false);
+          }}
         >
           <div
             className="bg-white text-black shadow-2xl max-w-[560px] w-full overflow-visible"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* HEADER */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
               <h3 className="text-lg font-semibold">
                 {showInOverlay ? "Select Check-in" : "Select Check-out"}
               </h3>
+
               <button
-                onClick={closeOverlay}
+                onClick={() => {
+                  setShowInOverlay(false);
+                  setShowOutOverlay(false);
+                }}
                 className="px-3 py-1.5 border border-[#D1D5DB] hover:bg-gray-50 text-sm"
               >
                 Close
               </button>
             </div>
 
+            {/* CALENDAR */}
             <div className="p-3 md:p-5">
               <ReactDatePicker
                 inline
                 monthsShown={1}
                 calendarClassName="rdp-pill"
+
                 selected={showInOverlay ? checkIn : checkOut}
                 minDate={showInOverlay ? new Date() : checkIn || new Date()}
+
                 onChange={(date) => {
                   if (showInOverlay) {
                     setCheckIn(date);
-                    if (checkOut && date && checkOut < date) {
-                      setCheckOut(null);
-                    }
-                    closeOverlay();
+                    if (checkOut && date && checkOut < date) setCheckOut(null);
+                    setShowInOverlay(false);
                   } else {
                     setCheckOut(date);
-                    closeOverlay();
+                    setShowOutOverlay(false);
                   }
                 }}
-                showDisabledMonthNavigation
+
                 renderCustomHeader={({
                   date,
                   changeYear,
@@ -1141,7 +1708,10 @@ const RoomDetails2 = () => {
                   nextMonthButtonDisabled,
                 }) => (
                   <div className="flex items-center justify-between px-3 py-2">
+
+                    {/* Month + Year Dropdown */}
                     <div className="flex items-center space-x-2">
+                      {/* MONTH SELECT */}
                       <select
                         value={date.getMonth()}
                         onChange={({ target: { value } }) =>
@@ -1158,6 +1728,7 @@ const RoomDetails2 = () => {
                         ))}
                       </select>
 
+                      {/* YEAR SELECT */}
                       <select
                         value={date.getFullYear()}
                         onChange={({ target: { value } }) =>
@@ -1166,7 +1737,8 @@ const RoomDetails2 = () => {
                         className="border px-2 py-1 text-sm border-[#9CA3AF]"
                       >
                         {Array.from({ length: 11 }, (_, i) => {
-                          const year = new Date().getFullYear() + i;
+                          const year =
+                            new Date().getFullYear() + i;
                           return (
                             <option key={year} value={year}>
                               {year}
@@ -1176,6 +1748,7 @@ const RoomDetails2 = () => {
                       </select>
                     </div>
 
+                    {/* NAVIGATION */}
                     <div className="flex items-center space-x-2">
                       <button
                         onClick={decreaseMonth}
@@ -1184,7 +1757,6 @@ const RoomDetails2 = () => {
                       >
                         ▲
                       </button>
-
                       <button
                         onClick={increaseMonth}
                         disabled={nextMonthButtonDisabled}
@@ -1193,18 +1765,17 @@ const RoomDetails2 = () => {
                         ▼
                       </button>
                     </div>
+
                   </div>
                 )}
               />
             </div>
-
           </div>
         </div>
       )}
 
       {!showAvailability && <FloatingSocials />}
       {!showAvailability && <GoToTop />}
-
     </section>
   );
 };
