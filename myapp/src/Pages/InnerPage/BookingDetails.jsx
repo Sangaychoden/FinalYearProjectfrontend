@@ -1891,13 +1891,16 @@ const BookingDetails = () => {
 
   const [bookingData, setBookingData] = useState(() => {
     const initialRoomsQty = info.room || 1;
-    const occFromInfo = Array.isArray(info.occupancyType)
-      ? info.occupancyType
-      : [info.occupancyType || "double"];
+  //  ` const occFromInfo = Array.isArray(info.occupancyType)
+  //     ? info.occupancyType
+  //     : [info.occupancyType || "double"]`;
+    const occFromInfo = info.occupancyType || info.occupancyPerRoom || ["double"];
 
-    const occNormalized = Array.from({ length: initialRoomsQty }).map(
-      (_, i) => occFromInfo[i] || occFromInfo[0] || "double"
-    );
+    // const occNormalized = Array.from({ length: initialRoomsQty }).map(
+    //   (_, i) => occFromInfo[i] || occFromInfo[0] || "double"
+    // );
+    const occNormalized = occFromInfo.slice(0, initialRoomsQty);
+
 
     return {
       checkIn: info?.checkIn ? new Date(info.checkIn) : null,
