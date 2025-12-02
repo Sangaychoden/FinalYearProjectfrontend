@@ -647,6 +647,7 @@
 // export default Login;
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -836,8 +837,7 @@ const handleSubmit = async (e) => {
     const data = await response.json();
 
     if (response.ok) {
-      alert(data.message);
-
+      // store username/email
       localStorage.setItem("adminUsername", username);
 
       if (data.email) {
@@ -849,10 +849,19 @@ const handleSubmit = async (e) => {
       setUsername("");
       setPassword("");
 
-      // ⭐ IMPORTANT FIX → allow cookie to save before ProtectedRoute checks
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 300);
+      // show a non-blocking success toast for 3 seconds then navigate
+      await Swal.fire({
+        title: "Success",
+        text: data.message || "Logged in",
+        icon: "success",
+        background: "#006600",
+        color: "white",
+        timer: 3000,
+        showConfirmButton: false,
+        timerProgressBar: true,
+      });
+
+      navigate("/dashboard");
 
     } else {
       setErrors({ general: data.message || "Login failed" });
