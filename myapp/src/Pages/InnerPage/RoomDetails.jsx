@@ -274,41 +274,53 @@ const realChildrenCount = filteredChildrenAges.length;
                 {room.roomDetails}
               </p>
               
-              {/* MEAL PLAN SECTION */}
               <div className="pt-5">
-                <h2 className="text-2xl lg:text-2xl font-semibold mb-3 dark:text-white">
-                Meal Plan Details
-              </h2>
-<ul className="text-md space-y-3 leading-relaxed">
-  <li>
-    <span className="font-semibold text-[#4B4B4B]">European Plan (EP):</span>
-    <span className="text-[#666666]">
-      {' '}Room Only. No meals included. Guests may order meals separately as per restaurant menu.
-    </span>
-  </li>
+  <h2 className="text-2xl lg:text-2xl font-semibold mb-3 dark:text-white">
+    Meal Plan Details
+  </h2>
 
-  <li>
-    <span className="font-semibold text-[#4B4B4B]">Continental Plan (CP):</span>
-    <span className="text-[#666666]">
-      {' '}Room + Breakfast. Includes morning breakfast only. Lunch and dinner can be purchased separately.
-    </span>
-  </li>
+  <ul className="text-md space-y-3 leading-relaxed">
 
-  <li>
-    <span className="font-semibold text-[#4B4B4B]">Modified American Plan (MAP):</span>
-    <span className="text-[#666666]">
-      {' '}Room + Breakfast + Dinner/Lunch. Includes two meals daily: breakfast and either lunch or dinner.
-    </span>
-  </li>
+    <li>
+      <span className="font-semibold text-[#4B4B4B]">European Plan (EP):</span>
+      <span className="text-[#666666]">
+        {' '}Room Only. No meals included. Guests may order meals separately as per restaurant menu.
+        <br />
+        <strong>For this Meal Plan the extra room option is offered exclusively for double-occupancy rooms.</strong>
+      </span>
+    </li>
 
-  <li>
-    <span className="font-semibold text-[#4B4B4B]">American Plan (AP):</span>
-    <span className="text-[#666666]">
-      {' '}Room + All Meals. Includes breakfast, lunch, and dinner throughout the stay.
-    </span>
-  </li>
-</ul>
-            </div>
+    <li>
+      <span className="font-semibold text-[#4B4B4B]">Continental Plan (CP):</span>
+      <span className="text-[#666666]">
+        {' '}Room + Breakfast. Includes morning breakfast only. Lunch and dinner can be purchased separately.
+        <br />
+        <strong>For this Meal Plan the extra room option is offered exclusively for double-occupancy rooms</strong>
+      </span>
+    </li>
+
+    <li>
+      <span className="font-semibold text-[#4B4B4B]">Modified American Plan (MAP):</span>
+      <span className="text-[#666666]">
+        {' '}Room + Breakfast + Dinner/Lunch. Includes two meals daily: breakfast and either lunch or dinner.
+        <br />
+        <strong>For this Meal Plan extra room option is available for single- and double-occupancy rooms.</strong>
+      </span>
+    </li>
+
+    <li>
+      <span className="font-semibold text-[#4B4B4B]">American Plan (AP):</span>
+      <span className="text-[#666666]">
+        {' '}Room + All Meals. Includes breakfast, lunch, and dinner throughout the stay.
+        <br />
+        <strong>For this Meal Plan the extra room option is offered exclusively for double-occupancy rooms</strong>
+      </span>
+    </li>
+
+  </ul>
+</div>
+
+
 
 
               {/* MEAL PLAN TABLE */}

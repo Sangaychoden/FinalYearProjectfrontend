@@ -389,9 +389,9 @@ const Rooms = () => {
                         <h4 className="text-lg md:text-xl lg:text-2xl font-medium text-lightBlack dark:text-white">
                           {r.roomType}
                         </h4>
-                        <p className="mt-2 text-sm text-gray dark:text-[#D8D8D8] font-normal">
+                        {/* <p className="mt-2 text-sm text-gray dark:text-[#D8D8D8] font-normal">
                           Nu {r.price} (USD {priceUSD}++)
-                        </p>
+                        </p> */}
                       </div>
                     </div>
                   </div>
