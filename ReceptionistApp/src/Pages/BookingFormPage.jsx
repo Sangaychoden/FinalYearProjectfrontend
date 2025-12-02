@@ -861,11 +861,16 @@ const payload = {
         icon: "success",
         background: "#006600",
         color: "white",
+        confirmButtonColor: "#008000",
       });
 
       navigate("/booking", { state: { activeTab: "BOOKED" } });
     } catch (err) {
-      Swal.fire("Error", err.message || "Failed to create booking", "error");
+      Swal.fire("Error", err.message || "Failed to create booking", "error", {
+        background: "#006600",
+        color: "white",
+        confirmButtonColor: "#008000",
+      });
     }
   };
 
@@ -1529,7 +1534,7 @@ const payload = {
             <button
               type="button"
               onClick={() => submitBooking("guaranteed")}
-              className="flex-1 bg-[#0044cc] text-white px-6 py-2 shadow hover:bg-blue-800"
+              className="flex-1 bg-[#0052CC] text-white px-6 py-2 shadow hover:bg-blue-800"
             >
               Full Payment Booking
             </button>
