@@ -366,9 +366,6 @@ const Room = () => {
                     alt={room.roomType}
                     className="w-full h-[250px] object-cover transition-all duration-700 group-hover:scale-110 group-hover:opacity-80"
                   />
-                  <div className="px-5 3xl:px-6 py-2 inline-flex bg-khaki text-sm items-center justify-center text-white absolute top-[10px] right-[10px] z-10">
-                    <span className="font-semibold">Nu {room.price}</span>
-                  </div>
                   <Link to={`/room_details2/${room._id}`} state={room}>
                     <button className="flex items-center justify-center text-[15px] leading-[38px] bg-black bg-opacity-90 hover:bg-opacity-100 absolute bottom-0 -left-40 px-6 py-1 text-white group-hover:left-0 transition-all duration-500 z-10">
                       View Details

@@ -339,10 +339,6 @@ const AvailableRooms = () => {
                                  group-hover:scale-110 group-hover:opacity-80"
                     />
 
-                    <div className="px-5 py-2 inline-flex bg-khaki text-sm text-white absolute top-[10px] right-[10px] z-10">
-                      Nu {r.price?.toLocaleString()}
-                    </div>
-
                     <Link
                       to={`/room_details/${r._id}`}
                       state={{

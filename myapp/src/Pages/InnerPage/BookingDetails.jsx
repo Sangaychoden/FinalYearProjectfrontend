@@ -695,7 +695,7 @@
 // // //       <div className="min-h-screen bg-white py-10 px-6 md:px-20">
 // // //         <div className="flex flex-col md:flex-row gap-8">
 // // // {/* LEFT COLUMN */}
-// // // <div className="w-full bg-[#F9F9F9] md:w-1/3 border border-gray-200 rounded-md p-4 shadow-sm text-sm">
+// // // <div className="w-full bg-[#F9F9F9] md:w-1/3 border border-gray-200 -md p-4 shadow-sm text-sm">
 // // //   <h3 className="font-semibold text-lg mb-3">Booking Details</h3>
 
 // // //   {/* Check-in / Check-out */}
@@ -814,7 +814,7 @@
 // // //                     name="firstName"
 // // //                     required
 // // //                     placeholder="Enter first name"
-// // //                     className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
+// // //                     className="w-full border border-gray-300 -md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
 // // //                   />
 // // //                 </div>
 // // //                 <div>
@@ -826,7 +826,7 @@
 // // //                     name="lastName"
 // // //                     required
 // // //                     placeholder="Enter last name"
-// // //                     className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
+// // //                     className="w-full border border-gray-300 -md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
 // // //                   />
 // // //                 </div>
 // // //               </div>
@@ -841,7 +841,7 @@
 // // //                   name="email"
 // // //                   required
 // // //                   placeholder="you@example.com"
-// // //                   className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
+// // //                   className="w-full border border-gray-300 -md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
 // // //                 />
 // // //               </div>
 
@@ -859,7 +859,7 @@
 // // //                     setSelectedCountry(country);
 // // //                     setSelectedPhoneCode(phoneCodes[index] || "+975");
 // // //                   }}
-// // //                   className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
+// // //                   className="w-full border border-gray-300 -md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
 // // //                 >
 // // //                   {countries.map((country) => (
 // // //                     <option key={country}>{country}</option>
@@ -877,7 +877,7 @@
 // // //                     name="phoneCode"
 // // //                     value={selectedPhoneCode}
 // // //                     onChange={(e) => setSelectedPhoneCode(e.target.value)}
-// // //                     className="flex-[1_1_30%] border border-gray-300 rounded-md px-2 py-2"
+// // //                     className="flex-[1_1_30%] border border-gray-300 -md px-2 py-2"
 // // //                   >
 // // //                     {phoneCodes.map((code) => (
 // // //                       <option key={code} value={code}>
@@ -891,7 +891,7 @@
 // // //                     name="phone"
 // // //                     required
 // // //                     placeholder="Enter phone number"
-// // //                     className="flex-[2_1_65%] border border-gray-300 rounded-md px-3 py-2"
+// // //                     className="flex-[2_1_65%] border border-gray-300 -md px-3 py-2"
 // // //                   />
 // // //                 </div>
 // // //               </div>
@@ -910,7 +910,7 @@
 // // //                         onChange={(e) =>
 // // //                           updateRoomQuantity(index, e.target.value)
 // // //                         }
-// // //                         className="w-16 border border-gray-300 rounded-md px-2 py-1 text-center"
+// // //                         className="w-16 border border-gray-300 -md px-2 py-1 text-center"
 // // //                       />
 // // //                     </div>
 // // //                   ))}
@@ -1071,7 +1071,7 @@
 // // //                   name="specialRequest"
 // // //                   rows="3"
 // // //                   placeholder="Write your request here..."
-// // //                   className="w-full border border-gray-300 rounded-md px-3 py-2"
+// // //                   className="w-full border border-gray-300 -md px-3 py-2"
 // // //                 ></textarea>
 // // //               </div>
 
@@ -1079,7 +1079,7 @@
 // // //               <div className="pt-6">
 // // //                 <button
 // // //                   type="submit"
-// // //                   className="w-full bg-[#006600] text-white font-semibold py-3 rounded-md hover:bg-green-700 transition"
+// // //                   className="w-full bg-[#006600] text-white font-semibold py-3 -md hover:bg-green-700 transition"
 // // //                 >
 // // //                   Confirm Booking
 // // //                 </button>
@@ -1444,7 +1444,7 @@
 // //       <div className="min-h-screen bg-white py-10 px-6 md:px-20">
 // //         <div className="flex flex-col md:flex-row gap-8">
 // //           {/* LEFT SUMMARY */}
-// //           <div className="w-full bg-[#F9F9F9] md:w-1/3 border border-gray-200 rounded-md p-4 shadow-sm text-sm">
+// //           <div className="w-full bg-[#F9F9F9] md:w-1/3 border border-gray-200 -md p-4 shadow-sm text-sm">
 // //             <h3 className="font-semibold text-lg mb-3">Booking Details</h3>
 
 // //             <div className="flex justify-between text-gray-700 mb-3">
@@ -1559,7 +1559,7 @@
 // //                     defaultValue={info.firstName || ""}
 // //                     required
 // //                     placeholder="Enter first name"
-// //                     className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
+// //                     className="w-full border border-gray-300 -md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
 // //                   />
 // //                 </div>
 // //                 <div>
@@ -1572,7 +1572,7 @@
 // //                     defaultValue={info.lastName || ""}
 // //                     required
 // //                     placeholder="Enter last name"
-// //                     className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
+// //                     className="w-full border border-gray-300 -md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
 // //                   />
 // //                 </div>
 // //               </div>
@@ -1587,7 +1587,7 @@
 // //                   defaultValue={info.email || ""}
 // //                   required
 // //                   placeholder="you@example.com"
-// //                   className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
+// //                   className="w-full border border-gray-300 -md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
 // //                 />
 // //               </div>
 
@@ -1602,7 +1602,7 @@
 // //                     setSelectedCountry(country);
 // //                     setSelectedPhoneCode(phoneCodes[index] || "+975");
 // //                   }}
-// //                   className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
+// //                   className="w-full border border-gray-300 -md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
 // //                 >
 // //                   {countries.map((country) => (
 // //                     <option key={country} value={country}>
@@ -1621,7 +1621,7 @@
 // //                     name="phoneCode"
 // //                     value={selectedPhoneCode}
 // //                     onChange={(e) => setSelectedPhoneCode(e.target.value)}
-// //                     className="flex-[1_1_30%] border border-gray-300 rounded-md px-2 py-2"
+// //                     className="flex-[1_1_30%] border border-gray-300 -md px-2 py-2"
 // //                   >
 // //                     {phoneCodes.map((code) => (
 // //                       <option key={code} value={code}>
@@ -1636,7 +1636,7 @@
 // //                     defaultValue={info.phone ? info.phone.replace(selectedPhoneCode, "") : ""}
 // //                     required
 // //                     placeholder="Enter phone number"
-// //                     className="flex-[2_1_65%] border border-gray-300 rounded-md px-3 py-2"
+// //                     className="flex-[2_1_65%] border border-gray-300 -md px-3 py-2"
 // //                   />
 // //                 </div>
 // //               </div>
@@ -1650,7 +1650,7 @@
 // //                     <button
 // //                       type="button"
 // //                       onClick={() => updateRoomQuantity(Math.max(1, roomsQty - 1))}
-// //                       className="px-3 py-1 bg-gray-300 rounded"
+// //                       className="px-3 py-1 bg-gray-300 "
 // //                     >
 // //                       -
 // //                     </button>
@@ -1659,12 +1659,12 @@
 // //                       min="1"
 // //                       value={roomsQty}
 // //                       onChange={(e) => updateRoomQuantity(e.target.value)}
-// //                       className="w-20 border border-gray-300 rounded-md px-2 py-1 text-center"
+// //                       className="w-20 border border-gray-300 -md px-2 py-1 text-center"
 // //                     />
 // //                     <button
 // //                       type="button"
 // //                       onClick={() => updateRoomQuantity(roomsQty + 1)}
-// //                       className="px-3 py-1 bg-gray-300 rounded"
+// //                       className="px-3 py-1 bg-gray-300 "
 // //                     >
 // //                       +
 // //                     </button>
@@ -1808,7 +1808,7 @@
 // //                   defaultValue={info.specialRequest || ""}
 // //                   rows="3"
 // //                   placeholder="Write your request here..."
-// //                   className="w-full border border-gray-300 rounded-md px-3 py-2"
+// //                   className="w-full border border-gray-300 -md px-3 py-2"
 // //                 ></textarea>
 // //               </div>
 
@@ -1816,7 +1816,7 @@
 // //               <div className="pt-6">
 // //                 <button
 // //                   type="submit"
-// //                   className="w-full bg-[#006600] text-white font-semibold py-3 rounded-md hover:bg-green-700 transition"
+// //                   className="w-full bg-[#006600] text-white font-semibold py-3 -md hover:bg-green-700 transition"
 // //                 >
 // //                   Confirm Booking
 // //                 </button>
@@ -2173,7 +2173,7 @@
 //         <div className="flex flex-col md:flex-row gap-8">
 
 //           {/* LEFT SUMMARY */}
-//           <div className="w-full bg-[#F9F9F9] md:w-1/3 border border-gray-200 rounded-md p-4 shadow-sm text-sm">
+//           <div className="w-full bg-[#F9F9F9] md:w-1/3 border border-gray-200 -md p-4 shadow-sm text-sm">
 //             <h3 className="font-semibold text-lg mb-3">Booking Details</h3>
 
 //             <div className="flex justify-between text-gray-700 mb-3">
@@ -2333,7 +2333,7 @@
 //                         defaultValue={info.firstName || ""}
 //                         required
 //                         placeholder="Enter first name"
-//                         className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1"
+//                         className="w-full border border-gray-300 -md px-3 py-2 mt-1"
 //                       />
 //                     </div>
 
@@ -2347,7 +2347,7 @@
 //                         defaultValue={info.lastName || ""}
 //                         required
 //                         placeholder="Enter last name"
-//                         className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1"
+//                         className="w-full border border-gray-300 -md px-3 py-2 mt-1"
 //                       />
 //                     </div>
 //                   </div>
@@ -2362,7 +2362,7 @@
 //                       defaultValue={info.email || ""}
 //                       required
 //                       placeholder="you@example.com"
-//                       className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1"
+//                       className="w-full border border-gray-300 -md px-3 py-2 mt-1"
 //                     />
 //                   </div>
 
@@ -2379,7 +2379,7 @@
 //                         setSelectedCountry(country);
 //                         setSelectedPhoneCode(phoneCodes[index] || "+975");
 //                       }}
-//                       className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1"
+//                       className="w-full border border-gray-300 -md px-3 py-2 mt-1"
 //                     >
 //                       {countries.map((country) => (
 //                         <option key={country} value={country}>
@@ -2398,7 +2398,7 @@
 //                         name="phoneCode"
 //                         value={selectedPhoneCode}
 //                         onChange={(e) => setSelectedPhoneCode(e.target.value)}
-//                         className="flex-[1_1_30%] border border-gray-300 rounded-md px-2 py-2"
+//                         className="flex-[1_1_30%] border border-gray-300 -md px-2 py-2"
 //                       >
 //                         {phoneCodes.map((code) => (
 //                           <option key={code} value={code}>
@@ -2417,7 +2417,7 @@
 //                             : ""
 //                         }
 //                         placeholder="Enter phone number"
-//                         className="flex-[2_1_65%] border border-gray-300 rounded-md px-3 py-2"
+//                         className="flex-[2_1_65%] border border-gray-300 -md px-3 py-2"
 //                       />
 //                     </div>
 //                   </div>
@@ -2438,7 +2438,7 @@
 //         name="agencyName"
 //         required
 //         placeholder="Enter agency name"
-//         className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
+//         className="w-full border border-gray-300 -md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
 //       />
 //     </div>
 
@@ -2452,7 +2452,7 @@
 //         name="agentName"
 //         required
 //         placeholder="Enter agent's full name"
-//         className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
+//         className="w-full border border-gray-300 -md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
 //       />
 //     </div>
 
@@ -2466,7 +2466,7 @@
 //         name="agencyEmail"
 //         required
 //         placeholder="agency@example.com"
-//         className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
+//         className="w-full border border-gray-300 -md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
 //       />
 //     </div>
 
@@ -2484,7 +2484,7 @@
 //           setSelectedCountry(country); 
 //           setSelectedPhoneCode(phoneCodes[idx] || "+975"); // sync code
 //         }}
-//         className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
+//         className="w-full border border-gray-300 -md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
 //       >
 //         {countries.map((country) => (
 //           <option key={country} value={country}>
@@ -2504,7 +2504,7 @@
 //           name="agencyPhoneCode"
 //           value={selectedPhoneCode}
 //           onChange={(e) => setSelectedPhoneCode(e.target.value)}
-//           className="flex-[1_1_30%] border border-gray-300 rounded-md px-2 py-2"
+//           className="flex-[1_1_30%] border border-gray-300 -md px-2 py-2"
 //         >
 //           {phoneCodes.map((code) => (
 //             <option key={code} value={code}>
@@ -2518,7 +2518,7 @@
 //           name="agencyPhone"
 //           required
 //           placeholder="Enter agency phone number"
-//           className="flex-[2_1_65%] border border-gray-300 rounded-md px-3 py-2"
+//           className="flex-[2_1_65%] border border-gray-300 -md px-3 py-2"
 //         />
 //       </div>
 //     </div>
@@ -2537,7 +2537,7 @@
 //                       onClick={() =>
 //                         updateRoomQuantity(Math.max(1, roomsQty - 1))
 //                       }
-//                       className="px-3 py-1 bg-gray-300 rounded"
+//                       className="px-3 py-1 bg-gray-300 "
 //                     >
 //                       -
 //                     </button>
@@ -2546,12 +2546,12 @@
 //                       min="1"
 //                       value={roomsQty}
 //                       onChange={(e) => updateRoomQuantity(e.target.value)}
-//                       className="w-20 border border-gray-300 rounded-md px-2 py-1 text-center"
+//                       className="w-20 border border-gray-300 -md px-2 py-1 text-center"
 //                     />
 //                     <button
 //                       type="button"
 //                       onClick={() => updateRoomQuantity(roomsQty + 1)}
-//                       className="px-3 py-1 bg-gray-300 rounded"
+//                       className="px-3 py-1 bg-gray-300 "
 //                     >
 //                       +
 //                     </button>
@@ -2755,7 +2755,7 @@
 //                   defaultValue={info.specialRequest || ""}
 //                   rows="3"
 //                   placeholder="Write your request here..."
-//                   className="w-full border border-gray-300 rounded-md px-3 py-2"
+//                   className="w-full border border-gray-300 -md px-3 py-2"
 //                 ></textarea>
 //               </div>
 
@@ -2763,7 +2763,7 @@
 //               <div className="pt-6">
 //                 <button
 //                   type="submit"
-//                   className="w-full bg-[#006600] text-white font-semibold py-3 rounded-md hover:bg-green-700 transition"
+//                   className="w-full bg-[#006600] text-white font-semibold py-3 -md hover:bg-green-700 transition"
 //                 >
 //                   Confirm Booking
 //                 </button>
@@ -3138,8 +3138,8 @@ const BookingDetails = () => {
         <div className="flex flex-col md:flex-row gap-8">
 
           {/* LEFT SUMMARY */}
-          <div className="w-full bg-[#F9F9F9] md:w-1/3 border border-gray-200 rounded-md p-4 shadow-sm text-sm">
-            <h3 className="font-semibold text-lg mb-3">Booking Details</h3>
+          <div className="w-full bg-[#F9F9F9] md:w-1/3 border border-gray-200 -md p-4 shadow-sm text-sm">
+            <h3 className="font-semibold text-xl mb-3">Booking Details</h3>
 
             <div className="flex justify-between text-gray-700 mb-3">
               <div className="w-1/2">
@@ -3266,18 +3266,31 @@ const BookingDetails = () => {
           <div className="w-full md:w-2/3 text-sm">
 
             {/* Agency Toggle */}
-            <div className="flex items-center gap-2 mb-4">
-              <input
-                type="checkbox"
-                checked={isAgencyBooking}
-                onChange={(e) => setIsAgencyBooking(e.target.checked)}
-              />
-              <span className="font-medium text-gray-700">
-                This is an Agency Booking
-              </span>
-            </div>
+<div className="flex mb-5 border border-gray-300 w-full max-w-md">
+  <button
+    className={`flex-1 py-2 font-medium ${
+      !isAgencyBooking
+        ? "bg-[#006600] text-white"
+        : "bg-gray-100 text-gray-700"
+    }`}
+    onClick={() => setIsAgencyBooking(false)}
+  >
+    Guest
+  </button>
+  <button
+    className={`flex-1 py-2 font-medium ${
+      isAgencyBooking
+        ? "bg-[#006600] text-white"
+        : "bg-gray-100 text-gray-700"
+    }`}
+    onClick={() => setIsAgencyBooking(true)}
+  >
+    Travel Agency
+  </button>
+</div>
 
-            <h3 className="font-semibold text-lg mb-4">Enter your details</h3>
+
+            <h3 className="font-semibold text-xl mb-4">Enter your details</h3>
 
             <form className="space-y-6" onSubmit={handleBooking}>
 
@@ -3295,7 +3308,7 @@ const BookingDetails = () => {
                         defaultValue={info.firstName || ""}
                         required
                         placeholder="Enter first name"
-                        className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1"
+                        className="w-full border border-gray-300 -md px-3 py-2 mt-1"
                       />
                     </div>
 
@@ -3309,7 +3322,7 @@ const BookingDetails = () => {
                         defaultValue={info.lastName || ""}
                         required
                         placeholder="Enter last name"
-                        className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1"
+                        className="w-full border border-gray-300 -md px-3 py-2 mt-1"
                       />
                     </div>
                   </div>
@@ -3324,7 +3337,7 @@ const BookingDetails = () => {
                       defaultValue={info.email || ""}
                       required
                       placeholder="you@example.com"
-                      className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1"
+                      className="w-full border border-gray-300 -md px-3 py-2 mt-1"
                     />
                   </div>
 
@@ -3341,7 +3354,7 @@ const BookingDetails = () => {
                         setSelectedCountry(country);
                         setSelectedPhoneCode(phoneCodes[index] || "+975");
                       }}
-                      className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1"
+                      className="w-full border border-gray-300 -md px-3 py-2 mt-1"
                     >
                       {countries.map((country) => (
                         <option key={country} value={country}>
@@ -3360,7 +3373,7 @@ const BookingDetails = () => {
                         name="phoneCode"
                         value={selectedPhoneCode}
                         onChange={(e) => setSelectedPhoneCode(e.target.value)}
-                        className="flex-[1_1_30%] border border-gray-300 rounded-md px-2 py-2"
+                        className="flex-[1_1_30%] border border-gray-300 -md mt-1 px-2 py-2"
                       >
                         {phoneCodes.map((code) => (
                           <option key={code} value={code}>
@@ -3379,7 +3392,7 @@ const BookingDetails = () => {
                             : ""
                         }
                         placeholder="Enter phone number"
-                        className="flex-[2_1_65%] border border-gray-300 rounded-md px-3 py-2"
+                        className="flex-[2_1_65%] border border-gray-300 -md mt-1 px-3 py-2"
                       />
                     </div>
                   </div>
@@ -3398,7 +3411,7 @@ const BookingDetails = () => {
                       name="agencyName"
                       required
                       placeholder="Enter agency name"
-                      className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
+                      className="w-full border border-gray-300 -md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
                     />
                   </div>
 
@@ -3411,7 +3424,7 @@ const BookingDetails = () => {
                       name="agentName"
                       required
                       placeholder="Enter agent's full name"
-                      className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
+                      className="w-full border border-gray-300 -md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
                     />
                   </div>
 
@@ -3424,7 +3437,7 @@ const BookingDetails = () => {
                       name="agencyEmail"
                       required
                       placeholder="agency@example.com"
-                      className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
+                      className="w-full border border-gray-300 -md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
                     />
                   </div>
 
@@ -3441,7 +3454,7 @@ const BookingDetails = () => {
                         setSelectedCountry(country);
                         setSelectedPhoneCode(phoneCodes[idx] || "+975");
                       }}
-                      className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
+                      className="w-full border border-gray-300 -md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
                     >
                       {countries.map((country) => (
                         <option key={country} value={country}>
@@ -3460,7 +3473,7 @@ const BookingDetails = () => {
                         name="agencyPhoneCode"
                         value={selectedPhoneCode}
                         onChange={(e) => setSelectedPhoneCode(e.target.value)}
-                        className="flex-[1_1_30%] border border-gray-300 rounded-md px-2 py-2"
+                        className="flex-[1_1_30%] border border-gray-300 -md px-2 py-2"
                       >
                         {phoneCodes.map((code) => (
                           <option key={code} value={code}>
@@ -3474,69 +3487,69 @@ const BookingDetails = () => {
                         name="agencyPhone"
                         required
                         placeholder="Enter agency phone number"
-                        className="flex-[2_1_65%] border border-gray-300 rounded-md px-3 py-2"
+                        className="flex-[2_1_65%] border border-gray-300 -md px-3 py-2"
                       />
                     </div>
                   </div>
                 </>
               )}
 
-              {/* Room Quantity */}
-              <div>
-                <h4 className="font-semibold mb-2">Room Selection</h4>
-                <div className="flex items-center gap-4">
-                  <label className="min-w-[120px]">{room.roomType}</label>
-                  <div className="flex items-center gap-2">
-                    <button
-                      type="button"
-                      onClick={() =>
-                        updateRoomQuantity(Math.max(1, roomsQty - 1))
-                      }
-                      className="px-3 py-1 bg-gray-300 rounded"
-                    >
-                      -
-                    </button>
-                    <input
-                      type="number"
-                      min="1"
-                      value={roomsQty}
-                      onChange={(e) => updateRoomQuantity(e.target.value)}
-                      className="w-20 border border-gray-300 rounded-md px-2 py-1 text-center"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => updateRoomQuantity(roomsQty + 1)}
-                      className="px-3 py-1 bg-gray-300 rounded"
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
+<div>
+  <h4 className="font-semibold">Room Selection</h4>
 
-                {roomsQty > 1 && (
-                  <div className="mt-3 space-y-2">
-                    <p className="text-sm font-medium">Occupancy per room</p>
-                    {Array.from({ length: roomsQty }).map((_, idx) => (
-                      <div
-                        key={idx}
-                        className="flex justify-between items-center"
-                      >
-                        <span>Room {idx + 1}</span>
-                        <select
-                          value={occupancyArray[idx] || "double"}
-                          onChange={(e) =>
-                            setOccupancyForIndex(idx, e.target.value)
-                          }
-                          className="border px-3 py-2"
-                        >
-                          <option value="single">Single</option>
-                          <option value="double">Double</option>
-                        </select>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
+  <div className="flex justify-between items-center">
+    {/* Label on the left */}
+    <label className="text-sm font-medium">{room.roomType}</label>
+
+    {/* Input with - + buttons on the right */}
+    <div className="flex items-center gap-2">
+      <button
+        type="button"
+        onClick={() => updateRoomQuantity(Math.max(1, roomsQty - 1))}
+        className="px-1 py-1 text-2xl bg-gray-300 rounded hover:bg-gray-400 transition"
+      >
+        -
+      </button>
+
+      <input
+        type="number"
+        min="1"
+        value={roomsQty}
+        onChange={(e) => updateRoomQuantity(e.target.value)}
+        className="w-12 text-center border border-gray-300 py-1"
+        style={{ MozAppearance: "textfield" }} // Firefox
+      />
+
+      <button
+        type="button"
+        onClick={() => updateRoomQuantity(roomsQty + 1)}
+        className="px-1 py-1 text-2xl bg-gray-300 rounded hover:bg-gray-400 transition"
+      >
+        +
+      </button>
+    </div>
+  </div>
+
+  {/* Occupancy per room (existing) */}
+  {roomsQty > 1 && (
+    <div className="mt-3 space-y-2">
+      <p className="text-sm font-medium">Occupancy per room</p>
+      {Array.from({ length: roomsQty }).map((_, idx) => (
+        <div key={idx} className="flex justify-between items-center">
+          <span>Room {idx + 1}</span>
+          <select
+            value={occupancyArray[idx] || "double"}
+            onChange={(e) => setOccupancyForIndex(idx, e.target.value)}
+            className="border px-3 py-2"
+          >
+            <option value="single">Single</option>
+            <option value="double">Double</option>
+          </select>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
 
               {/* Extra Bed */}
               { (mealPlan === "map" || anyDoubleSelected) && (
@@ -3690,7 +3703,7 @@ const BookingDetails = () => {
                   defaultValue={info.specialRequest || ""}
                   rows="3"
                   placeholder="Write your request here..."
-                  className="w-full border border-gray-300 rounded-md px-3 py-2"
+                  className="w-full border border-gray-300 -md px-3 py-2"
                 ></textarea>
               </div>
 
@@ -3698,7 +3711,7 @@ const BookingDetails = () => {
               <div className="pt-6">
                 <button
                   type="submit"
-                  className="w-full bg-[#006600] text-white font-semibold py-3 rounded-md hover:bg-green-700 transition"
+                  className="w-full bg-[#006600] text-white font-semibold py-3 -md hover:bg-green-700 transition"
                 >
                   Confirm Booking
                 </button>

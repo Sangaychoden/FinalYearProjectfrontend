@@ -479,7 +479,7 @@
 
 //               {/* MEAL PLAN SECTION */}
 //               <div className="pt-10">
-//                 <h2 className="text-2xl lg:text-3xl font-semibold pb-2 dark:text-white">
+//                 <h2 className="text-2xl lg:text-2xl font-semibold pb-2 dark:text-white">
 //                   Meal Plan Details
 //                 </h2>
 //                <ul className="text-[#808080] text-sm space-y-3 leading-relaxed">
@@ -1288,27 +1288,29 @@ const RoomDetails2 = () => {
 
       if (!extraOptionsVisible) {
         setExtraOptionsVisible(true);
-        Swal.fire({
-          title: "Room Available",
-          icon: "success",
-          html: `<p>${roomsAvailable} room(s) available.<br/>Add meal plan & occupancy.</p>`,
-          background: "#006600",
-          color: "#fff",
-          confirmButtonColor: "#008000",
-        });
+Swal.fire({
+  title: roomsAvailable > 1 ? "Rooms Available" : "Room Available",
+  icon: "success",
+  html: `<p>${roomsAvailable} room(s) available.<br/>Please select meal plan and occupancy.</p>`,
+  background: "#006600",
+  color: "#fff",
+  confirmButtonColor: "#008000",
+});
+
         return;
       }
 
       // If extra options visible, confirm and proceed
-      Swal.fire({
-        title: "Room Available",
-        icon: "success",
-        html: `<p>${roomsAvailable} room(s) available.<br/>Total: Nu. ${calcTotal()}<br/>Proceed?</p>`,
-        showCancelButton: true,
-        confirmButtonColor: "#008000",
-        cancelButtonColor: "#d33",
-        background: "#006600",
-        color: "#fff",
+Swal.fire({
+  title: "Proceed to Booking?",
+  icon: "question",
+  html: `<p>${room} ${room > 1 ? "rooms" : "room"} selected.<br/>Total Amount: Nu. ${calcTotal()}<br/>Do you want to continue?</p>`,
+  showCancelButton: true,
+  confirmButtonColor: "#008000",
+  cancelButtonColor: "#d33",
+  background: "#006600",
+  color: "#fff",
+
       }).then((result) => {
         if (result.isConfirmed) {
           // Build roomSelection array grouped by occupancy type
@@ -1415,68 +1417,81 @@ const RoomDetails2 = () => {
                 className="w-[40px] h-[40px] bg-white dark:bg-lightBlack hover:bg-[#006600] absolute right-[-50px] bottom-[45%] group-hover:right-4 transition-all duration-300 grid place-items-center cursor-pointer"
                 onClick={nextBtn}
               >
-                <BsArrowRight size={20} className="text-lightBlack dark:text-white" />
+                <BsArrowRight size={20} className="text-lightBlack  dark:text-white" />
               </span>
             </div>
 
             {/* DETAILS */}
-            <div className="pt-5 lg:pt-[35px] pr-3">
+            <div className="pt-5 lg:pt-6 pr-3">
 
-              <h2 className="text-2xl lg:text-4xl mb-4 font-semibold text-lightBlack dark:text-white">
+              <h2 className="text-2xl lg:text-3xl font-semibold mb-3 dark:text-white">
                 {roomData.roomType}
               </h2>
 
-              <p className="text-sm text-[#808080] dark:text-[#D9D9D9]">
+              <p className="text-md text-[#666666] dark:text-[#D9D9D9]">
                 {roomData.roomDetails}
               </p>
 
               {/* MEAL PLAN SECTION */}
-              <div className="pt-10">
-                <h2 className="text-2xl lg:text-3xl font-semibold pb-2 dark:text-white">
+              <div className="pt-5">
+                <h2 className="text-2xl lg:text-2xl font-semibold mb-3 dark:text-white">
                   Meal Plan Details
                 </h2>
-               <ul className="text-[#808080] text-sm space-y-3 leading-relaxed">
-                <li>
-                  <strong>European Plan (EP)</strong> – Room Only. No meals included. Guests may order meals separately as per restaurant menu.
-                </li>
+<ul className="text-md space-y-3 leading-relaxed">
+  <li>
+    <span className="font-semibold text-[#4B4B4B]">European Plan (EP):</span>
+    <span className="text-[#666666]">
+      {' '}Room Only. No meals included. Guests may order meals separately as per restaurant menu.
+    </span>
+  </li>
 
-                <li>
-                  <strong>Continental Plan (CP)</strong> – Room + Breakfast. Includes morning breakfast only. Lunch and dinner can be purchased separately.
-                </li>
+  <li>
+    <span className="font-semibold text-[#4B4B4B]">Continental Plan (CP):</span>
+    <span className="text-[#666666]">
+      {' '}Room + Breakfast. Includes morning breakfast only. Lunch and dinner can be purchased separately.
+    </span>
+  </li>
 
-                <li>
-                  <strong>Modified American Plan (MAP)</strong> – Room + Breakfast + Dinner/Lunch. Includes two meals daily: breakfast and either lunch or dinner.
-                </li>
+  <li>
+    <span className="font-semibold text-[#4B4B4B]">Modified American Plan (MAP):</span>
+    <span className="text-[#666666]">
+      {' '}Room + Breakfast + Dinner/Lunch. Includes two meals daily: breakfast and either lunch or dinner.
+    </span>
+  </li>
 
-                <li>
-                  <strong>American Plan (AP)</strong> – Room + All Meals. Includes breakfast, lunch, and dinner throughout the stay.
-                </li>
-              </ul>
+  <li>
+    <span className="font-semibold text-[#4B4B4B]">American Plan (AP):</span>
+    <span className="text-[#666666]">
+      {' '}Room + All Meals. Includes breakfast, lunch, and dinner throughout the stay.
+    </span>
+  </li>
+</ul>
+
               </div>
 
               {/* PRICE TABLE */}
-              <div className="mt-6">
+              <div className="mt-5">
                 <h3 className="text-2xl font-semibold mb-3 dark:text-white">
                   Meal Plan Pricing
                 </h3>
-                  <table className="w-full border">
-                  <thead className="bg-[#006600] text-white">
+                  <table className="w-full border border-[#666666]">
+                  <thead className="bg-[#006600] text-white text-md">
                     <tr>
-                      <th className="px-4 py-3">Plan</th>
-                      <th className="px-4 py-3">Single</th>
-                      <th className="px-4 py-3">Double</th>
+                      <th className="px-4 py-3 font-semibold text-left text-md">Plan</th>
+                      <th className="px-4 py-3 font-semibold text-left text-md">Single</th>
+                      <th className="px-4 py-3 font-semibold text-left text-md">Double</th>
                     </tr>
                   </thead>
                   <tbody className="text-gray-800">
                     {PLANS.map((plan) => (
-                      <tr key={plan.key} className="border-b">
-                        <td className="px-4 py-3 uppercase font-bold">{plan.label}</td>
+                      <tr key={plan.key} className="border-b border-[#666666]">
+                        <td className="px-4 py-3 uppercase text-md font-semibold text-[#333333]">{plan.label}</td>
 
-                        <td className="px-4 py-3">
+                        <td className="px-4 py-3 text-[#4B4B4B] text-md">
                           {roomData.pricing?.[plan.key]?.single ?? "-"}
                         </td>
 
-                        <td className="px-4 py-3">
+                        <td className="px-4 py-3 text-[#4B4B4B] text-md">
                           {roomData.pricing?.[plan.key]?.double ?? "-"}
                         </td>
                       </tr>
@@ -1487,33 +1502,41 @@ const RoomDetails2 = () => {
               </div>
 
               {/* FEATURES */}
-              <div className="pt-10">
-                <h2 className="pb-3 text-2xl font-semibold dark:text-white">
+              <div className="pt-5">
+                <h2 className="mb-3 text-2xl font-semibold dark:text-white">
                   Room Features
                 </h2>
-                <ul className="space-y-2 dark:text-[#D9D9D9]">
-                  {roomData.roomFeatures?.split(",").map((f, i) => (
-                    <li key={i} className="flex items-center">
-                      <BsCheck2 className="text-[#006600] mr-2" />
-                      {f.trim()}
-                    </li>
-                  ))}
+                <ul className="space-y-2 text-[#4B4B4B] dark:text-[#D9D9D9] text-md">
+{roomData.roomFeatures
+  ?.split(",")
+  .filter((f) => f.trim() !== "")
+  .map((f, i) => (
+    <li key={i} className="flex items-center">
+      <BsCheck2 className="text-[#006600] mr-1 text-sm" />
+      {f.trim()}
+    </li>
+  ))}
+
                 </ul>
               </div>
 
               {/* BATHROOM AMENITIES */}
-              <div className="pt-10">
-                <h2 className="pb-3 text-2xl font-semibold dark:text-white">
+              <div className="pt-5">
+                <h2 className="pb-3 text-2xl font-semibold dark:text-white text-md">
                   Bathroom Amenities
                 </h2>
-                <ul className="space-y-2 dark:text-[#D9D9D9]">
-                  {roomData.bathroomAmenities?.split(",").map((b, i) => (
-                    <li key={i} className="flex items-center">
-                      <BsCheck2 className="text-[#006600] mr-2" />
-                      {b.trim()}
-                    </li>
-                  ))}
-                </ul>
+<ul className="space-y-2 text-[#4B4B4B] dark:text-[#D9D9D9]">
+  {roomData.bathroomAmenities
+    ?.split(",")
+    .filter((b) => b.trim() !== "") // remove empty strings
+    .map((b, i) => (
+      <li key={i} className="flex items-center">
+        <BsCheck2 className="text-[#006600] mr-1 text-sm" />
+        {b.trim()}
+      </li>
+    ))}
+</ul>
+
               </div>
 
             </div>
@@ -1521,33 +1544,33 @@ const RoomDetails2 = () => {
 
           {/* RIGHT SIDEBAR */}
           <div className="col-span-6 md:col-span-3 lg:col-span-2">
-            <div className="px-7 py-8">
-              <h4 className="text-2xl font-semibold dark:text-white mb-3">
+            <div className="lg:px-3">
+              <h4 className="text-2xl lg:pb-2 font-semibold dark:text-white mb-4">
                 Room Details
               </h4>
 
-              <div className="space-y-5 dark:text-[#D9D9D9]">
+              <div className="space-y-5 text-[#333333] dark:text-[#D9D9D9]">
 
-                <div className="flex items-center border-b pb-4">
+                <div className="flex items-center border-b border-[#999999] pb-4">
                   <FaVectorSquare className="text-[#006600] mr-3" />
                   {roomData.size} m²
                 </div>
 
-                <div className="flex items-center border-b pb-4">
+                <div className="flex items-center border-b border-[#999999] pb-4">
                   <FaUserFriends className="text-[#006600] mr-3" />
                   {roomData.occupancy} max
                 </div>
 
-                <div className="flex items-center border-b pb-4">
+                <div className="flex items-center pb-2">
                   <FaBed className="text-[#006600] mr-3" />
                   {roomData.beds} Beds
                 </div>
               </div>
 
-              <div className="py-5">
+              <div className="pt-4 lg:pt-6 pb-10">
                 <button
                   onClick={() => setShowAvailability(true)}
-                  className="bg-[#006600] text-white w-full h-10 font-semibold hover:opacity-80"
+                  className="bg-[#006600] text-white w-full h-10 font-semibold hover:bg-black"
                 >
                   Book This Room
                 </button>
@@ -1574,7 +1597,7 @@ const RoomDetails2 = () => {
             {/* IF EXTRA OPTIONS NOT VISIBLE */}
             {!extraOptionsVisible && (
               <>
-                <div className="grid gap-4 mt-10 mb-6">
+                <div className="grid gap-4 mt-8 mb-6">
 
                   {/* CHECK-IN */}
                   <div>
@@ -1705,7 +1728,7 @@ const RoomDetails2 = () => {
 
             {/* CHILD AGE (when extra options visible) */}
             {extraOptionsVisible && children > 0 && (
-              <div className="mb-4">
+              <div className="-mb-6 mt-8">
                 <h4 className="text-white font-semibold mb-2">Children Ages</h4>
                 {childrenAges.map((age, index) => (
                   <div key={index} className="flex justify-between items-center mb-2 text-white">
@@ -1727,8 +1750,8 @@ const RoomDetails2 = () => {
 
             {/* MEAL PLAN */}
             {extraOptionsVisible && (
-              <div className="mb-4">
-                <label className="text-white block mb-1">Meal Plan</label>
+              <div className="mb-6 mt-8">
+                <label className="text-white font-semibold block mb-2">Meal Plan</label>
                 <select
                   value={mealPlan}
                   onChange={(e) => setMealPlan(e.target.value)}
@@ -1744,8 +1767,8 @@ const RoomDetails2 = () => {
 
             {/* OCCUPANCY */}
             {extraOptionsVisible && (
-              <div className="mb-4">
-                <label className="text-white block mb-1">Occupancy per Room</label>
+              <div className="mb-6">
+                <label className="text-white block font-semibold mb-2">Occupancy Type</label>
 
                 <div className="space-y-2">
                   {occupancyPerRoom.map((occ, idx) => (
@@ -1770,7 +1793,7 @@ const RoomDetails2 = () => {
             )}
             {/* TOTAL */}
             {extraOptionsVisible && (
-              <div className="mt-2 mb-4 border-t border-gray-700 pt-4 flex justify-between text-white">
+              <div className="mt-2 mb-6 border-t pt-4 flex justify-between text-white">
                 <span className="font-semibold">Total Amount</span>
                 <span className="text-lg font-bold">
                   Nu. {calcTotal()}
