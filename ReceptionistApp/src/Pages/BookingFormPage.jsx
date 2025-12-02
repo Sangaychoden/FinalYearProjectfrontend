@@ -5201,15 +5201,20 @@ const payload = {
 
       if (!res.ok) throw new Error(data.message || "Booking failed");
 
+      // show a non-blocking success toast for 3 seconds then navigate
       await Swal.fire({
         title: "Success",
         text: `Booking created (${status})`,
         icon: "success",
         background: "#006600",
         color: "white",
+        timer: 3000,
+        showConfirmButton: false,
+        timerProgressBar: true,
       });
 
-      navigate("/booking", { state: { activeTab: "BOOKED" } });
+      // after the toast auto-closes, go to dashboard
+      navigate("/dashboard");
     } catch (err) {
       Swal.fire("Error", err.message || "Failed to create booking", "error");
     }
