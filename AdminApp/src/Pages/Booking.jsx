@@ -256,7 +256,7 @@
 // //                             onClick={() =>
 // //                               navigate(`/booking-details/${booking._id}`)
 // //                             }
-// //                             className="flex items-center justify-center gap-1 px-3 py-1 text-sm bg-[#006600] text-white rounded hover:bg-green-700"
+// //                             className="flex items-center justify-center gap-1 px-3 py-1 text-sm bg-[#006600] text-white  hover:bg-green-700"
 // //                           >
 // //                             <Eye size={16} /> View
 // //                           </button>
@@ -539,7 +539,7 @@
 //                             onClick={() =>
 //                               navigate(`/booking-details/${booking._id}`)
 //                             }
-//                             className="flex items-center justify-center gap-1 px-3 py-1 text-sm bg-[#006600] text-white rounded hover:bg-green-700"
+//                             className="flex items-center justify-center gap-1 px-3 py-1 text-sm bg-[#006600] text-white  hover:bg-green-700"
 //                           >
 //                             <Eye size={16} /> View
 //                           </button>
@@ -793,17 +793,17 @@ const Booking = () => {
                       </td>
 
                       <td
-                        className={`px-4 py-3 text-center font-semibold ${
+                        className={`px-4 py-3 text-center ${
                           booking.status === "pending"
-                            ? "text-yellow-600"
+                            ? "text-[#F59E0B]"
                             : booking.status === "confirmed"
-                            ? "text-green-700"
+                            ? "text-[#1D4ED8]"
                             : booking.status === "guaranteed"
-                            ? "text-blue-700"
+                            ? "text-[#8B008B]"
                             : booking.status === "checked_in"
-                            ? "text-[#009519]"
+                            ? "text-[#6A0DAD]"
                             : booking.status === "cancelled"
-                            ? "text-red-600"
+                            ? "text-[#CC0000]"
                             : "text-gray-600"
                         }`}
                       >
@@ -819,7 +819,7 @@ const Booking = () => {
                             onClick={() =>
                               navigate(`/booking-details/${booking._id}`)
                             }
-                            className="flex items-center justify-center px-4 py-3 text-left text-m font-small hover:underline"
+                            className="flex items-center justify-center px-4 py-3 text-left text-m font-small font-semibold hover:underline"
                           >
                             VIEW
                           </button>

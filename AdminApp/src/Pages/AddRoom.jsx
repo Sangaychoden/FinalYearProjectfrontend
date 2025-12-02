@@ -490,7 +490,7 @@ const AddRoom = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               {/* EP */}
-              <div className="border rounded p-3">
+              <div className="border  p-3">
                 <h3 className="font-semibold mb-2">European Plan (EP)</h3>
                 <label className="block text-sm text-gray-700 mb-1">
                   Single
@@ -517,7 +517,7 @@ const AddRoom = () => {
               </div>
 
               {/* CP */}
-              <div className="border rounded p-3">
+              <div className="border  p-3">
                 <h3 className="font-semibold mb-2">Continental Plan (CP)</h3>
                 <label className="block text-sm text-gray-700 mb-1">
                   Single
@@ -544,7 +544,7 @@ const AddRoom = () => {
               </div>
 
               {/* MAP */}
-              <div className="border rounded p-3">
+              <div className="border  p-3">
                 <h3 className="font-semibold mb-2">Modified American Plan (MAP)</h3>
                 <label className="block text-sm text-gray-700 mb-1">
                   Single
@@ -571,7 +571,7 @@ const AddRoom = () => {
               </div>
 
               {/* AP */}
-              <div className="border rounded p-3">
+              <div className="border  p-3">
                 <h3 className="font-semibold mb-2">American Plan (AP)</h3>
                 <label className="block text-sm text-gray-700 mb-1">
                   Single

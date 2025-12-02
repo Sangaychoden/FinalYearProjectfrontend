@@ -231,7 +231,7 @@ const AdminProfile = () => {
 
           <button
             type="submit"
-            className="w-full bg-[#006600] text-white py-2 hover:bg-[#004d00] transition duration-300"
+            className="w-full bg-[#006600] hover:bg-black text-white py-2 hover:bg-[#004d00] transition duration-300"
           >
             Update Password
           </button>

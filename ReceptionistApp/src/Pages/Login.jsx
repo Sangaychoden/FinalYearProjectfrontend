@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 // ✅ Use .env for base URL
 const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
@@ -129,6 +130,19 @@ const ReceptionistLogin = () => {
       if (data.role !== "receptionist") {
         throw new Error("Only receptionists can log in here");
       }
+
+      // ✅ Show success alert and navigate
+await Swal.fire({
+  title: "Success",
+  html: `<div style="margin-bottom: 15px;">Receptionist logged in successfully!</div>`,
+  icon: "success",
+  background: "#006600",
+  color: "white",
+  timer: 3000,
+  showConfirmButton: false,
+  timerProgressBar: true,
+});
+
 
       // ✅ Clear form and navigate
       setUsername("");

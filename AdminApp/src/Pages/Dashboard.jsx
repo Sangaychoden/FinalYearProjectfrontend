@@ -95,7 +95,7 @@ const Dashboard = () => {
         <select
           value={selectedYear}
           onChange={(e) => setSelectedYear(e.target.value)}
-          className="border border-gray-400 rounded-md px-4 py-2 text-gray-700 focus:ring focus:ring-blue-200"
+          className="border border-gray-400 -md px-4 py-2 text-gray-700 focus:ring focus:ring-blue-200"
         >
           {availableYears.map((year) => (
             <option key={year} value={year}>
@@ -137,7 +137,7 @@ const Dashboard = () => {
       )}
 
       {/* Chart Section */}
-      <div className="bg-white p-6 rounded-lg shadow border border-gray-200 mx-2">
+      <div className="bg-white p-6 -lg shadow border border-gray-200 mx-2">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold">BOOKINGS STATISTICS</h3>
           <p className="text-sm text-gray-500">Year: {selectedYear}</p>

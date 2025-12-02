@@ -196,13 +196,13 @@ const ReceptionistDetails = () => {
         {/* Buttons */}
         <div className="flex gap-4 mt-4 justify-center">
           <button
-            className="bg-[#006600] text-white px-4 py-2 hover:bg-green-800 w-1/2"
+            className="bg-[#006600] hover:bg-black text-white px-4 py-2 w-1/2"
             onClick={() => setShowChangePwModal(true)}
           >
             Change Password
           </button>
           <button
-            className="bg-red-600 text-white px-4 py-2  w-1/2"
+            className="bg-red-600 hover:bg-black text-white px-4 py-2  w-1/2"
             onClick={handleDelete}
           >
             Delete
@@ -277,7 +277,7 @@ const ReceptionistDetails = () => {
             {/* Modal Buttons */}
             <div className="flex gap-4 mt-4 justify-center">
               <button
-                className="bg-[#006600] text-white px-4 py-2 hover:bg-green-800 w-1/2"
+                className="bg-[#006600] hover:bg-black text-white px-4 py-2 hover:bg-green-800 w-1/2"
                 onClick={handlePasswordChangeSubmit}
               >
                 Change

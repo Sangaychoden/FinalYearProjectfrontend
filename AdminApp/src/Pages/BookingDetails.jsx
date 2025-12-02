@@ -306,7 +306,7 @@
 // //       <div className="p-6 text-center">
 // //         <h2 className="text-2xl font-semibold">Booking not found.</h2>
 // //         <button
-// //           className="mt-4 px-5 py-2 bg-green-600 text-white rounded shadow"
+// //           className="mt-4 px-5 py-2 bg-green-600 text-white  shadow"
 // //           onClick={() => navigate(-1)}
 // //         >
 // //           Go Back
@@ -324,7 +324,7 @@
 
 // //   return (
 // //     <div className="min-h-screen bg-gray-100 px-4 py-10 flex justify-center">
-// //       <div className="w-full max-w-5xl bg-white shadow-xl rounded-lg p-8">
+// //       <div className="w-full max-w-5xl bg-white shadow-xl -lg p-8">
 
 // //         {/* HEADER */}
 // //         <div className="flex justify-between pb-6 border-b">
@@ -346,7 +346,7 @@
 // //         </div>
 
 // //         {/* DETAILS CARD */}
-// //         <div className="mt-6 p-6 rounded-lg bg-gray-50 border">
+// //         <div className="mt-6 p-6 -lg bg-gray-50 border">
 
 // //           <h2 className="text-lg font-semibold mb-4 text-[#006600]">Guest Details</h2>
 
@@ -380,11 +380,11 @@
 // //         </div>
 
 // //         {/* ROOMS TABLE */}
-// //         <div className="mt-10 p-6 rounded-lg bg-gray-50 border">
+// //         <div className="mt-10 p-6 -lg bg-gray-50 border">
 // //           <h2 className="text-xl font-semibold mb-5 text-[#006600]">Booked Rooms</h2>
 
 // //           <div className="overflow-x-auto">
-// //             <table className="w-full text-sm border border-gray-300 rounded-lg overflow-hidden">
+// //             <table className="w-full text-sm border border-gray-300 -lg overflow-hidden">
 // //               <thead className="bg-[#006600] text-white text-left">
 // //                 <tr>
 // //                   <th className="px-4 py-3">Room Type</th>
@@ -456,7 +456,7 @@
 // //           )}
 
 // //           {booking.status === "cancelled" && booking.cancelReason && (
-// //             <div className="mt-6 p-4 rounded bg-red-50 border border-red-300 text-red-700">
+// //             <div className="mt-6 p-4  bg-red-50 border border-red-300 text-red-700">
 // //               <strong>Cancel Reason:</strong> {booking.cancelReason}
 // //             </div>
 // //           )}
@@ -580,7 +580,7 @@
 //       <div className="p-6 text-center">
 //         <h2 className="text-xl font-semibold">Booking not found.</h2>
 //         <button
-//           className="mt-4 px-4 py-2 bg-green-600 text-white rounded"
+//           className="mt-4 px-4 py-2 bg-green-600 text-white "
 //           onClick={() => navigate(-1)}
 //         >
 //           Go Back
@@ -599,7 +599,7 @@
 //   return (
 //     <div className="min-h-screen bg-gray-100 px-4 py-10 flex justify-center">
 //       {/* ===================== SINGLE MAIN CARD ===================== */}
-//       <div className="w-full max-w-5xl bg-white shadow-xl rounded-xl p-10 border">
+//       <div className="w-full max-w-5xl bg-white shadow-xl -xl p-10 border">
 
 //         {/* Header */}
 //         <div className="flex justify-between items-start pb-6 border-b">
@@ -665,7 +665,7 @@
 //           </h2>
 
 //           <div className="overflow-x-auto">
-//             <table className="w-full text-sm border border-gray-300 rounded-lg overflow-hidden">
+//             <table className="w-full text-sm border border-gray-300 -lg overflow-hidden">
 //               <thead className="bg-[#006600] text-white">
 //                 <tr>
 //                   <th className="px-4 py-3">Room</th>
@@ -721,7 +721,7 @@
 
 //         {/* ===================== OPTIONAL ROOM MATCH ===================== */}
 //         {selectedRoom && (
-//           <div className="mt-8 p-5 border bg-gray-50 rounded-lg">
+//           <div className="mt-8 p-5 border bg-gray-50 -lg">
 //             <h3 className="font-semibold text-[#006600] mb-2">Room Details (Reference Only)</h3>
 //             <p>Type: {selectedRoom.roomType}</p>
 //             {selectedRoom.location && <p>Location: {selectedRoom.location}</p>}
@@ -732,7 +732,7 @@
 
 //         {/* ===================== CANCEL REASON ===================== */}
 //         {booking.status === "cancelled" && booking.cancelReason && (
-//           <div className="mt-8 p-5 border bg-red-50 rounded-lg text-red-700">
+//           <div className="mt-8 p-5 border bg-red-50 -lg text-red-700">
 //             <strong>Cancel Reason:</strong> {booking.cancelReason}
 //           </div>
 //         )}
@@ -858,7 +858,7 @@ const BookingDetailsPage = () => {
       <div className="p-6 text-center">
         <h2 className="text-xl font-semibold">Booking not found.</h2>
         <button
-          className="mt-4 px-4 py-2 bg-green-600 text-white rounded"
+          className="mt-4 px-4 py-2 bg-green-600 text-white "
           onClick={() => navigate(-1)}
         >
           Go Back
@@ -873,11 +873,23 @@ const BookingDetailsPage = () => {
   const created = booking.createdAt ? formatNiceDate(booking.createdAt) : "—";
 
   return (
-    <div className="min-h-screen bg-gray-100 px-4 py-10 flex justify-center">
-      <div className="w-full max-w-5xl bg-white shadow-xl rounded-xl p-10 border">
+    <div className="min-h-screen bg-gray-100 px-4 flex justify-center">
+      <div className="w-full max-w-5xl">
+        {/* BACK BUTTON - TOP RIGHT */}
+        <div className="mb-6 flex justify-end">
+          <button
+            onClick={() => navigate(-1)}
+            className="border border-gray-400 text-gray-700 px-6 py-2  text-sm hover:bg-gray-50"
+          >
+            Back
+          </button>
+        </div>
 
-        {/* HEADER */}
-        <div className="flex justify-between items-start pb-6 border-b">
+        {/* MAIN CONTENT BOX */}
+        <div className="bg-white shadow-xl -xl p-10 border">
+
+          {/* HEADER */}
+          <div className="flex justify-between items-start pb-6 border-b">
           <div>
             <h1 className="text-3xl font-bold text-[#006600]">
               Booking #{booking.bookingNumber}
@@ -899,8 +911,8 @@ const BookingDetailsPage = () => {
         </div>
 
         {/* GUEST DETAILS */}
-        <div className="mt-8">
-          <h2 className="text-xl font-semibold text-[#006600] mb-4">
+        <div className="mt-6">
+          <h2 className="text-xl font-bold text-[#006600] mb-2">
             Guest Details
           </h2>
 
@@ -920,7 +932,7 @@ const BookingDetailsPage = () => {
 
           {/* Meals */}
           <div className="mt-4">
-            <p className="font-semibold">Meals requested:</p>
+            <p className="font-bold">Meals requested:</p>
             <p className="mt-1 text-gray-700">
               Breakfast: {booking.meals?.breakfast ? "Yes" : "No"} |{" "}
               Lunch: {booking.meals?.lunch ? "Yes" : "No"} |{" "}
@@ -934,51 +946,51 @@ const BookingDetailsPage = () => {
         </div>
 
         {/* ROOMS TABLE */}
-        <div className="mt-12">
-          <h2 className="text-xl font-semibold text-[#006600] mb-4">
+        <div className="mt-6">
+          <h2 className="text-xl font-bold text-[#006600] mb-2">
             Booked Rooms
           </h2>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-sm border border-gray-300 rounded-lg overflow-hidden">
+            <table className="w-full text-sm border-collapse border border-gray-300">
               <thead className="bg-[#006600] text-white">
                 <tr>
-                  <th className="px-4 py-3">Room</th>
-                  <th className="px-4 py-3 text-right">Qty</th>
-                  <th className="px-4 py-3">Occupancy</th>
-                  <th className="px-4 py-3">Meal Plan</th>
-                  <th className="px-4 py-3 text-right">Adults</th>
-                  <th className="px-4 py-3">Children</th>
-                  <th className="px-4 py-3 text-right">Extra Beds</th>
-                  <th className="px-4 py-3 text-right">Price/Night</th>
-                  <th className="px-4 py-3 text-right">Nights</th>
+                  <th className="border border-black font-semibold px-4 py-3">Room</th>
+                  <th className="border border-black font-semibold px-4 py-3 text-right">Qty</th>
+                  <th className="border border-black font-semibold px-4 py-3">Occupancy</th>
+                  <th className="border border-black font-semibold px-4 py-3">Meal Plan</th>
+                  <th className="border border-black font-semibold px-4 py-3 text-right">Adults</th>
+                  <th className="border border-black font-semibold px-4 py-3">Children</th>
+                  <th className="border border-black font-semibold px-4 py-3 text-right">Extra Beds</th>
+                  <th className="border border-black font-semibold px-4 py-3 text-right">Price/Night</th>
+                  <th className="border border-black font-semibold px-4 py-3 text-right">Nights</th>
                 </tr>
               </thead>
 
               <tbody>
                 {booking.rooms.map((r, idx) => (
-                  <tr key={idx} className="border-t bg-white">
-                    <td className="px-4 py-3">{r.roomType}</td>
-                    <td className="px-4 py-3 text-right">{r.quantity || 1}</td>
-                    <td className="px-4 py-3">{(r.occupancyType || []).join(", ")}</td>
-                    <td className="px-4 py-3">{mealPlanDisplay(r.mealPlan)}</td>
-                    <td className="px-4 py-3 text-right">{r.adults}</td>
-                    <td className="px-4 py-3">
+                  <tr key={idx} className="bg-white">
+                    <td className="border border-gray-300 px-4 py-3">{r.roomType}</td>
+                    <td className="border border-gray-300 px-4 py-3 text-right">{r.quantity || 1}</td>
+                    <td className="border border-gray-300 px-4 py-3">{(r.occupancyType || []).join(", ")}</td>
+                    <td className="border border-gray-300 px-4 py-3">{mealPlanDisplay(r.mealPlan)}</td>
+                    <td className="border border-gray-300 px-4 py-3 text-right">{r.adults}</td>
+                    <td className="border border-gray-300 px-4 py-3">
                       {(r.children || []).map((c) => c.age).join(", ") || "—"}
                     </td>
-                    <td className="px-4 py-3 text-right">{r.extraBeds}</td>
-                    <td className="px-4 py-3 text-right">Nu. {r.pricePerNight}</td>
-                    <td className="px-4 py-3 text-right">{nights}</td>
+                    <td className="border border-gray-300 px-4 py-3 text-right">{r.extraBeds}</td>
+                    <td className="border border-gray-300 px-4 py-3 text-right">Nu. {r.pricePerNight}</td>
+                    <td className="border border-gray-300 px-4 py-3 text-right">{nights}</td>
                   </tr>
                 ))}
               </tbody>
 
               <tfoot className="bg-gray-100">
                 <tr>
-                  <td colSpan={8} className="px-4 py-3 text-right font-semibold">
-                    Booking Total
+                  <td colSpan={8} className="px-4 py-3 text-right text-base font-semibold">
+                    Total Amount:
                   </td>
-                  <td className="px-4 py-3 text-right font-semibold text-[#006600]">
+                  <td className="px-4 py-3 text-right text-base font-semibold text-[#006600]">
                     Nu. {booking.totalPrice}
                   </td>
                 </tr>
@@ -986,15 +998,18 @@ const BookingDetailsPage = () => {
             </table>
           </div>
         </div>
+        {/* END ROOMS TABLE */}
 
-      
-        {/* CANCEL REASON */}
-        {booking.status === "cancelled" && booking.cancelReason && (
-          <div className="mt-8 p-5 border bg-red-50 rounded-lg text-red-700">
-            <strong>Cancel Reason:</strong> {booking.cancelReason}
-          </div>
-        )}
+          {/* CANCEL REASON */}
+          {booking.status === "cancelled" && booking.cancelReason && (
+            <div className="mt-8 p-5 border bg-red-50 -lg text-red-700">
+              <strong>Cancellation Reason:</strong> {booking.cancelReason}
+            </div>
+          )}
+        </div>
+        {/* END MAIN CONTENT BOX */}
       </div>
+      {/* END WRAPPER */}
     </div>
   );
 };

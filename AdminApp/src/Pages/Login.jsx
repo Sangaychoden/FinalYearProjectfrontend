@@ -850,16 +850,17 @@ const handleSubmit = async (e) => {
       setPassword("");
 
       // show a non-blocking success toast for 3 seconds then navigate
-      await Swal.fire({
-        title: "Success",
-        text: data.message || "Logged in",
-        icon: "success",
-        background: "#006600",
-        color: "white",
-        timer: 3000,
-        showConfirmButton: false,
-        timerProgressBar: true,
-      });
+await Swal.fire({
+  title: "Success",
+  html: `<div style="margin-bottom: 20px;">${data.message || "Logged in"}</div>`,
+  icon: "success",
+  background: "#006600",
+  color: "white",
+  timer: 3000,
+  showConfirmButton: false,
+  timerProgressBar: true,
+});
+
 
       navigate("/dashboard");
 

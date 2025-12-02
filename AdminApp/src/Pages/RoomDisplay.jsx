@@ -607,7 +607,7 @@ const RoomDisplay = () => {
   return (
     <section className="bg-white text-black px-2">
       {/* Header */}
-      <div className="flex justify-between items-center max-w-8xl mx-auto mb-6 px-4">
+      <div className="flex justify-between items-center max-w-8xl mx-auto mb-6">
         <h1 className="text-2xl font-bold">Room Details</h1>
 
         <button
@@ -632,13 +632,13 @@ const RoomDisplay = () => {
               <>
                 <span
                   onClick={prevBtn}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 cursor-pointer bg-white px-2 py-2 shadow hover:bg-black hover:text-white"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 cursor-pointer bg-white px-2 py-2 shadow hover:bg-black hover:text-white"
                 >
                   <BsArrowLeft size={20} />
                 </span>
                 <span
                   onClick={nextBtn}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 cursor-pointer bg-white px-2 py-2 shadow hover:bg-black hover:text-white"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer bg-white px-2 py-2 shadow hover:bg-black hover:text-white"
                 >
                   <BsArrowRight size={20} />
                 </span>
@@ -809,7 +809,7 @@ const RoomDisplay = () => {
         {/* RIGHT INFO BOX */}
         <div className="col-span-6 md:col-span-2">
           <div className="bg-[#F5F5F5] px-7 py-8">
-            <h4 className="text-xl font-semibold pb-4">Room Info</h4>
+            <h4 className="text-xl font-semibold pb-4">Room Information</h4>
 
             <div className="space-y-4">
               <div className="flex items-center border-b py-4">
@@ -822,7 +822,7 @@ const RoomDisplay = () => {
                 Max {room.occupancy} Guests
               </div>
 
-              <div className="flex items-center border-b py-4">
+              <div className="flex items-center py-4">
                 <FaBed className="text-[#006600] w-5 h-5 mr-3" />
                 {room.beds} Beds
               </div>
@@ -833,14 +833,14 @@ const RoomDisplay = () => {
           <div className="py-5 space-y-3">
             <button
               onClick={handleEdit}
-              className="bg-[#006600] text-white w-full h-10 hover:bg-green-700"
+              className="bg-[#006600] text-white w-full h-10 hover:bg-black"
             >
               Edit
             </button>
 
             <button
               onClick={handleDelete}
-              className="bg-red-600 text-white w-full h-10 hover:bg-red-700"
+              className="bg-red-600 text-white w-full h-10 hover:bg-black"
             >
               Delete
             </button>
