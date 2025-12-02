@@ -9,6 +9,7 @@ import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./RoomsDatepicker.css";
 import { FiCalendar } from "react-icons/fi";
+import { MdOutlineDoorFront } from "react-icons/md";
 
 const AvailableRooms = () => {
   const location = useLocation();
@@ -370,18 +371,28 @@ const AvailableRooms = () => {
               {r.size} SQ.FT | {r.occupancy} Guests
             </p>
             <p className="mt-2 text-[14px] text-gray-600">
-              <strong>{r.roomsAvailable ?? r.totalRooms ?? 0}</strong> rooms available
+              {/* <strong>{r.roomsAvailable ?? r.totalRooms ?? 0}</strong> rooms available */}
+              <strong>{r.availableRooms}</strong> rooms available
+
             </p>
           </div>
-
-          <div className="border-t border-gray-200 py-5 px-5 flex items-center justify-between">
+            <div className="border-t border-gray-200 py-5">
+                                  <div className="px-[30px] flex items-center justify-between">
+            <span className="font-inter text-base flex items-center text-gray-800">
+            <MdOutlineDoorFront className="text-gray-800 text-xl" />
+            <span className="ml-[10px] font-medium">{r.totalRooms} Rooms</span>
+            </span>
+                                    <span className="w-[1px] h-[25px] bg-gray-300"></span>
+                                  </div>
+                                </div>
+          {/* <div className="border-t border-gray-200 py-5 px-5 flex items-center justify-between">
             <span className="flex items-center text-gray-800">
               <FaBed className="text-gray-800 text-xl" />
               <span className="ml-[10px] font-medium">
                 {r.beds} {r.beds > 1 ? "King Beds" : "King Bed"}
               </span>
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
