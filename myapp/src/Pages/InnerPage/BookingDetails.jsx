@@ -211,7 +211,8 @@ let perNightMeals = 0;
   } else {
     perNightMeals = 0;
   }
-const mealsCost = perNightMeals * nights * adults;
+  const mealsCost = perNightMeals * nights * adults;
+
   // const mealsCost = perNightMeals * nights * guestsCount;
   const totalAmount = roomCost + extraBedCost + childrenCost + mealsCost;
 
@@ -456,12 +457,19 @@ const mealsCost = perNightMeals * nights * adults;
                       .join(", ")}{" "}
                     × {adults} adult(s)
                   </p>
-                  <p className="text-sm">
+                  {/* <p className="text-sm">
                     BTN{" "}
                     {perNightMeals.toLocaleString("en-US", {
                       minimumFractionDigits: 2,
                     })}
-                  </p>
+                  </p> */}
+                  <p className="text-sm">
+                BTN{" "}
+                {(perNightMeals * adults).toLocaleString("en-US", {
+                  minimumFractionDigits: 2,
+                })}
+              </p>
+
                 </div>
               </>
             )}
@@ -488,12 +496,20 @@ const mealsCost = perNightMeals * nights * adults;
               <p className="font-semibold text-base">
                 Total cost ({nights} night(s))
               </p>
-              <p className="text-green-600 font-bold text-xl">
+              {/* <p className="text-green-600 font-bold text-xl">
                 BTN{" "}
                 {totalAmount.toLocaleString("en-US", {
                   minimumFractionDigits: 2,
                 })}
-              </p>
+              </p> */}
+              BTN{" "}
+              {(
+                roomCostPerNight +
+                (extraBed ? extraBedCostPerNight : 0) +
+                childrenAges.reduce((sum, age) => sum + getChildUnitPrice(age), 0) +
+                (perNightMeals * adults)
+              ).toLocaleString("en-US", { minimumFractionDigits: 2 })}
+
             </div>
           </div>
 
