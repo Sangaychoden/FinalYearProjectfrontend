@@ -189,7 +189,8 @@ const BookingDetails = () => {
   });
 
   const guestsCount = adults;
-  let perNightMeals = 0;
+
+let perNightMeals = 0;
 
   if (mealPlan === "ep") {
     perNightMeals =
@@ -210,8 +211,8 @@ const BookingDetails = () => {
   } else {
     perNightMeals = 0;
   }
-
-  const mealsCost = perNightMeals * nights * guestsCount;
+const mealsCost = perNightMeals * nights * adults;
+  // const mealsCost = perNightMeals * nights * guestsCount;
   const totalAmount = roomCost + extraBedCost + childrenCost + mealsCost;
 
   // const buildRoomSelection = () => {
@@ -453,7 +454,7 @@ const BookingDetails = () => {
                     ]
                       .filter(Boolean)
                       .join(", ")}{" "}
-                    × {guestsCount} guest(s)
+                    × {adults} adult(s)
                   </p>
                   <p className="text-sm">
                     BTN{" "}
