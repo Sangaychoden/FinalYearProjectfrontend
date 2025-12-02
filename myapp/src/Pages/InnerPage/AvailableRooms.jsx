@@ -320,69 +320,73 @@ const AvailableRooms = () => {
         <div className="Container">
           <div className="mt-20 grid items-center grid-cols-1 md:grid-cols-2 gap-8 md:gap-[40px]">
 
-            {availableRooms.length === 0 ? (
-              <div className="col-span-full text-center pt-10 pb-20 uppercase text-[#6B7280] text-lg sm:text-xl md:text-2xl lg:text-3xl">
-                No Rooms Available
-              </div>
-            ) : (
-              availableRooms.map((r, index) => (
-                <div
-                  key={index}
-                  className="overflow-hidden group cursor-pointer transform transition-all duration-500 
-                             hover:scale-105 hover:shadow-2xl bg-white border border-gray-200"
-                >
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={r.images?.[0] || "/images/home/room1.jpeg"}
-                      alt={r.roomType}
-                      className="w-full h-full object-cover transition-all duration-700 
-                                 group-hover:scale-110 group-hover:opacity-80"
-                    />
+{availableRooms.length === 0 ? (
+  <div className="col-span-full text-center pt-10 pb-20 uppercase text-[#6B7280] text-lg sm:text-xl md:text-2xl lg:text-3xl">
+    No Rooms Available
+  </div>
+) : (
+  availableRooms.map((r) => (
+    <div
+      key={r._id}
+      className="flex flex-col overflow-hidden group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:shadow-2xl bg-white border border-gray-200 h-full"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+    >
+      {/* Image & overlay */}
+      <div className="relative overflow-hidden flex-shrink-0">
+        <img
+          src={r.images?.[0] || "/images/home/room1.jpeg"}
+          alt={r.roomType}
+          className="w-full h-[250px] object-cover transition-all duration-700 group-hover:scale-110 group-hover:opacity-80"
+        />
+        <Link
+          to={`/room_details/${r._id}`}
+          state={{
+            room: r,
+            selectedInDate: formatDate(checkIn),
+            selectedOutDate: formatDate(checkOut),
+            adult,
+            children,
+            roomCount,
+          }}
+        >
+          <button className="flex items-center justify-center text-[15px] leading-[38px] bg-black bg-opacity-90 hover:bg-opacity-100 absolute bottom-0 -left-40 px-6 py-1 text-white group-hover:left-0 transition-all duration-500 z-10">
+            View Details
+            <BsArrowRight className="w-4 h-4 ml-2 text-white transition-transform duration-300 group-hover:translate-x-1" />
+          </button>
+        </Link>
+        <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-all duration-500" />
+      </div>
 
-                    <Link
-                      to={`/room_details/${r._id}`}
-                      state={{
-                        room: r,
-                        selectedInDate: formatDate(checkIn),
-                        selectedOutDate: formatDate(checkOut),
-                        adult,
-                        children,
-                        roomCount,
-                      }}
-                    >
-                      <button className="view-details-btn flex items-center justify-center text-[15px] 
-                                         leading-[38px] bg-black bg-opacity-90 hover:bg-opacity-100 
-                                         absolute bottom-0 -left-40 px-6 py-1 text-white group-hover:left-0 
-                                         transition-all duration-500 z-10">
-                        View Details <BsArrowRight className="w-4 h-4 ml-2 text-white" />
-                      </button>
-                    </Link>
-                  </div>
+      {/* Content */}
+      <div className="flex-1 flex flex-col justify-between">
+        <div className="border-t border-gray-200 flex-1 flex flex-col">
+          <div className="py-6 px-5 sm:px-6 md:px-8 lg:px-[30px] flex-1">
+            <h4 className="text-sm text-khaki uppercase font-semibold">{r.location}</h4>
+            <h2 className="text-2xl font-semibold text-black py-4 hover:text-khaki transition-colors duration-300">
+              {r.roomType}
+            </h2>
+            <p className="text-sm text-gray-800">
+              {r.size} SQ.FT | {r.occupancy} Guests
+            </p>
+            <p className="mt-2 text-[14px] text-gray-600">
+              <strong>{r.roomsAvailable ?? r.totalRooms ?? 0}</strong> rooms available
+            </p>
+          </div>
 
-                  <div className="font-inter border-t border-gray-200">
-                    <div className="py-6 px-5 sm:px-6 md:px-8 lg:px-[30px]">
-                      <h4 className="text-sm text-khaki uppercase font-semibold">{r.location}</h4>
-                      <h2 className="text-2xl font-semibold text-black py-4 hover:text-khaki transition">{r.roomType}</h2>
-                      <p className="text-sm text-gray-800">
-                        {r.size} SQ.FT | {r.occupancy} Guests
-                      </p>
-                      <p className="mt-2 text-[14px] text-gray-600">
-                        <strong>{r.roomsAvailable ?? r.totalRooms ?? 0}</strong> rooms available
-                      </p>
-                    </div>
-
-                    <div className="border-t border-gray-200 py-5 px-5 flex items-center justify-between">
-                      <span className="flex items-center text-gray-800">
-                        <FaBed className="text-gray-800 text-xl" />
-                        <span className="ml-[10px] font-medium">
-                          {r.beds} {r.beds > 1 ? "King Beds" : "King Bed"}
-                        </span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))
-            )}
+          <div className="border-t border-gray-200 py-5 px-5 flex items-center justify-between">
+            <span className="flex items-center text-gray-800">
+              <FaBed className="text-gray-800 text-xl" />
+              <span className="ml-[10px] font-medium">
+                {r.beds} {r.beds > 1 ? "King Beds" : "King Bed"}
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  ))
+)}
 
           </div>
         </div>
