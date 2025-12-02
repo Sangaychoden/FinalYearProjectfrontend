@@ -3438,7 +3438,7 @@ const totalAmount = totalPerNight * nights;
                       name="agencyName"
                       required
                       placeholder="Enter agency name"
-                      className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
+                      className="w-full border border-gray-300 -md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
                     />
                   </div>
 
@@ -3451,7 +3451,7 @@ const totalAmount = totalPerNight * nights;
                       name="agentName"
                       required
                       placeholder="Enter agent's full name"
-                      className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
+                      className="w-full border border-gray-300 -md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
                     />
                   </div>
 
@@ -3464,7 +3464,7 @@ const totalAmount = totalPerNight * nights;
                       name="agencyEmail"
                       required
                       placeholder="agency@example.com"
-                      className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
+                      className="w-full border border-gray-300 -md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
                     />
                   </div>
 
@@ -3481,7 +3481,7 @@ const totalAmount = totalPerNight * nights;
                         setSelectedCountry(country);
                         setSelectedPhoneCode(phoneCodes[idx] || "+975");
                       }}
-                      className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
+                      className="w-full border border-gray-300 -md px-3 py-2 mt-1 focus:ring-1 focus:ring-green-500 focus:outline-none"
                     >
                       {countries.map((country) => (
                         <option key={country} value={country}>
@@ -3500,7 +3500,7 @@ const totalAmount = totalPerNight * nights;
                         name="agencyPhoneCode"
                         value={selectedPhoneCode}
                         onChange={(e) => setSelectedPhoneCode(e.target.value)}
-                        className="flex-[1_1_30%] border border-gray-300 rounded-md px-2 py-2"
+                        className="flex-[1_1_30%] border border-gray-300 -md mt-1 px-2 py-2"
                       >
                         {phoneCodes.map((code) => (
                           <option key={code} value={code}>
@@ -3514,7 +3514,7 @@ const totalAmount = totalPerNight * nights;
                         name="agencyPhone"
                         required
                         placeholder="Enter agency phone number"
-                        className="flex-[2_1_65%] border border-gray-300 rounded-md px-3 py-2"
+                        className="flex-[2_1_65%] border border-gray-300 -md mt-1 px-3 py-2"
                       />
                     </div>
                   </div>
@@ -3533,7 +3533,7 @@ const totalAmount = totalPerNight * nights;
       <button
         type="button"
         onClick={() => updateRoomQuantity(Math.max(1, roomsQty - 1))}
-        className="px-1 py-1 text-2xl bg-gray-300 rounded hover:bg-gray-400 transition"
+        className="px-1 py-1 text-2xl bg-gray-300  hover:bg-gray-400 transition"
       >
         -
       </button>
@@ -3550,7 +3550,7 @@ const totalAmount = totalPerNight * nights;
       <button
         type="button"
         onClick={() => updateRoomQuantity(roomsQty + 1)}
-        className="px-1 py-1 text-2xl bg-gray-300 rounded hover:bg-gray-400 transition"
+        className="px-1 py-1 text-2xl bg-gray-300  hover:bg-gray-400 transition"
       >
         +
       </button>
