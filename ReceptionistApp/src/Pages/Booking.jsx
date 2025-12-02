@@ -1137,7 +1137,7 @@ const Booking = () => {
                     <>
                       <th className="px-4 py-3 text-left">Total</th>
                       <th className="px-4 py-3 text-left">Booked</th>
-                      <th className="px-4 py-3 text-left">Available</th>
+                      <th className="px-4 py-3 text-left ">Available</th>
                       <th className="px-4 py-3 text-left">Status</th>
                       <th className="px-4 py-3 text-left">Action</th>
                     </>
@@ -1178,13 +1178,13 @@ const Booking = () => {
                       <td className="px-4 py-3 text-left">{room.totalRooms}</td>
                       <td className="px-4 py-3 text-left">{room.bookedRooms}</td>
                       <td className="px-4 py-3 text-left">{room.availableRooms}</td>
-                      <td className="px-4 py-3 text-left text-[#009519]">
+                      <td className="px-4 py-3 text-left text-[#006600]">
                         AVAILABLE
                       </td>
 
                       <td className="px-4 py-3 text-left">
                         <button
-                          className="flex font-small hover:underline"
+                          className="flex font-small font-semibold hover:underline"
                           onClick={() =>
                             navigate("/booking-form/AVAILABLE", {
                               state: {
@@ -1215,17 +1215,17 @@ const Booking = () => {
                       </td>
 
                       <td
-                        className={`px-4 py-3 text-left font-semibold ${
+                        className={`px-4 py-3 text-left ${
                           booking.status === "pending"
-                            ? "text-yellow-600"
+                            ? "text-[#F59E0B]"
                             : booking.status === "confirmed"
-                            ? "text-green-700"
+                            ? "text-[#1D4ED8]"
                             : booking.status === "guaranteed"
-                            ? "text-blue-700"
+                            ? "text-[#8B008B]"
                             : booking.status === "checked_in"
-                            ? "text-[#009519]"
+                            ? "text-[#6A0DAD]"
                             : booking.status === "cancelled"
-                            ? "text-red-600"
+                            ? "text-[#CC0000]"
                             : "text-gray-600"
                         }`}
                       >
@@ -1241,7 +1241,7 @@ const Booking = () => {
                             onClick={() =>
                               navigate(`/booking-details/${booking._id}`)
                             }
-                            className="font-small hover:underline"
+                            className="font-small font-semibold hover:underline"
                           >
                              VIEW
                           </button>

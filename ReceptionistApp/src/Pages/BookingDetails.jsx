@@ -152,21 +152,30 @@ const BookingDetailsPage = () => {
       setBooking({ ...booking, assignedRoom: newRooms });
       setShowUpdate(false);
     } catch (err) {
-      Swal.fire({ icon: "error", title: "Failed", text: err.message });
+      Swal.fire({ icon: "error", title: "Failed", text: err.message,         
+        background: "#006600",
+        color: "white",
+        confirmButtonColor: "#008000",
+ });
     }
   };
 
   // Confirm booking
   const handleConfirmBooking = async () => {
-    const popup = await Swal.fire({
-      title: "Confirm Booking",
-      text: "Enter deposit transaction number:",
-      input: "text",
-      showCancelButton: true,
-      background: "#006600",
-      color: "white",
-      confirmButtonColor: "#008000",
-    });
+const popup = await Swal.fire({
+  title: "Confirm Booking",
+  text: "Enter deposit transaction number:",
+  input: "text",
+  inputAttributes: {
+    style: "color: black;", // makes the input text visible
+  },
+  showCancelButton: true,
+  background: "#006600",
+  color: "white",
+  confirmButtonColor: "#008000",
+  cancelButtonColor: "#CC0000",
+});
+
 
     if (!popup.isConfirmed) return;
 
@@ -192,21 +201,28 @@ const BookingDetailsPage = () => {
 
       navigate("/booking", { state: { activeTab: "BOOKED" } });
     } catch (err) {
-      Swal.fire({ icon: "error", title: "Error", text: err.message });
+      Swal.fire({ icon: "error", title: "Error", text: err.message,         background: "#006600",
+        color: "white",
+        confirmButtonColor: "#008000",
+});
     }
   };
 
   // Guarantee booking
   const handleGuaranteeBooking = async () => {
-    const popup = await Swal.fire({
-      title: "Guarantee Booking",
-      text: "Enter FULL payment transaction number:",
-      input: "text",
-      showCancelButton: true,
-      background: "#006600",
-      color: "white",
-      confirmButtonColor: "#008000",
-    });
+const popup = await Swal.fire({
+  title: "Guarantee Booking",
+  text: "Enter full payment transaction number:",
+  input: "text",
+  inputAttributes: {
+    style: "color: black;", // <-- sets input text color
+  },
+  showCancelButton: true,
+  background: "#006600",
+  color: "white",
+  confirmButtonColor: "#008000",
+  cancelButtonColor: "#CC0000",
+});
 
     if (!popup.isConfirmed) return;
 
@@ -232,22 +248,30 @@ const BookingDetailsPage = () => {
 
       navigate("/booking", { state: { activeTab: "BOOKED" } });
     } catch (err) {
-      Swal.fire({ icon: "error", title: "Failed", text: err.message });
+      Swal.fire({ icon: "error", title: "Failed", text: err.message,         background: "#006600",
+        color: "white",
+        confirmButtonColor: "#008000",
+ });
     }
   };
 
   // Check-in
   const handleCheckIn = async () => {
     if (booking.status === "confirmed") {
-      const popup = await Swal.fire({
-        title: "Check In?",
-        text: "Enter check-in transaction number:",
-        input: "text",
-        showCancelButton: true,
-        background: "#006600",
-        color: "white",
-        confirmButtonColor: "#008000",
-      });
+const popup = await Swal.fire({
+  title: "Check In",
+  text: "Enter check-in transaction number:",
+  input: "text",
+  inputAttributes: {
+    style: "color: black;", // makes typed text visible
+  },
+  showCancelButton: true,
+  background: "#006600",
+  color: "white",
+  confirmButtonColor: "#008000",
+  cancelButtonColor: "#CC0000",
+});
+
 
       if (!popup.isConfirmed) return;
     }
@@ -273,20 +297,29 @@ const BookingDetailsPage = () => {
 
       navigate("/booking", { state: { activeTab: "CHECKED IN" } });
     } catch (err) {
-      Swal.fire({ icon: "error", title: "Failed", text: err.message });
+      Swal.fire({ icon: "error", title: "Failed", text: err.message,         background: "#006600",
+        color: "white",
+        confirmButtonColor: "#008000",
+ });
     }
   };
 
   // Cancel booking
   const handleCancelBooking = async () => {
-    const popup = await Swal.fire({
-      title: booking.status === "pending" ? "Reject Booking" : "Cancel Booking",
-      text: "Enter the reason:",
-      input: "text",
-      showCancelButton: true,
-      background: "#006600",
-      color: "white",
-    });
+const popup = await Swal.fire({
+  title: booking.status === "pending" ? "Reject Booking" : "Cancel Booking",
+  text: "Enter the reason:",
+  input: "text",
+  inputAttributes: {
+    style: "color: black;", // makes typed text visible
+  },
+  showCancelButton: true,
+  background: "#006600",
+  color: "white",
+  confirmButtonColor: "#008000",
+  cancelButtonColor: "#CC0000",
+});
+
 
     if (!popup.value) return;
 
@@ -319,7 +352,10 @@ const BookingDetailsPage = () => {
         },
       });
     } catch (err) {
-      Swal.fire({ icon: "error", title: "Failed", text: err.message });
+      Swal.fire({ icon: "error", title: "Failed", text: err.message,         background: "#006600",
+        color: "white",
+        confirmButtonColor: "#008000",
+ });
     }
   };
 
@@ -338,7 +374,7 @@ const BookingDetailsPage = () => {
       <div className="p-6 text-center">
         <h2 className="text-xl font-semibold">Booking not found.</h2>
         <button
-          className="mt-4 px-4 py-2 bg-green-600 text-white rounded"
+          className="mt-4 px-4 py-2 bg-green-600 text-white "
           onClick={() => navigate(-1)}
         >
           Go Back
@@ -350,39 +386,51 @@ const BookingDetailsPage = () => {
   const created = booking.createdAt ? formatNiceDate(booking.createdAt) : "—";
 
   return (
-    <div className="min-h-screen bg-gray-100 px-4 py-10 flex justify-center">
-      <div className="w-full max-w-5xl bg-white shadow-xl rounded-xl p-10 border">
+    <div className="min-h-screen bg-gray-100 px-4 flex justify-center">
+      <div className="w-full max-w-5xl">
+        {/* BACK BUTTON - TOP RIGHT */}
+        <div className="mb-4 flex justify-end">
+          <button
+            onClick={() => navigate(-1)}
+            className="border border-gray-400 mb-1 text-gray-700 px-6 py-2  text-sm hover:bg-gray-50"
+          >
+            Back
+          </button>
+        </div>
 
-        {/* HEADER */}
-        <div className="flex justify-between items-start pb-6 border-b">
-          <div>
-            <h1 className="text-3xl font-bold text-[#006600]">
-              Booking #{booking.bookingNumber}
-            </h1>
-            <p className="text-gray-500 mt-1">Created on: {created}</p>
-          </div>
+        {/* MAIN CONTENT BOX */}
+        <div className="bg-white shadow-xl -xl p-10 border">
 
-          <div className="text-right">
+          {/* HEADER */}
+          <div className="flex justify-between items-start pb-6 border-b">
+            <div>
+              <h1 className="text-3xl font-bold text-[#006600]">
+                Booking #{booking.bookingNumber}
+              </h1>
+              <p className="text-gray-500 mt-1 mb-2">Created on: {created}</p>
+            </div>
+
+            <div className="text-right">
             <p className="font-semibold">
               Status: <span className="text-[#006600]">{booking.status.toUpperCase()}</span>
             </p>
 
             {booking.isAgencyBooking ? (
-              <p className="text-purple-700 font-semibold mt-1">Agency Booking</p>
+              <p className="text-[#0052CC] font-semibold mt-1">Agency Booking</p>
             ) : (
-              <p className="text-green-700 font-semibold mt-1">Guest Booking</p>
+              <p className="text-[#0052CC] font-semibold mt-1">Guest Booking</p>
             )}
 
 
             {booking.transactionNumber && (
-              <p className="text-gray-600 mt-1">Txn #: {booking.transactionNumber}</p>
+              <p className="text-gray-600 mt-1 font-semibold">Txn #: {booking.transactionNumber}</p>
             )}
           </div>
         </div>
 
         {/* GUEST OR AGENCY DETAILS */}
-        <div className="mt-8">
-          <h2 className="text-xl font-semibold text-[#006600] mb-4">
+        <div className="mt-6">
+          <h2 className="text-xl font-bold text-[#006600] mb-2">
             {booking.isAgencyBooking ? "Agency Details" : "Guest Details"}
           </h2>
 
@@ -422,8 +470,8 @@ const BookingDetailsPage = () => {
         </div>
 
         {/* EDIT ASSIGNED ROOM */}
-        <div className="mt-8">
-          <p className="font-semibold">Edit Assigned Room(s):</p>
+        <div className="mt-4">
+          <p className="font-bold">Edit Assigned Room(s):</p>
 
           {booking.status === "checked_in" || booking.status === "cancelled" ? (
             <p className="mt-1 text-gray-700">{booking.assignedRoom?.join(", ") || "—"}</p>
@@ -451,7 +499,7 @@ const BookingDetailsPage = () => {
 
         {/* ROOM DETAILS SECTION
         {selectedRoom && (
-          <div className="mt-8 p-5 border bg-gray-50 rounded-lg">
+          <div className="mt-8 p-5 border bg-gray-50 -lg">
             <h3 className="font-semibold text-[#006600] mb-2">Room Details</h3>
             <p>Type: {selectedRoom.roomType}</p>
             {selectedRoom.location && <p>Location: {selectedRoom.location}</p>}
@@ -461,49 +509,49 @@ const BookingDetailsPage = () => {
         )} */}
 
         {/* ROOMS TABLE */}
-        <div className="mt-12">
-          <h2 className="text-xl font-semibold text-[#006600] mb-4">Booked Rooms</h2>
+        <div className="mt-6">
+          <h2 className="text-xl font-bold text-[#006600] mb-4">Booked Rooms</h2>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-sm border border-gray-300 rounded-lg overflow-hidden">
-              <thead className="bg-[#006600] text-white">
+            <table className="w-full text-sm border-collapse border border-gray-300">
+              <thead className="bg-[#006600] text-white ">
                 <tr>
-                  <th className="px-4 py-3">Room</th>
-                  <th className="px-4 py-3 text-right">Qty</th>
-                  <th className="px-4 py-3">Occupancy</th>
-                  <th className="px-4 py-3">Meal Plan</th>
-                  <th className="px-4 py-3 text-right">Adults</th>
-                  <th className="px-4 py-3">Children</th>
-                  <th className="px-4 py-3 text-right">Extra Beds</th>
-                  <th className="px-4 py-3 text-right">Price/Night</th>
-                  <th className="px-4 py-3 text-right">Nights</th>
+                  <th className="border border-black font-semibold px-4 py-3">Room</th>
+                  <th className="border border-black font-semibold px-4 py-3 text-right">Qty</th>
+                  <th className="border border-black font-semibold px-4 py-3">Occupancy</th>
+                  <th className="border border-black font-semibold px-4 py-3">Meal Plan</th>
+                  <th className="border border-black font-semibold px-4 py-3 text-right">Adults</th>
+                  <th className="border border-black font-semibold px-4 py-3">Children</th>
+                  <th className="border border-black font-semibold px-4 py-3 text-right">Extra Beds</th>
+                  <th className="border border-black font-semibold px-4 py-3 text-right">Price/Night</th>
+                  <th className="border border-black font-semibold px-4 py-3 text-right">Nights</th>
                 </tr>
               </thead>
 
               <tbody>
                 {booking.rooms.map((r, idx) => (
-                  <tr key={idx} className="border-t bg-white">
-                    <td className="px-4 py-3">{r.roomType}</td>
-                    <td className="px-4 py-3 text-right">{r.quantity || 1}</td>
-                    <td className="px-4 py-3">{(r.occupancyType || []).join(", ")}</td>
-                    <td className="px-4 py-3">{mealPlanDisplay(r.mealPlan)}</td>
-                    <td className="px-4 py-3 text-right">{r.adults}</td>
-                    <td className="px-4 py-3">
+                  <tr key={idx} className="bg-white">
+                    <td className="border border-gray-300 px-4 py-3">{r.roomType}</td>
+                    <td className="border border-gray-300 px-4 py-3 text-right">{r.quantity || 1}</td>
+                    <td className="border border-gray-300 px-4 py-3">{(r.occupancyType || []).join(", ")}</td>
+                    <td className="border border-gray-300 px-4 py-3">{mealPlanDisplay(r.mealPlan)}</td>
+                    <td className="border border-gray-300 px-4 py-3 text-right">{r.adults}</td>
+                    <td className="border border-gray-300 px-4 py-3">
                       {(r.children || []).map((c) => c.age).join(", ") || "—"}
                     </td>
-                    <td className="px-4 py-3 text-right">{r.extraBeds}</td>
-                    <td className="px-4 py-3 text-right">Nu. {r.pricePerNight}</td>
-                    <td className="px-4 py-3 text-right">{nights}</td>
+                    <td className="border border-gray-300 px-4 py-3 text-right">{r.extraBeds}</td>
+                    <td className="border border-gray-300 px-4 py-3 text-right">Nu. {r.pricePerNight}</td>
+                    <td className="border border-gray-300 px-4 py-3 text-right">{nights}</td>
                   </tr>
                 ))}
               </tbody>
 
               <tfoot className="bg-gray-100">
                 <tr>
-                  <td colSpan={8} className="px-4 py-3 text-right font-semibold">
-                    Booking Total
+                  <td colSpan={8} className="px-4 py-3 text-right text-base font-semibold">
+                     Total Amount:
                   </td>
-                  <td className="px-4 py-3 text-right font-semibold text-[#006600]">
+                  <td className=" px-4 py-3 text-right text-base font-semibold text-[#006600]">
                     Nu. {booking.totalPrice}
                   </td>
                 </tr>
@@ -514,53 +562,54 @@ const BookingDetailsPage = () => {
 
         {/* CANCEL REASON */}
         {booking.status === "cancelled" && booking.cancelReason && (
-          <div className="mt-8 p-5 border bg-red-50 rounded-lg text-red-700">
-            <strong>Cancel Reason:</strong> {booking.cancelReason}
-          </div>
+<div className="mt-8 p-5 border bg-red-50 text-red-700">
+  <span className="font-semibold">Cancellation Reason:</span> {booking.cancelReason}
+</div>
+
         )}
 
-        {/* ACTION BUTTONS */}
-        <div className="mt-10 flex justify-center gap-4">
+{/* ACTION BUTTONS */}
+<div className="mt-10 flex justify-center gap-4">
 
-          {booking.status === "pending" && (
-            <button
-              onClick={handleConfirmBooking}
-              className="bg-[#006600] text-white px-6 py-3 rounded"
-            >
-              Deposit Confirmed
-            </button>
-          )}
+  {booking.status === "pending" && (
+    <button
+      onClick={handleConfirmBooking}
+      className="bg-[#006600] text-white px-6 py-2 w-52"
+    >
+      Deposit Booking
+    </button>
+  )}
 
-          {(booking.status === "pending" || booking.status === "confirmed") && (
-            <button
-              onClick={handleGuaranteeBooking}
-              className="bg-blue-700 text-white px-6 py-3 rounded"
-            >
-              Full Payment Confirmed
-            </button>
-          )}
+  {(booking.status === "pending" || booking.status === "confirmed") && (
+    <button
+      onClick={handleGuaranteeBooking}
+      className="bg-[#0052CC] text-white px-6 py-2 w-52"
+    >
+      Full Payment Booking
+    </button>
+  )}
 
-          {(booking.status === "pending" || booking.status === "confirmed") && (
-            <button
-              onClick={handleCancelBooking}
-              className="bg-red-600 text-white px-6 py-3 rounded"
-            >
-              {booking.status === "pending" ? "Reject Booking" : "Cancel Booking"}
-            </button>
-          )}
+  {(booking.status === "pending" || booking.status === "confirmed") && (
+    <button
+      onClick={handleCancelBooking}
+      className="bg-[#CC0000] text-white px-6 py-2 w-52"
+    >
+      {booking.status === "pending" ? "Reject Booking" : "Cancel Booking"}
+    </button>
+  )}
 
-          {(booking.status === "confirmed" || booking.status === "guaranteed") && (
-            <button
-              onClick={handleCheckIn}
-              className="bg-purple-700 text-white px-6 py-3 rounded"
-            >
-              Check In
-            </button>
-          )}
-        </div>
-
-      </div>
-    </div>
+  {(booking.status === "confirmed" || booking.status === "guaranteed") && (
+    <button
+      onClick={handleCheckIn}
+      className="bg-[#6A0DAD] text-white px-6 py-2 w-52"
+    >
+      Check In
+    </button>
+  )}
+</div>
+</div>  
+</div>  
+</div>  
   );
 };
 
