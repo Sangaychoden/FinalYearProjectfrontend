@@ -262,30 +262,23 @@ const totalAmount = totalPerNight * nights;
     const selectedMealsList = Object.entries(mealsSelected)
       .filter(([, checked]) => checked)
       .map(([key]) => key);
-
-    const bookingRequest = {
+      const bookingRequest = {
   isAgencyBooking,
 
-  // 🌟 NORMAL GUEST FIELDS
+  // Guest fields
   firstName: !isAgencyBooking ? formData.get("firstName") : undefined,
   lastName: !isAgencyBooking ? formData.get("lastName") : undefined,
-  email: !isAgencyBooking ? formData.get("email") : undefined,
-  country: !isAgencyBooking ? formData.get("country") : undefined,
-  phone: !isAgencyBooking
-    ? selectedPhoneCode + (formData.get("phone") || "")
-    : undefined,
 
-  // 🌟 AGENCY FIELDS — map into backend-expected fields
+  // Agency fields
   agencyName: isAgencyBooking ? formData.get("agencyName") : undefined,
   agentName: isAgencyBooking ? formData.get("agentName") : undefined,
 
-  // backend only expects "email" and "phone"
-  email: isAgencyBooking ? formData.get("agencyEmail") : bookingRequest?.email,
+  // CONTACT INFO (UNIFIED — no circular reference)
+  email: isAgencyBooking ? formData.get("agencyEmail") : formData.get("email"),
   phone: isAgencyBooking
     ? selectedPhoneCode + (formData.get("agencyPhone") || "")
-    : bookingRequest?.phone,
-
-  country: isAgencyBooking ? formData.get("agencyCountry") : bookingRequest?.country,
+    : selectedPhoneCode + (formData.get("phone") || ""),
+  country: isAgencyBooking ? formData.get("agencyCountry") : formData.get("country"),
 
   // Dates
   checkIn: bookingData.checkIn
@@ -308,6 +301,53 @@ const totalAmount = totalPerNight * nights;
   specialRequest: formData.get("specialRequest") || "",
   totalAmount,
 };
+
+
+//     const bookingRequest = {
+//   isAgencyBooking,
+
+//   // 🌟 NORMAL GUEST FIELDS
+//   firstName: !isAgencyBooking ? formData.get("firstName") : undefined,
+//   lastName: !isAgencyBooking ? formData.get("lastName") : undefined,
+//   email: !isAgencyBooking ? formData.get("email") : undefined,
+//   country: !isAgencyBooking ? formData.get("country") : undefined,
+//   phone: !isAgencyBooking
+//     ? selectedPhoneCode + (formData.get("phone") || "")
+//     : undefined,
+
+//   // 🌟 AGENCY FIELDS — map into backend-expected fields
+//   agencyName: isAgencyBooking ? formData.get("agencyName") : undefined,
+//   agentName: isAgencyBooking ? formData.get("agentName") : undefined,
+
+//   // backend only expects "email" and "phone"
+//   email: isAgencyBooking ? formData.get("agencyEmail") : bookingRequest?.email,
+//   phone: isAgencyBooking
+//     ? selectedPhoneCode + (formData.get("agencyPhone") || "")
+//     : bookingRequest?.phone,
+
+//   country: isAgencyBooking ? formData.get("agencyCountry") : bookingRequest?.country,
+
+//   // Dates
+//   checkIn: bookingData.checkIn
+//     ? new Date(bookingData.checkIn).toISOString().split("T")[0]
+//     : null,
+//   checkOut: bookingData.checkOut
+//     ? new Date(bookingData.checkOut).toISOString().split("T")[0]
+//     : null,
+
+//   // Rooms
+//   roomSelection: buildRoomSelection(),
+//   mealPlan,
+//   occupancyType: occupancyArray,
+//   adults,
+//   children,
+//   childrenAges,
+//   extraBed,
+
+//   meals: selectedMealsList,
+//   specialRequest: formData.get("specialRequest") || "",
+//   totalAmount,
+// };
 
     const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
