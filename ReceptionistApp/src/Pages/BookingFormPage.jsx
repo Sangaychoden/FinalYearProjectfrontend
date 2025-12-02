@@ -520,9 +520,9 @@
 // // // //           }}
 // // // //           className="relative select-none cursor-pointer"
 // // // //         >
-// // // //           <div className="w-56 h-12 bg-gray-200 p-1 shadow-inner relative rounded-full">
+// // // //           <div className="w-56 h-12 bg-gray-200 p-1 shadow-inner relative -full">
 // // // //             <div
-// // // //               className={`absolute top-1 left-1 h-10 w-1/2 rounded-full bg-white shadow transition-transform duration-200 ${
+// // // //               className={`absolute top-1 left-1 h-10 w-1/2 -full bg-white shadow transition-transform duration-200 ${
 // // // //                 isAgencyBooking ? "translate-x-full" : ""
 // // // //               }`}
 // // // //             />
@@ -1574,9 +1574,9 @@
 // // //           }}
 // // //           className="relative select-none cursor-pointer"
 // // //         >
-// // //           <div className="w-56 h-12 bg-gray-200 p-1 shadow-inner relative rounded-full">
+// // //           <div className="w-56 h-12 bg-gray-200 p-1 shadow-inner relative -full">
 // // //             <div
-// // //               className={`absolute top-1 left-1 h-10 w-1/2 rounded-full bg-white shadow transition-transform duration-200 ${
+// // //               className={`absolute top-1 left-1 h-10 w-1/2 -full bg-white shadow transition-transform duration-200 ${
 // // //                 isAgencyBooking ? "translate-x-full" : ""
 // // //               }`}
 // // //             />
@@ -2737,9 +2737,9 @@
 // //           }}
 // //           className="relative select-none cursor-pointer"
 // //         >
-// //           <div className="w-56 h-12 bg-gray-200 p-1 shadow-inner relative rounded-full">
+// //           <div className="w-56 h-12 bg-gray-200 p-1 shadow-inner relative -full">
 // //             <div
-// //               className={`absolute top-1 left-1 h-10 w-1/2 rounded-full bg-white shadow transition-transform duration-200 ${
+// //               className={`absolute top-1 left-1 h-10 w-1/2 -full bg-white shadow transition-transform duration-200 ${
 // //                 isAgencyBooking ? "translate-x-full" : ""
 // //               }`}
 // //             />
@@ -3911,9 +3911,9 @@
 //           }}
 //           className="relative select-none cursor-pointer"
 //         >
-//           <div className="w-56 h-12 bg-gray-200 p-1 shadow-inner relative rounded-full">
+//           <div className="w-56 h-12 bg-gray-200 p-1 shadow-inner relative -full">
 //             <div
-//               className={`absolute top-1 left-1 h-10 w-1/2 rounded-full bg-white shadow transition-transform duration-200 ${
+//               className={`absolute top-1 left-1 h-10 w-1/2 -full bg-white shadow transition-transform duration-200 ${
 //                 isAgencyBooking ? "translate-x-full" : ""
 //               }`}
 //             />
@@ -4621,6 +4621,7 @@ export default function BookingForm() {
 
     const load = async () => {
       try {
+          console.log("✅ All validations passed, sending payload:", payload);
         const res = await fetch(
           `${API_URL}/rooms/room-types/${encodeURIComponent(selectedRoomType)}`,
           { credentials: "include" }
@@ -4708,28 +4709,6 @@ export default function BookingForm() {
   }, [selectedRoomType, checkInDate, checkOutDate]);
 
   // validation helper
-  const validateField = (field, value) => {
-    let msg = "";
-    switch (field) {
-      case "firstName":
-      case "lastName":
-        if (!isAgencyBooking && !value?.toString().trim()) msg = "Required.";
-        break;
-      case "email":
-        if (!isAgencyBooking) {
-          if (!value?.toString().trim()) msg = "Required.";
-          else if (!/^\S+@\S+\.\S+$/.test(value)) msg = "Invalid email.";
-        }
-        break;
-      case "checkInDate":
-      case "checkOutDate":
-        if (!value) msg = "Required.";
-        break;
-      default:
-        msg = "";
-    }
-    setErrors((p) => ({ ...p, [field]: msg }));
-  };
 
   const calcNights = (from, to) => {
     if (!from || !to) return 1;
@@ -4926,18 +4905,197 @@ export default function BookingForm() {
     return `${yyyy}-${mm}-${dd}`;
   };
 
+    // ---------------------- VALIDATION ----------------------
+  const validateField = (fieldName, value) => {
+    const newErrors = { ...errors };
+    
+    switch (fieldName) {
+      case "firstName":
+        if (!isAgencyBooking && !value?.trim()) {
+          newErrors.firstName = "First name is required";
+        } else {
+          delete newErrors.firstName;
+        }
+        break;
+      case "lastName":
+        if (!isAgencyBooking && !value?.trim()) {
+          newErrors.lastName = "Last name is required";
+        } else {
+          delete newErrors.lastName;
+        }
+        break;
+      case "agencyName":
+        if (isAgencyBooking && !value?.trim()) {
+          newErrors.agencyName = "Agency name is required";
+        } else {
+          delete newErrors.agencyName;
+        }
+        break;
+      case "agentName":
+        if (isAgencyBooking && !value?.trim()) {
+          newErrors.agentName = "Agent name is required";
+        } else {
+          delete newErrors.agentName;
+        }
+        break;
+      case "email":
+        if (!value?.trim()) {
+          newErrors.email = "Email is required";
+        } else if (!/^\S+@\S+\.\S+$/.test(value)) {
+          newErrors.email = "Invalid email format";
+        } else {
+          delete newErrors.email;
+        }
+        break;
+      case "phone":
+        if (!value?.trim()) {
+          newErrors.phone = "Phone number is required";
+        } else if (!/^[0-9]{7,15}$/.test(value.replace(/\D/g, ''))) {
+          newErrors.phone = "Invalid phone number (7-15 digits)";
+        } else {
+          delete newErrors.phone;
+        }
+        break;
+      case "journalNumber":
+        if (!value?.trim()) {
+          newErrors.journalNumber = "Journal number is required";
+        } else {
+          delete newErrors.journalNumber;
+        }
+        break;
+      case "checkInDate":
+        if (!value) {
+          newErrors.checkInDate = "Check-in date is required";
+        } else {
+          delete newErrors.checkInDate;
+        }
+        // Also check checkout if it exists
+        if (value && checkOutDate && checkOutDate <= value) {
+          newErrors.checkOutDate = "Check-out must be after check-in";
+        }
+        break;
+      case "checkOutDate":
+        if (!value) {
+          newErrors.checkOutDate = "Check-out date is required";
+        } else if (checkInDate && value <= checkInDate) {
+          newErrors.checkOutDate = "Check-out must be after check-in";
+        } else {
+          delete newErrors.checkOutDate;
+        }
+        break;
+      case "roomSelection":
+        if (availableRooms.length > 0) {
+          const assignedRooms = selectedRoomNos.filter(room => room && room.trim());
+          if (assignedRooms.length !== roomsRequested) {
+            newErrors.roomSelection = `Please select ${roomsRequested} room number(s)`;
+          } else {
+            delete newErrors.roomSelection;
+          }
+        }
+        break;
+      default:
+        break;
+    }
+    
+    setErrors(newErrors);
+  };
+
+  // Live validation effects for individual fields
+  useEffect(() => {
+    validateField("firstName", firstName);
+  }, [firstName]);
+
+  useEffect(() => {
+    validateField("lastName", lastName);
+  }, [lastName]);
+
+  useEffect(() => {
+    validateField("agencyName", agencyName);
+  }, [agencyName]);
+
+  useEffect(() => {
+    validateField("agentName", agentName);
+  }, [agentName]);
+
+  useEffect(() => {
+    validateField("email", email);
+  }, [email]);
+
+  useEffect(() => {
+    validateField("phone", phone);
+  }, [phone]);
+
+  useEffect(() => {
+    validateField("journalNumber", journalInput);
+  }, [journalInput]);
+
+  useEffect(() => {
+    validateField("checkInDate", checkInDate);
+  }, [checkInDate]);
+
+  useEffect(() => {
+    validateField("checkOutDate", checkOutDate);
+  }, [checkOutDate, checkInDate]);
+
+  useEffect(() => {
+    validateField("roomSelection", null);
+  }, [selectedRoomNos, roomsRequested, availableRooms]);
+
+
   const submitBooking = async (status) => {
+      console.log("🟡 submitBooking called with status:", status);
+    // Validate all fields on submit
     validateField("firstName", firstName);
     validateField("lastName", lastName);
+    validateField("agencyName", agencyName);
+    validateField("agentName", agentName);
     validateField("email", email);
+    validateField("phone", phone);
+    validateField("journalNumber", journalInput);
     validateField("checkInDate", checkInDate);
     validateField("checkOutDate", checkOutDate);
+    validateField("roomSelection", null);
 
-    const assigned = selectedRoomNos.filter((x) => x && x.trim());
-    if (availableRooms.length && assigned.length !== roomsRequested) {
-      Swal.fire("Error", `Please select ${roomsRequested} room number(s).`, "error");
+    // Check if there are any errors
+    const newErrors = {};
+    if (!checkInDate) newErrors.checkInDate = "Check-in date is required";
+    if (!checkOutDate) newErrors.checkOutDate = "Check-out date is required";
+    if (checkInDate && checkOutDate && checkOutDate <= checkInDate) {
+      newErrors.checkOutDate = "Check-out must be after check-in";
+    }
+    if (!journalInput.trim()) {
+      newErrors.journalNumber = "Journal number is required";
+    }
+    if (!email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+      newErrors.email = "Invalid email format";
+    }
+    if (!phone.trim()) {
+      newErrors.phone = "Phone number is required";
+    } else if (!/^[0-9]{7,15}$/.test(phone.replace(/\D/g, ''))) {
+      newErrors.phone = "Invalid phone number (7-15 digits)";
+    }
+    if (isAgencyBooking) {
+      if (!agencyName.trim()) newErrors.agencyName = "Agency name is required";
+      if (!agentName.trim()) newErrors.agentName = "Agent name is required";
+    } else {
+      if (!firstName.trim()) newErrors.firstName = "First name is required";
+      if (!lastName.trim()) newErrors.lastName = "Last name is required";
+    }
+    if (availableRooms.length > 0) {
+      const assignedRooms = selectedRoomNos.filter(room => room && room.trim());
+      if (assignedRooms.length !== roomsRequested) {
+        newErrors.roomSelection = `Please select ${roomsRequested} room number(s)`;
+      }
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+        console.log("❌ Validation errors found:", newErrors);
+      setErrors(newErrors);
       return;
     }
+    
 
     // const payload = {
     //   isAgencyBooking,
@@ -5013,7 +5171,7 @@ const payload = {
       roomType: selectedRoomType,
       roomsRequested,
       occupancyType: occupancyTypes,
-      adults: Number(adults),
+      adults: Number(baseAdults) + Number(convertedFromChildren),
       childrenAges: childAges,
       extraBed: extraBeds,
       mealPlan,
@@ -5022,7 +5180,7 @@ const payload = {
 
   selectedMeals: meals.length ? meals : undefined,
   specialRequest,
-  assignedRoom: assigned.length ? assigned : undefined,
+  assignedRoom: selectedRoomNos.length ? selectedRoomNos : undefined,
   journalNumber: journalInput || undefined,
 
   calculatedPricing: perNightBreakdown,
@@ -5096,36 +5254,37 @@ const payload = {
         </button>
       </div>
 
-      {/* ---------------- Agency Switch ---------------- */}
-      <div className="flex justify-center mb-6">
-        <div
-          role="switch"
-          aria-checked={isAgencyBooking}
-          onClick={() => {
-            setIsAgencyBooking((p) => !p);
-            setErrors({});
-          }}
-          className="relative select-none cursor-pointer"
-        >
-          <div className="w-56 h-12 bg-gray-200 p-1 shadow-inner relative rounded-full">
-            <div
-              className={`absolute top-1 left-1 h-10 w-1/2 rounded-full bg-white shadow transition-transform duration-200 ${
-                isAgencyBooking ? "translate-x-full" : ""
-              }`}
-            />
-            <div className="absolute inset-0 flex items-center justify-between px-4 pointer-events-none">
-              <span
-                className={!isAgencyBooking ? "text-[#006600]" : "text-gray-500"}
-              >
-                NORMAL
-              </span>
-              <span
-                className={isAgencyBooking ? "text-[#006600]" : "text-gray-500"}
-              >
-                AGENCY
-              </span>
-            </div>
-          </div>
+      {/* ---------------- Agency/Guest Toggle ---------------- */}
+      <div className="flex justify-center mb-3 mt-6">
+        <div className="flex mb-5 border border-gray-300 w-full max-w-md">
+          <button
+            type="button"
+            className={`flex-1 py-2 font-medium ${
+              !isAgencyBooking
+                ? "bg-[#006600] text-white"
+                : "bg-gray-100 text-gray-700"
+            }`}
+            onClick={() => {
+              setIsAgencyBooking(false);
+              setErrors({});
+            }}
+          >
+            Guest
+          </button>
+          <button
+            type="button"
+            className={`flex-1 py-2 font-medium ${
+              isAgencyBooking
+                ? "bg-[#006600] text-white"
+                : "bg-gray-100 text-gray-700"
+            }`}
+            onClick={() => {
+              setIsAgencyBooking(true);
+              setErrors({});
+            }}
+          >
+            Travel Agency
+          </button>
         </div>
       </div>
 
@@ -5142,21 +5301,23 @@ const payload = {
             </div>
           </div>
 
-          {/* Check-In */}
-          <div className="relative mt-4" ref={datePickerRef}>
-            <label className="font-semibold">Check-In:</label>
-            <div
-              onClick={(e) => {
-                e.stopPropagation();
-                setOpenDatePickerFor(
-                  openDatePickerFor === "checkin" ? null : "checkin"
-                );
-              }}
-              className="mt-1 w-full border px-3 py-3 flex justify-between cursor-pointer"
-            >
-              <span>{formatDate(checkInDate)}</span>
-              <Calendar />
-            </div>
+<div className="relative mt-4" ref={datePickerRef}>
+  <label className="font-semibold">Check-In:</label>
+  <div
+    onClick={(e) => {
+      e.stopPropagation();
+      setOpenDatePickerFor(
+        openDatePickerFor === "checkin" ? null : "checkin"
+      );
+    }}
+    className={`mt-1 w-full border px-3 py-3 flex justify-between cursor-pointer ${errors.checkInDate ? 'border-red-500' : ''}`}
+  >
+    <span>{formatDate(checkInDate)}</span>
+    <Calendar />
+  </div>
+  {errors.checkInDate && (
+    <p className="text-red-500 text-sm mt-1">{errors.checkInDate}</p>
+  )}
 
             {openDatePickerFor === "checkin" && (
               <div className="absolute z-50 mt-2">
@@ -5184,11 +5345,14 @@ const payload = {
                   openDatePickerFor === "checkout" ? null : "checkout"
                 );
               }}
-              className="mt-1 w-full border px-3 py-3 flex justify-between cursor-pointer"
+              className={`mt-1 w-full border px-3 py-3 flex justify-between cursor-pointer ${errors.checkOutDate ? 'border-red-500' : ''}`}
             >
               <span>{formatDate(checkOutDate)}</span>
               <Calendar />
             </div>
+            {errors.checkOutDate && (
+              <p className="text-red-500 text-sm mt-1">{errors.checkOutDate}</p>
+            )}
 
             {openDatePickerFor === "checkout" && (
               <div className="absolute z-50 mt-2">
@@ -5235,6 +5399,9 @@ const payload = {
                   </div>
                 ))}
 
+{errors.roomSelection && (
+  <p className="text-red-500 text-sm mt-2">{errors.roomSelection}</p>
+)}
                 {!availableRooms.length && (
                   <p className="text-sm text-gray-600 mt-1">
                     No rooms available for these dates / type.
@@ -5275,16 +5442,16 @@ const payload = {
           {/* Children */}
           <div className="mt-3">
             <label className="font-semibold">Children (under 12):</label>
-            <div className="flex gap-3 mt-1">
+            <div className="mt-1">
               <input
                 type="number"
                 min="0"
                 value={childrenCount}
                 onChange={(e) => handleChildrenCountChange(Math.max(0, parseInt(e.target.value || 0)))}
-                className="border px-3 py-2 w-24"
+                className="border px-3 py-2 w-full"
               />
 
-              <div className="flex-1">
+              <div className="mt-3">
                 {Array.from({ length: childrenCount }).map((_, idx) => (
                   <div key={idx} className="mt-2">
                     <label className="text-sm">Child {idx + 1} age</label>
@@ -5314,8 +5481,8 @@ const payload = {
             <label className="font-semibold">Occupancy Type (per room):</label>
             <div className="mt-1 grid grid-cols-1 gap-2">
               {Array.from({ length: roomsRequested }).map((_, i) => (
-                <div key={i} className="flex items-center gap-2">
-                  <div className="w-24">Room {i + 1}</div>
+                <div key={i} className="flex items-center justify-between">
+                  <div>Room {i + 1}</div>
                   <select
                     value={occupancyTypes[i] || "double"}
                     onChange={(e) => {
@@ -5323,7 +5490,7 @@ const payload = {
                       arr[i] = e.target.value;
                       setOccupancyTypes(arr);
                     }}
-                    className="border px-3 py-2"
+                    className="border px-3 py-2 w-36"
                   >
                     <option value="single">Single</option>
                     <option value="double">Double</option>
@@ -5376,39 +5543,39 @@ const payload = {
           <div className="mt-4 border-t pt-3">
             <p className="font-semibold">Summary</p>
             <div className="mt-2 text-sm">
-              <div className="flex justify-between">
+              <div className="flex justify-between mb-1">
                 <span>Room(s) per night</span>
                 <span>Nu. {perNightBreakdown.baseRooms.toFixed(2)}</span>
               </div>
 
-              <div className="flex justify-between">
+              <div className="flex justify-between mb-1">
                 <span>Children total / night</span>
                 <span>Nu. {perNightBreakdown.childrenTotal.toFixed(2)}</span>
               </div>
 
-              <div className="flex justify-between">
+              <div className="flex justify-between mb-1">
                 <span>Extra beds / night</span>
                 <span>Nu. {perNightBreakdown.extraBeds.toFixed(2)}</span>
               </div>
 
-              <div className="flex justify-between">
+              <div className="flex justify-between mb-1">
                 <span>Meals / night</span>
                 <span>Nu. {perNightBreakdown.mealsTotal.toFixed(2)}</span>
               </div>
 
-              <hr className="my-2" />
+              <hr className="my-4" />
 
               <div className="flex justify-between font-bold">
                 <span>Total per night</span>
                 <span>Nu. {perNightBreakdown.grandPerNight.toFixed(2)}</span>
               </div>
 
-              <div className="flex justify-between mt-1">
+              <div className="flex justify-between mt-2">
                 <span>Length (nights)</span>
                 <span>{perNightBreakdown.nights}</span>
               </div>
 
-              <div className="flex justify-between mt-2 text-xl font-extrabold">
+              <div className="flex justify-between mt-4 mb-2 text-xl font-bold">
                 <span>Grand total</span>
                 <span>Nu. {perNightBreakdown.grandTotal.toFixed(2)}</span>
               </div>
@@ -5418,44 +5585,48 @@ const payload = {
 
         {/* ---------------- RIGHT PANEL ---------------- */}
         <div className="bg-white shadow p-4">
-          <h2 className="text-xl font-bold mb-3 py-2">Guest / Agency Information</h2>
+          <h2 className="text-xl font-bold mb-3 py-2">{isAgencyBooking ? "Agency Information" : "Guest Information"}</h2>
 
           {/* ---------------- AGENCY MODE ---------------- */}
           {isAgencyBooking ? (
             <>
               {/* Agency Name */}
-              <div>
-                <label className="font-semibold">Agency Name:</label>
-                <input
-                  type="text"
-                  value={agencyName}
-                  onChange={(e) => setAgencyName(e.target.value)}
-                  className="mt-1 border px-3 py-2 w-full"
-                />
-              </div>
-
-              {/* Agent Name */}
-              <div className="mt-3">
-                <label className="font-semibold">Agent Name:</label>
-                <input
-                  type="text"
-                  value={agentName}
-                  onChange={(e) => setAgentName(e.target.value)}
-                  className="mt-1 border px-3 py-2 w-full"
-                />
-              </div>
-
-              {/* Agent Email */}
-              <div className="mt-3">
-                <label className="font-semibold">Agent Email:</label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="mt-1 border px-3 py-2 w-full"
-                />
-              </div>
-
+<div>
+  <label className="font-semibold">Agency Name:</label>
+  <input
+    type="text"
+    value={agencyName}
+    onChange={(e) => setAgencyName(e.target.value)}
+    className={`mt-1 border px-3 py-2 w-full ${errors.agencyName ? 'border-red-500' : ''}`}
+  />
+  {errors.agencyName && (
+    <p className="text-red-500 text-sm mt-1">{errors.agencyName}</p>
+  )}
+</div>
+<div className="mt-3">
+  <label className="font-semibold">Agent Name:</label>
+  <input
+    type="text"
+    value={agentName}
+    onChange={(e) => setAgentName(e.target.value)}
+    className={`mt-1 border px-3 py-2 w-full ${errors.agentName ? 'border-red-500' : ''}`}
+  />
+  {errors.agentName && (
+    <p className="text-red-500 text-sm mt-1">{errors.agentName}</p>
+  )}
+</div>
+<div className="mt-3">
+  <label className="font-semibold">Email:</label>
+  <input
+    type="email"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+    className={`mt-1 border px-3 py-2 w-full ${errors.email ? 'border-red-500' : ''}`}
+  />
+  {errors.email && (
+    <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+  )}
+</div>
               {/* Agent Country */}
               <div className="mt-3">
                 <label className="font-semibold">Country:</label>
@@ -5477,28 +5648,31 @@ const payload = {
                 </select>
               </div>
 
-              {/* Agent Phone */}
-              <div className="flex gap-2 mt-3">
-                <div className="w-32">
-                  <label>Code</label>
-                  <input
-                    readOnly
-                    value={phoneCode}
-                    className="mt-1 bg-gray-100 border px-3 py-2 w-full"
-                  />
-                </div>
+<div className="flex gap-2 mt-3">
+  <div className="w-32">
+    <label>Code</label>
+    <input
+      readOnly
+      value={phoneCode}
+      className="mt-1 bg-gray-100 border px-3 py-2 w-full"
+    />
+  </div>
 
-                <div className="flex-1">
-                  <label>Phone</label>
-                  <input
-                    type="text"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="mt-1 border px-3 py-2 w-full"
-                  />
-                </div>
-              </div>
+  <div className="flex-1">
+    <label>Phone</label>
+    <input
+      type="text"
+      value={phone}
+      onChange={(e) => setPhone(e.target.value)}
+      className={`mt-1 border px-3 py-2 w-full ${errors.phone ? 'border-red-500' : ''}`}
+    />
+    {errors.phone && (
+      <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+    )}
+  </div>
+</div>
             </>
+            
           ) : (
             <>
               {/* ---------------- NORMAL GUEST MODE ---------------- */}
@@ -5510,12 +5684,11 @@ const payload = {
                   value={firstName}
                   onChange={(e) => {
                     setFirstName(e.target.value);
-                    validateField("firstName", e.target.value);
                   }}
-                  className="mt-1 border px-3 py-2 w-full"
+                  className={`mt-1 border px-3 py-2 w-full ${errors.firstName ? 'border-red-500' : ''}`}
                 />
                 {errors.firstName && (
-                  <p className="text-red-500 text-sm">{errors.firstName}</p>
+                  <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>
                 )}
               </div>
 
@@ -5526,31 +5699,26 @@ const payload = {
                   value={lastName}
                   onChange={(e) => {
                     setLastName(e.target.value);
-                    validateField("lastName", e.target.value);
                   }}
-                  className="mt-1 border px-3 py-2 w-full"
+                  className={`mt-1 border px-3 py-2 w-full ${errors.lastName ? 'border-red-500' : ''}`}
                 />
                 {errors.lastName && (
-                  <p className="text-red-500 text-sm">{errors.lastName}</p>
+                  <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>
                 )}
               </div>
 
-              <div className="mt-3">
-                <label className="font-semibold">Email:</label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    validateField("email", e.target.value);
-                  }}
-                  className="mt-1 border px-3 py-2 w-full"
-                />
-                {errors.email && (
-                  <p className="text-red-500 text-sm">{errors.email}</p>
-                )}
-              </div>
-
+<div className="mt-3">
+  <label className="font-semibold">Email:</label>
+  <input
+    type="email"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+    className={`mt-1 border px-3 py-2 w-full ${errors.email ? 'border-red-500' : ''}`}
+  />
+  {errors.email && (
+    <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+  )}
+</div>
               {/* Country */}
               <div className="mt-3">
                 <label className="font-semibold">Country:</label>
@@ -5572,27 +5740,29 @@ const payload = {
                 </select>
               </div>
 
-              {/* Phone */}
-              <div className="flex gap-2 mt-3">
-                <div className="w-32">
-                  <label>Code</label>
-                  <input
-                    readOnly
-                    value={phoneCode}
-                    className="mt-1 bg-gray-100 border px-3 py-2 w-full"
-                  />
-                </div>
+<div className="flex gap-2 mt-3">
+  <div className="w-32">
+    <label>Code</label>
+    <input
+      readOnly
+      value={phoneCode}
+      className="mt-1 bg-gray-100 border px-3 py-2 w-full"
+    />
+  </div>
 
-                <div className="flex-1">
-                  <label>Phone</label>
-                  <input
-                    type="text"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="mt-1 border px-3 py-2 w-full"
-                  />
-                </div>
-              </div>
+  <div className="flex-1">
+    <label>Phone</label>
+    <input
+      type="text"
+      value={phone}
+      onChange={(e) => setPhone(e.target.value)}
+      className={`mt-1 border px-3 py-2 w-full ${errors.phone ? 'border-red-500' : ''}`}
+    />
+    {errors.phone && (
+      <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+    )}
+  </div>
+</div>
             </>
           )}
 
@@ -5669,8 +5839,11 @@ const payload = {
               type="text"
               value={journalInput}
               onChange={(e) => setJournalInput(e.target.value)}
-              className="mt-1 border px-3 py-2 w-full"
+              className={`mt-1 border px-3 py-2 w-full ${errors.journalNumber ? 'border-red-500' : ''}`}
             />
+            {errors.journalNumber && (
+              <p className="text-red-500 text-sm mt-1">{errors.journalNumber}</p>
+            )}
           </div>
 
           {/* Special Request */}
@@ -5701,8 +5874,11 @@ const payload = {
               Guaranteed Booking
             </button>
           </div>
+          
         </div>
+        
       </form>
     </div>
+    
   );
 }
