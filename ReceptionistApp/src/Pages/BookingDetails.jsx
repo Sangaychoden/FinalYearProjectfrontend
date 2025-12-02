@@ -449,7 +449,7 @@ const BookingDetailsPage = () => {
           )}
         </div>
 
-        {/* ROOM DETAILS SECTION */}
+        {/* ROOM DETAILS SECTION
         {selectedRoom && (
           <div className="mt-8 p-5 border bg-gray-50 rounded-lg">
             <h3 className="font-semibold text-[#006600] mb-2">Room Details</h3>
@@ -458,7 +458,7 @@ const BookingDetailsPage = () => {
             {selectedRoom.size && <p>Size: {selectedRoom.size} m²</p>}
             {selectedRoom.occupancy && <p>Occupancy: {selectedRoom.occupancy}</p>}
           </div>
-        )}
+        )} */}
 
         {/* ROOMS TABLE */}
         <div className="mt-12">
