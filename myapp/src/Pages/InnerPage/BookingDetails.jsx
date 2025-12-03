@@ -1961,7 +1961,11 @@ const totalAmount = totalPerNight * nights;
           {totalAmount.toLocaleString("en-US", { minimumFractionDigits: 2 })}
 
 
+
             </div>
+            <p className="text-xs text-gray-600 mt-2 italic">
+  * Prices include 5% GST and 10% service charge.
+</p>
           </div>
 
           {/* RIGHT — FORM */}
