@@ -566,7 +566,7 @@ const Testimonial = () => {
 
   return (
     <section className="bg-[url('/images/home/background.png')] bg-[rgba(30,30,30,0.4)] dark:bg-[rgba(30,30,30,0.6)] bg-opacity-40 grid items-center justify-center bg-no-repeat bg-cover">
-      <div className="Container py-10 md:py-0 pb-[40px] md:pb-[120px] lg:py-[80px]">
+      <div className="Container py-10 md:py-20 pb-[40px] md:pb-[80px] lg:py-[80px]">
         {/* Section Header */}
         <div
           className="text-center px-5 sm:px-10 md:px-[80px] lg:px-[120px] xl:px-[200px] 2xl:px-[335px]"
@@ -615,7 +615,7 @@ const Testimonial = () => {
                   <h4 className="text-base lg:text-[22px] leading-[26px] text-black dark:text-white font-semibold font-Arial">
                     {t.name || "Anonymous"}
                   </h4>
-                  <p className="text-[12px] md:text-base leading-[26px] font-normal text-[#555555] text-black dark:text-[#E8E8E8] flex items-center">
+                  <p className="text-[12px] md:text-base leading-[26px] font-normal text-[#555555] text-black dark:text-[#E5E5E5]  flex items-center">
                     <span className="w-2 h-[1px] inline-block dark:bg-[#D9D9D9] bg-[#006600] mr-2"></span>
                     {formatStayPeriod(t.stayPeriod)}
                   </p>
@@ -654,7 +654,7 @@ const Testimonial = () => {
                           <h4 className="text-base lg:text-[20px] leading-[26px] text-black dark:text-white font-semibold font-Arial">
                             {t.name || "Anonymous"}
                           </h4>
-                          <p className="pt-1 text-sm md:text-base lg:text-[16px] dark:text-[#E8E8E8] leading-[26px] font-normal text-[#555555] dark:text-lightGray flex items-center">
+                          <p className="pt-1 text-sm md:text-base lg:text-[16px] dark:text-[#E5E5E5] leading-[26px] font-normal text-[#555555] dark:text-lightGray flex items-center">
                             <span className="w-5 h-[1px] inline-block bg-[#006600] dark:bg-[#D9D9D9]  mr-2"></span>
                             {formatStayPeriod(t.stayPeriod)}
                           </p>

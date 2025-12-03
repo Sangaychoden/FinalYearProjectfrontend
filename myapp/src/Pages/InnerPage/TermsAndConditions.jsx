@@ -5,62 +5,49 @@ const TermsAndConditions = () => {
   return (
     <section>
       <BreadCrumb title="Terms & Conditions" />
-      <div className="min-h-screen bg-white dark:bg-black py-14 px-6 md:px-20">
-        <div className="max-w-9xl mx-auto space-y-8 text-gray-700">
-          
-          {/* Reservations */}
+      <div className="min-h-screen bg-white dark:bg-black py-8 md:py-14 lg:py-14 px-6 md:px-20">
+        <div className="max-w-4xl mx-auto space-y-8 leading-relaxed">
+
+          {/* Booking Policy */}
           <div>
-            <h3 className="font-semibold text-lg mb-2 dark:text-white ">Reservations</h3>
-            <ul className="list-disc list-inside space-y-1 dark:text-[#E3E3E3] ">
-              <li>All bookings made through this website are requests only.</li>
-              <li>A reservation is considered confirmed only after you receive an email confirmation from the hotel team.</li>
+            <h3 className="font-bold lg:text-2xl md:text-2xl text-xl mb-5 text-gray-900 dark:text-white">1. Booking Policy</h3>
+            <ul className="list-disc list-inside space-y-3 text-gray-700 dark:text-[#E5E5E5]">
+              <li>Meal plan must be <span className="font-semibold text-gray-900 dark:text-white">confirmed upon booking</span>; no changes will be entertained thereafter.</li>
+              <li>Booking can be made either through email or Mobile Phone (WhatsApp).</li>
+              <li>
+                <span className="font-semibold text-gray-900 dark:text-white">Payment Terms:</span>
+                <ul className="list-decimal list-inside ml-6 mt-2 space-y-1 text-gray-600 dark:text-gray-400">
+                  <li>75% down payment is required for confirmation, paid either upon booking or 60 days before check-in, whichever is later.</li>
+                  <li>Remaining 25% must be paid 30 days before check-in.</li>
+                  <li>Bookings made within 30 days before check-in must be paid in full to confirm.</li>
+                </ul>
+              </li>
+              <li>Check-in time: <span className="font-semibold">2:00 PM</span> | Check-out time: <span className="font-semibold">11:30 AM</span></li>
+              <li>
+                Children Policy:
+                <ul className="list-inside ml-6 mt-2 space-y-1 text-gray-600 dark:text-[#E5E5E5]">
+                  <li>Aged 1-5 Years: Free to stay with parents.</li>
+                  <li>Aged 6-11 Years: EP - Nu 2800++, CP - Nu 3000++, MAP - Nu 4000++, AP - Nu 4500++</li>
+                  <li>12 Years and above: Considered as adult occupant.</li>
+                </ul>
+              </li>
+              <li>The above rates are inclusive of <span className="font-semibold">GST 5%</span> and <span className="font-semibold">Service Charge 10%</span>.</li>
             </ul>
           </div>
 
-          {/* Check-In & Check-Out */}
+          {/* Cancellation & Refund Policy */}
           <div>
-            <h3 className="font-semibold text-lg mb-2 dark:text-white ">Check-In & Check-Out</h3>
-            <ul className="list-disc list-inside space-y-1 dark:text-[#E3E3E3]">
-              <li>Check-in time: 2:00 PM onwards.</li>
-              <li>Check-out time: 12:00 PM.</li>
-              <li>Early check-in or late check-out is subject to availability and may incur additional charges.</li>
-            </ul>
-          </div>
-
-          {/* Cancellation & No-Show */}
-          <div>
-            <h3 className="font-semibold text-lg mb-2 dark:text-white ">Cancellation & No-Show</h3>
-            <ul className="list-disc list-inside space-y-1 dark:text-[#E3E3E3]">
-              <li>Cancellations made up to 48 hours before arrival are free of charge.</li>
-              <li>Cancellations made within 48 hours of arrival or no-shows may be charged the first night's stay.</li>
-            </ul>
-          </div>
-
-          {/* Payments */}
-          <div>
-            <h3 className="font-semibold text-lg mb-2 dark:text-white ">Payments</h3>
-            <ul className="list-disc list-inside space-y-1 dark:text-[#E3E3E3]">
-              <li>Payment details and methods will be shared by email once your booking is confirmed.</li>
-              <li>The booking will only be finalized after payment is received.</li>
-            </ul>
-          </div>
-
-          {/* Guest Responsibilities */}
-          <div>
-            <h3 className="font-semibold text-lg mb-2 dark:text-white ">Guest Responsibilities</h3>
-            <ul className="list-disc list-inside space-y-1 dark:text-[#E3E3E3]">
-              <li>Guests are expected to respect hotel property and fellow guests.</li>
-              <li>Any damages caused will be charged to the guest’s account.</li>
-              <li>Smoking is prohibited in non-smoking rooms.</li>
-            </ul>
-          </div>
-
-          {/* Hotel Rights */}
-          <div>
-            <h3 className="font-semibold text-lg mb-2 dark:text-white ">Hotel Rights</h3>
-            <ul className="list-disc list-inside space-y-1 dark:text-[#E3E3E3]">
-              <li>The hotel reserves the right to refuse a booking if details provided are incomplete or invalid.</li>
-              <li>The hotel may modify these Terms & Conditions without prior notice.</li>
+            <h3 className="font-bold lg:text-2xl md:text-2xl text-xl mb-5 text-gray-900 dark:text-white">2. Cancellation & Refund Policy</h3>
+            <ul className="list-disc list-inside space-y-3 text-gray-700 dark:text-[#E5E5E5]">
+              <li>All cancellations must be submitted through <span className="font-semibold text-gray-900 dark:text-white">email</span>. No verbal cancellation will be considered.</li>
+              <li>
+                Refund percentages based on the number of days prior to check-in:
+                <ul className="list-decimal list-inside ml-6 mt-2 space-y-1 text-gray-600 dark:text-[#E5E5E5]">
+                  <li>Within 1–20 Days: No Refund</li>
+                  <li>Within 20–40 Days: 50% Refund</li>
+                  <li>Within 40–60 Days: 90% Refund</li>
+                </ul>
+              </li>
             </ul>
           </div>
 

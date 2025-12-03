@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const Footer3 = () => {
   return (
-    <footer className="bg-lightBlack">
+    <footer className="bg-lightBlack dark:bg-black">
       <div className="Container">
         <div className="grid items-center justify-center py-20 2xl:py-[110px]">
           <div className="flex justify-center items-center">

@@ -46,7 +46,7 @@ const ServiceDetails = () => {
     <section className="bg-white  text-gray-700 font-['Inter']">
       <BreadCrumb title="Services Details" />
 
-<div className="py-10 md:py-0 md:pb-[120px] lg:py-[80px] bg-white dark:bg-black">
+<div className="py-10 md:py-20 md:pb-[80px] lg:py-[80px] bg-white dark:bg-black">
 
         <div className="Container">
           {/* ✅ Image Slider */}

@@ -274,47 +274,51 @@ const realChildrenCount = filteredChildrenAges.length;
                 {room.roomDetails}
               </p>
               
-              <div className="pt-5">
-  <h2 className="text-2xl lg:text-2xl font-semibold mb-3 dark:text-white">
+<div className="pt-5">
+  <h2 className="text-2xl lg:text-2xl font-semibold mb-3 dark:text-white ">
     Meal Plan Details
   </h2>
 
-  <ul className="text-md space-y-3 leading-relaxed">
+  <ul className="space-y-4">
 
-    <li>
-      <span className="font-semibold text-[#4B4B4B]">European Plan (EP):</span>
-      <span className="text-[#666666]">
-        {' '}Room Only. No meals included. Guests may order meals separately as per restaurant menu.
-        <br />
-        <strong>For this Meal Plan the extra room option is offered exclusively for double-occupancy rooms.</strong>
-      </span>
+    <li className="p-4 border border-[#777777] shadow-sm hover:shadow-md transition bg-white dark:bg-gray-800">
+      <span className="font-semibold text-[#333333]">European Plan (EP):</span>
+      <p className="text-[#555555] mt-1">
+        Room Only. No meals included. Guests may order meals separately as per restaurant menu.
+      </p>
+      <p className="text-sm font- mt-2 text-[#777777] italic dark:text-gray-300">
+        Extra room option: Exclusively for double-occupancy rooms.
+      </p>
     </li>
 
-    <li>
-      <span className="font-semibold text-[#4B4B4B]">Continental Plan (CP):</span>
-      <span className="text-[#666666]">
-        {' '}Room + Breakfast. Includes morning breakfast only. Lunch and dinner can be purchased separately.
-        <br />
-        <strong>For this Meal Plan the extra room option is offered exclusively for double-occupancy rooms</strong>
-      </span>
+    <li className="p-4 border border-[#777777] shadow-sm hover:shadow-md transition bg-white dark:bg-gray-800">
+      <span className="font-semibold text-[#333333]">Continental Plan (CP):</span>
+      <p className="text-[#555555] mt-1">
+        Room + Breakfast. Includes morning breakfast only. Lunch and dinner can be purchased separately.
+      </p>
+      <p className="text-sm font- mt-2 text-[#777777] italic dark:text-gray-300">
+        Extra room option: Exclusively for double-occupancy rooms.
+      </p>
     </li>
 
-    <li>
-      <span className="font-semibold text-[#4B4B4B]">Modified American Plan (MAP):</span>
-      <span className="text-[#666666]">
-        {' '}Room + Breakfast + Dinner/Lunch. Includes two meals daily: breakfast and either lunch or dinner.
-        <br />
-        <strong>For this Meal Plan extra room option is available for single- and double-occupancy rooms.</strong>
-      </span>
+    <li className="p-4 border border-[#777777] shadow-sm hover:shadow-md transition bg-white dark:bg-gray-800">
+      <span className="font-semibold text-[#333333]">Modified American Plan (MAP):</span>
+      <p className="text-[#555555] mt-1">
+        Room + Breakfast + Dinner/Lunch. Includes two meals daily: breakfast and either lunch or dinner.
+      </p>
+      <p className="text-sm font- mt-2 text-[#777777] italic dark:text-gray-300">
+        Extra room option: Available for single-occupancy and double-occupancy rooms.
+      </p>
     </li>
 
-    <li>
-      <span className="font-semibold text-[#4B4B4B]">American Plan (AP):</span>
-      <span className="text-[#666666]">
-        {' '}Room + All Meals. Includes breakfast, lunch, and dinner throughout the stay.
-        <br />
-        <strong>For this Meal Plan the extra room option is offered exclusively for double-occupancy rooms</strong>
-      </span>
+    <li className="p-4 border border-[#777777] shadow-sm hover:shadow-md transition bg-white dark:bg-gray-800">
+      <span className="font-semibold text-[#333333]">American Plan (AP):</span>
+      <p className="text-[#555555] mt-1">
+        Room + All Meals. Includes breakfast, lunch, and dinner throughout the stay.
+      </p>
+      <p className="text-sm font- mt-2 text-[#777777] italic dark:text-gray-300">
+        Extra room option: Exclusively for double-occupancy rooms.
+      </p>
     </li>
 
   </ul>
@@ -329,7 +333,7 @@ const realChildrenCount = filteredChildrenAges.length;
                   Meal Plan Pricing
                 </h3>
 
-                  <table className="w-full border border-[#666666]">
+                  <table className="w-full border border-[#666666] dark:border-[#777777]">
                   <thead className="bg-[#006600] text-white text-md">
                     <tr>
                       <th className="px-4 py-3 font-semibold text-left text-md">Plan</th>
@@ -339,14 +343,14 @@ const realChildrenCount = filteredChildrenAges.length;
                   </thead>
                   <tbody className="text-gray-800">
                     {PLANS.map((plan) => (
-                      <tr key={plan.key} className="border-b">
-                        <td className="px-4 py-3 uppercase text-md font-semibold text-[#333333]">{plan.label}</td>
+                      <tr key={plan.key} className="border-b dark:border-[#777777]">
+                        <td className="px-4 py-3 uppercase text-md font-semibold text-[#333333] dark:text-[#D9D9D9]">{plan.label}</td>
 
-                        <td className="px-4 py-3 text-[#4B4B4B] text-md">
+                        <td className="px-4 py-3 text-[#4B4B4B] text-md dark:text-[#D9D9D9]">
                           {room.pricing?.[plan.key]?.single ?? "-"}
                         </td>
 
-                        <td className="px-4 py-3 text-[#4B4B4B] text-md">
+                        <td className="px-4 py-3 text-[#4B4B4B] text-md dark:text-[#D9D9D9]">
                           {room.pricing?.[plan.key]?.double ?? "-"}
                         </td>
                       </tr>
@@ -401,7 +405,7 @@ const realChildrenCount = filteredChildrenAges.length;
           {/* RIGHT SIDE */}
           <div className="col-span-6 md:col-span-3 lg:col-span-2 lg:px-3 ">
             <div className="bg-[#F5F5F5] px-7 py-5 ">
-              <h4 className="text-2xl lg:pb-3 font-semibold dark:text-white mb-3">
+              <h4 className="text-2xl lg:pb-3 font-semibold dark:text-black mb-3">
                 Booking
               </h4>
 

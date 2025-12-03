@@ -334,7 +334,7 @@ const Room = () => {
       <BreadCrumb title="ROOMS" home={"/"} />
 
       <div
-        className="bg-cover bg-center bg-no-repeat py-10 md:py-0 pb-[40px] md:pb-[120px] lg:py-[80px]"
+        className="bg-cover bg-center bg-no-repeat py-10 md:py-20 pb-[40px] md:pb-[80px] lg:py-[80px]"
         style={{ backgroundImage: "url('/images/home/background.png')" }}
       >
         <div className="Container">

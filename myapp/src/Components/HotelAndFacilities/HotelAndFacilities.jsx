@@ -1,7 +1,7 @@
 const HotelAndFacilities = () => {
   return (
     <section className="bg-lightBlack z-[1] font-Inter">
-      <div className="py-10 md:py-0 pb-[40px] mb-[-140px] md:pb-[120px] lg:py-[80px] bg-no-repeat bg-top bg-opacity-[0.07]">
+      <div className="py-10 md:py-20 pb-[20px] mb-[-140px] md:pb-[30px] lg:pb-[30px] lg:py-[80px] bg-no-repeat bg-top bg-opacity-[0.07]">
         <div className="Container">
           <div
             className="text-center mx-auto px-5 sm:px-8 md:px-[80px] lg:px-[120px] xl:px-[200px] 2xl:px-[335px]"

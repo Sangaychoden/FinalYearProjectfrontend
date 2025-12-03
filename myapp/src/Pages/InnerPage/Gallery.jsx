@@ -55,7 +55,7 @@ const Team = () => {
     <div>
       <BreadCrumb title="Gallery" />
 
-      <div className="dark:bg-black py-6  2xl:py-[120px]">
+      <div className="dark:bg-black py-6 2xl:py-[120px] pb-[74px] md:pb-[80px]">
         <div className="Container">
           {/* Desktop Layout */}
           <div className="hidden lg:grid dark:bg-black lg:grid-rows-2 lg:gap-[30px] mt-[60px]">
