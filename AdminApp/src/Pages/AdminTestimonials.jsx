@@ -203,7 +203,7 @@
 //     inline-flex items-center gap-2 px-4 h-10 text-md text-white 
 //     shadow-md hover:shadow-lg transition 
 //     bg-[#006600] hover:bg-[#000000] 
-//     rounded-none
+//     -none
 //   "
 //         >
 //           <Plus size={18} />
@@ -219,7 +219,7 @@
 //           {filtered.map((t) => (
 //             <article
 //               key={t._id}
-//               className="border border-gray-200 bg-white rounded-none p-6"
+//               className="border border-gray-200 bg-white -none p-6"
 //             >
 //               <div className="flex items-start gap-6">
 //                 {/* Photo */}
@@ -252,7 +252,7 @@
 //                   <Link
 //                     to={`/edit-testimonial/${t._id}`}
 //                     state={{ testimonial: t }}
-//                     className="w-24 h-10 inline-flex items-center justify-center text-sm font-small text-white rounded-none"
+//                     className="w-24 h-10 inline-flex items-center justify-center text-sm font-small text-white -none"
 //                     style={{ backgroundColor: GREEN }}
 //                   >
 //                     EDIT
@@ -260,7 +260,7 @@
 
 //                   <button
 //                     onClick={() => toggleArchive(t._id, t.isArchived)}
-//                     className="w-24 h-10 inline-flex items-center justify-center text-sm font-small text-white rounded-none"
+//                     className="w-24 h-10 inline-flex items-center justify-center text-sm font-small text-white -none"
 //                     style={{
 //                       backgroundColor: t.isArchived
 //                         ? RESTORE_ORANGE
@@ -273,7 +273,7 @@
 //                   {/* ✅ Delete Button */}
 //                   <button
 //                     onClick={() => deleteTestimonial(t._id)}
-//                     className="w-24 h-10 inline-flex items-center justify-center gap-1 text-sm font-small text-white rounded-none"
+//                     className="w-24 h-10 inline-flex items-center justify-center gap-1 text-sm font-small text-white -none"
 //                     style={{ backgroundColor: DELETE_RED }}
 //                   >
 //                     DELETE
@@ -304,8 +304,7 @@ const GREEN = "#006600";
 const CONFIRM_GREEN = "#e39300ff";
 const RESTORE_ORANGE = "#e39300ff";
 const DELETE_RED = "#b91c1c";
-const DEFAULT_PHOTO =
-  "https://cdn-icons-png.flaticon.com/512/3135/3135715.png";
+const DEFAULT_PHOTO = "/images/default_profile.png";
 
 const API_BASE = `${import.meta.env.VITE_API_URL}/testimonials`;
 
@@ -493,7 +492,7 @@ const AdminTestimonials = () => {
 
         <Link
           to="/add-testimonial"
-          className="inline-flex items-center gap-2 px-4 h-10 text-md text-white bg-[#006600] hover:bg-black shadow-md transition rounded-none"
+          className="inline-flex items-center gap-2 px-4 h-10 text-md text-white bg-[#006600] hover:bg-black shadow-md transition -none"
         >
           <Plus size={18} />
           Add Testimonials
@@ -507,7 +506,7 @@ const AdminTestimonials = () => {
           {filtered.map((t) => (
             <article
               key={t._id}
-              className="border border-gray-200 bg-white rounded-none p-6"
+              className="border border-gray-200 bg-white -none p-6"
             >
               <div className="flex items-start gap-6">
                 <div className="w-32 h-32 bg-gray-100 overflow-hidden">
@@ -530,14 +529,14 @@ const AdminTestimonials = () => {
                   <Link
                     to={`/edit-testimonial/${t._id}`}
                     state={{ testimonial: t }}
-                    className="w-24 h-10 flex items-center justify-center bg-[#006600] text-white rounded-none"
+                    className="w-24 h-10 flex items-center justify-center bg-[#006600] text-white -none "
                   >
                     EDIT
                   </Link>
 
                   <button
                     onClick={() => toggleArchive(t._id, t.isArchived)}
-                    className="w-24 h-10 flex items-center justify-center text-white rounded-none"
+                    className="w-24 h-10 flex items-center justify-center text-white -none"
                     style={{
                       backgroundColor: t.isArchived
                         ? RESTORE_ORANGE
@@ -549,7 +548,7 @@ const AdminTestimonials = () => {
 
                   <button
                     onClick={() => deleteTestimonial(t._id)}
-                    className="w-24 h-10 flex items-center justify-center text-white rounded-none"
+                    className="w-24 h-10 flex items-center justify-center text-white -none"
                     style={{ backgroundColor: DELETE_RED }}
                   >
                     DELETE

@@ -560,7 +560,7 @@ const EditFacility = () => {
 
   return (
     <section className="min-h-screen bg-gray-50 font-inter py-6">
-      <div className="max-w-4xl mx-auto bg-white p-8 shadow-lg rounded-lg">
+      <div className="max-w-4xl mx-auto bg-white p-8 shadow-lg -lg">
         <h1 className="text-2xl font-semibold text-black mb-6">Edit Facility</h1>
 
         <form onSubmit={onSubmit} className="space-y-6">
@@ -571,7 +571,7 @@ const EditFacility = () => {
               type="text"
               value={form.title}
               onChange={(e) => setField("title", e.target.value)}
-              className={`w-full border p-3 rounded ${
+              className={`w-full border p-3  ${
                 errors.title ? "border-red-600" : "border-gray-300"
               }`}
               placeholder="e.g., The Loft"
@@ -592,7 +592,7 @@ const EditFacility = () => {
               value={form.description}
               onChange={(e) => setField("description", e.target.value)}
               rows="4"
-              className={`w-full border p-3 rounded ${
+              className={`w-full border p-3  ${
                 errors.description ? "border-red-600" : "border-gray-300"
               }`}
               placeholder="Write a short description..."
@@ -622,7 +622,7 @@ const EditFacility = () => {
               <button
                 type="button"
                 onClick={openPicker}
-                className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded hover:bg-gray-100 transition"
+                className="flex items-center gap-2 px-4 py-2 border border-gray-300  hover:bg-gray-100 transition"
               >
                 <FaCloudUploadAlt className="text-gray-600 w-5 h-5" />
                 <span className="text-gray-700 font-medium">Upload Image</span>
@@ -637,7 +637,7 @@ const EditFacility = () => {
                 {images.map((img, i) => (
                   <div
                     key={i}
-                    className="relative w-24 h-24 border rounded overflow-hidden group"
+                    className="relative w-24 h-24 border  overflow-hidden group"
                   >
                     <img
                       src={img.url}
@@ -647,7 +647,7 @@ const EditFacility = () => {
                     <button
                       type="button"
                       onClick={() => removeImage(i)}
-                      className="absolute top-1 right-1 bg-black bg-opacity-50 text-white text-xs w-5 h-5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition rounded-full"
+                      className="absolute top-1 right-1 bg-black bg-opacity-50 text-white text-xs w-5 h-5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition -full"
                     >
                       ×
                     </button>
@@ -665,14 +665,14 @@ const EditFacility = () => {
             <button
               type="submit"
               disabled={loading}
-              className="bg-[#006600] text-white py-2 px-8 rounded hover:bg-black transition"
+              className="bg-[#006600] text-white py-2 px-8  hover:bg-black transition"
             >
               {loading ? "Updating..." : "Update"}
             </button>
             <button
               type="button"
               onClick={() => navigate(-1)}
-              className="border border-[#006600] text-[#006600] py-2 px-8 rounded transition"
+              className="border border-[#006600] text-[#006600] py-2 px-8  transition"
             >
               Cancel
             </button>

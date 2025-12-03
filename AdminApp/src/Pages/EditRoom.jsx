@@ -400,7 +400,7 @@
 // //                     <button
 // //                       type="button"
 // //                       onClick={() => handleRemoveExisting(idx)}
-// //                       className="absolute top-1 right-1 bg-black bg-opacity-60 text-white text-xs px-2 rounded"
+// //                       className="absolute top-1 right-1 bg-black bg-opacity-60 text-white text-xs px-2 "
 // //                     >
 // //                       ×
 // //                     </button>
@@ -415,7 +415,7 @@
 // //                     <button
 // //                       type="button"
 // //                       onClick={() => handleRemoveNew(idx)}
-// //                       className="absolute top-1 right-1 bg-black bg-opacity-60 text-white text-xs px-2 rounded"
+// //                       className="absolute top-1 right-1 bg-black bg-opacity-60 text-white text-xs px-2 "
 // //                     >
 // //                       ×
 // //                     </button>
@@ -955,7 +955,7 @@
 
 //               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
 //                 {/* EP */}
-//                 <div className="border rounded p-3">
+//                 <div className="border  p-3">
 //                   <h3 className="font-semibold mb-2">EP</h3>
 //                   <label className="block text-sm mb-1">Single</label>
 //                   <input
@@ -976,7 +976,7 @@
 //                 </div>
 
 //                 {/* CP */}
-//                 <div className="border rounded p-3">
+//                 <div className="border  p-3">
 //                   <h3 className="font-semibold mb-2">CP</h3>
 //                   <label className="block text-sm mb-1">Single</label>
 //                   <input
@@ -997,7 +997,7 @@
 //                 </div>
 
 //                 {/* MAP */}
-//                 <div className="border rounded p-3">
+//                 <div className="border  p-3">
 //                   <h3 className="font-semibold mb-2">MAP</h3>
 //                   <label className="block text-sm mb-1">Single</label>
 //                   <input
@@ -1018,7 +1018,7 @@
 //                 </div>
 
 //                 {/* AP */}
-//                 <div className="border rounded p-3">
+//                 <div className="border  p-3">
 //                   <h3 className="font-semibold mb-2">AP</h3>
 //                   <label className="block text-sm mb-1">Single</label>
 //                   <input
@@ -1261,7 +1261,7 @@
 //                     <button
 //                       type="button"
 //                       onClick={() => handleRemoveExisting(idx)}
-//                       className="absolute top-1 right-1 bg-black bg-opacity-60 text-white text-xs px-2 rounded"
+//                       className="absolute top-1 right-1 bg-black bg-opacity-60 text-white text-xs px-2 "
 //                     >
 //                       ×
 //                     </button>
@@ -1276,7 +1276,7 @@
 //                     <button
 //                       type="button"
 //                       onClick={() => handleRemoveNew(idx)}
-//                       className="absolute top-1 right-1 bg-black bg-opacity-60 text-white text-xs px-2 rounded"
+//                       className="absolute top-1 right-1 bg-black bg-opacity-60 text-white text-xs px-2 "
 //                     >
 //                       ×
 //                     </button>
@@ -1708,7 +1708,7 @@ const EditRoom = () => {
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
 
                 {/* EP */}
-                <div className="border p-3 rounded">
+                <div className="border p-3 ">
                   <h3 className="font-semibold mb-2">EP</h3>
                   <label className="block mb-1">Single</label>
                   <input
@@ -1729,7 +1729,7 @@ const EditRoom = () => {
                 </div>
 
                 {/* CP */}
-                <div className="border p-3 rounded">
+                <div className="border p-3 ">
                   <h3 className="font-semibold mb-2">CP</h3>
                   <label className="block mb-1">Single</label>
                   <input
@@ -1750,7 +1750,7 @@ const EditRoom = () => {
                 </div>
 
                 {/* MAP */}
-                <div className="border p-3 rounded">
+                <div className="border p-3 ">
                   <h3 className="font-semibold mb-2">MAP</h3>
                   <label className="block mb-1">Single</label>
                   <input
@@ -1771,7 +1771,7 @@ const EditRoom = () => {
                 </div>
 
                 {/* AP */}
-                <div className="border p-3 rounded">
+                <div className="border p-3 ">
                   <h3 className="font-semibold mb-2">AP</h3>
                   <label className="block mb-1">Single</label>
                   <input
@@ -1975,7 +1975,7 @@ const EditRoom = () => {
               <button
                 type="button"
                 onClick={openPicker}
-                className="flex items-center gap-2 px-4 py-2 border"
+                className="flex items-center gap-2 mt-2 px-4 py-2 border"
               >
                 <FaCloudUploadAlt /> Upload Images
               </button>
@@ -1988,7 +1988,7 @@ const EditRoom = () => {
                     <button
                       type="button"
                       onClick={() => handleRemoveExisting(idx)}
-                      className="absolute top-1 right-1 bg-black/60 text-white text-xs px-2"
+                      className="absolute top-1 right-1 bg-black/60 text-white text-xs px-2 py-1"
                     >
                       ×
                     </button>
@@ -2018,7 +2018,7 @@ const EditRoom = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="bg-[#006600] text-white py-2 px-10 rounded hover:bg-[#003300]"
+                className="bg-[#006600] text-white py-2 px-10  hover:bg-black"
               >
                 {loading ? "Updating..." : "Update"}
               </button>
@@ -2026,7 +2026,7 @@ const EditRoom = () => {
               <button
                 type="button"
                 onClick={() => navigate(-1)}
-                className="border border-[#006600] text-[#006600] py-2 px-10 rounded"
+                className="border border-[#006600] text-[#006600] py-2 px-10 "
               >
                 Cancel
               </button>

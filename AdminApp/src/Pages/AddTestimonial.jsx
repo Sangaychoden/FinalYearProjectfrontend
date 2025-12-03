@@ -234,7 +234,7 @@ const AddTestimonial = () => {
                 <button
                   type="button"
                   onClick={handleRemoveImage}
-                  className="absolute top-1 right-1 bg-black bg-opacity-50 text-white text-xs w-5 h-5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition rounded-full"
+                  className="absolute top-1 right-1 bg-black bg-opacity-50 text-white text-xs w-5 h-5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition -full"
                 >
                   ×
                 </button>

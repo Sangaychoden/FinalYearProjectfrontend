@@ -126,7 +126,7 @@ const Receptionists = () => {
     inline-flex items-center gap-2 px-4 h-10 text-md text-white 
     shadow-md hover:shadow-lg transition 
     bg-[#006600] hover:bg-[#000000] 
-    rounded-none
+    -none
   "          onClick={() => setShowAddPopup(true)}
         >
           <Plus size={18} />
@@ -214,7 +214,7 @@ const Receptionists = () => {
 
             <div className="flex justify-center gap-4 mt-4">
               <button
-                className="bg-[#006600] text-white px-6 py-2 hover:bg-green-800 "
+                className="bg-[#006600] hover:bg-black text-white px-6 py-2 hover:bg-green-800 "
                 onClick={handleAddReceptionist}
               >
                 Add

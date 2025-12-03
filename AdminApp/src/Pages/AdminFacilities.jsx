@@ -177,7 +177,7 @@ const confirmDelete = (id) => {
     inline-flex items-center gap-2 px-4 h-10 text-md text-white 
     shadow-md hover:shadow-lg transition 
     bg-[#006600] hover:bg-[#000000] 
-    rounded-none
+    -none
   "
         >
           <Plus size={18} />
