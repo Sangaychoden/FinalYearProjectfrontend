@@ -611,7 +611,7 @@ const AddRoom = () => {
               <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                 <div>
                   <label className="block text-sm text-gray-700 mb-1">
-                    Extra Bed EP
+                    Extra Bed EP(Double)
                   </label>
                   <input
                     type="number"
@@ -623,7 +623,7 @@ const AddRoom = () => {
                 </div>
                 <div>
                   <label className="block text-sm text-gray-700 mb-1">
-                    Extra Bed CP
+                    Extra Bed CP(Double)
                   </label>
                   <input
                     type="number"
@@ -659,7 +659,7 @@ const AddRoom = () => {
                 </div>
                 <div>
                   <label className="block text-sm text-gray-700 mb-1">
-                    Extra Bed AP
+                    Extra Bed AP(Double)
                   </label>
                   <input
                     type="number"
