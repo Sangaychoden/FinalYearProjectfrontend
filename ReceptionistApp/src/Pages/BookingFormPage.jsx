@@ -392,7 +392,6 @@ export default function BookingForm() {
   };
 
   const childAgeOptions = [
-    { value: "0-1", label: "0-1" },
     { value: "1-5", label: "1-5" },
     { value: "6-11", label: "6-11" },
     { value: "12+", label: "12+" },
@@ -468,7 +467,8 @@ export default function BookingForm() {
     let base = 0;
     for (let i = 0; i < roomsRequested; i++) {
       const occ = occupancyTypes[i] || "double";
-      const occKey = occ === "twin" ? "double" : occ;
+      // const occKey = occ === "twin" ? "double" : occ;
+      const occKey = occ; // because twin no longer exists
       const mealBlock = pricing[mealPlan] || pricing.ep || {};
       const roomPrice = Number(mealBlock[occKey] ?? 0);
       base += roomPrice;
@@ -1153,7 +1153,7 @@ const payload = {
                   >
                     <option value="single">Single</option>
                     <option value="double">Double</option>
-                    <option value="twin">Twin</option>
+                    {/* <option value="twin">Twin</option> */}
                   </select>
                 </div>
               ))}
