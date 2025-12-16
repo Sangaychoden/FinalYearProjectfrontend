@@ -648,6 +648,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -655,6 +656,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+const [showPassword, setShowPassword] = useState(false);
 
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; 
   // For development fallback, production uses Render URL.
@@ -706,12 +708,14 @@ const Login = () => {
     fontWeight: "500",
   };
 
-  const inputStyle = {
-    padding: "8px 12px",
-    borderRadius: "0",
-    border: "1px solid #9E9E9E",
-    fontSize: "14px",
-  };
+const inputStyle = {
+  padding: "8px 12px",
+  borderRadius: "0",
+  border: "1px solid #9E9E9E",
+  fontSize: "14px",
+  position: "relative",
+  zIndex: 1,           // 👈 input below icon
+};
 
   const errorStyle = {
     color: "red",
@@ -742,6 +746,26 @@ const Login = () => {
     marginBottom: "5px",
     transition: "background-color 0.2s ease",
   };
+const passwordWrapper = {
+  position: "relative",
+  width: "100%",
+  display: "flex",
+  alignItems: "center",
+};
+
+const eyeIconStyle = {
+  position: "absolute",
+  right: "12px",
+  top: "50%",
+  transform: "translateY(-50%)",
+  cursor: "pointer",
+  color: "#666",
+  fontSize: "16px",
+  zIndex: 3,           // 👈 icon above input
+};
+
+
+
 
   const buttonHover = (e, hover) => {
     e.target.style.backgroundColor = hover ? "#000000ff" : "#006600";
@@ -856,7 +880,7 @@ await Swal.fire({
   icon: "success",
   background: "#006600",
   color: "white",
-  timer: 3000,
+  timer: 2000,
   showConfirmButton: false,
   timerProgressBar: true,
 });
@@ -895,20 +919,36 @@ await Swal.fire({
             {errors.username && <p style={errorStyle}>{errors.username}</p>}
           </div>
 
-          <div style={formGroupStyle1}>
-            <label style={labelStyle}>Password</label>
-            <input
-              type="password"
-              placeholder="Enter your password"
-              style={inputStyle}
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                validateField("password", e.target.value);
-              }}
-            />
-            {errors.password && <p style={errorStyle}>{errors.password}</p>}
-          </div>
+<div style={formGroupStyle1}>
+  <label style={labelStyle}>Password</label>
+
+  <div style={passwordWrapper}>
+    <input
+      type={showPassword ? "text" : "password"}
+      placeholder="Enter your password"
+      style={{
+        ...inputStyle,
+        width: "100%",
+        paddingRight: "42px",
+      }}
+      value={password}
+      onChange={(e) => {
+        setPassword(e.target.value);
+        validateField("password", e.target.value);
+      }}
+    />
+
+    <span
+      style={eyeIconStyle}
+      onClick={() => setShowPassword(!showPassword)}
+    >
+      {showPassword ? <FaEyeSlash /> : <FaEye />}
+    </span>
+  </div>
+
+  {errors.password && <p style={errorStyle}>{errors.password}</p>}
+</div>
+
 
           <div style={{ textAlign: "left", marginBottom: "10px" }}>
             <span

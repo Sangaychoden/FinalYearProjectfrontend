@@ -294,12 +294,13 @@ const Services = () => {
                   data-aos-duration="1000"
                 >
                   {/* Image */}
-                  <div className="relative w-full h-[100%] md:pr-[30px] mt-0 md:mt-0">
-                    <img
-                      src={getImage(facility)}
-                      alt={facility.title || "Facility"}
-                      className="w-full h-full object-cover"
-                    />
+<div className="relative w-full h-[260px] md:h-[320px] lg:h-[360px] overflow-hidden md:pr-[30px]">
+  <img
+    src={getImage(facility)}
+    alt={facility.title || "Facility"}
+    className="w-full h-full object-cover"
+  />
+
                     <div className="hidden md:block absolute -top-[0px] md:-right-[12%]  -right-[7%]">
                       <h2 className="text-3xl dark:text-white md:text-4xl lg:text-[40px] leading-[38px] ">
                         {String(index + 1).padStart(2, "0")}

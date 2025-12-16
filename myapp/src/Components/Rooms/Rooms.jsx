@@ -89,7 +89,7 @@ const Rooms = () => {
   };
 
   return (
-    <div className="bg-whiteSmoke dark:bg-white font-Inter">
+    <div className="bg-white dark:bg-white font-Inter">
       <div className="relative">
 
         {/* ===== BOOKING SECTION ===== */}
