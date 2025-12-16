@@ -240,7 +240,7 @@ const realChildrenCount = filteredChildrenAges.length;
     <section>
       <BreadCrumb title="ROOM DETAILS" home="/" />
 
-      <div className="py-10 md:py-0 pb-0 md:pb-[120px] lg:py-[80px] dark:bg-lightBlack">
+      <div className="py-10 md:py-0 pb-0 md:pb-[120px] lg:py-[80px] dark:bg-black">
         <div className="Container grid grid-cols-6 md:grid-cols-7 lg:grid-cols-6 gap-5">
 
           {/* LEFT SIDE */}

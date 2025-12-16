@@ -94,7 +94,7 @@ const Rooms = () => {
 
         {/* ===== BOOKING SECTION ===== */}
         <div
-          className="Container-Hero bg-lightBlack dark:bg-normalBlack grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 items-center justify-center font-Arial py-3 lg:py-4 xl:py-5 2xl:py-6 border-t-[3px] border-t-khaki 
+          className="Container-Hero bg-lightBlack dark:bg-black grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 items-center justify-center font-Arial py-3 lg:py-4 xl:py-5 2xl:py-6 border-t-[3px] border-t-khaki 
                      mx-auto shadow-xl relative z-20 -mt-20 px-4 sm:px-6 lg:px-10 z-[1]"
         >
           {/* Check In */}
@@ -385,7 +385,7 @@ const Rooms = () => {
                         <AiOutlineEye size={20} className="text-[#006600] dark:text-black dark:bg:white" />
                       </Link>
 
-                      <div className="bg-white dark:bg-lightBlack text-center py-10">
+                      <div className="bg-white dark:bg-black text-center py-10">
                         <h4 className="text-lg md:text-xl lg:text-2xl font-medium text-lightBlack dark:text-white">
                           {r.roomType}
                         </h4>

@@ -1,6 +1,6 @@
 const HotelAndFacilities = () => {
   return (
-    <section className="bg-lightBlack z-[1] font-Inter">
+    <section className="bg-lightBlack dark:bg-black z-[1] font-Inter">
       <div className="py-10 md:py-20 pb-[20px] mb-[-140px] md:pb-[30px] lg:pb-[30px] lg:py-[80px] bg-no-repeat bg-top bg-opacity-[0.07]">
         <div className="Container">
           <div
