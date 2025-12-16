@@ -382,14 +382,20 @@ const Room = () => {
                       <h4 className="text-sm leading-[26px] text-khaki uppercase font-semibold">
                         LUXURY ROOM
                       </h4>
-                      <Link
+                      {/* <Link
                         to="/room_details"
                         state={{ price: room.price, title: room.roomType }}
                       >
                         <h2 className="text-2xl lg:text-[24px] xl:text-[28px] leading-[26px] font-semibold text-black py-4 hover:text-khaki transition-colors duration-300">
                           {room.roomType}
                         </h2>
-                      </Link>
+                      </Link> */}
+                      <h2
+  className="text-2xl lg:text-[24px] xl:text-[28px] leading-[26px] font-semibold text-black py-4 select-none"
+>
+  {room.roomType}
+</h2>
+
                       <p className="text-sm font-normal text-gray-800 font-inter">
                         {room.size} SQ.FT / Rooms
                       </p>
