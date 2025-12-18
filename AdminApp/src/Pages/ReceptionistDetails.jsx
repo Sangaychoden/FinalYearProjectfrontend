@@ -168,30 +168,6 @@ const ReceptionistDetails = () => {
           />
         </div>
 
-        {/* Password Placeholder (hidden for security) */}
-        <div>
-          <label className="block text-gray-700 font-medium mb-1">
-            Password (Hidden)
-          </label>
-          <div className="relative">
-            <input
-              type={showPassword ? "text" : "password"}
-              value={"********"}
-              readOnly
-              className="w-full border border-gray-300 px-3 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-green-300"
-            />
-            <button
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-2 top-2 text-gray-600"
-            >
-              {showPassword ? (
-                <FaEyeSlash className="h-5 w-5" />
-              ) : (
-                <FaEye className="h-5 w-5" />
-              )}
-            </button>
-          </div>
-        </div>
 
         {/* Buttons */}
         <div className="flex gap-4 mt-4 justify-center">

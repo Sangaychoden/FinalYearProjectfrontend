@@ -1430,11 +1430,15 @@ const EditRoom = () => {
 
         setExistingImages(room.images || []);
       } catch (err) {
-        Swal.fire({
-          icon: "error",
-          title: "Error loading room",
-          text: err.message,
-        });
+Swal.fire({
+  icon: "error",
+  title: "Error loading room",
+  text: err.message,
+  confirmButtonColor: "#008000",
+  color: "#fff",
+  background: "#006600",
+});
+
       } finally {
         setLoading(false);
       }
@@ -1455,11 +1459,15 @@ const EditRoom = () => {
     const files = Array.from(e.target.files);
 
     if (existingImages.length + newImages.length + files.length > 5) {
-      Swal.fire({
-        icon: "warning",
-        title: "Image limit reached",
-        text: "Max 5 images allowed",
-      });
+Swal.fire({
+  icon: "warning",
+  title: "Image limit reached",
+  text: "Max 5 images allowed",
+  confirmButtonColor: "#008000",
+  color: "#fff",
+  background: "#006600",
+});
+
       return;
     }
 
@@ -1481,12 +1489,17 @@ const EditRoom = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const confirm = await Swal.fire({
-      icon: "warning",
-      title: "Update Room?",
-      showCancelButton: true,
-      confirmButtonText: "Yes"
-    });
+const confirm = await Swal.fire({
+  icon: "warning",
+  title: "Update Room?",
+  showCancelButton: true,
+  confirmButtonText: "Yes",
+  confirmButtonColor: "#008000",
+  cancelButtonColor: "#d33",
+  color: "#fff",
+  background: "#006600",
+});
+
 
     if (!confirm.isConfirmed) return;
 
@@ -1548,17 +1561,23 @@ const EditRoom = () => {
         throw new Error(err.message || "Failed to update");
       }
 
-      Swal.fire({
-        icon: "success",
-        title: "Room Updated!"
-      }).then(() => navigate("/admin-rooms"));
+Swal.fire({
+  icon: "success",
+  title: "Room Updated!",
+  confirmButtonColor: "#008000",
+  color: "#fff",
+  background: "#006600",
+}).then(() => navigate("/admin-rooms"));
 
     } catch (err) {
-      Swal.fire({
-        icon: "error",
-        title: "Update Error",
-        text: err.message
-      });
+  Swal.fire({
+    icon: "error",
+    title: "Update Error",
+    text: err.message,
+    confirmButtonColor: "#008000",
+    color: "#fff",
+    background: "#006600",
+  });
     } finally {
       setLoading(false);
     }

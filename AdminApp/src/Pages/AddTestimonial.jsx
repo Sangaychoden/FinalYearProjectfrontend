@@ -39,9 +39,9 @@ const AddTestimonial = () => {
         icon: "warning",
         title: "File Too Large",
         text: "Please upload an image smaller than 3MB.",
-        confirmButtonColor: CONFIRM_GREEN,
-        color: "#fff",
-        background: THEME_GREEN,
+          confirmButtonColor: "#008000",
+          color: "#fff",
+          background: "#006600",
       });
       return;
     }
