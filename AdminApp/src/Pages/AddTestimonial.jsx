@@ -167,7 +167,7 @@ const AddTestimonial = () => {
             <input
               value={form.stay}
               onChange={(e) => setField("stay", e.target.value)}
-              placeholder="e.g., July 2 - July 4, 2025"
+              placeholder="e.g., July 2 to July 4, 2025"
               className={`w-full p-3 border ${
                 errors.stay ? "border-red-600" : "border-gray-300"
               }`}
