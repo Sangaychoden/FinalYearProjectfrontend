@@ -68,7 +68,7 @@ const About = () => {
       </section>
 
       {/* best hotel manager */}
-      <div className="bg-lightBlack -z-[1] pt-20 2xl:py-[120px]">
+      <div className="bg-lightBlack dark:bg-black -z-[1] pt-20 2xl:py-[120px]">
         <div className="Container ">
           <div className="w-full grid grid-cols-1 lg:grid-cols-2 items-center ">
 <div

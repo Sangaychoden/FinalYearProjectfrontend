@@ -45,27 +45,33 @@ const AdminRooms = () => {
     const usdPrice = (room.price / BTN_PER_USD).toFixed(2);
 
     return (
-      <div
-        className={`bg-white shadow-lg overflow-hidden border-l-4 border-[#004d00] hover:shadow-xl transition-all duration-500 transform ${
-          isHovered ? "scale-105 -translate-y-2" : "scale-100"
-        }`}
-        style={{ animationDelay: `${index * 200}ms` }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
+<div
+  className="
+    bg-white 
+    shadow-md 
+    hover:shadow-lg
+    transition-shadow 
+    duration-300 
+    overflow-hidden 
+    border-l-4 
+    border-[#006600]
+  "
+>
+
         <div className="flex">
           {/* Room Image */}
-          <div className="w-2/5">
-            <img
-              src={room.images?.[0] || "/images/placeholder-room.jpg"}
-              alt={room.roomType}
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                e.target.src =
-                  "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=400&h=300&fit=crop";
-              }}
-            />
-          </div>
+<div className="w-2/5 h-[220px] overflow-hidden bg-gray-100">
+  <img
+    src={room.images?.[0] || "/images/placeholder-room.jpg"}
+    alt={room.roomType}
+    className="w-full h-full object-cover"
+    onError={(e) => {
+      e.target.src =
+        "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=400&h=300&fit=crop";
+    }}
+  />
+</div>
+
 
           {/* Room Details */}
           <div className="w-3/5 p-6">

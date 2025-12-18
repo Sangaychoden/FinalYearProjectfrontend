@@ -92,8 +92,8 @@ const Contact = () => {
     <div>
       <BreadCrumb title="Contact" />
 
-<div className="py-0 md:py-20 2xl:py-[120px] dark:bg-lightBlack">
-        <div className="Container bg-[#F5F5F5] dark:bg-normalBlack px-7 md:px-10 lg:px-14 2xl:px-20 py-10 md:py-14 lg:py-18 xl:py-20 2xl:py-[100px] ">
+<div className="py-0 md:py-20 2xl:py-[120px] dark:bg-black">
+        <div className="Container bg-[#F5F5F5] dark:bg-black px-7 md:px-10 lg:px-14 2xl:px-20 py-10 md:py-14 lg:py-18 xl:py-20 2xl:py-[100px] ">
           <div className="flex items-center flex-col md:flex-row">
 
             {/* LEFT SIDE */}
@@ -109,13 +109,12 @@ const Contact = () => {
 
               {/* PHONE */}
 <div className="flex items-center my-4 md:my-5 lg:my-[26px] group">
-  <div
-    className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] lg:w-[50px] lg:h-[50px] 2xl:w-[60px] 2xl:h-[60px]
-    dark:bg-lightBlack bg-[#F5F5F5] 
-    grid items-center justify-center -full transition-all duration-300"
-  >
-    <IoIosCall size={22} className="text-[#006600] group-hover:text-whiteSmoke" />
-  </div>
+<div className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] lg:w-[50px] lg:h-[50px] 2xl:w-[60px] 2xl:h-[60px]
+  bg-transparent 
+  grid place-items-center transition-all duration-300"
+>
+  <IoIosCall size={22} className="text-[#006600] group-hover:text-white" />
+</div>
   <div className="ml-3 md:ml-4">
     <p className="font-Arial text-sm text-[#808080] dark:text-[#E3E3E3]">Call Us Now</p>
     <p className="font-Arial text-lg text-black dark:text-white decoration-transparent">
@@ -140,13 +139,14 @@ const Contact = () => {
     "_blank"
   )}
 >
-  <div
-    className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] lg:w-[50px] lg:h-[50px] 2xl:w-[60px] 2xl:h-[60px]
-    bg-[#F5F5F5] dark:bg-lightBlack 
-    grid items-center justify-center -full transition-all duration-300"
-  >
-    <MdEmail size={22} className="text-[#006600] group-hover:text-whiteSmoke" />
-  </div>
+<div
+  className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] lg:w-[50px] lg:h-[50px] 2xl:w-[60px] 2xl:h-[60px]
+    bg-transparent rounded-full
+    grid place-items-center transition-all duration-300"
+>
+  <MdEmail size={22} className="text-[#006600] group-hover:text-white" />
+</div>
+
   <div className="ml-3 md:ml-4">
     <p className="font-Arial text-sm text-[#808080] dark:text-[#E3E3E3]">Send Email</p>
     <p className="font-Arial text-lg text-black dark:text-white decoration-transparent">
@@ -164,13 +164,14 @@ const Contact = () => {
   className="flex items-center my-4 md:my-5 lg:my-[26px] group cursor-pointer"
   onClick={() => window.open("https://maps.app.goo.gl/v3X3SMMngvESTZAi8", "_blank")}
 >
-  <div
-    className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] lg:w-[50px] lg:h-[50px] 2xl:w-[60px] 2xl:h-[60px]
-    bg-[#F5F5F5] dark:bg-lightBlack 
-    grid items-center justify-center -full transition-all duration-300"
-  >
-    <MdOutlineShareLocation size={22} className="text-[#006600] group-hover:text-whiteSmoke" />
-  </div>
+<div
+  className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] lg:w-[50px] lg:h-[50px] 2xl:w-[60px] 2xl:h-[60px]
+    bg-transparent rounded-full
+    grid place-items-center transition-all duration-300"
+>
+  <MdOutlineShareLocation size={22} className="text-[#006600] group-hover:text-white" />
+</div>
+
   <div className="ml-3 md:ml-4">
     <p className="font-Arial text-sm text-[#808080] dark:text-[#E3E3E3]">Our Location</p>
     <p className="font-Arial text-lg text-black dark:text-white">

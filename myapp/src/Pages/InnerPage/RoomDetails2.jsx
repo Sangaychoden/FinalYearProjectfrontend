@@ -1394,7 +1394,7 @@ Swal.fire({
       <BreadCrumb title="room details" />
 
       {/* MAIN CONTENT */}
-      <div className="py-10 md:py-20 pb-0 md:pb-[120px] lg:py-[80px] dark:bg-lightBlack">
+      <div className="py-10 md:py-20 pb-0 md:pb-[120px] lg:py-[80px] dark:bg-black">
         <div className="Container grid grid-cols-6 md:grid-cols-7 lg:grid-cols-6 gap-5">
           {/* LEFT */}
           <div className="col-span-6 md:col-span-4">

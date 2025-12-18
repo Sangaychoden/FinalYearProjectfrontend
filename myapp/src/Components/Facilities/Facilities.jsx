@@ -39,7 +39,7 @@ const Facilities = () => {
               <img
                 src="/images/home-1/facilities-1.png"
                 alt=""
-                className="w-full h-full"
+                className="w-full h-56 md:h-72 lg:h-80 object-cover"
               />
               <div className=" hidden md:block absolute -top-[0px] md:-right-[12%] -right-[7%] xl:-right-[5%]">
                 <h2 className="text-3xl md:text-4xl lg:text-[40px] leading-[38px] text-khaki font-Garamond">
@@ -101,7 +101,7 @@ const Facilities = () => {
               <img
                 src="/images/home-1/facilities-thumb-2.jpg"
                 alt=""
-                className="w-full h-full"
+                className="w-full h-56 md:h-72 lg:h-80 object-cover"
               />
               <div className="hidden md:block absolute -top-[0px] -left-[12%] xl:-left-[6%]">
                 <h1 className="text-3xl md:text-4xl lg:text-[40px] leading-[38px] text-khaki  font-Garamond">
@@ -121,7 +121,7 @@ const Facilities = () => {
               <img
                 src="/images/home-1/facilities-thumb-3.jpg"
                 alt=""
-                className="w-full h-full"
+                className="w-full h-56 md:h-72 lg:h-80 object-cover"
               />
               <div className="hidden md:block absolute -top-[0px] md:-right-[12%] -right-[7%] xl:-right-[5%]">
                 <h2 className="text-3xl md:text-4xl lg:text-[40px] leading-[38px] text-khaki font-Garamond">
@@ -183,7 +183,7 @@ const Facilities = () => {
               <img
                 src="/images/home-1/facilities-thumb-4.jpg"
                 alt=""
-                className="w-full h-full "
+                className="w-full h-56 md:h-72 lg:h-80 object-cover"
               />
               <div className="hidden md:block absolute -top-[0px] -left-[12%] xl:-left-[6%]">
                 <h1 className="text-3xl md:text-4xl lg:text-[40px] leading-[38px] text-khaki font-Garamond">
