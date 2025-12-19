@@ -545,12 +545,6 @@ const realChildrenCount = filteredChildrenAges.length;
                 )}
               </div>
 
-              {/* Total */}
-              <div className="mt-8 border-t border-[#999999] pt-6 flex justify-between">
-                <span className="font-semibold">Total Amount</span>
-                <span className="text-xl font-bold">Nu. {calcTotal()}</span>
-              </div>
-
               <button
                 onClick={confirmBooking}
                 className="bg-[#006600] hover:bg-black text-white w-full h-11 mt-6 mb-4 font-semibold"

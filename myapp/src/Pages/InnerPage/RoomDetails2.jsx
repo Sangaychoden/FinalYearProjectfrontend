@@ -1304,7 +1304,7 @@ Swal.fire({
 Swal.fire({
   title: "Proceed to Booking?",
   icon: "question",
-  html: `<p>${room} ${room > 1 ? "rooms" : "room"} selected.<br/>Total Amount: Nu. ${calcTotal()}<br/>Do you want to continue?</p>`,
+  html: `<p>${room} ${room > 1 ? "rooms" : "room"} selected. Do you want to continue?</p>`,
   showCancelButton: true,
   confirmButtonColor: "#008000",
   cancelButtonColor: "#d33",
@@ -1803,15 +1803,6 @@ Swal.fire({
                     </div>
                   ))}
                 </div>
-              </div>
-            )}
-            {/* TOTAL */}
-            {extraOptionsVisible && (
-              <div className="mt-2 mb-6 border-t pt-4 flex justify-between text-white">
-                <span className="font-semibold">Total Amount</span>
-                <span className="text-lg font-bold">
-                  Nu. {calcTotal()}
-                </span>
               </div>
             )}
 

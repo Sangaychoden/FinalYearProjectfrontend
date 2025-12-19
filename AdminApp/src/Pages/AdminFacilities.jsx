@@ -151,6 +151,12 @@ const confirmDelete = (id) => {
   });
 };
 
+  const truncateWords = (text, wordLimit = 20) => {
+    if (!text) return "";
+    const words = String(text).split(/\s+/);
+    if (words.length <= wordLimit) return text;
+    return words.slice(0, wordLimit).join(" ") + "...";
+  };
 
   if (loading) {
     return (
@@ -236,8 +242,8 @@ const confirmDelete = (id) => {
                   <td className="px-4 py-3 text-gray-800 font-medium">
                     {f.title}
                   </td>
-                  <td className="px-4 py-3 text-gray-600">
-                    {f.description}
+                  <td className="px-4 py-3 text-gray-600" title={f.description}>
+                    {truncateWords(f.description, 20)}
                   </td>
                   <td className="px-4 py-3 text-right">
                     <div className="flex justify-end gap-3">
