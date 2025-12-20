@@ -544,7 +544,7 @@
 
 //     try {
 //       setLoading(true);
-//       const response = await fetch("http://localhost:3000/admin/login", {
+//       const response = await fetch("https://resortbackend.xceedstudio.com/admin/login", {
 //         method: "POST",
 //         headers: { "Content-Type": "application/json" },
 //         credentials: "include", // ✅ important for cookies
@@ -658,7 +658,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 const [showPassword, setShowPassword] = useState(false);
 
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; 
+  const API_URL = import.meta.env.VITE_API_URL || "https://resortbackend.xceedstudio.com"; 
   // For development fallback, production uses Render URL.
 
   const pageStyle = {

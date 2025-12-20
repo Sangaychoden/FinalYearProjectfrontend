@@ -1765,7 +1765,7 @@ const totalAmount = totalPerNight * nights;
   totalAmount,
 };
 
-    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+    const API_URL = import.meta.env.VITE_API_URL || "https://resortbackend.xceedstudio.com";
 
     const result = await Swal.fire({
       html: `<p style="color:#d3ffd3; font-size:16px;">Do you want to confirm this booking?</p>`,

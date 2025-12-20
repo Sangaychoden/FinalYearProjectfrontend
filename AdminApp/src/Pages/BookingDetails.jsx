@@ -747,7 +747,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API_URL = import.meta.env.VITE_API_URL || "https://resortbackend.xceedstudio.com";
 
 // Meal Plan Display
 const mealPlanDisplay = (code) => {

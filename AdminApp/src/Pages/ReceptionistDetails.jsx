@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { setAlert } from "../utils/sweetAlert";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API_URL = import.meta.env.VITE_API_URL || "https://resortbackend.xceedstudio.com";
 
 const ReceptionistDetails = () => {
   const location = useLocation();
