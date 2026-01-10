@@ -258,8 +258,8 @@ import ProtectedRoute from "./ProtectedRoute";
 
 const AppRouter = () => {
   return (
-    // ✅ ADD basename="/admin"
-    <Router basename="/admin">
+    // ✅ No basename needed - deployed on separate subdomain adminresort.xceedstudio.com
+    <Router>
       <Routes>
         {/* PUBLIC ROUTES */}
         <Route path="/" element={<Login />} />
