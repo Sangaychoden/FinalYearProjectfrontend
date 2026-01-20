@@ -304,7 +304,8 @@ const GREEN = "#006600";
 const CONFIRM_GREEN = "#e39300ff";
 const RESTORE_ORANGE = "#e39300ff";
 const DELETE_RED = "#b91c1c";
-const DEFAULT_PHOTO = "/images/default_profile.png";
+// Updated: make sure this path is correct
+const DEFAULT_PHOTO = "/images/default_profile.png"; 
 
 const API_BASE = `${import.meta.env.VITE_API_URL}/testimonials`;
 
@@ -312,6 +313,12 @@ const AdminTestimonials = () => {
   const [items, setItems] = useState([]);
   const [tab, setTab] = useState("published");
   const [loading, setLoading] = useState(false);
+
+  // Helper function to get a valid image URL
+  const getImage = (img) => {
+    if (!img || img.trim() === "") return DEFAULT_PHOTO;
+    return img;
+  };
 
   // Fetch testimonials
   const fetchTestimonials = async () => {
@@ -365,7 +372,6 @@ const AdminTestimonials = () => {
       background: "#006600",
     });
 
-    // FIX: Prevent undefined error
     if (!result || !result.isConfirmed) return;
 
     try {
@@ -421,7 +427,6 @@ const AdminTestimonials = () => {
       background: "#006600",
     });
 
-    // FIX: Prevent undefined error
     if (!result || !result.isConfirmed) return;
 
     try {
@@ -492,7 +497,7 @@ const AdminTestimonials = () => {
 
         <Link
           to="/add-testimonial"
-          className="inline-flex items-center gap-2 px-4 h-10 text-md text-white bg-[#006600] hover:bg-black shadow-md transition -none"
+          className="inline-flex items-center gap-2 px-4 h-10 text-md text-white bg-[#006600] hover:bg-black shadow-md transition"
         >
           <Plus size={18} />
           Add Testimonials
@@ -506,19 +511,22 @@ const AdminTestimonials = () => {
           {filtered.map((t) => (
             <article
               key={t._id}
-              className="border border-gray-200 bg-white -none p-6"
+              className="border border-gray-200 bg-white p-6"
             >
               <div className="flex items-start gap-6">
                 <div className="w-32 h-32 bg-gray-100 overflow-hidden">
                   <img
-                    src={t.image || DEFAULT_PHOTO}
+                    src={getImage(t.image)}
                     alt={t.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
 
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold uppercase" style={{ color: GREEN }}>
+                  <h3
+                    className="text-xl font-bold uppercase"
+                    style={{ color: GREEN }}
+                  >
                     {t.name}
                   </h3>
                   <p className="text-md font-semibold mt-1">{t.stayPeriod}</p>
@@ -529,14 +537,14 @@ const AdminTestimonials = () => {
                   <Link
                     to={`/edit-testimonial/${t._id}`}
                     state={{ testimonial: t }}
-                    className="w-24 h-10 flex items-center justify-center bg-[#006600] text-white -none "
+                    className="w-24 h-10 flex items-center justify-center bg-[#006600] text-white"
                   >
                     EDIT
                   </Link>
 
                   <button
                     onClick={() => toggleArchive(t._id, t.isArchived)}
-                    className="w-24 h-10 flex items-center justify-center text-white -none"
+                    className="w-24 h-10 flex items-center justify-center text-white"
                     style={{
                       backgroundColor: t.isArchived
                         ? RESTORE_ORANGE
@@ -548,7 +556,7 @@ const AdminTestimonials = () => {
 
                   <button
                     onClick={() => deleteTestimonial(t._id)}
-                    className="w-24 h-10 flex items-center justify-center text-white -none"
+                    className="w-24 h-10 flex items-center justify-center text-white"
                     style={{ backgroundColor: DELETE_RED }}
                   >
                     DELETE

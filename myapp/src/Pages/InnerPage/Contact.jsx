@@ -118,8 +118,8 @@ const Contact = () => {
   <div className="ml-3 md:ml-4">
     <p className="font-Arial text-sm text-[#808080] dark:text-[#E3E3E3]">Call Us Now</p>
     <p className="font-Arial text-lg text-black dark:text-white decoration-transparent">
-      <a href="tel:+97517755898" className="hover:underline mr-2">
-        +975 17755898
+      <a href="tel:+97577249444" className="hover:underline mr-2">
+        +975 77249444
       </a>
       |
       <a href="tel:+6581119926" className="hover:underline ml-2">

@@ -232,12 +232,12 @@ const Services = () => {
     const fetchFacilities = async () => {
       try {
         const res = await fetch(API_URL, { credentials: "include" });
-        if (!res.ok) throw new Error("Failed to fetch facilities");
+        if (!res.ok) throw new Error("Failed to fetch services");
         const data = await res.json();
         const list = Array.isArray(data) ? data : data.facilities || [];
         setFacilities(list);
       } catch (err) {
-        console.error("Error fetching facilities:", err);
+        console.error("Error fetching services:", err);
       }
     };
     fetchFacilities();
@@ -274,7 +274,7 @@ const Services = () => {
                 SERVICES
               </h5>
               <h1 className="text-[22px] sm:text-2xl md:text-3xl 2xl:text-[38px] dark:text-white  leading-[38px] lg:leading-[44px] font-semibold">
-                ENJOY BEST QUALITY FACILITIES
+                ENJOY BEST QUALITY SERVICES
               </h1>
             </div>
           </div>

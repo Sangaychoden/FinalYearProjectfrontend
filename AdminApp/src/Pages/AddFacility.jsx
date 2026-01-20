@@ -77,24 +77,24 @@ const AddFacility = () => {
       });
 
       if (response.status === 401) throw new Error("Unauthorized");
-      if (!response.ok) throw new Error("Failed to save facility");
+      if (!response.ok) throw new Error("Failed to save service");
 
       Swal.fire({
         title: "Saved",
-        text: "Facility has been created successfully!",
+        text: "Service has been created successfully!",
         icon: "success",
       confirmButtonColor: "#008000",
         color: "#fff",
         background: THEME_GREEN,
       }).then(() => navigate("/admin-facilities"));
     } catch (err) {
-      console.error("❌ Error creating facility:", err);
+      console.error("❌ Error creating service:", err);
       Swal.fire({
         icon: "error",
         title:
           err.message === "Unauthorized"
             ? "Access Denied"
-            : "Error creating facility",
+            : "Error creating service",
         text:
           err.message === "Unauthorized"
             ? "Your session has expired. Please log in again."
@@ -111,7 +111,7 @@ const AddFacility = () => {
       <div className="bg-white shadow-lg p-8 w-full max-w-4xl">
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold text-black">Add Facility</h1>
+          <h1 className="text-2xl font-bold text-black">Add Service</h1>
           <button
             onClick={() => navigate("/admin-facilities")}
             className="px-4 py-2 border border-gray-300 text-gray-300"

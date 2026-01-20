@@ -28,14 +28,14 @@ const AdminFacilities = () => {
         const data = await res.json();
         setFacilities(data.facilities || []);
       } catch (error) {
-        console.error("❌ Fetch facilities error:", error);
+        console.error("❌ Fetch services error:", error);
         Swal.fire({
           icon: "error",
           title: "Error",
           text:
             error.message === "Unauthorized"
               ? "Session expired. Please log in again."
-              : "Failed to fetch facilities.",
+              : "Failed to fetch services.",
           confirmButtonColor: THEME_GREEN,
           color: "#fff",
           background: THEME_GREEN,
@@ -78,7 +78,7 @@ const AdminFacilities = () => {
 
         const data = await res.json();
         if (
-          data.message === "No facilities found matching your search" ||
+          data.message === "No services found matching your search" ||
           !data.facilities ||
           data.facilities.length === 0
         ) {
@@ -127,21 +127,21 @@ const confirmDelete = (id) => {
         // ✅ Success popup also uses CONFIRM_GREEN now
         Swal.fire({
           title: "Deleted",
-          text: "Facility removed successfully.",
+          text: "Service removed successfully.",
           icon: "success",
           confirmButtonColor: CONFIRM_GREEN, // 💚 bright green button
           color: "#fff",
           background: THEME_GREEN,
         });
       } catch (err) {
-        console.error("❌ Delete facility error:", err);
+        console.error("❌ Delete service error:", err);
         Swal.fire({
           icon: "error",
           title: "Error",
           text:
             err.message === "Unauthorized"
               ? "Session expired. Please log in again."
-              : "Failed to delete facility. Please try again.",
+              : "Failed to delete service. Please try again.",
           confirmButtonColor: CONFIRM_GREEN,
           color: "#fff",
           background: THEME_GREEN,
@@ -161,7 +161,7 @@ const confirmDelete = (id) => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen text-gray-600 text-lg">
-        Loading facilities...
+        Loading services...
       </div>
     );
   }
@@ -174,7 +174,7 @@ const confirmDelete = (id) => {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <h1 className="text-2xl font-bold text-gray-800">Facilities</h1>
+          <h1 className="text-2xl font-bold text-gray-800">Services</h1>
         </div>
 
         <Link
@@ -200,7 +200,7 @@ const confirmDelete = (id) => {
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search facilities by title..."
+          placeholder="Search services by title..."
           className="w-full pl-9 pr-3 h-11 border border-gray-300 focus:border-[#006600] focus:ring-2 focus:ring-[#006600]/40 outline-none transition-all"
         />
       </div>
@@ -230,7 +230,7 @@ const confirmDelete = (id) => {
                   colSpan={3}
                   className="py-6 text-center text-gray-500 italic"
                 >
-                  No facilities found.
+                  No services found.
                 </td>
               </tr>
             ) : (

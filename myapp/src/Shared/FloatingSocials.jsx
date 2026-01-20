@@ -5,7 +5,7 @@ const FloatingSocials = () => {
   return (
     <Wrapper>
       <a
-        href="https://wa.me/97517755898" // your WhatsApp number with country code
+        href="https://wa.me/97577249444" // your WhatsApp number with country code
         target="_blank"
         rel="noopener noreferrer"
         className="social-btn whatsapp"

@@ -376,7 +376,7 @@ const EditFacility = () => {
         if (res.status === 401)
           throw new Error("Unauthorized");
         if (!res.ok)
-          throw new Error("Failed to fetch facility");
+          throw new Error("Failed to fetch service");
 
         const data = await res.json();
 
@@ -393,7 +393,7 @@ const EditFacility = () => {
       } catch (err) {
         Swal.fire({
           icon: "error",
-          title: err.message === "Unauthorized" ? "Access Denied" : "Failed to load facility",
+          title: err.message === "Unauthorized" ? "Access Denied" : "Failed to load service",
           text: err.message === "Unauthorized"
             ? "Your session has expired. Please log in again."
             : "Please try again later.",
@@ -486,7 +486,7 @@ const EditFacility = () => {
 
     Swal.fire({
       title: "Confirm Update",
-      text: "Do you want to update this facility?",
+      text: "Do you want to update this service?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "Yes",
@@ -524,7 +524,7 @@ const EditFacility = () => {
 
         Swal.fire({
           icon: "success",
-          title: "Facility updated successfully!",
+          title: "Service updated successfully!",
           confirmButtonColor: CONFIRM_GREEN,
           background: THEME_GREEN,
           color: "#fff",
@@ -536,7 +536,7 @@ const EditFacility = () => {
           text:
             err.message === "Unauthorized"
               ? "Your session expired. Please log in again."
-              : "Failed to update facility. Try again.",
+              : "Failed to update service. Try again.",
           confirmButtonColor: CONFIRM_GREEN,
           background: THEME_GREEN,
           color: "#fff",
@@ -553,7 +553,7 @@ const EditFacility = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen text-gray-600 text-lg">
-        Loading facility details...
+        Loading service details...
       </div>
     );
   }
@@ -561,7 +561,7 @@ const EditFacility = () => {
   return (
     <section className="min-h-screen bg-gray-50 font-inter py-6">
       <div className="max-w-4xl mx-auto bg-white p-8 shadow-lg -lg">
-        <h1 className="text-2xl font-semibold text-black mb-6">Edit Facility</h1>
+        <h1 className="text-2xl font-semibold text-black mb-6">Edit Service</h1>
 
         <form onSubmit={onSubmit} className="space-y-6">
           {/* Title */}

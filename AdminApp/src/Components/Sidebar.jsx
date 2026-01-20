@@ -83,7 +83,7 @@ const Sidebar = () => {
     { path: "/dashboard", label: "DASHBOARD" },
     { path: "/admin-rooms", label: "ROOM" },
     { path: "/booking", label: "BOOKING" },
-    { path: "/admin-facilities", label: "FACILITIES" },
+    { path: "/admin-facilities", label: "SERVICES" },
     { path: "/admin-testimonials", label: "TESTIMONIALS" },
     { path: "/receptionists", label: "RECEPTIONIST" },
   ];

@@ -26,8 +26,8 @@ const Footer3 = () => {
     <BiSolidPhoneCall className="text-white" size={15} />
   </span>
   <p className="text-sm sm:text-base leading-[26px] lg:leading-[38px] font-Arial font-small ml-2 text-white transition-all duration-300">
-    <a href="tel:+97517755898" className="hover:text-[#006600] mr-2">
-      +975 17755898
+    <a href="tel:+97577249444" className="hover:text-[#006600] mr-2">
+      +975 77249444
     </a>
     |
     <a href="tel:+6581119926" className="hover:text-[#006600] ml-2">
