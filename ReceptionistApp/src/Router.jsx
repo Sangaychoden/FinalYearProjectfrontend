@@ -79,8 +79,8 @@ import ProtectedRoute from "./ProtectedRoute";
 
 const AppRouter = () => {
   return (
-    // ✅ IMPORTANT: Add basename="/receptionist"
-    <Router basename="/receptionist">
+    // ✅ No basename needed - deployed on separate subdomain resortreception.xceedstudio.com
+    <Router>
       <Routes>
 
         {/* Public Pages */}

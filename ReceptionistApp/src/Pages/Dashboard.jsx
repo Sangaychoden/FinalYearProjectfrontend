@@ -12,7 +12,7 @@ import {
 } from "recharts";
 
 // API URL
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API_URL = import.meta.env.VITE_API_URL || "https://resortbackend.xceedstudio.com";
 
 const Dashboard = () => {
   const currentYear = new Date().getFullYear().toString();

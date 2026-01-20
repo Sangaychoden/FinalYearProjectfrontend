@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 // ✅ Use .env for base URL
-const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const BASE_URL = import.meta.env.VITE_API_URL || "https://resortbackend.xceedstudio.com";
 const API_URL = `${BASE_URL}/receptionist/login`; // ✅ Receptionist login endpoint
 
 const ReceptionistLogin = () => {

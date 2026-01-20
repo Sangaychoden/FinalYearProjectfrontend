@@ -349,7 +349,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FaCloudUploadAlt } from "react-icons/fa";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API_URL = import.meta.env.VITE_API_URL || "https://resortbackend.xceedstudio.com";
 const THEME_GREEN = "#006600";
 const CONFIRM_GREEN = "#008000";
 const MAX_IMAGES = 5;

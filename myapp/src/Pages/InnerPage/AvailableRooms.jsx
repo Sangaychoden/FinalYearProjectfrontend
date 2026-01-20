@@ -59,7 +59,7 @@ const AvailableRooms = () => {
       try {
         if (!checkIn || !checkOut) return;
 
-        const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+        const API_URL = import.meta.env.VITE_API_URL || "https://resortbackend.xceedstudio.com";
 
         const url = `${API_URL}/rooms/available?checkIn=${formatDate(
           checkIn

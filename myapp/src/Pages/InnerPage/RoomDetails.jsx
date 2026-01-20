@@ -63,7 +63,7 @@ const PLANS = [
       if (!id) return;
 
       try {
-        const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+        const API_URL = import.meta.env.VITE_API_URL || "https://resortbackend.xceedstudio.com";
         const response = await fetch(`${API_URL}/rooms/${id}`);
         const data = await response.json();
 

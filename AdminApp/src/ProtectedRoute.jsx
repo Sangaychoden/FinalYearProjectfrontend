@@ -3,7 +3,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API_URL = import.meta.env.VITE_API_URL || "https://resortbackend.xceedstudio.com";
 
 export default function ProtectedRoute({ children }) {
   const [loading, setLoading] = useState(true);

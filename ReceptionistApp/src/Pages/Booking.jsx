@@ -7,7 +7,7 @@ import { Search, Calendar, Eye } from "lucide-react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API_URL = import.meta.env.VITE_API_URL || "https://resortbackend.xceedstudio.com";
 
 const Booking = () => {
   const tabs = ["AVAILABLE", "PENDING", "BOOKED", "CHECKED IN", "CANCELLED"];
